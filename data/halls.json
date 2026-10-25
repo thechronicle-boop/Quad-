@@ -1060,10 +1060,10 @@
     "n": 2
    },
    "wet": {
-    "median": 221.27,
+    "median": 221,
     "min": 189,
     "max": 235.69,
-    "n": 7
+    "n": 6
    },
    "studio": {
     "median": 206,
@@ -1077,8 +1077,7 @@
    "https://www.sussex.ac.uk/study/accommodation/on-campus/swanborough",
    "https://www.sussex.ac.uk/study/accommodation/on-campus/stanmer-court",
    "https://www.sussex.ac.uk/study/accommodation/on-campus/northfield",
-   "https://www.sussex.ac.uk/study/accommodation/on-campus",
-   "https://www.sussex.ac.uk/study/accommodation/on-campus/west-slope"
+   "https://www.sussex.ac.uk/study/accommodation/on-campus"
   ],
   "pagesVisited": 18,
   "examples": [
@@ -1444,7 +1443,7 @@
   "catered": false,
   "rooms": {},
   "sources": [],
-  "pagesVisited": 4,
+  "pagesVisited": 3,
   "examples": []
  },
  "sfs": {
