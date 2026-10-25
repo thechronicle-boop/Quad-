@@ -128,5 +128,316 @@
   "catered": false,
   "note": "From a guide quoting QMUL's fees page",
   "source": "https://admistay.com/intelligence-hub/queen-mary-university-london-accommodation-2026-27"
+ },
+ "lbo": {
+  "from": 126,
+  "rooms": {
+   "shared": 126,
+   "wet": 213
+  },
+  "catPrice": 171,
+  "year": "2026/27",
+  "weeks": 41,
+  "catered": true,
+  "source": "https://www.lboro.ac.uk/study/undergraduate/accommodation/fees/"
+ },
+ "bri": {
+  "from": 147,
+  "rooms": {
+   "shared": 158,
+   "wet": 231
+  },
+  "catPrice": 151,
+  "year": "2026/27",
+  "weeks": 38,
+  "catered": true,
+  "source": "https://www.bristol.ac.uk/accommodation/about/costs/cost-by-residence/"
+ },
+ "abd": {
+  "from": 111,
+  "rooms": {
+   "shared": 111,
+   "wet": 191
+  },
+  "year": "2026/27",
+  "catered": false,
+  "note": "No studios or catered halls",
+  "source": "https://www.abdn.ac.uk/media/site/study/documents/Accommodation-price-list.pdf"
+ },
+ "bat": {
+  "from": 98,
+  "rooms": {},
+  "catPrice": 147,
+  "year": "2026/27",
+  "weeks": 38,
+  "catered": true,
+  "note": "Bath gives a range of \u00a398\u2013\u00a3315 a week (average \u00a3183)",
+  "source": "https://www.bath.ac.uk/publications/undergraduate-budget/attachments/undergraduate-overall-budget.pdf"
+ },
+ "bed": {
+  "from": 110,
+  "rooms": {
+   "wet": 110
+  },
+  "year": "2026/27",
+  "catered": false,
+  "note": "Average \u00a3145 a week",
+  "source": "https://www.beds.ac.uk/news/2026/april/university-of-bedfordshire-named-cheapest-student-accommodation-in-the-east-of-england/"
+ },
+ "cdf": {
+  "from": 144,
+  "rooms": {
+   "shared": 144,
+   "wet": 144
+  },
+  "catPrice": 163,
+  "year": "2026/27",
+  "catered": true,
+  "note": "Cardiff publishes average fees, not cheapest",
+  "source": "https://www.cardiff.ac.uk/__data/assets/pdf_file/0008/156455/Residences-Guide-2027_Web.pdf"
+ },
+ "bou": {
+  "from": 147,
+  "rooms": {
+   "shared": 147,
+   "wet": 154,
+   "studio": 185
+  },
+  "year": "2026/27",
+  "catered": false,
+  "source": "https://www.bournemouth.ac.uk/sites/default/files/asset/document/Accommodation-price-guide-2026-27.pdf"
+ },
+ "gcu": {
+  "from": 146,
+  "rooms": {
+   "shared": 146,
+   "wet": 169
+  },
+  "year": "2026/27",
+  "weeks": 41,
+  "catered": false,
+  "source": "https://www.gcu.ac.uk/__data/assets/pdf_file/0024/332745/Application-Pack-How-to-Apply-2026-27.pdf"
+ },
+ "her": {
+  "from": 125,
+  "rooms": {
+   "wet": 190,
+   "studio": 231
+  },
+  "year": "2024/25",
+  "catered": false,
+  "note": "Latest prices published are for 2024/25",
+  "source": "https://www.herts.ac.uk/__data/assets/pdf_file/0011/393257/Accommodation-Fact-Sheet.pdf"
+ },
+ "glos": {
+  "from": 165,
+  "rooms": {
+   "shared": 165,
+   "full": 191
+  },
+  "year": "2026/27",
+  "catered": false,
+  "note": "Park Challinor hall checked",
+  "source": "https://www.glos.ac.uk/accommodation/halls-of-residence/park-challinor/"
+ },
+ "lei": {
+  "from": 74,
+  "rooms": {},
+  "year": "2026/27",
+  "catered": false,
+  "note": "Self-catered rooms from \u00a374 a week",
+  "source": "https://www.thecompleteuniversityguide.co.uk/universities/university-of-leicester/facilities"
+ },
+ "sou": {
+  "from": 119,
+  "rooms": {
+   "shared": 139,
+   "wet": 177,
+   "studio": 253
+  },
+  "catPrice": 223,
+  "year": "2026/27",
+  "catered": true,
+  "source": "https://www.southampton.ac.uk/student-life/accommodation/fees-contracts"
+ },
+ "yor": {
+  "from": 149,
+  "rooms": {
+   "shared": 149,
+   "wet": 206
+  },
+  "catPrice": 165,
+  "year": "2026/27",
+  "weeks": 40,
+  "catered": true,
+  "note": "No studios",
+  "source": "https://www.york.ac.uk/study/accommodation/rooms-prices/"
+ },
+ "war": {
+  "from": 130,
+  "rooms": {},
+  "year": "2026/27",
+  "catered": false,
+  "note": "On-campus halls \u00a3130\u2013\u00a3255 a week",
+  "source": "https://theboar.org/2026/03/students-face-fifth-consecutive-year-of-unjustified-price-hikes-for-on-campus-halls"
+ },
+ "ncl": {
+  "from": 155,
+  "rooms": {
+   "shared": 155
+  },
+  "year": "2026/27",
+  "catered": false,
+  "note": "Only one hall's prices could be checked",
+  "source": "https://www.ncl.ac.uk/accommodation/university/joseph-cowen/"
+ },
+ "qub": {
+  "from": 119,
+  "rooms": {
+   "shared": 119,
+   "wet": 163,
+   "studio": 201
+  },
+  "year": "2026/27",
+  "catered": false,
+  "source": "https://www.qub.ac.uk/accommodation/residential-fees"
+ },
+ "por": {
+  "from": 120,
+  "rooms": {
+   "shared": 120,
+   "wet": 148,
+   "studio": 188
+  },
+  "catPrice": 175,
+  "year": "2026/27",
+  "catered": true,
+  "source": "https://port.ac.uk/our-halls-residence"
+ },
+ "uwe": {
+  "from": 118,
+  "rooms": {
+   "shared": 118,
+   "wet": 171
+  },
+  "year": "2026",
+  "catered": false,
+  "source": "https://www.uwe.ac.uk/life/accommodation/find-accommodation"
+ },
+ "ntu": {
+  "from": 181,
+  "rooms": {
+   "wet": 181
+  },
+  "year": "2026/27",
+  "catered": false,
+  "note": "Clifton campus halls checked",
+  "source": "https://www.ntu.ac.uk/study-and-courses/open-days/undergraduate-open-days/guide/clifton-campus-open-day-pre-arrival-guide/accommodation-clifton-campus"
+ },
+ "shu": {
+  "from": 109,
+  "rooms": {
+   "wet": 109
+  },
+  "year": "2026/27",
+  "weeks": 44,
+  "catered": false,
+  "note": "Exchange Works hall checked",
+  "source": "https://www.shu.ac.uk/study-here/accommodation/properties/exchange-works"
+ },
+ "wlv": {
+  "from": 103,
+  "rooms": {
+   "shared": 103,
+   "wet": 122
+  },
+  "year": "2026/27",
+  "catered": false,
+  "note": "No studios listed",
+  "source": "https://www.wlv.ac.uk/university-life/accommodation/accommodation-fees"
+ },
+ "wor": {
+  "from": 136,
+  "rooms": {
+   "shared": 136,
+   "wet": 208
+  },
+  "year": "2026/27",
+  "catered": false,
+  "note": "2027/28 prices also out: from \u00a3140",
+  "source": "https://worcester.ac.uk/life/accommodation/living-in-halls/accommodation-rates.aspx"
+ },
+ "lin": {
+  "from": 129,
+  "rooms": {
+   "wet": 129
+  },
+  "year": "2026/27",
+  "catered": false,
+  "source": "https://www.lincoln.ac.uk/accommodation"
+ },
+ "liv": {
+  "from": 152,
+  "rooms": {
+   "wet": 152,
+   "studio": 237
+  },
+  "year": "2026/27",
+  "weeks": 42,
+  "catered": false,
+  "note": "From the 2026 fees chart (returning students' prices)",
+  "source": "https://www.liverpool.ac.uk/media/livacuk/accommodation/feescharts/Returning,Undergraduate,Fees,Chart,2026-27.pdf"
+ },
+ "ljmu": {
+  "from": 95,
+  "rooms": {
+   "shared": 95,
+   "wet": 125
+  },
+  "year": "2025/26",
+  "catered": false,
+  "note": "Latest grid published is 2025/26",
+  "source": "https://cd-prod.ljmu.ac.uk/-/media/files/ljmu/discover/accommodation/accommodation-grid-accessible.docx"
+ },
+ "sta": {
+  "from": 168,
+  "rooms": {
+   "shared": 168,
+   "wet": 201
+  },
+  "year": "2025/26",
+  "weeks": 38,
+  "catered": true,
+  "source": "https://st-andrews.ac.uk/accommodation/ug/fees"
+ },
+ "ugm": {
+  "from": 103,
+  "rooms": {
+   "shared": 103,
+   "wet": 135
+  },
+  "year": null,
+  "catered": false,
+  "note": "Orlando Village bronze \u00a3103 / silver \u00a3135 a week (year not stated)",
+  "source": "https://knowledge.bolton.ac.uk/how-much-is-the-accommodation"
+ },
+ "hul": {
+  "from": 99,
+  "rooms": {
+   "wet": 99
+  },
+  "year": "2026",
+  "catered": false,
+  "source": "https://www.hull.ac.uk/accommodation"
+ },
+ "edh": {
+  "from": 153,
+  "rooms": {
+   "wet": 153
+  },
+  "year": "2026/27",
+  "catered": false,
+  "note": "Chancellors Court: most rooms \u00a3153\u2013\u00a3163 a week",
+  "source": "https://www.edgehill.ac.uk/study/accommodation/chancellors-court-and-chancellors-south/"
  }
 }

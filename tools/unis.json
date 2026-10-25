@@ -3,37 +3,49 @@
   "id": "oxf",
   "name": "University of Oxford",
   "domain": "ox.ac.uk",
-  "start": []
+  "start": [
+   "https://ox.ac.uk/admissions/undergraduate/fees-and-funding/living-costs"
+  ]
  },
  {
   "id": "cam",
   "name": "University of Cambridge",
   "domain": "cam.ac.uk",
-  "start": []
+  "start": [
+   "https://www.undergraduate.study.cam.ac.uk/fees-funding/living-costs"
+  ]
  },
  {
   "id": "imp",
   "name": "Imperial College London",
   "domain": "imperial.ac.uk",
-  "start": []
+  "start": [
+   "https://www.imperial.ac.uk/students/accommodation/prospective/ug/fees/"
+  ]
  },
  {
   "id": "ucl",
   "name": "UCL",
   "domain": "ucl.ac.uk",
-  "start": []
+  "start": [
+   "https://www.ucl.ac.uk/accommodation/halls/venti-house"
+  ]
  },
  {
   "id": "kcl",
   "name": "King's College London",
   "domain": "kcl.ac.uk",
-  "start": []
+  "start": [
+   "https://roarnews.co.uk/2026/kings-residences-rent-now-averages-14-5k-as-kclsu-fights-for-kaas/"
+  ]
  },
  {
   "id": "lse",
   "name": "LSE",
   "domain": "lse.ac.uk",
-  "start": []
+  "start": [
+   "https://lse.ac.uk/asset-library/table-of-accommodation-fees.pdf"
+  ]
  },
  {
   "id": "qml",
@@ -63,31 +75,41 @@
   "id": "edi",
   "name": "University of Edinburgh",
   "domain": "ed.ac.uk",
-  "start": []
+  "start": [
+   "https://study.ed.ac.uk/undergraduate/fees-funding/living-costs"
+  ]
  },
  {
   "id": "gla",
   "name": "University of Glasgow",
   "domain": "gla.ac.uk",
-  "start": []
+  "start": [
+   "https://www.gla.ac.uk/undergraduate/accommodation/fees"
+  ]
  },
  {
   "id": "gcu",
   "name": "Glasgow Caledonian University",
   "domain": "gcu.ac.uk",
-  "start": []
+  "start": [
+   "https://www.gcu.ac.uk/__data/assets/pdf_file/0024/332745/Application-Pack-How-to-Apply-2026-27.pdf"
+  ]
  },
  {
   "id": "sta",
   "name": "University of St Andrews",
   "domain": "st-andrews.ac.uk",
-  "start": []
+  "start": [
+   "https://st-andrews.ac.uk/accommodation/ug/fees"
+  ]
  },
  {
   "id": "abd",
   "name": "University of Aberdeen",
   "domain": "abdn.ac.uk",
-  "start": []
+  "start": [
+   "https://www.abdn.ac.uk/media/site/study/documents/Accommodation-price-list.pdf"
+  ]
  },
  {
   "id": "rgu",
@@ -99,19 +121,25 @@
   "id": "man",
   "name": "University of Manchester",
   "domain": "manchester.ac.uk",
-  "start": []
+  "start": [
+   "https://documents.manchester.ac.uk/display.aspx?DocID=78796"
+  ]
  },
  {
   "id": "bri",
   "name": "University of Bristol",
   "domain": "bristol.ac.uk",
-  "start": []
+  "start": [
+   "https://www.bristol.ac.uk/accommodation/about/costs/cost-by-residence/"
+  ]
  },
  {
   "id": "uwe",
   "name": "UWE Bristol",
   "domain": "uwe.ac.uk",
-  "start": []
+  "start": [
+   "https://www.uwe.ac.uk/life/accommodation/find-accommodation"
+  ]
  },
  {
   "id": "war",
@@ -141,7 +169,9 @@
   "id": "lee",
   "name": "University of Leeds",
   "domain": "leeds.ac.uk",
-  "start": []
+  "start": [
+   "https://accommodation.leeds.ac.uk/small-residences/"
+  ]
  },
  {
   "id": "she",
@@ -153,7 +183,9 @@
   "id": "shu",
   "name": "Sheffield Hallam University",
   "domain": "shu.ac.uk",
-  "start": []
+  "start": [
+   "https://www.shu.ac.uk/study-here/accommodation/properties/exchange-works"
+  ]
  },
  {
   "id": "not",
@@ -165,7 +197,9 @@
   "id": "sou",
   "name": "University of Southampton",
   "domain": "southampton.ac.uk",
-  "start": []
+  "start": [
+   "https://www.southampton.ac.uk/student-life/accommodation/fees-contracts"
+  ]
  },
  {
   "id": "exe",
@@ -177,13 +211,17 @@
   "id": "yor",
   "name": "University of York",
   "domain": "york.ac.uk",
-  "start": []
+  "start": [
+   "https://www.york.ac.uk/study/accommodation/rooms-prices/"
+  ]
  },
  {
   "id": "ncl",
   "name": "Newcastle University",
   "domain": "ncl.ac.uk",
-  "start": []
+  "start": [
+   "https://www.ncl.ac.uk/accommodation/university/joseph-cowen/"
+  ]
  },
  {
   "id": "nor",
@@ -195,13 +233,17 @@
   "id": "liv",
   "name": "University of Liverpool",
   "domain": "liverpool.ac.uk",
-  "start": []
+  "start": [
+   "https://www.liverpool.ac.uk/media/livacuk/accommodation/feescharts/Returning,Undergraduate,Fees,Chart,2026-27.pdf"
+  ]
  },
  {
   "id": "cdf",
   "name": "Cardiff University",
   "domain": "cardiff.ac.uk",
-  "start": []
+  "start": [
+   "https://www.cardiff.ac.uk/__data/assets/pdf_file/0008/156455/Residences-Guide-2027_Web.pdf"
+  ]
  },
  {
   "id": "swa",
@@ -213,19 +255,25 @@
   "id": "qub",
   "name": "Queen's University Belfast",
   "domain": "qub.ac.uk",
-  "start": []
+  "start": [
+   "https://www.qub.ac.uk/accommodation/residential-fees"
+  ]
  },
  {
   "id": "bat",
   "name": "University of Bath",
   "domain": "bath.ac.uk",
-  "start": []
+  "start": [
+   "https://www.bath.ac.uk/publications/undergraduate-budget/attachments/undergraduate-overall-budget.pdf"
+  ]
  },
  {
   "id": "lbo",
   "name": "Loughborough University",
   "domain": "lboro.ac.uk",
-  "start": []
+  "start": [
+   "https://www.lboro.ac.uk/study/undergraduate/accommodation/fees/"
+  ]
  },
  {
   "id": "lan",
@@ -243,7 +291,9 @@
   "id": "lei",
   "name": "University of Leicester",
   "domain": "le.ac.uk",
-  "start": []
+  "start": [
+   "https://www.thecompleteuniversityguide.co.uk/universities/university-of-leicester/facilities"
+  ]
  },
  {
   "id": "sus",
@@ -261,19 +311,25 @@
   "id": "uea",
   "name": "University of East Anglia (UEA)",
   "domain": "uea.ac.uk",
-  "start": []
+  "start": [
+   "https://assets.uea.ac.uk/f/185167/x/54b8b727c9/residences-room-type-comparison-sept-26.pdf"
+  ]
  },
  {
   "id": "her",
   "name": "University of Hertfordshire",
   "domain": "herts.ac.uk",
-  "start": []
+  "start": [
+   "https://www.herts.ac.uk/__data/assets/pdf_file/0011/393257/Accommodation-Fact-Sheet.pdf"
+  ]
  },
  {
   "id": "por",
   "name": "University of Portsmouth",
   "domain": "port.ac.uk",
-  "start": []
+  "start": [
+   "https://port.ac.uk/our-halls-residence"
+  ]
  },
  {
   "id": "obu",
@@ -291,7 +347,9 @@
   "id": "bou",
   "name": "Bournemouth University",
   "domain": "bournemouth.ac.uk",
-  "start": []
+  "start": [
+   "https://www.bournemouth.ac.uk/sites/default/files/asset/document/Accommodation-price-guide-2026-27.pdf"
+  ]
  },
  {
   "id": "aru",
@@ -309,7 +367,9 @@
   "id": "lin",
   "name": "University of Lincoln",
   "domain": "lincoln.ac.uk",
-  "start": []
+  "start": [
+   "https://www.lincoln.ac.uk/accommodation"
+  ]
  },
  {
   "id": "tee",
@@ -345,7 +405,9 @@
   "id": "wor",
   "name": "University of Worcester",
   "domain": "worc.ac.uk",
-  "start": []
+  "start": [
+   "https://worcester.ac.uk/life/accommodation/living-in-halls/accommodation-rates.aspx"
+  ]
  },
  {
   "id": "hul",
@@ -375,13 +437,17 @@
   "id": "ntu",
   "name": "Nottingham Trent University",
   "domain": "ntu.ac.uk",
-  "start": []
+  "start": [
+   "https://www.ntu.ac.uk/study-and-courses/open-days/undergraduate-open-days/guide/clifton-campus-open-day-pre-arrival-guide/accommodation-clifton-campus"
+  ]
  },
  {
   "id": "ljmu",
   "name": "Liverpool John Moores University",
   "domain": "ljmu.ac.uk",
-  "start": []
+  "start": [
+   "https://cd-prod.ljmu.ac.uk/-/media/files/ljmu/discover/accommodation/accommodation-grid-accessible.docx"
+  ]
  },
  {
   "id": "brd",
@@ -393,13 +459,17 @@
   "id": "glos",
   "name": "University of Gloucestershire",
   "domain": "glos.ac.uk",
-  "start": []
+  "start": [
+   "https://www.glos.ac.uk/accommodation/halls-of-residence/park-challinor/"
+  ]
  },
  {
   "id": "wlv",
   "name": "University of Wolverhampton",
   "domain": "wlv.ac.uk",
-  "start": []
+  "start": [
+   "https://www.wlv.ac.uk/university-life/accommodation/accommodation-fees"
+  ]
  },
  {
   "id": "ysj",
@@ -435,7 +505,9 @@
   "id": "bed",
   "name": "University of Bedfordshire",
   "domain": "beds.ac.uk",
-  "start": []
+  "start": [
+   "https://www.beds.ac.uk/news/2026/april/university-of-bedfordshire-named-cheapest-student-accommodation-in-the-east-of-england/"
+  ]
  },
  {
   "id": "qmu",
