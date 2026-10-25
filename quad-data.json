@@ -6,9 +6,7 @@
   "gre": {
    "rooms": {
     "shared": 221,
-    "wet": 266,
-    "full": 217,
-    "studio": 221
+    "wet": 266
    },
    "catered": false,
    "cateredPrice": null,
@@ -114,7 +112,6 @@
   },
   "exe": {
    "rooms": {
-    "shared": 215,
     "wet": 175
    },
    "catered": false,
@@ -164,7 +161,6 @@
   "sur": {
    "rooms": {
     "wet": 261,
-    "full": 245,
     "studio": 331
    },
    "catered": false,
@@ -177,8 +173,7 @@
   "sus": {
    "rooms": {
     "shared": 156,
-    "wet": 221,
-    "studio": 206
+    "wet": 221
    },
    "catered": false,
    "cateredPrice": null,
@@ -324,7 +319,6 @@
   "dmu": {
    "rooms": {
     "wet": 146,
-    "full": 138,
     "studio": 180
    },
    "catered": false,
@@ -363,7 +357,6 @@
   },
   "nth": {
    "rooms": {
-    "shared": 164,
     "wet": 117,
     "studio": 176
    },

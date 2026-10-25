@@ -12,6 +12,12 @@ data.halls = {};
 for (const [id, r] of Object.entries(halls)) {
   if (!["high", "medium"].includes(r.confidence)) continue;
   const rooms = Object.fromEntries(Object.entries(r.rooms).filter(([k]) => k !== "catered").map(([k, v]) => [k, Math.round(v.median)]));
+  // sanity checks: drop prices that can't be right (e.g. picked up from a deposit or a shared twin)
+  for (const k of Object.keys(rooms)) if (rooms[k] < 90) delete rooms[k];
+  if (rooms.shared && rooms.wet && rooms.wet < rooms.shared) delete rooms.shared;
+  if (rooms.full && rooms.wet && rooms.full < rooms.wet) delete rooms.full;
+  if (rooms.studio && rooms.wet && rooms.studio < rooms.wet) delete rooms.studio;
+  if (!Object.keys(rooms).length) continue;
   data.halls[id] = { rooms, catered: r.catered, cateredPrice: r.rooms.catered ? Math.round(r.rooms.catered.median) : null, checked: r.checked, year: r.year, confidence: r.confidence, source: r.sources[0] || null };
 }
 // Prices checked by hand (tools/halls-manual.json) take priority over the automatic checker
