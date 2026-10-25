@@ -15,7 +15,6 @@ Checked 2026-10-25. High-confidence results are used automatically; medium are u
 - **Glasgow Caledonian University** — none — add a start URL in tools/unis.json
 - **University of St Andrews** — none — add a start URL in tools/unis.json
 - **University of Aberdeen** — none — add a start URL in tools/unis.json
-- **University of Manchester** — medium — https://www.manchester.ac.uk/study/international/accommodation/
 - **University of Bristol** — none — add a start URL in tools/unis.json
 - **UWE Bristol** — medium — https://www.uwe.ac.uk/life/accommodation/find-accommodation
 - **University of Warwick** — none — add a start URL in tools/unis.json

@@ -327,21 +327,21 @@
   "id": "man",
   "name": "University of Manchester",
   "checked": "2026-10-25",
-  "confidence": "medium",
-  "year": null,
+  "confidence": "high",
+  "year": "2026/27",
   "catered": true,
   "rooms": {
    "shared": {
-    "median": 119,
+    "median": 180,
     "min": 119,
-    "max": 119,
-    "n": 1
+    "max": 198,
+    "n": 6
    },
    "wet": {
-    "median": 175,
+    "median": 219,
     "min": 175,
-    "max": 175,
-    "n": 1
+    "max": 263,
+    "n": 2
    },
    "catered": {
     "median": 184,
@@ -351,13 +351,17 @@
    }
   },
   "sources": [
-   "https://www.manchester.ac.uk/study/international/accommodation/"
+   "https://www.manchester.ac.uk/study/international/accommodation/",
+   "https://www.manchester.ac.uk/study/accommodation/student-accommodation/search/artisan-heights/",
+   "https://www.manchester.ac.uk/study/accommodation/student-accommodation/search/ashburne-hall/"
   ],
   "pagesVisited": 18,
   "examples": [
    "shared £119: from £119 per week for a single self-catering room with shared facilities;",
    "wet £175: from £175 per week for a single self-catering room with en-suite facilities;",
-   "shared £184: from £184 per week for a single room with shared facilities in a catered hall."
+   "shared £184: from £184 per week for a single room with shared facilities in a catered hall.",
+   "wet £263: £263 per week/£11,046 for total 42 week contract.",
+   "shared £189: £189 per week/£7,754 for total 41 week contract."
   ]
  },
  "bri": {
@@ -1056,10 +1060,10 @@
     "n": 2
    },
    "wet": {
-    "median": 221,
+    "median": 221.27,
     "min": 189,
     "max": 235.69,
-    "n": 6
+    "n": 7
    },
    "studio": {
     "median": 206,
@@ -1073,7 +1077,8 @@
    "https://www.sussex.ac.uk/study/accommodation/on-campus/swanborough",
    "https://www.sussex.ac.uk/study/accommodation/on-campus/stanmer-court",
    "https://www.sussex.ac.uk/study/accommodation/on-campus/northfield",
-   "https://www.sussex.ac.uk/study/accommodation/on-campus"
+   "https://www.sussex.ac.uk/study/accommodation/on-campus",
+   "https://www.sussex.ac.uk/study/accommodation/on-campus/west-slope"
   ],
   "pagesVisited": 18,
   "examples": [
