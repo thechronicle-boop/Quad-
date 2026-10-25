@@ -3,6 +3,427 @@
  "_help": "The app reads this file. tools/build-data.mjs fills in 'halls' automatically each month. Anything you add under 'unis' (e.g. {\"uea\": {\"sat\": 8}}) overrides the built-in value for that uni.",
  "unis": {},
  "halls": {
+  "gre": {
+   "rooms": {
+    "shared": 221,
+    "wet": 266,
+    "full": 217,
+    "studio": 221
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026-27",
+   "confidence": "high",
+   "source": "https://www.gre.ac.uk/accommodation/accommodation-at-greenwich/devonport-house"
+  },
+  "gla": {
+   "rooms": {
+    "shared": 130,
+    "wet": 175,
+    "studio": 228
+   },
+   "from": 130,
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "weeks": 39,
+   "note": null,
+   "confidence": "high",
+   "method": "checked by hand",
+   "source": "https://www.gla.ac.uk/undergraduate/accommodation/fees"
+  },
+  "rgu": {
+   "rooms": {
+    "shared": 110,
+    "wet": 150
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/2027",
+   "confidence": "high",
+   "source": "https://www.rgu.ac.uk/life-at-rgu/accommodation/costs-of-accommodation"
+  },
+  "man": {
+   "rooms": {
+    "shared": 147,
+    "wet": 200,
+    "studio": 239
+   },
+   "from": 142,
+   "catered": true,
+   "cateredPrice": 178,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "weeks": null,
+   "note": null,
+   "confidence": "high",
+   "method": "checked by hand",
+   "source": "https://documents.manchester.ac.uk/display.aspx?DocID=78796"
+  },
+  "cov": {
+   "rooms": {
+    "wet": 162
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "medium",
+   "source": "https://www.coventry.ac.uk/life-on-campus/accommodation/applying/accommodation-fees/"
+  },
+  "bir": {
+   "rooms": {
+    "shared": 147,
+    "wet": 223
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": null,
+   "confidence": "medium",
+   "source": "https://www.birmingham.ac.uk/study/accommodation/room-search"
+  },
+  "she": {
+   "rooms": {
+    "shared": 156,
+    "wet": 194,
+    "full": 211,
+    "studio": 240
+   },
+   "catered": true,
+   "cateredPrice": 194,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "high",
+   "source": "https://sheffield.ac.uk/accommodation/rents"
+  },
+  "not": {
+   "rooms": {
+    "shared": 207,
+    "full": 242
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "medium",
+   "source": "https://www.nottingham.ac.uk/accommodation/options/university-park-townhouses"
+  },
+  "exe": {
+   "rooms": {
+    "shared": 215,
+    "wet": 175
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026-27",
+   "confidence": "medium",
+   "source": "https://www.exeter.ac.uk/study/accommodation/room-finder/"
+  },
+  "nor": {
+   "rooms": {
+    "wet": 175,
+    "full": 182,
+    "studio": 203
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "high",
+   "source": "https://www.northumbria.ac.uk/study-at-northumbria/accommodation/latest-offers-and-promotions/"
+  },
+  "swa": {
+   "rooms": {
+    "wet": 136,
+    "full": 183
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2027/2028",
+   "confidence": "high",
+   "source": "https://www.swansea.ac.uk/postgraduate/fees-and-funding/cost-of-living/"
+  },
+  "lan": {
+   "rooms": {
+    "wet": 203,
+    "studio": 241
+   },
+   "catered": true,
+   "cateredPrice": 277,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "high",
+   "source": "https://features.lancaster-university.uk/accommodation/"
+  },
+  "sur": {
+   "rooms": {
+    "wet": 261,
+    "full": 245,
+    "studio": 331
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "high",
+   "source": "https://www.surrey.ac.uk/accommodation/prices-and-payment"
+  },
+  "sus": {
+   "rooms": {
+    "shared": 156,
+    "wet": 221,
+    "studio": 206
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "high",
+   "source": "https://www.sussex.ac.uk/study/accommodation/accessible-housing"
+  },
+  "brn": {
+   "rooms": {
+    "shared": 200,
+    "wet": 215,
+    "studio": 282
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026-27",
+   "confidence": "high",
+   "source": "https://www.brighton.ac.uk/accommodation-and-locations/living-off-campus/index.aspx"
+  },
+  "obu": {
+   "rooms": {
+    "shared": 180,
+    "wet": 203,
+    "full": 239
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "high",
+   "source": "https://www.brookes.ac.uk/student-life/accommodation/current-students/halls"
+  },
+  "ply": {
+   "rooms": {
+    "shared": 141,
+    "wet": 210
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026-27",
+   "confidence": "high",
+   "source": "https://www.plymouth.ac.uk/services/accommodation/halls/gilwell-hall"
+  },
+  "edh": {
+   "rooms": {
+    "wet": 93
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "medium",
+   "source": "https://www.edgehill.ac.uk/study/accommodation/forest-court/"
+  },
+  "tee": {
+   "rooms": {
+    "wet": 160
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "medium",
+   "source": "https://www.tees.ac.uk/sections/accommodation/buildings/kes.cfm"
+  },
+  "ucn": {
+   "rooms": {
+    "shared": 126,
+    "wet": 133
+   },
+   "catered": true,
+   "cateredPrice": 81,
+   "checked": "2026-10-25",
+   "year": null,
+   "confidence": "medium",
+   "source": "https://www.lancashire.ac.uk/accommodation/our-halls/summergrove"
+  },
+  "cum": {
+   "rooms": {
+    "shared": 108,
+    "wet": 146
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "high",
+   "source": "https://www.cumbria.ac.uk/student-life/accommodation/lancaster/"
+  },
+  "sfs": {
+   "rooms": {
+    "wet": 175,
+    "full": 188,
+    "studio": 223
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": null,
+   "confidence": "medium",
+   "source": "https://www.staffs.ac.uk/student-life/accommodation/your-accommodation"
+  },
+  "hul": {
+   "rooms": {
+    "wet": 99,
+    "full": 114
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "medium",
+   "source": "https://www.hull.ac.uk/life-at-hull/accommodation"
+  },
+  "kee": {
+   "rooms": {
+    "shared": 144,
+    "wet": 195,
+    "full": 232
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "high",
+   "source": "https://www.keele.ac.uk/accommodation/ouraccommodation/standardsharedhalls/"
+  },
+  "bcu": {
+   "rooms": {
+    "wet": 174,
+    "studio": 190
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026-27",
+   "confidence": "medium",
+   "source": "https://www.bcu.ac.uk/student-info/accommodation/hamstead"
+  },
+  "dmu": {
+   "rooms": {
+    "wet": 146,
+    "full": 138,
+    "studio": 180
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "high",
+   "source": "https://www.dmu.ac.uk/study/accommodation/prices-contract-lengths-previous.aspx"
+  },
+  "ysj": {
+   "rooms": {
+    "shared": 158,
+    "wet": 172,
+    "full": 190,
+    "studio": 230
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": null,
+   "confidence": "medium",
+   "source": "https://www.yorksj.ac.uk/international/study-abroad-at-york-st-john/accommodation-and-fees/"
+  },
+  "ccc": {
+   "rooms": {
+    "shared": 158,
+    "wet": 173,
+    "full": 176
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": null,
+   "confidence": "medium",
+   "source": "https://accommodation.canterbury.ac.uk/StarRezPortalX/5F7C85A0/1/290/Home-Petros_Court"
+  },
+  "nth": {
+   "rooms": {
+    "shared": 164,
+    "wet": 117,
+    "studio": 176
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "high",
+   "source": "https://www.northampton.ac.uk/student-life/accommodation/halls-of-residence/scholars-green-student-village/twin-en-suite/"
+  },
+  "qmu": {
+   "rooms": {
+    "shared": 151
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "medium",
+   "source": "https://www.qmu.ac.uk/campus-life/accommodation/undergraduate-accommodation/undergraduate-accommodation-fees-and-payment-options"
+  },
+  "sun": {
+   "rooms": {
+    "shared": 106,
+    "wet": 134,
+    "full": 150
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026–2027",
+   "confidence": "medium",
+   "source": "https://www.sunderland.ac.uk/student-life/accommodation/panns-bank"
+  },
+  "wrx": {
+   "rooms": {
+    "wet": 133,
+    "full": 140
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "confidence": "medium",
+   "source": "https://wrexham.ac.uk/accommodation/student-accommodation/"
+  },
+  "der": {
+   "rooms": {
+    "shared": 141,
+    "wet": 159,
+    "full": 184,
+    "studio": 171
+   },
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026-27",
+   "confidence": "high",
+   "source": "https://www.derby.ac.uk/life/accommodation/"
+  },
   "oxf": {
    "rooms": {},
    "from": 203,
@@ -78,23 +499,6 @@
    "method": "checked by hand",
    "source": "https://www.ucl.ac.uk/accommodation/halls/venti-house"
   },
-  "man": {
-   "rooms": {
-    "shared": 147,
-    "wet": 200,
-    "studio": 239
-   },
-   "from": 142,
-   "catered": true,
-   "cateredPrice": 178,
-   "checked": "2026-10-25",
-   "year": "2026/27",
-   "weeks": null,
-   "note": null,
-   "confidence": "high",
-   "method": "checked by hand",
-   "source": "https://documents.manchester.ac.uk/display.aspx?DocID=78796"
-  },
   "lee": {
    "rooms": {
     "shared": 122,
@@ -144,23 +548,6 @@
    "confidence": "high",
    "method": "checked by hand",
    "source": "https://lse.ac.uk/asset-library/table-of-accommodation-fees.pdf"
-  },
-  "gla": {
-   "rooms": {
-    "shared": 130,
-    "wet": 175,
-    "studio": 228
-   },
-   "from": 130,
-   "catered": false,
-   "cateredPrice": null,
-   "checked": "2026-10-25",
-   "year": "2026/27",
-   "weeks": 39,
-   "note": null,
-   "confidence": "high",
-   "method": "checked by hand",
-   "source": "https://www.gla.ac.uk/undergraduate/accommodation/fees"
   },
   "edi": {
    "rooms": {},
