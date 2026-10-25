@@ -1061,7 +1061,7 @@ function sourcesBox(u){
   const v=courseCheck(u,S.course),src=v.s?SRC[v.s]:null;
   const rows=[[u.type==="app"?"Programme":"Course offered",v.t,src]];
   if(u.type!=="app")rows.push(["Tuition fees","✅ Checked",SRC.fees]);
-  if(u.hv)rows.push(["Halls prices",`${u.hv.confidence==="high"?"✅":"🟡"} From the uni's website${u.hv.year?" ("+u.hv.year+" prices)":""}`,[u.name+" accommodation page",u.hv.source,u.hv.checked]]);
+  if(u.hv)rows.push(["Halls prices",`${u.hv.confidence==="high"?"✅":"🟡"} ${Object.keys(u.hv.rooms||{}).length?"Cheapest price per room type":"Starting price"} from the uni's published fees${u.hv.year?" ("+u.hv.year+")":""}${u.hv.from?" · rooms from £"+u.hv.from+"/wk":""}${u.hv.note?" · "+esc(u.hv.note):""}${Object.keys(u.hv.rooms||{}).length<4?" · other room types are estimates":""}`,["Source",u.hv.source,u.hv.checked]]);
   rows.push([u.type==="app"?"Salary, location, study pattern":(u.hv?"Scores, offers, course structure":"Rent, rooms, scores, offers, course structure"),"Estimate — not yet checked",null],["Travel costs & distances","Calculated from straight-line distance",null]);
   return `<div class="msec"><h4>Where this info comes from · data version ${DATA_VERSION}</h4>
     ${rows.map(r=>`<div class="odrow" style="padding:7px 0"><div style="flex:1"><b style="font-size:13.5px">${r[0]}</b><div class="hint" style="margin:0">${r[1]}${r[2]?` · <a href="${r[2][1]}" target="_blank" rel="noopener">${esc(r[2][0])}</a> (checked ${r[2][2]})`:""}</div></div></div>`).join("")}
@@ -1464,7 +1464,7 @@ async function loadRemote(){
     HALLS_N=0;
     for(const [id,hv] of Object.entries(d.halls||{})){const u=uni(id);if(!u||!u.h)continue;
       for(const [k,v] of Object.entries(hv.rooms||{}))if(v)u.h.rooms[k]=v;
-      if(hv.catered)u.h.catered=true;if(hv.rooms&&hv.rooms.wet)u.rent=hv.rooms.wet;
+      if(hv.catered)u.h.catered=true;if(hv.rooms&&hv.rooms.wet)u.rent=hv.rooms.wet;else if(hv.from&&!Object.keys(hv.rooms||{}).length){const k=hv.from-u.h.rooms.shared;for(const t in u.h.rooms)if(u.h.rooms[t]!=null)u.h.rooms[t]+=k;u.rent+=k}
       u.hv=hv;HALLS_N++}
     if(d.parVerified){PAR_HCPC.length=0;PAR_HCPC.push(...d.parVerified)}
     if(d.removeCourse)for(const [id,cs] of Object.entries(d.removeCourse)){const u=uni(id);if(u)u.courses=u.courses.filter(c=>!cs.includes(c))}
