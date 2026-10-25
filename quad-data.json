@@ -3,6 +3,21 @@
  "_help": "The app reads this file. tools/build-data.mjs fills in 'halls' automatically each month. Anything you add under 'unis' (e.g. {\"uea\": {\"sat\": 8}}) overrides the built-in value for that uni.",
  "unis": {},
  "halls": {
+  "ucl": {
+   "rooms": {
+    "wet": 199
+   },
+   "from": 199,
+   "catered": true,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "weeks": null,
+   "note": "Only one hall's prices could be checked",
+   "confidence": "high",
+   "method": "checked by hand",
+   "source": "https://www.ucl.ac.uk/accommodation/halls/venti-house"
+  },
   "gre": {
    "rooms": {
     "shared": 221,
@@ -61,6 +76,22 @@
    "method": "checked by hand",
    "source": "https://documents.manchester.ac.uk/display.aspx?DocID=78796"
   },
+  "uwe": {
+   "rooms": {
+    "shared": 118,
+    "wet": 171
+   },
+   "from": 118,
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026",
+   "weeks": null,
+   "note": null,
+   "confidence": "high",
+   "method": "checked by hand",
+   "source": "https://www.uwe.ac.uk/life/accommodation/find-accommodation"
+  },
   "cov": {
    "rooms": {
     "wet": 162
@@ -83,6 +114,22 @@
    "year": null,
    "confidence": "medium",
    "source": "https://www.birmingham.ac.uk/study/accommodation/room-search"
+  },
+  "lee": {
+   "rooms": {
+    "shared": 122,
+    "wet": 168
+   },
+   "from": 122,
+   "catered": true,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "weeks": null,
+   "note": "Smaller residences checked",
+   "confidence": "high",
+   "method": "checked by hand",
+   "source": "https://accommodation.leeds.ac.uk/small-residences/"
   },
   "she": {
    "rooms": {
@@ -110,6 +157,23 @@
    "confidence": "medium",
    "source": "https://www.nottingham.ac.uk/accommodation/options/university-park-townhouses"
   },
+  "sou": {
+   "rooms": {
+    "shared": 139,
+    "wet": 177,
+    "studio": 253
+   },
+   "from": 119,
+   "catered": true,
+   "cateredPrice": 223,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "weeks": null,
+   "note": null,
+   "confidence": "high",
+   "method": "checked by hand",
+   "source": "https://www.southampton.ac.uk/student-life/accommodation/fees-contracts"
+  },
   "exe": {
    "rooms": {
     "wet": 175
@@ -120,6 +184,21 @@
    "year": "2026-27",
    "confidence": "medium",
    "source": "https://www.exeter.ac.uk/study/accommodation/room-finder/"
+  },
+  "ncl": {
+   "rooms": {
+    "shared": 155
+   },
+   "from": 155,
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "weeks": null,
+   "note": "Only one hall's prices could be checked",
+   "confidence": "high",
+   "method": "checked by hand",
+   "source": "https://www.ncl.ac.uk/accommodation/university/joseph-cowen/"
   },
   "nor": {
    "rooms": {
@@ -145,6 +224,19 @@
    "year": "2027/2028",
    "confidence": "high",
    "source": "https://www.swansea.ac.uk/postgraduate/fees-and-funding/cost-of-living/"
+  },
+  "bat": {
+   "rooms": {},
+   "from": 98,
+   "catered": true,
+   "cateredPrice": 147,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "weeks": 38,
+   "note": "Bath gives a range of £98–£315 a week (average £183)",
+   "confidence": "high",
+   "method": "checked by hand",
+   "source": "https://www.bath.ac.uk/publications/undergraduate-budget/attachments/undergraduate-overall-budget.pdf"
   },
   "lan": {
    "rooms": {
@@ -184,8 +276,8 @@
   },
   "brn": {
    "rooms": {
-    "shared": 200,
-    "wet": 215,
+    "shared": 208,
+    "wet": 243,
     "studio": 282
    },
    "catered": false,
@@ -194,6 +286,23 @@
    "year": "2026-27",
    "confidence": "high",
    "source": "https://www.brighton.ac.uk/accommodation-and-locations/living-off-campus/index.aspx"
+  },
+  "por": {
+   "rooms": {
+    "shared": 120,
+    "wet": 148,
+    "studio": 188
+   },
+   "from": 120,
+   "catered": true,
+   "cateredPrice": 175,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "weeks": null,
+   "note": null,
+   "confidence": "high",
+   "method": "checked by hand",
+   "source": "https://port.ac.uk/our-halls-residence"
   },
   "obu": {
    "rooms": {
@@ -219,21 +328,6 @@
    "year": "2026-27",
    "confidence": "high",
    "source": "https://www.plymouth.ac.uk/services/accommodation/halls/gilwell-hall"
-  },
-  "edh": {
-   "rooms": {
-    "wet": 153
-   },
-   "from": 153,
-   "catered": false,
-   "cateredPrice": null,
-   "checked": "2026-10-25",
-   "year": "2026/27",
-   "weeks": null,
-   "note": "Chancellors Court: most rooms £153–£163 a week",
-   "confidence": "high",
-   "method": "checked by hand",
-   "source": "https://www.edgehill.ac.uk/study/accommodation/chancellors-court-and-chancellors-south/"
   },
   "tee": {
    "rooms": {
@@ -484,37 +578,6 @@
    "method": "checked by hand",
    "source": "https://assets.uea.ac.uk/f/185167/x/54b8b727c9/residences-room-type-comparison-sept-26.pdf"
   },
-  "ucl": {
-   "rooms": {
-    "wet": 199
-   },
-   "from": 199,
-   "catered": true,
-   "cateredPrice": null,
-   "checked": "2026-10-25",
-   "year": "2026/27",
-   "weeks": null,
-   "note": "Only one hall's prices could be checked",
-   "confidence": "high",
-   "method": "checked by hand",
-   "source": "https://www.ucl.ac.uk/accommodation/halls/venti-house"
-  },
-  "lee": {
-   "rooms": {
-    "shared": 122,
-    "wet": 168
-   },
-   "from": 122,
-   "catered": true,
-   "cateredPrice": null,
-   "checked": "2026-10-25",
-   "year": "2026/27",
-   "weeks": null,
-   "note": "Smaller residences checked",
-   "confidence": "high",
-   "method": "checked by hand",
-   "source": "https://accommodation.leeds.ac.uk/small-residences/"
-  },
   "kcl": {
    "rooms": {
     "shared": 200,
@@ -627,19 +690,6 @@
    "method": "checked by hand",
    "source": "https://www.abdn.ac.uk/media/site/study/documents/Accommodation-price-list.pdf"
   },
-  "bat": {
-   "rooms": {},
-   "from": 98,
-   "catered": true,
-   "cateredPrice": 147,
-   "checked": "2026-10-25",
-   "year": "2026/27",
-   "weeks": 38,
-   "note": "Bath gives a range of £98–£315 a week (average £183)",
-   "confidence": "high",
-   "method": "checked by hand",
-   "source": "https://www.bath.ac.uk/publications/undergraduate-budget/attachments/undergraduate-overall-budget.pdf"
-  },
   "bed": {
    "rooms": {
     "wet": 110
@@ -749,23 +799,6 @@
    "method": "checked by hand",
    "source": "https://www.thecompleteuniversityguide.co.uk/universities/university-of-leicester/facilities"
   },
-  "sou": {
-   "rooms": {
-    "shared": 139,
-    "wet": 177,
-    "studio": 253
-   },
-   "from": 119,
-   "catered": true,
-   "cateredPrice": 223,
-   "checked": "2026-10-25",
-   "year": "2026/27",
-   "weeks": null,
-   "note": null,
-   "confidence": "high",
-   "method": "checked by hand",
-   "source": "https://www.southampton.ac.uk/student-life/accommodation/fees-contracts"
-  },
   "yor": {
    "rooms": {
     "shared": 149,
@@ -795,21 +828,6 @@
    "method": "checked by hand",
    "source": "https://theboar.org/2026/03/students-face-fifth-consecutive-year-of-unjustified-price-hikes-for-on-campus-halls"
   },
-  "ncl": {
-   "rooms": {
-    "shared": 155
-   },
-   "from": 155,
-   "catered": false,
-   "cateredPrice": null,
-   "checked": "2026-10-25",
-   "year": "2026/27",
-   "weeks": null,
-   "note": "Only one hall's prices could be checked",
-   "confidence": "high",
-   "method": "checked by hand",
-   "source": "https://www.ncl.ac.uk/accommodation/university/joseph-cowen/"
-  },
   "qub": {
    "rooms": {
     "shared": 119,
@@ -826,39 +844,6 @@
    "confidence": "high",
    "method": "checked by hand",
    "source": "https://www.qub.ac.uk/accommodation/residential-fees"
-  },
-  "por": {
-   "rooms": {
-    "shared": 120,
-    "wet": 148,
-    "studio": 188
-   },
-   "from": 120,
-   "catered": true,
-   "cateredPrice": 175,
-   "checked": "2026-10-25",
-   "year": "2026/27",
-   "weeks": null,
-   "note": null,
-   "confidence": "high",
-   "method": "checked by hand",
-   "source": "https://port.ac.uk/our-halls-residence"
-  },
-  "uwe": {
-   "rooms": {
-    "shared": 118,
-    "wet": 171
-   },
-   "from": 118,
-   "catered": false,
-   "cateredPrice": null,
-   "checked": "2026-10-25",
-   "year": "2026",
-   "weeks": null,
-   "note": null,
-   "confidence": "high",
-   "method": "checked by hand",
-   "source": "https://www.uwe.ac.uk/life/accommodation/find-accommodation"
   },
   "ntu": {
    "rooms": {
@@ -1000,6 +985,21 @@
    "confidence": "high",
    "method": "checked by hand",
    "source": "https://knowledge.bolton.ac.uk/how-much-is-the-accommodation"
+  },
+  "edh": {
+   "rooms": {
+    "wet": 153
+   },
+   "from": 153,
+   "catered": false,
+   "cateredPrice": null,
+   "checked": "2026-10-25",
+   "year": "2026/27",
+   "weeks": null,
+   "note": "Chancellors Court: most rooms £153–£163 a week",
+   "confidence": "high",
+   "method": "checked by hand",
+   "source": "https://www.edgehill.ac.uk/study/accommodation/chancellors-court-and-chancellors-south/"
   }
  },
  "parVerified": [

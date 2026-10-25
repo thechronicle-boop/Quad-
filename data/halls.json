@@ -27,27 +27,38 @@
   "id": "imp",
   "name": "Imperial College London",
   "checked": "2026-10-25",
-  "confidence": "none",
-  "year": null,
+  "confidence": "low",
+  "year": "2026-27",
   "catered": false,
-  "rooms": {},
-  "sources": [],
+  "rooms": {
+   "wet": {
+    "median": 308,
+    "min": 308,
+    "max": 308,
+    "n": 1
+   }
+  },
+  "sources": [
+   "https://www.imperial.ac.uk/students/accommodation/prospective/ug/fees/"
+  ],
   "pagesVisited": 18,
-  "examples": []
+  "examples": [
+   "wet £308: £308 |"
+  ]
  },
  "ucl": {
   "id": "ucl",
   "name": "UCL",
   "checked": "2026-10-25",
-  "confidence": "low",
+  "confidence": "medium",
   "year": "2026-27",
   "catered": false,
   "rooms": {
    "shared": {
-    "median": 159.6,
-    "min": 159.6,
+    "median": 155,
+    "min": 150,
     "max": 159.6,
-    "n": 1
+    "n": 2
    },
    "full": {
     "median": 387.24,
@@ -57,12 +68,14 @@
    }
   },
   "sources": [
-   "https://www.ucl.ac.uk/study/accommodation/fees-guidance-and-payment/fees-and-contract-dates-2025-26"
+   "https://www.ucl.ac.uk/study/accommodation/fees-guidance-and-payment/fees-and-contract-dates-2025-26",
+   "https://www.ucl.ac.uk/residences/terms-conditions"
   ],
   "pagesVisited": 18,
   "examples": [
    "shared £159.6: Twin | UG | 56 | £159.60 |",
-   "full £387.24: Astor College | Accessible Large Single Ensuite | UG | 1 | £387.24 |"
+   "full £387.24: Astor College | Accessible Large Single Ensuite | UG | 1 | £387.24 |",
+   "shared £150: All guests must comply with UCL’s no smoking policy when on UCL property and when outside the entrances or open windows of UCL’s buildings. If any guests are fo"
   ]
  },
  "kcl": {
@@ -226,19 +239,19 @@
    }
   },
   "sources": [
+   "https://www.gla.ac.uk/undergraduate/accommodation/fees/",
+   "https://www.gla.ac.uk/undergraduate/accommodation/fees/20252026fees/",
    "https://www.gla.ac.uk/postgraduate/accommodation/fees/",
    "https://www.gla.ac.uk/postgraduate/accommodation/fees/20252026fees/",
-   "https://www.gla.ac.uk/undergraduate/accommodation/fees/20252026fees/",
-   "https://www.gla.ac.uk/undergraduate/accommodation/fees/",
    "https://www.gla.ac.uk/postgraduate/accommodation/familypartneraccommodation/familyfees/"
   ],
   "pagesVisited": 18,
   "examples": [
+   "wet £175: £175.00 |",
    "wet £183.05: £183.05 |",
    "full £187.81: £187.81 |",
-   "wet £228.06: £228.06 |",
-   "studio £239.82: £239.82 |",
-   "studio £221.48: £221.48 |"
+   "wet £209.51: £209.51 |",
+   "full £224.84: £224.84 |"
   ]
  },
  "gcu": {
@@ -301,7 +314,7 @@
   "sources": [
    "https://www.rgu.ac.uk/life-at-rgu/accommodation/costs-of-accommodation"
   ],
-  "pagesVisited": 14,
+  "pagesVisited": 15,
   "examples": [
    "shared £109.13: Single standard room - £109.13 per week, £4,583.46 total cost",
    "shared £119.49: Single standard room (double bed) - £119.49 per week, £5,018.58 total cost",
@@ -363,13 +376,46 @@
   "id": "uwe",
   "name": "UWE Bristol",
   "checked": "2026-10-25",
-  "confidence": "none",
+  "confidence": "medium",
   "year": null,
   "catered": false,
-  "rooms": {},
-  "sources": [],
+  "rooms": {
+   "shared": {
+    "median": 125,
+    "min": 117.71,
+    "max": 131.48,
+    "n": 2
+   },
+   "wet": {
+    "median": 197,
+    "min": 149.09,
+    "max": 233.65,
+    "n": 10
+   },
+   "full": {
+    "median": 230,
+    "min": 210.02,
+    "max": 248.99,
+    "n": 2
+   },
+   "studio": {
+    "median": 255,
+    "min": 209.51,
+    "max": 300.54,
+    "n": 2
+   }
+  },
+  "sources": [
+   "https://www.uwe.ac.uk/life/accommodation/find-accommodation"
+  ],
   "pagesVisited": 18,
-  "examples": []
+  "examples": [
+   "studio £209.51: Price range £209.51 to £300.54 per week",
+   "studio £300.54: Price range £209.51 to £300.54 per week",
+   "wet £221.24: Price range £221.24 to £233.65 per week",
+   "wet £233.65: Price range £221.24 to £233.65 per week",
+   "shared £117.71: Price range £117.71 to £131.48 per week"
+  ]
  },
  "war": {
   "id": "war",
@@ -457,13 +503,39 @@
   "id": "lee",
   "name": "University of Leeds",
   "checked": "2026-10-25",
-  "confidence": "none",
-  "year": null,
+  "confidence": "high",
+  "year": "2026/27",
   "catered": false,
-  "rooms": {},
-  "sources": [],
-  "pagesVisited": 1,
-  "examples": []
+  "rooms": {
+   "shared": {
+    "median": 155,
+    "min": 122,
+    "max": 235,
+    "n": 9
+   },
+   "wet": {
+    "median": 195,
+    "min": 168,
+    "max": 259,
+    "n": 17
+   }
+  },
+  "sources": [
+   "https://accommodation.leeds.ac.uk/small-residences/",
+   "https://accommodation.leeds.ac.uk/info/1/applying/174/compare-costs-202526",
+   "https://accommodation.leeds.ac.uk/residence/38/st-marks-residence",
+   "https://accommodation.leeds.ac.uk/residence/7/lupton-residences",
+   "https://accommodation.leeds.ac.uk/residence/10/leodis-residences",
+   "https://accommodation.leeds.ac.uk/residence/14/henry-price-residences"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "shared £122: Shared Bathroom £122 - £165 per week / £5,124 - £6,930 total",
+   "shared £165: Shared Bathroom £122 - £165 per week / £5,124 - £6,930 total",
+   "wet £168: En suite £168 - £191 per week / £7,056 - £8,022 total",
+   "wet £191: En suite £168 - £191 per week / £7,056 - £8,022 total",
+   "shared £235: £235 |"
+  ]
  },
  "she": {
   "id": "she",
@@ -521,13 +593,31 @@
   "id": "shu",
   "name": "Sheffield Hallam University",
   "checked": "2026-10-25",
-  "confidence": "none",
-  "year": null,
+  "confidence": "low",
+  "year": "2026/27",
   "catered": false,
-  "rooms": {},
-  "sources": [],
+  "rooms": {
+   "wet": {
+    "median": 109,
+    "min": 109,
+    "max": 109,
+    "n": 1
+   },
+   "full": {
+    "median": 119,
+    "min": 119,
+    "max": 119,
+    "n": 1
+   }
+  },
+  "sources": [
+   "https://www.shu.ac.uk/study-here/accommodation/properties/exchange-works"
+  ],
   "pagesVisited": 18,
-  "examples": []
+  "examples": [
+   "wet £109: 182 single en suite (3/4 bed) - £109.00 weekly / £4,796.00 annually",
+   "full £119: 5 extra large single en suite (3/4 bed) - £119.00 weekly / £5,236.00 annually"
+  ]
  },
  "not": {
   "id": "not",
@@ -566,13 +656,51 @@
   "id": "sou",
   "name": "University of Southampton",
   "checked": "2026-10-25",
-  "confidence": "none",
-  "year": null,
+  "confidence": "high",
+  "year": "2026-27",
   "catered": false,
-  "rooms": {},
-  "sources": [],
+  "rooms": {
+   "shared": {
+    "median": 165,
+    "min": 118.5,
+    "max": 241.71,
+    "n": 24
+   },
+   "wet": {
+    "median": 190,
+    "min": 173.93,
+    "max": 270.06,
+    "n": 24
+   },
+   "full": {
+    "median": 236.25,
+    "min": 234.85,
+    "max": 236.25,
+    "n": 3
+   },
+   "studio": {
+    "median": 267.75,
+    "min": 185.92,
+    "max": 284.48,
+    "n": 11
+   }
+  },
+  "sources": [
+   "https://www.southampton.ac.uk/student-life/accommodation/fees-contracts",
+   "https://www.southampton.ac.uk/student-life/accommodation/halls/wessex-lane",
+   "https://www.southampton.ac.uk/student-life/accommodation/halls/southampton-crossings",
+   "https://www.southampton.ac.uk/student-life/accommodation/halls/orion-point",
+   "https://www.southampton.ac.uk/student-life/accommodation/halls/lucia-foster-welch",
+   "https://www.southampton.ac.uk/student-life/accommodation/halls/highfield-hall"
+  ],
   "pagesVisited": 18,
-  "examples": []
+  "examples": [
+   "wet £180.53: Standard en suite | £180.53 | 38 weeks, 41 weeks |",
+   "wet £194.67: Standard en suite | £194.67 | 41 weeks, 51 weeks |",
+   "studio £267.75: Enhanced studio flat | £ 267.75 | 51 weeks |",
+   "studio £284.48: 1 bed flat for couples | £284.48 | 51 weeks |",
+   "shared £157.64: Basic shared bathroom | £157.64 | 41 weeks |"
+  ]
  },
  "exe": {
   "id": "exe",
@@ -622,23 +750,42 @@
   "id": "ncl",
   "name": "Newcastle University",
   "checked": "2026-10-25",
-  "confidence": "low",
-  "year": null,
+  "confidence": "high",
+  "year": "2026/27",
   "catered": false,
   "rooms": {
    "shared": {
-    "median": 224,
-    "min": 224,
+    "median": 190,
+    "min": 155,
     "max": 224,
-    "n": 1
+    "n": 2
+   },
+   "wet": {
+    "median": 190,
+    "min": 142.8,
+    "max": 205.25,
+    "n": 10
+   },
+   "studio": {
+    "median": 194,
+    "min": 190.05,
+    "max": 197.4,
+    "n": 2
    }
   },
   "sources": [
-   "https://www.ncl.ac.uk/accommodation/university/staff-and-visitors/bedrooms-we-offer/"
+   "https://www.ncl.ac.uk/accommodation/university/joseph-cowen/",
+   "https://www.ncl.ac.uk/accommodation/university/staff-and-visitors/bedrooms-we-offer/",
+   "https://www.ncl.ac.uk/accommodation/university/",
+   "https://www.ncl.ac.uk/accommodation/university/rosedale-court/"
   ],
   "pagesVisited": 18,
   "examples": [
-   "shared £224: Weekly rent : £224.00"
+   "shared £155: Weekly Rate: £155.00",
+   "shared £224: Weekly rent : £224.00",
+   "studio £190.05: Bernicia exemplifies premier student living, just a minute's walk from the centre of campus. It offers en suite and studio rooms, each thoughtfully designed wit",
+   "wet £175.13: Byron Central offers en suite accommodation with a community feel, located just outside of the city centre and a 10 minute walk to the centre of campus. Prices ",
+   "wet £156.78: Manor Bank offers en suite rooms in four to six-bed flats, located just outside of the city centre and under a 20 minute walk to the centre of campus. Prices st"
   ]
  },
  "nor": {
@@ -761,48 +908,47 @@
   "id": "bat",
   "name": "University of Bath",
   "checked": "2026-10-25",
-  "confidence": "low",
+  "confidence": "high",
   "year": "2026/27",
   "catered": false,
   "rooms": {
    "wet": {
-    "median": 276,
-    "min": 260,
-    "max": 292,
-    "n": 2
+    "median": 260,
+    "min": 206,
+    "max": 315,
+    "n": 5
+   },
+   "studio": {
+    "median": 282,
+    "min": 255,
+    "max": 315,
+    "n": 4
    }
   },
   "sources": [
-   "https://www.bath.ac.uk/corporate-information/postgraduate-accommodation-prices/"
+   "https://www.bath.ac.uk/corporate-information/postgraduate-accommodation-prices/",
+   "https://www.bath.ac.uk/student-accommodation/green-park-house-student-accommodation/"
   ],
   "pagesVisited": 18,
   "examples": [
    "wet £260: £260 to £292 |",
-   "wet £292: £260 to £292 |"
+   "wet £292: £260 to £292 |",
+   "wet £206: Rooms in Green Park House cost between £206 and £315 per week. There are 461 rooms in Green Park House, including 299 ensuite rooms priced at £232 per week and ",
+   "wet £315: Rooms in Green Park House cost between £206 and £315 per week. There are 461 rooms in Green Park House, including 299 ensuite rooms priced at £232 per week and ",
+   "wet £232: Rooms in Green Park House cost between £206 and £315 per week. There are 461 rooms in Green Park House, including 299 ensuite rooms priced at £232 per week and "
   ]
  },
  "lbo": {
   "id": "lbo",
   "name": "Loughborough University",
   "checked": "2026-10-25",
-  "confidence": "low",
-  "year": "2026/27",
+  "confidence": "none",
+  "year": null,
   "catered": false,
-  "rooms": {
-   "shared": {
-    "median": 135.63,
-    "min": 135.63,
-    "max": 135.63,
-    "n": 1
-   }
-  },
-  "sources": [
-   "https://www.lboro.ac.uk/services/accommodation/our-halls/telford/"
-  ],
+  "rooms": {},
+  "sources": [],
   "pagesVisited": 18,
-  "examples": [
-   "shared £135.63: £135.63 per week"
-  ]
+  "examples": []
  },
  "lan": {
   "id": "lan",
@@ -947,22 +1093,22 @@
   "catered": false,
   "rooms": {
    "shared": {
-    "median": 200,
+    "median": 208,
     "min": 173,
     "max": 243,
-    "n": 13
+    "n": 11
    },
    "wet": {
-    "median": 215,
-    "min": 185.15,
+    "median": 243,
+    "min": 211.5,
     "max": 270,
-    "n": 10
+    "n": 5
    },
    "studio": {
     "median": 282,
     "min": 136,
     "max": 484,
-    "n": 8
+    "n": 7
    }
   },
   "sources": [
@@ -970,8 +1116,7 @@
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/index.aspx",
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/circus-street-halls.aspx",
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/moulsecoomb-halls.aspx",
-   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/city-halls.aspx",
-   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/falmer-halls.aspx"
+   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/city-halls.aspx"
   ],
   "pagesVisited": 18,
   "examples": [
@@ -1010,23 +1155,50 @@
   "id": "por",
   "name": "University of Portsmouth",
   "checked": "2026-10-25",
-  "confidence": "low",
-  "year": null,
-  "catered": false,
+  "confidence": "high",
+  "year": "2027/28",
+  "catered": true,
   "rooms": {
+   "shared": {
+    "median": 130,
+    "min": 120,
+    "max": 194,
+    "n": 11
+   },
    "wet": {
-    "median": 142,
+    "median": 184,
     "min": 142,
-    "max": 142,
-    "n": 1
+    "max": 208,
+    "n": 41
+   },
+   "studio": {
+    "median": 194,
+    "min": 188,
+    "max": 201,
+    "n": 5
+   },
+   "catered": {
+    "median": 187,
+    "min": 175,
+    "max": 205,
+    "n": 7
    }
   },
   "sources": [
-   "https://www.port.ac.uk/student-life/accommodation"
+   "https://www.port.ac.uk/student-life/accommodation/our-halls-of-residence",
+   "https://www.port.ac.uk/student-life/accommodation/our-halls-of-residence/trust-hall",
+   "https://www.port.ac.uk/student-life/accommodation/our-halls-of-residence/trafalgar-hall",
+   "https://www.port.ac.uk/student-life/accommodation/our-halls-of-residence/rosalind-franklin-halls",
+   "https://www.port.ac.uk/student-life/accommodation/our-halls-of-residence/rees-hall",
+   "https://www.port.ac.uk/student-life/accommodation/our-halls-of-residence/margaret-rule-hall"
   ],
-  "pagesVisited": 2,
+  "pagesVisited": 18,
   "examples": [
-   "wet £142: En-suite rooms from £142 a week"
+   "shared £120: Self-catered, shared bathroom, from £120 per week.",
+   "shared £130: Self-catered, shared bathroom, from £130 per week.",
+   "wet £148: Self-catered, en suite bathroom, from £148 per week.",
+   "wet £162: Self-catered, en suite bathroom, from £162 per week. Accessible rooms available.",
+   "wet £165: Self-catered, en suite bathroom, from £165 per week."
   ]
  },
  "obu": {
@@ -1139,26 +1311,13 @@
   "id": "edh",
   "name": "Edge Hill University",
   "checked": "2026-10-25",
-  "confidence": "medium",
-  "year": "2026/27",
+  "confidence": "none",
+  "year": null,
   "catered": false,
-  "rooms": {
-   "wet": {
-    "median": 93,
-    "min": 90,
-    "max": 124,
-    "n": 3
-   }
-  },
-  "sources": [
-   "https://www.edgehill.ac.uk/study/accommodation/forest-court/"
-  ],
-  "pagesVisited": 8,
-  "examples": [
-   "wet £124: Cost | £124 per week for academic year 2026/27. Utility bills included. |",
-   "wet £90: Cost | £90 per week for academic year 2025/26 and £93 per week for academic year 2026/27. Utility bills included. |",
-   "wet £93: Cost | £90 per week for academic year 2025/26 and £93 per week for academic year 2026/27. Utility bills included. |"
-  ]
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 18,
+  "examples": []
  },
  "lin": {
   "id": "lin",
@@ -1280,7 +1439,7 @@
   "catered": false,
   "rooms": {},
   "sources": [],
-  "pagesVisited": 3,
+  "pagesVisited": 4,
   "examples": []
  },
  "sfs": {
@@ -1544,7 +1703,7 @@
   "catered": false,
   "rooms": {},
   "sources": [],
-  "pagesVisited": 2,
+  "pagesVisited": 3,
   "examples": []
  },
  "ysj": {

@@ -4,8 +4,8 @@ Checked 2026-10-25. High-confidence results are used automatically; medium are u
 
 - **University of Oxford** — none — add a start URL in tools/unis.json
 - **University of Cambridge** — none — add a start URL in tools/unis.json
-- **Imperial College London** — none — add a start URL in tools/unis.json
-- **UCL** — low — https://www.ucl.ac.uk/study/accommodation/fees-guidance-and-payment/fees-and-contract-dates-2025-26
+- **Imperial College London** — low — https://www.imperial.ac.uk/students/accommodation/prospective/ug/fees/
+- **UCL** — medium — https://www.ucl.ac.uk/study/accommodation/fees-guidance-and-payment/fees-and-contract-dates-2025-26
 - **King's College London** — none — add a start URL in tools/unis.json
 - **LSE** — none — add a start URL in tools/unis.json
 - **Queen Mary University of London** — low — https://www.qmul.ac.uk/study/accommodation/
@@ -17,30 +17,25 @@ Checked 2026-10-25. High-confidence results are used automatically; medium are u
 - **University of Aberdeen** — none — add a start URL in tools/unis.json
 - **University of Manchester** — medium — https://www.manchester.ac.uk/study/international/accommodation/
 - **University of Bristol** — none — add a start URL in tools/unis.json
-- **UWE Bristol** — none — add a start URL in tools/unis.json
+- **UWE Bristol** — medium — https://www.uwe.ac.uk/life/accommodation/find-accommodation
 - **University of Warwick** — none — add a start URL in tools/unis.json
 - **Coventry University** — medium — https://www.coventry.ac.uk/life-on-campus/accommodation/applying/accommodation-fees/
 - **Durham University** — none — add a start URL in tools/unis.json
 - **University of Birmingham** — medium — https://www.birmingham.ac.uk/study/accommodation/room-search
-- **University of Leeds** — none — add a start URL in tools/unis.json
-- **Sheffield Hallam University** — none — add a start URL in tools/unis.json
+- **Sheffield Hallam University** — low — https://www.shu.ac.uk/study-here/accommodation/properties/exchange-works
 - **University of Nottingham** — medium — https://www.nottingham.ac.uk/accommodation/options/university-park-townhouses
-- **University of Southampton** — none — add a start URL in tools/unis.json
 - **University of Exeter** — medium — https://www.exeter.ac.uk/study/accommodation/room-finder/
 - **University of York** — none — add a start URL in tools/unis.json
-- **Newcastle University** — low — https://www.ncl.ac.uk/accommodation/university/staff-and-visitors/bedrooms-we-offer/
 - **University of Liverpool** — none — add a start URL in tools/unis.json
 - **Cardiff University** — none — add a start URL in tools/unis.json
 - **Queen's University Belfast** — none — add a start URL in tools/unis.json
-- **University of Bath** — low — https://www.bath.ac.uk/corporate-information/postgraduate-accommodation-prices/
-- **Loughborough University** — low — https://www.lboro.ac.uk/services/accommodation/our-halls/telford/
+- **Loughborough University** — none — add a start URL in tools/unis.json
 - **University of Leicester** — none — add a start URL in tools/unis.json
 - **University of East Anglia (UEA)** — none — add a start URL in tools/unis.json
 - **University of Hertfordshire** — none — add a start URL in tools/unis.json
-- **University of Portsmouth** — low — https://www.port.ac.uk/student-life/accommodation
 - **Bournemouth University** — none — add a start URL in tools/unis.json
 - **Anglia Ruskin University** — none — add a start URL in tools/unis.json
-- **Edge Hill University** — medium — https://www.edgehill.ac.uk/study/accommodation/forest-court/
+- **Edge Hill University** — none — add a start URL in tools/unis.json
 - **University of Lincoln** — none — add a start URL in tools/unis.json
 - **Teesside University** — medium — https://www.tees.ac.uk/sections/accommodation/buildings/kes.cfm
 - **University of Lancashire (was UCLan)** — medium — https://www.lancashire.ac.uk/accommodation/our-halls/summergrove
