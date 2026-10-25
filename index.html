@@ -358,7 +358,7 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
       <div class="panel">
         <div class="card block">
           <h3><span class="num">1</span>Your course <span class="req must">Required</span></h3>
-          <p class="hint">Only unis offering the course will show.</p>
+          <p class="hint"><span id="courseCount"></span> courses. Only unis offering yours will show. Not listed? <a href="https://www.ucas.com/explore/search/courses" target="_blank" rel="noopener">Search UCAS ↗</a></p>
           <div class="seg" id="routePick" style="margin:0 0 10px"></div>
           <select id="course" class="field"></select>
           <p class="hint" id="routeHint" style="margin:8px 0 0"></p>
@@ -549,6 +549,21 @@ const COURSES = {
  ECO:"Economics", BUS:"Business & Management", LAW:"Law", PSY:"Psychology", EN:"English Literature", HIS:"History"
 };
 const CORE = ["BIO","CHE","MAT","CS","ENG","ECO","BUS","LAW","PSY","EN","HIS"];
+/* Expanded catalogue — rule: all = most unis, res = research-led unis (rep 7+), voc = career-focused unis (rep 6 or below), or a list of uni ids.
+   Which unis run each of these is an ESTIMATE until replaced by the Discover Uni dataset. */
+const COURSE_GROUPS={
+ "Health & medicine":[["MED"],["DEN"],["VET","Veterinary Science","bri cam edi gla liv not sur lin kee"],["NUR"],["NCH","Nursing (Children's)","@NUR"],["NMH","Nursing (Mental Health)","@NUR"],["MID","Midwifery","csg gre kin edi gla gcu rgu man bir lee she not sou ncl nor liv cdf swa qub sur lei brn uea her por obu ply bou aru edh lin tee ucn cum hud wor kee bcu dmu ntu brd uls bnu ccc nth bed qmu sun wlv der"],["PAR"],["PHY"],["OT","Occupational Therapy","csg gcu rgu she shu ncl nor liv cdf ply bou brn uea her cov obu ucn cum hud tee lin der bcu brd uls bnu ccc nth sun wor glos ysj qmu edh"],["RAD","Diagnostic Radiography","csg kin gcu rgu lee shu exe nor liv cdf swa ply her ucn cum hud tee der bcu ccc sun uls brd bnu qmu"],["ODP","Operating Department Practice","csg gre kin cov ply bou her edh lin tee ucn cum hud bcu ccc nth bed sun wlv wor glos uwe brn"],["SLT","Speech & Language Therapy","csg man she ncl cdf ply bir gcu qmu uls brn cum lei uea"],["NUT","Nutrition & Dietetics","kcl lee not sur ply bat ncl lin cov ucn gcu rgu qmu uls her bed hul"],["PHA"],["BMS","Biomedical Science","all"],["PSY"],["NEU","Neuroscience","res"]],
+ "Sciences":[["BIO"],["BCH","Biochemistry","res"],["CHE"],["PHS","Physics","res"],["MAT"],["ENV","Environmental Science","all"],["GEO","Geography","all"],["ZOO","Zoology","res"],["FOR","Forensic Science","voc"]],
+ "Computing & data":[["CS"],["SE","Software Engineering","all"],["DS","Data Science","all"],["AI","Artificial Intelligence","res"],["CYB","Cyber Security","voc"]],
+ "Engineering & building":[["ENG"],["MEC","Mechanical Engineering","@ENG"],["ELE","Electrical & Electronic Engineering","@ENG"],["CIV","Civil Engineering","@ENG"],["AER","Aerospace Engineering","bri sou sur lbo she man not imp cov her kin bat ucn liv qub gla sta sfs ply edh"],["CHM","Chemical Engineering","imp ucl man bir she lee not bat lbo sur ncl abd qub swa edi gla tee hud bra"],["BEN","Biomedical Engineering","imp ucl kcl gla sur sus qub swa sou she not lbo ulster ncl"],["ARC","Architecture","ucl cam edi gla bat she not lee man ncl liv cdf qub kin gre uwe ply por brn obu ljmu ntu dmu bcu ucn lin hud uls sta sfs nth ccc"]],
+ "Business, law & economics":[["BUS"],["ACC","Accounting & Finance","all"],["ECO"],["MKT","Marketing","all"],["LAW"],["CRI","Criminology","all"],["POL","Politics","res"],["IR","International Relations","res"],["TOU","Tourism & Events","voc"]],
+ "Humanities & social sciences":[["EN"],["HIS"],["PHI","Philosophy","res"],["CLA","Classics","oxf cam ucl kcl edi gla sta man bri war dur bir lee not exe ncl liv cdf swa qub not rea"],["LNG","Modern Languages","res"],["LIN","Linguistics","res"],["SOC","Sociology","all"],["ANT","Anthropology","ucl lse kcl edi gla sta abd man bri dur bir sou exe sus kee brn obu ox cam"],["ARCH","Archaeology","oxf cam ucl edi gla abd man bri dur bir she not sou exe yor ncl liv cdf lei ply bou ccc"],["THE","Theology & Religion","oxf cam kcl edi gla sta abd man bri dur bir lee not exe cdf qub ccc ysj"],["SW","Social Work","voc"],["EDU","Primary Education (QTS)","voc"]],
+ "Creative arts & media":[["ART","Fine Art","all"],["FAS","Fashion","voc"],["GD","Graphic Design","voc"],["FILM","Film & TV","all"],["MDC","Media & Communication","all"],["JOU","Journalism","voc"],["MUS","Music","all"],["DRA","Drama & Theatre","all"],["GAM","Games Design","voc"],["PHO","Photography","voc"]],
+ "Sport":[["SPS","Sport & Exercise Science","all"],["SPM","Sport Management","voc"]]
+};
+const SMALL="qmu cum wrx ugm bnu".split(" ");
+for(const list of Object.values(COURSE_GROUPS))for(const [code,name] of list)if(name)COURSES[code]=name;
+const NOGROUP={imp:["Business, law & economics","Humanities & social sciences","Creative arts & media","Sport"],lse:["Health & medicine","Sciences","Engineering & building","Creative arts & media","Sport","Computing & data"],csg:["Humanities & social sciences"],qmu:["Engineering & building","Computing & data"],sta:["Engineering & building","Creative arts & media"],oxf:["Creative arts & media","Sport"],cam:["Creative arts & media","Sport"]};
 const EXTRA = {
  PAR:"aru bcu bou bnu ccc csg cov dmu edh gcu kee ljmu ntu obu qmu rgu shu swa tee nth bed brd brn cum uea glos ugm gre her hud hul uls wlv wor wrx ysj sur ply ucn por sun uwe lin sfs",
  MED:"oxf cam imp ucl kcl qml csg edi gla sta abd man bri bir lee she not sou exe yor ncl liv cdf qub lan lei sus brn uea ply kee hul edh ucn lin aru",
@@ -559,13 +574,28 @@ const EXTRA = {
 };
 const NO = {bnu:"CHE MAT ENG ECO",qmu:"CHE MAT CS ENG ECO LAW HIS EN",wrx:"CHE ECO",ugm:"CHE",ysj:"CHE ENG",ccc:"CHE ENG",glos:"CHE ENG",bed:"CHE HIS",nth:"CHE",imp:"LAW PSY EN HIS BUS",lse:"BIO CHE CS ENG EN",csg:"CHE EN HIS",rgu:"CHE EN HIS PSY",gcu:"CHE EN HIS",sta:"ENG LAW BUS",
  edh:"CHE ECO ENG",cum:"CHE MAT CS ENG ECO",wor:"CHE MAT ENG ECO",sfs:"CHE MAT",tee:"MAT",bou:"CHE MAT HIS",aru:"CHE",her:"CHE HIS",obu:"CHE",sur:"HIS",kee:"ENG"};
-const HEALTH = ["PAR","MED","DEN","NUR","PHY"];
+const HEALTH = ["PAR","MED","DEN","NUR","PHY","NCH","NMH","MID","OT","RAD","ODP","SLT","NUT"];
+const APP_ALIAS={SE:"CS",CYB:"CS",AI:"CS",DS:"MAT",ACC:"ECO",MKT:"BUS",TOU:"BUS",MEC:"ENG",ELE:"ENG",CIV:"ENG",AER:"ENG",CHM:"ENG",BEN:"ENG",BCH:"CHE",BMS:"BIO",NEU:"BIO",NCH:"NUR",NMH:"NUR",PHS:"MAT"};
 
 const UNIS = RAW.map(r=>{
   const [id,name,city,lat,lon,set,rent,col,rep,sat,night,green,pl,ab,size]=r;
   const no=(NO[id]||"").split(" ");
   const courses=CORE.filter(c=>!no.includes(c));
   for(const k in EXTRA) if(EXTRA[k].split(" ").includes(id)) courses.push(k);
+  const rep_=r[8];
+  for(const [g,list] of Object.entries(COURSE_GROUPS)){
+    if((NOGROUP[id]||[]).includes(g))continue;
+    for(const [code,,rule] of list){
+      if(!rule||courses.includes(code))continue;
+      let ok=false;
+      if(rule==="all")ok=!SMALL.includes(id);
+      else if(rule==="res")ok=rep_>=7;
+      else if(rule==="voc")ok=rep_<=6&&!SMALL.includes(id)||["bcu","dmu","ljmu","ntu","shu","nor","por","ply","uwe","brn","cov","her","kin","gre","bou","ucn","hud","sfs","lin","tee","sun","wlv","der","nth","bed","ccc","glos","wor","edh","aru","obu"].includes(id);
+      else if(rule.startsWith("@"))ok=courses.includes(rule.slice(1));
+      else ok=rule.split(" ").includes(id);
+      if(ok&&!(NO[id]||"").split(" ").includes(code))courses.push(code);
+    }
+  }
   return {id,name,city,lat,lon,set,rent,col,rep,sat,night,green,pl:!!pl,ab:!!ab,size,courses,
     rg:RG.includes(id),sport:SPORT[id]||5,grad:GRAD[id]||Math.max(5,rep+1),div:DIV[city]||5};
 });
@@ -642,6 +672,7 @@ const PSFIT={
 };
 const PSDEF=["Why this subject — a specific spark, not 'I've always loved it'","Reading, courses or projects beyond your A-levels","Skills from work, volunteering or societies, tied back to the course","What you want to do with the degree"];
 function psFor(u,c){
+  if(["NCH","NMH","MID","ODP"].includes(c))c="NUR";else if(["OT","RAD","SLT","NUT"].includes(c))c="PHY";
   if(u.type==="app"){const l=["Why this employer and this sector — show you've researched them","Why an apprenticeship: earning, learning on the job, balancing work & study","Teamwork, communication and reliability — school, part-time work, volunteering","Expect online tests, a video interview and an assessment centre"];
     if(c==="PAR")l.unshift("Many paramedic apprenticeships are for current ambulance staff — you may need to start as an Ambulance Care Assistant or EMT first","A full driving licence (often with C1) is usually needed");
     if(u.nhs)l.push("NHS values (compassion, respect, working together) and your caring experience");return l}
@@ -761,7 +792,8 @@ const OFFERS=["CCC","BCC","BBC","BBB","ABB","AAB","AAA","A*AA","A*A*A"];
 function parseGrades(s){const m=(s||"").toUpperCase().replace(/\s/g,"").match(/A\*|[A-E]/g);if(!m||m.length<3)return null;return m.map(g=>GV[g]).sort((a,b)=>b-a).slice(0,3).reduce((a,b)=>a+b,0)}
 function offerIdx(u,c){
   let i=u.rep>=10?7:u.rep>=9?6:u.rep>=8?5:u.rep>=6?4:u.rep>=5?3:2;
-  if(c==="MED"||c==="DEN")i=u.rep>=9?7:6;
+  if(c==="MED"||c==="DEN"||c==="VET")i=u.rep>=9?7:6;
+  else if(c==="ARC"||c==="PHS"||c==="AER"||c==="CHM")i=Math.min(8,i+1);
   else if(c==="PAR"||c==="PHY")i=Math.min(6,i+1);
   else if(c==="NUR")i=Math.max(1,i-1);
   else if((c==="MAT"||c==="CS")&&u.rep>=9)i=(u.id==="cam"&&c==="MAT")?8:Math.min(8,i+1);
@@ -887,7 +919,7 @@ function compute(st=S,applyLimits=true){
   if(!st.course)return out;
   const pool=st.route==="app"?APPS:st.route==="both"?ALL:UNIS;
   for(const u of pool){
-    if(!u.courses.includes(st.course))continue;
+    if(!u.courses.includes(st.course)&&!(u.type==="app"&&u.courses.includes(APP_ALIAS[st.course])))continue;
     const x=ctx(u,st);
     if(applyLimits){
       if(R(u)>st.maxRent)continue;
@@ -930,7 +962,8 @@ function renderHome(){
    MATCH
    ========================================================= */
 const courseSel=$("#course"),homeSel=$("#home");
-courseSel.innerHTML=`<option value="">Choose your course…</option>`+Object.entries(COURSES).sort((a,b)=>a[1].localeCompare(b[1])).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+$("#courseCount").textContent=Object.keys(COURSES).length;
+courseSel.innerHTML=`<option value="">Choose your course…</option>`+Object.entries(COURSE_GROUPS).map(([g,list])=>`<optgroup label="${g}">${list.map(([c])=>[c,COURSES[c]]).sort((a,b)=>a[1].localeCompare(b[1])).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</optgroup>`).join("");
 function fillHome(){homeSel.innerHTML=`<option value="">Choose your home town…</option>`+(S.home==="My location"?`<option>My location</option>`:"")+TOWNS.map(t=>`<option>${t[0]}</option>`).join("");homeSel.value=S.home||""}
 fillHome();
 courseSel.onchange=()=>{S.course=courseSel.value;save();renderCrit();renderResults()};
