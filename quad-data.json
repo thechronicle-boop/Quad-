@@ -289,20 +289,17 @@
   },
   "por": {
    "rooms": {
-    "shared": 120,
-    "wet": 148,
-    "studio": 188
+    "shared": 130,
+    "wet": 184,
+    "studio": 194
    },
-   "from": 120,
    "catered": true,
-   "cateredPrice": 175,
+   "cateredPrice": 187,
    "checked": "2026-10-25",
-   "year": "2026/27",
-   "weeks": null,
-   "note": null,
+   "year": "2027/28",
    "confidence": "high",
-   "method": "checked by hand",
-   "source": "https://port.ac.uk/our-halls-residence"
+   "source": "https://www.port.ac.uk/student-life/accommodation/our-halls-of-residence",
+   "method": "automatic"
   },
   "obu": {
    "rooms": {

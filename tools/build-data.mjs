@@ -20,8 +20,12 @@ for (const [id, r] of Object.entries(halls)) {
   if (!Object.keys(rooms).length) continue;
   data.halls[id] = { rooms, catered: r.catered, cateredPrice: r.rooms.catered ? Math.round(r.rooms.catered.median) : null, checked: r.checked, year: r.year, confidence: r.confidence, source: r.sources[0] || null };
 }
-// Prices checked by hand (tools/halls-manual.json) take priority over the automatic checker
+// Prices checked by hand (tools/halls-manual.json) are used unless the checker finds a newer year with high confidence
+const yr = y => { const m = String(y || "").match(/20(\d\d)/); return m ? Number(m[1]) : 0; };
 for (const [id, m] of Object.entries(manual)) {
+  const auto = data.halls[id];
+  // a newer automatic result (a later price year, high confidence) replaces the hand-checked one
+  if (auto && auto.confidence === "high" && yr(auto.year) > yr(m.year)) { auto.method = "automatic"; continue; }
   data.halls[id] = { rooms: m.rooms || {}, from: m.from ?? null, catered: !!m.catered, cateredPrice: m.catPrice ?? null, checked: m.checked || "2026-10-25",
     year: m.year || null, weeks: m.weeks || null, note: m.note || null, confidence: "high", method: "checked by hand", source: m.source };
 }
