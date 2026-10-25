@@ -1,0 +1,132 @@
+{
+ "oxf": {
+  "from": 203,
+  "rooms": {},
+  "year": "2027/28",
+  "catered": true,
+  "note": "College rooms \u2014 Oxford estimates \u00a3880\u2013\u00a31,025 a month",
+  "source": "https://ox.ac.uk/admissions/undergraduate/fees-and-funding/living-costs"
+ },
+ "cam": {
+  "from": 203,
+  "rooms": {},
+  "year": "2027/28",
+  "catered": true,
+  "note": "College rooms \u2014 Cambridge estimates \u00a3880 a month; varies by college",
+  "source": "https://www.undergraduate.study.cam.ac.uk/fees-funding/living-costs"
+ },
+ "imp": {
+  "from": 150,
+  "rooms": {
+   "shared": 179,
+   "wet": 236,
+   "full": 259
+  },
+  "year": "2026/27",
+  "catered": false,
+  "source": "https://www.imperial.ac.uk/students/accommodation/prospective/ug/fees/"
+ },
+ "uea": {
+  "from": 98,
+  "rooms": {
+   "shared": 131,
+   "wet": 179,
+   "full": 200
+  },
+  "year": "2026/27",
+  "weeks": 41,
+  "catered": false,
+  "source": "https://assets.uea.ac.uk/f/185167/x/54b8b727c9/residences-room-type-comparison-sept-26.pdf"
+ },
+ "ucl": {
+  "from": 199,
+  "rooms": {
+   "wet": 199
+  },
+  "year": "2026/27",
+  "catered": true,
+  "note": "Only one hall's prices could be checked",
+  "source": "https://www.ucl.ac.uk/accommodation/halls/venti-house"
+ },
+ "man": {
+  "from": 142,
+  "rooms": {
+   "shared": 147,
+   "wet": 200,
+   "studio": 239
+  },
+  "catPrice": 178,
+  "year": "2026/27",
+  "catered": true,
+  "source": "https://documents.manchester.ac.uk/display.aspx?DocID=78796"
+ },
+ "lee": {
+  "from": 122,
+  "rooms": {
+   "shared": 122,
+   "wet": 168
+  },
+  "year": "2026/27",
+  "catered": true,
+  "note": "Smaller residences checked",
+  "source": "https://accommodation.leeds.ac.uk/small-residences/"
+ },
+ "kcl": {
+  "from": 155,
+  "rooms": {
+   "shared": 200,
+   "wet": 249,
+   "full": 278,
+   "studio": 334
+  },
+  "year": "2026/27",
+  "weeks": 40,
+  "catered": false,
+  "source": "https://roarnews.co.uk/2026/kings-residences-rent-now-averages-14-5k-as-kclsu-fights-for-kaas/"
+ },
+ "lse": {
+  "from": 153,
+  "rooms": {
+   "wet": 337,
+   "studio": 300
+  },
+  "catPrice": 297,
+  "year": "2026/27",
+  "catered": true,
+  "source": "https://lse.ac.uk/asset-library/table-of-accommodation-fees.pdf"
+ },
+ "gla": {
+  "from": 130,
+  "rooms": {
+   "shared": 130,
+   "wet": 175,
+   "studio": 228
+  },
+  "year": "2026/27",
+  "weeks": 39,
+  "catered": false,
+  "source": "https://www.gla.ac.uk/undergraduate/accommodation/fees"
+ },
+ "edi": {
+  "from": 96,
+  "rooms": {},
+  "catPrice": 194,
+  "year": "2026/27",
+  "catered": true,
+  "note": "Edinburgh gives monthly ranges: self-catered \u00a3414\u2013\u00a31,348, catered \u00a3842\u2013\u00a31,518",
+  "source": "https://study.ed.ac.uk/undergraduate/fees-funding/living-costs"
+ },
+ "qml": {
+  "from": 177,
+  "rooms": {
+   "shared": 177,
+   "wet": 218,
+   "studio": 329
+  },
+  "year": "2026/27",
+  "weeks": 38,
+  "catered": false,
+  "note": "From a guide quoting QMUL's fees page",
+  "source": "https://admistay.com/intelligence-hub/queen-mary-university-london-accommodation-2026-27"
+ }
+}

@@ -1,0 +1,470 @@
+[
+ {
+  "id": "oxf",
+  "name": "University of Oxford",
+  "domain": "ox.ac.uk",
+  "start": []
+ },
+ {
+  "id": "cam",
+  "name": "University of Cambridge",
+  "domain": "cam.ac.uk",
+  "start": []
+ },
+ {
+  "id": "imp",
+  "name": "Imperial College London",
+  "domain": "imperial.ac.uk",
+  "start": []
+ },
+ {
+  "id": "ucl",
+  "name": "UCL",
+  "domain": "ucl.ac.uk",
+  "start": []
+ },
+ {
+  "id": "kcl",
+  "name": "King's College London",
+  "domain": "kcl.ac.uk",
+  "start": []
+ },
+ {
+  "id": "lse",
+  "name": "LSE",
+  "domain": "lse.ac.uk",
+  "start": []
+ },
+ {
+  "id": "qml",
+  "name": "Queen Mary University of London",
+  "domain": "qmul.ac.uk",
+  "start": []
+ },
+ {
+  "id": "csg",
+  "name": "City St George's, University of London",
+  "domain": "citystgeorges.ac.uk",
+  "start": []
+ },
+ {
+  "id": "gre",
+  "name": "University of Greenwich",
+  "domain": "gre.ac.uk",
+  "start": []
+ },
+ {
+  "id": "kin",
+  "name": "Kingston University",
+  "domain": "kingston.ac.uk",
+  "start": []
+ },
+ {
+  "id": "edi",
+  "name": "University of Edinburgh",
+  "domain": "ed.ac.uk",
+  "start": []
+ },
+ {
+  "id": "gla",
+  "name": "University of Glasgow",
+  "domain": "gla.ac.uk",
+  "start": []
+ },
+ {
+  "id": "gcu",
+  "name": "Glasgow Caledonian University",
+  "domain": "gcu.ac.uk",
+  "start": []
+ },
+ {
+  "id": "sta",
+  "name": "University of St Andrews",
+  "domain": "st-andrews.ac.uk",
+  "start": []
+ },
+ {
+  "id": "abd",
+  "name": "University of Aberdeen",
+  "domain": "abdn.ac.uk",
+  "start": []
+ },
+ {
+  "id": "rgu",
+  "name": "Robert Gordon University",
+  "domain": "rgu.ac.uk",
+  "start": []
+ },
+ {
+  "id": "man",
+  "name": "University of Manchester",
+  "domain": "manchester.ac.uk",
+  "start": []
+ },
+ {
+  "id": "bri",
+  "name": "University of Bristol",
+  "domain": "bristol.ac.uk",
+  "start": []
+ },
+ {
+  "id": "uwe",
+  "name": "UWE Bristol",
+  "domain": "uwe.ac.uk",
+  "start": []
+ },
+ {
+  "id": "war",
+  "name": "University of Warwick",
+  "domain": "warwick.ac.uk",
+  "start": []
+ },
+ {
+  "id": "cov",
+  "name": "Coventry University",
+  "domain": "coventry.ac.uk",
+  "start": []
+ },
+ {
+  "id": "dur",
+  "name": "Durham University",
+  "domain": "durham.ac.uk",
+  "start": []
+ },
+ {
+  "id": "bir",
+  "name": "University of Birmingham",
+  "domain": "birmingham.ac.uk",
+  "start": []
+ },
+ {
+  "id": "lee",
+  "name": "University of Leeds",
+  "domain": "leeds.ac.uk",
+  "start": []
+ },
+ {
+  "id": "she",
+  "name": "University of Sheffield",
+  "domain": "sheffield.ac.uk",
+  "start": []
+ },
+ {
+  "id": "shu",
+  "name": "Sheffield Hallam University",
+  "domain": "shu.ac.uk",
+  "start": []
+ },
+ {
+  "id": "not",
+  "name": "University of Nottingham",
+  "domain": "nottingham.ac.uk",
+  "start": []
+ },
+ {
+  "id": "sou",
+  "name": "University of Southampton",
+  "domain": "southampton.ac.uk",
+  "start": []
+ },
+ {
+  "id": "exe",
+  "name": "University of Exeter",
+  "domain": "exeter.ac.uk",
+  "start": []
+ },
+ {
+  "id": "yor",
+  "name": "University of York",
+  "domain": "york.ac.uk",
+  "start": []
+ },
+ {
+  "id": "ncl",
+  "name": "Newcastle University",
+  "domain": "ncl.ac.uk",
+  "start": []
+ },
+ {
+  "id": "nor",
+  "name": "Northumbria University",
+  "domain": "northumbria.ac.uk",
+  "start": []
+ },
+ {
+  "id": "liv",
+  "name": "University of Liverpool",
+  "domain": "liverpool.ac.uk",
+  "start": []
+ },
+ {
+  "id": "cdf",
+  "name": "Cardiff University",
+  "domain": "cardiff.ac.uk",
+  "start": []
+ },
+ {
+  "id": "swa",
+  "name": "Swansea University",
+  "domain": "swansea.ac.uk",
+  "start": []
+ },
+ {
+  "id": "qub",
+  "name": "Queen's University Belfast",
+  "domain": "qub.ac.uk",
+  "start": []
+ },
+ {
+  "id": "bat",
+  "name": "University of Bath",
+  "domain": "bath.ac.uk",
+  "start": []
+ },
+ {
+  "id": "lbo",
+  "name": "Loughborough University",
+  "domain": "lboro.ac.uk",
+  "start": []
+ },
+ {
+  "id": "lan",
+  "name": "Lancaster University",
+  "domain": "lancaster.ac.uk",
+  "start": []
+ },
+ {
+  "id": "sur",
+  "name": "University of Surrey",
+  "domain": "surrey.ac.uk",
+  "start": []
+ },
+ {
+  "id": "lei",
+  "name": "University of Leicester",
+  "domain": "le.ac.uk",
+  "start": []
+ },
+ {
+  "id": "sus",
+  "name": "University of Sussex",
+  "domain": "sussex.ac.uk",
+  "start": []
+ },
+ {
+  "id": "brn",
+  "name": "University of Brighton",
+  "domain": "brighton.ac.uk",
+  "start": []
+ },
+ {
+  "id": "uea",
+  "name": "University of East Anglia (UEA)",
+  "domain": "uea.ac.uk",
+  "start": []
+ },
+ {
+  "id": "her",
+  "name": "University of Hertfordshire",
+  "domain": "herts.ac.uk",
+  "start": []
+ },
+ {
+  "id": "por",
+  "name": "University of Portsmouth",
+  "domain": "port.ac.uk",
+  "start": []
+ },
+ {
+  "id": "obu",
+  "name": "Oxford Brookes University",
+  "domain": "brookes.ac.uk",
+  "start": []
+ },
+ {
+  "id": "ply",
+  "name": "University of Plymouth",
+  "domain": "plymouth.ac.uk",
+  "start": []
+ },
+ {
+  "id": "bou",
+  "name": "Bournemouth University",
+  "domain": "bournemouth.ac.uk",
+  "start": []
+ },
+ {
+  "id": "aru",
+  "name": "Anglia Ruskin University",
+  "domain": "aru.ac.uk",
+  "start": []
+ },
+ {
+  "id": "edh",
+  "name": "Edge Hill University",
+  "domain": "edgehill.ac.uk",
+  "start": []
+ },
+ {
+  "id": "lin",
+  "name": "University of Lincoln",
+  "domain": "lincoln.ac.uk",
+  "start": []
+ },
+ {
+  "id": "tee",
+  "name": "Teesside University",
+  "domain": "tees.ac.uk",
+  "start": []
+ },
+ {
+  "id": "ucn",
+  "name": "University of Lancashire (was UCLan)",
+  "domain": "lancashire.ac.uk",
+  "start": []
+ },
+ {
+  "id": "cum",
+  "name": "University of Cumbria",
+  "domain": "cumbria.ac.uk",
+  "start": []
+ },
+ {
+  "id": "hud",
+  "name": "University of Huddersfield",
+  "domain": "hud.ac.uk",
+  "start": []
+ },
+ {
+  "id": "sfs",
+  "name": "Staffordshire University",
+  "domain": "staffs.ac.uk",
+  "start": []
+ },
+ {
+  "id": "wor",
+  "name": "University of Worcester",
+  "domain": "worc.ac.uk",
+  "start": []
+ },
+ {
+  "id": "hul",
+  "name": "University of Hull",
+  "domain": "hull.ac.uk",
+  "start": []
+ },
+ {
+  "id": "kee",
+  "name": "Keele University",
+  "domain": "keele.ac.uk",
+  "start": []
+ },
+ {
+  "id": "bcu",
+  "name": "Birmingham City University",
+  "domain": "bcu.ac.uk",
+  "start": []
+ },
+ {
+  "id": "dmu",
+  "name": "De Montfort University",
+  "domain": "dmu.ac.uk",
+  "start": []
+ },
+ {
+  "id": "ntu",
+  "name": "Nottingham Trent University",
+  "domain": "ntu.ac.uk",
+  "start": []
+ },
+ {
+  "id": "ljmu",
+  "name": "Liverpool John Moores University",
+  "domain": "ljmu.ac.uk",
+  "start": []
+ },
+ {
+  "id": "brd",
+  "name": "University of Bradford",
+  "domain": "bradford.ac.uk",
+  "start": []
+ },
+ {
+  "id": "glos",
+  "name": "University of Gloucestershire",
+  "domain": "glos.ac.uk",
+  "start": []
+ },
+ {
+  "id": "wlv",
+  "name": "University of Wolverhampton",
+  "domain": "wlv.ac.uk",
+  "start": []
+ },
+ {
+  "id": "ysj",
+  "name": "York St John University",
+  "domain": "yorksj.ac.uk",
+  "start": []
+ },
+ {
+  "id": "uls",
+  "name": "Ulster University",
+  "domain": "ulster.ac.uk",
+  "start": []
+ },
+ {
+  "id": "bnu",
+  "name": "Buckinghamshire New University",
+  "domain": "bucks.ac.uk",
+  "start": []
+ },
+ {
+  "id": "ccc",
+  "name": "Canterbury Christ Church University",
+  "domain": "canterbury.ac.uk",
+  "start": []
+ },
+ {
+  "id": "nth",
+  "name": "University of Northampton",
+  "domain": "northampton.ac.uk",
+  "start": []
+ },
+ {
+  "id": "bed",
+  "name": "University of Bedfordshire",
+  "domain": "beds.ac.uk",
+  "start": []
+ },
+ {
+  "id": "qmu",
+  "name": "Queen Margaret University",
+  "domain": "qmu.ac.uk",
+  "start": []
+ },
+ {
+  "id": "sun",
+  "name": "University of Sunderland",
+  "domain": "sunderland.ac.uk",
+  "start": []
+ },
+ {
+  "id": "wrx",
+  "name": "Wrexham University",
+  "domain": "wrexham.ac.uk",
+  "start": []
+ },
+ {
+  "id": "ugm",
+  "name": "University of Greater Manchester",
+  "domain": "greatermanchester.ac.uk",
+  "start": []
+ },
+ {
+  "id": "der",
+  "name": "University of Derby",
+  "domain": "derby.ac.uk",
+  "start": []
+ }
+]
