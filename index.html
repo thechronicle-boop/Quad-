@@ -349,7 +349,7 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
       <div class="card"><div>💼</div><b>Degree apprenticeships</b><span>Get paid, no fees — with sign-up links.</span></div>
       <div class="card"><div>🛏️</div><b>Room types</b><span>Wet room, full bath, studio, catered.</span></div>
     </div>
-    <p class="note">✅ Paramedic courses, paramedic apprenticeships and fees checked against official sources (24 Oct 2026). Other figures are estimates. <button class="linkbtn" onclick="openData()">How accurate is Quad?</button></p>
+    <p class="note">✅ Halls prices for 70 unis and tuition fees are checked against official sources. Anything not marked ✅ is an estimate. <button class="linkbtn" onclick="openData()">How accurate is Quad?</button></p>
   </section>
 
   <!-- MATCH -->
@@ -827,6 +827,7 @@ const CRIT={
 };
 const IMP=[["Nice to have",1],["Important",2.5],["Essential",5]];
 
+function CN(){return COURSES[S.course]||"your course"}
 function clamp(x){return Math.max(0,Math.min(1,x))}
 function lvl(v,w){return v>=7?w[2]:v>=4?w[1]:w[0]}
 function miles(a,b,c,d){const R=3959,t=Math.PI/180,x=(c-a)*t,y=(d-b)*t,h=Math.sin(x/2)**2+Math.cos(a*t)*Math.cos(c*t)*Math.sin(y/2)**2;return 2*R*Math.asin(Math.sqrt(h))}
@@ -834,7 +835,7 @@ function miles(a,b,c,d){const R=3959,t=Math.PI/180,x=(c-a)*t,y=(d-b)*t,h=Math.si
 /* =========================================================
    STATE
    ========================================================= */
-const DEF={course:"PAR",grades:"",crit:[],home:"",homeLat:null,homeLon:null,maxRent:400,maxDist:600,
+const DEF={course:"",grades:"",crit:[],home:"",homeLat:null,homeLon:null,maxRent:400,maxDist:600,
   route:"uni",room:"wet",trips:2,mode:"train",ps:{},skip:[],short:[],notes:{},cmp:[],status:{},openDay:{},money:"",weeks:42,dark:null,sort:"match"};
 let S=load();
 function load(){try{const s=JSON.parse(localStorage.getItem("quad.v2"));return Object.assign({},DEF,s||{})}catch(e){return {...DEF}}}
@@ -883,6 +884,7 @@ function dist(u,st=S){return st.homeLat==null?null:miles(st.homeLat,st.homeLon,u
 function ctx(u,st=S){const d=dist(u,st);return {d,gf:gradeFit(u,st.course,parseGrades(st.grades))}}
 function compute(st=S,applyLimits=true){
   const out=[];
+  if(!st.course)return out;
   const pool=st.route==="app"?APPS:st.route==="both"?ALL:UNIS;
   for(const u of pool){
     if(!u.courses.includes(st.course))continue;
@@ -919,8 +921,8 @@ function renderHome(){
     PRESETS.map((p,i)=>`<button class="card preset" data-p="${i}"><div class="ic">${p.ic}</div><b>${p.t}</b><span>${p.d}</span></button>`).join("");
   $$("[data-p]").forEach(b=>b.onclick=()=>{const p=PRESETS[b.dataset.p];setPreset(p);go("match");toast(p.t+" applied")});
   let prev,label;
-  if(S.crit.length){prev=compute().slice(0,3);label="Your top matches · "+COURSES[S.course]}
-  else{const ex={...S,course:"PAR",homeLat:null,maxRent:400,maxDist:600,crit:PRESETS[0].crit.map(([k,w])=>({k,w,o:CRIT[k].def}))};prev=compute(ex).slice(0,3);label="Example · Paramedic Science, budget saver"}
+  if(S.crit.length){prev=compute().slice(0,3);label="Your top matches · "+CN()}
+  else{const ex={...S,course:"CS",homeLat:null,maxRent:400,maxDist:600,crit:PRESETS[0].crit.map(([k,w])=>({k,w,o:CRIT[k].def}))};prev=compute(ex).slice(0,3);label="Example · Computer Science, budget saver"}
   $("#heroPreview").innerHTML=`<div class="grp-l">${esc(label)}</div>`+(prev.length?prev.map((r,i)=>`<div class="mini" data-prof="${r.u.id}" style="cursor:pointer"><span class="rank">${i+1}</span><b>${esc(r.u.name)}</b><span class="pct">${r.pct}%</span></div>`).join(""):`<div class="mini"><b>No unis fit your limits yet</b></div>`);
 }
 
@@ -928,7 +930,7 @@ function renderHome(){
    MATCH
    ========================================================= */
 const courseSel=$("#course"),homeSel=$("#home");
-courseSel.innerHTML=Object.entries(COURSES).sort((a,b)=>a[1].localeCompare(b[1])).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+courseSel.innerHTML=`<option value="">Choose your course…</option>`+Object.entries(COURSES).sort((a,b)=>a[1].localeCompare(b[1])).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
 function fillHome(){homeSel.innerHTML=`<option value="">Choose your home town…</option>`+(S.home==="My location"?`<option>My location</option>`:"")+TOWNS.map(t=>`<option>${t[0]}</option>`).join("");homeSel.value=S.home||""}
 fillHome();
 courseSel.onchange=()=>{S.course=courseSel.value;save();renderCrit();renderResults()};
@@ -990,11 +992,12 @@ function renderResults(){
   if(sorters[S.sort])list=[...list].sort(sorters[S.sort]);
   $("#mobileGo").textContent=`See my matches (${n}) ↓`;
   const what=S.route==="app"?"apprenticeship"+(n===1?"":"s"):S.route==="both"?"option"+(n===1?"":"s"):"uni"+(n===1?"":"s");
-  $("#resSub").textContent=`${n} ${what} for ${COURSES[S.course]}${S.crit.length?" · ranked by "+S.crit.length+" thing"+(S.crit.length>1?"s":"")+" you care about":""}`;
-  if(!n){$("#resList").innerHTML=S.route==="app"?`<div class="card empty"><div class="ic">💼</div><b>No example apprenticeships listed for ${esc(COURSES[S.course])}</b><p>Search live vacancies — new schemes appear all year.</p><br><div class="row" style="justify-content:center;flex-wrap:wrap"><a class="btn primary sm" href="${LINKS.gov[1]}" target="_blank" rel="noopener">Find an apprenticeship ↗</a><a class="btn ghost sm" href="${LINKS.ucas[1]}" target="_blank" rel="noopener">UCAS ↗</a></div></div>`:`<div class="card empty"><div class="ic">🔍</div><b>Nothing fits those limits</b><p>Try raising the rent or distance limit.</p></div>`;return}
+  $("#resSub").textContent=`${n} ${what} for ${CN()}${S.crit.length?" · ranked by "+S.crit.length+" thing"+(S.crit.length>1?"s":"")+" you care about":""}`;
+  if(!S.course){$("#resSub").textContent="Pick a course to start";$("#resList").innerHTML=`<div class="card empty"><div class="ic">🎓</div><b>Choose your course first</b><p>Pick it in step 1 — it's the only thing you have to fill in.</p></div>`;return}
+  if(!n){$("#resList").innerHTML=S.route==="app"?`<div class="card empty"><div class="ic">💼</div><b>No example apprenticeships listed for ${esc(CN())}</b><p>Search live vacancies — new schemes appear all year.</p><br><div class="row" style="justify-content:center;flex-wrap:wrap"><a class="btn primary sm" href="${LINKS.gov[1]}" target="_blank" rel="noopener">Find an apprenticeship ↗</a><a class="btn ghost sm" href="${LINKS.ucas[1]}" target="_blank" rel="noopener">UCAS ↗</a></div></div>`:`<div class="card empty"><div class="ic">🔍</div><b>Nothing fits those limits</b><p>Try raising the rent or distance limit.</p></div>`;return}
   if(!list.length){$("#resList").innerHTML=`<div class="card empty"><div class="ic">🔍</div><b>No matches for "${esc(Q)}"</b></div>`;return}
   const rankOf=Object.fromEntries(compute().map((r,i)=>[r.u.id,i+1]));
-  const banner=S.crit.length?"":`<div class="card banner"><p>Showing every ${S.route==="app"?"apprenticeship":S.route==="both"?"uni and apprenticeship":"uni"} for ${esc(COURSES[S.course])}. Everything else is optional — add what matters in step 2 to rank them for you.</p><button class="btn primary sm" data-quiz>Help me choose</button></div>`;
+  const banner=S.crit.length?"":`<div class="card banner"><p>Showing every ${S.route==="app"?"apprenticeship":S.route==="both"?"uni and apprenticeship":"uni"} for ${esc(CN())}. Everything else is optional — add what matters in step 2 to rank them for you.</p><button class="btn primary sm" data-quiz>Help me choose</button></div>`;
   $("#resList").innerHTML=banner+list.map((r,i)=>{
     const u=r.u,on=S.short.includes(u.id);
     const top=[...r.parts].sort((a,b)=>b.w-a.w).slice(0,6);
@@ -1074,22 +1077,20 @@ function reportMistake(id){
     <textarea id="rmText" class="field" rows="5" placeholder="e.g. Studio rent is actually £210/wk — link…"></textarea>
     <div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn primary sm" id="rmSend">Send</button></div>`);
   $("#rmSend").onclick=()=>{
-    const body=`Quad data report (${DATA_VERSION})\nItem: ${u.name} [${u.id}]\nCourse: ${COURSES[S.course]}\n\n${$("#rmText").value}`;
+    const body=`Quad data report (${DATA_VERSION})\nItem: ${u.name} [${u.id}]\nCourse: ${CN()}\n\n${$("#rmText").value}`;
     if(REPORT_EMAIL){location.href="mailto:"+REPORT_EMAIL+"?subject="+encodeURIComponent("Quad mistake: "+u.name)+"&body="+encodeURIComponent(body);closeModal();toast("Thanks! Opening your email…")}
     else{(navigator.clipboard?navigator.clipboard.writeText(body):Promise.reject()).then(()=>{closeModal();toast("Report copied — thanks!")}).catch(()=>{closeModal();toast("Thanks for the report")})}
   };
 }
 function openData(){
   const rows=[
-    ["✅","Which unis run Paramedic Science","HCPC register of approved programmes + uni course pages","Checked 24 Oct 2026"],
-    ["✅","Paramedic degree apprenticeships","HCPC register (apprenticeship & work-based programmes)","Checked 24 Oct 2026"],
+    ["🟡","Which unis run each course","Some health courses checked against official registers (24 Oct 2026); most subjects are estimates — to be replaced with the Discover Uni dataset","Partly checked"],
     ["✅","Tuition fee cap (England)","£9,790 for 2026/27 · £10,050 for 2027/28","Checked 24 Oct 2026"],
-    ["⚠️","Courses for other subjects","Estimate — to be replaced with the Discover Uni dataset","Not yet checked"],
     [HALLS_N?"✅":"⚠️","Halls prices & room types",HALLS_N?`Collected from ${HALLS_N} unis' own websites by Quad's monthly checker — others are estimates`:"Estimate — Quad's monthly checker will collect these from each uni's website once the app is hosted",HALLS_N?"Updated "+DATA_VERSION:"Not yet checked"],
     ["⚠️","Satisfaction, reputation, graduate prospects","Estimate — to be replaced with NSS & Discover Uni data","Not yet checked"],
     ["⚠️","Typical offers","Estimate — check UCAS / the uni","Not yet checked"],
     ["⚠️","Course structure, faith & food, safety, nightlife","Estimate","Not yet checked"],
-    ["⚠️","Other apprenticeships (BT, GSK, Goldman Sachs…)","Example employers — always check the live advert","Not yet checked"],
+    ["🟡","Degree apprenticeships","Some checked against official registers; others are example employers — always check the live advert","Partly checked"],
     ["🔁","Live apprenticeship vacancies","Use the links to Find an apprenticeship, UCAS & NHS Jobs — always current","Live"]
   ];
   modal(`<div class="mhead"><div style="flex:1"><div class="grp-l">Data version ${DATA_VERSION}</div><h2>How accurate is Quad?</h2></div><button class="iconbtn" onclick="closeModal()">✕</button></div>
@@ -1153,14 +1154,14 @@ function openProfile(id){
     ["Nightlife",u.night+"/10"],["Green space",u.green+"/10"],["Sport",u.sport+"/10"],
     ["Diversity",u.div+"/10"],["Placement year",u.pl?"Widely offered":"Rare"],["Study abroad",u.ab?"Widely offered":"Limited"]];
   const courseList=u.courses.map(c=>COURSES[c]).sort();
-  const link="https://www.google.com/search?q="+encodeURIComponent(u.name+" "+COURSES[S.course]+" undergraduate course");
+  const link="https://www.google.com/search?q="+encodeURIComponent(u.name+" "+CN()+" undergraduate course");
   modal(`
     <div class="mhead">${r&&S.crit.length?ring(r.pct,58):""}<div style="flex:1"><h2>${esc(u.name)}</h2><div class="meta"><span>📍 ${u.city}</span>${u.rg?"<span>Russell Group</span>":""}</div></div><button class="iconbtn" onclick="closeModal()" aria-label="Close">✕</button></div>
     <div class="row" style="flex-wrap:wrap">${profStar(id)}<a class="btn ghost sm" href="${link}" target="_blank" rel="noopener">Course page ↗</a></div>
-    <div class="msec"><h4>${esc(COURSES[S.course])}</h4>
+    <div class="msec"><h4>${esc(CN())}</h4>
       ${offers?`<div class="tags"><span class="tag">Typical offer ≈ ${offer(u,S.course)}</span>${x.gf?`<span class="tag ${x.gf.cls}">🎯 ${x.gf.label} for your ${esc(S.grades.toUpperCase())}</span>`:`<span class="tag">Add predicted grades in Match for a grade check</span>`}</div>
       ${HEALTH.includes(S.course)?`<p class="hint" style="margin:8px 0 0">Health courses usually include an interview, clinical placements built into the course and extra checks (DBS, occupational health). Check the uni's page for its exact process.</p>`:""}`
-      :`<p class="hint">This uni doesn't appear to run ${esc(COURSES[S.course])}.</p>`}
+      :`<p class="hint">This uni doesn't appear to run ${esc(CN())}.</p>`}
     </div>
     ${r&&r.parts.length?`<div class="msec"><h4>How it scores for you</h4><div class="reasons">${r.parts.map(p=>`<div class="rz"><div class="t"><span>${CRIT[p.k].ic} ${CRIT[p.k].label}</span><span>${p.v}</span></div><div class="track"><i style="width:${Math.round(p.s*100)}%;background:${color(p.s)}"></i></div></div>`).join("")}</div></div>`:""}
     <div class="msec"><h4>At a glance</h4><div class="statgrid">${st.map(([a,b])=>`<div class="stat"><small>${a}</small><b>${b}</b></div>`).join("")}</div></div>
@@ -1177,7 +1178,7 @@ function openProfile(id){
       <div class="stat"><small>${m.left==null?"Total":"Left over"}</small><b style="color:${m.left==null?"inherit":m.left>=0?"var(--green)":"var(--red)"}">${m.left==null?fmt(m.tot):fmt(m.left)}</b></div></div>
       ${m.left==null?`<p class="hint">Add your yearly budget on the Shortlist page to see what's left.</p>`:""}
     </div>
-    ${offers?(()=>{const cs=CS(u,S.course);return `<div class="msec"><h4>Course structure · ${esc(COURSES[S.course])}</h4><div class="statgrid">
+    ${offers?(()=>{const cs=CS(u,S.course);return `<div class="msec"><h4>Course structure · ${esc(CN())}</h4><div class="statgrid">
       <div class="stat"><small>Assessment</small><b>${cs.assess}</b></div><div class="stat"><small>Interview</small><b>${cs.intv}</b></div>
       <div class="stat"><small>Teaching hours</small><b>~${cs.contact} hrs/wk</b></div><div class="stat"><small>Placement hours</small><b>${cs.phLab}</b></div>
       <div class="stat"><small>Placement year</small><b>${u.pl&&!HEALTH.includes(S.course)?"Optional":HEALTH.includes(S.course)?"Built in":"Rare"}</b></div><div class="stat"><small>Study abroad</small><b>${u.ab?"Available":"Limited"}</b></div></div></div>`})():""}
@@ -1233,7 +1234,7 @@ function px(lon,lat){return [((lon+8.4)*CX*K).toFixed(1),((58.9-lat)*K).toFixed(
 function poly(p){return p.map(([a,b])=>px(a,b).join(",")).join(" ")}
 function renderMap(){
   const list=compute(),has=S.crit.length;
-  $("#mapSub").textContent=`${list.length} ${S.route==="app"?"apprenticeships":S.route==="both"?"options":"unis"} for ${COURSES[S.course]}${has?"":" · pick criteria in Match to colour by score"}`;
+  $("#mapSub").textContent=`${list.length} ${S.route==="app"?"apprenticeships":S.route==="both"?"options":"unis"} for ${CN()}${has?"":" · pick criteria in Match to colour by score"}`;
   const W=Math.round(10.4*CX*K),H=Math.round(9.1*K);
   let dots=[...list].reverse().map(r=>{const[x,y]=px(r.u.lon,r.u.lat);const c=has?pctCol(r.pct):"var(--green)";
     return `<g data-prof="${r.u.id}" style="cursor:pointer"><title>${esc(r.u.name)}${has?" · "+r.pct+"%":""}</title><circle class="dot" cx="${x}" cy="${y}" r="6.5" fill="${c}" stroke="var(--card)" stroke-width="2"/>${S.short.includes(r.u.id)?`<text x="${+x+8}" y="${+y-6}" font-size="11" fill="var(--amber)">★</text>`:""}</g>`}).join("");
@@ -1252,7 +1253,7 @@ function daysTo(d){if(!d)return null;const t=new Date(d+"T00:00:00"),n=new Date(
 function renderShort(){
   const items=S.short.map(uni).filter(Boolean);
   const applied=items.filter(u=>u.type!=="app"&&(S.status[u.id]||"Considering")!=="Considering").length;
-  const max=(S.course==="MED"||S.course==="DEN")?"5 (max 4 for "+COURSES[S.course]+")":"5";
+  const max=(S.course==="MED"||S.course==="DEN")?"5 (max 4 for "+CN()+")":"5";
   const nextOD=items.map(u=>({u,d:daysTo(S.openDay[u.id])})).filter(o=>o.d!=null&&o.d>=0).sort((a,b)=>a.d-b.d)[0];
   $("#slHead").innerHTML=`
     <div class="card"><div class="grp-l">UCAS choices used</div><div class="big" style="color:${applied>5?"var(--red)":"inherit"}">${applied}<span style="font-size:16px;color:var(--muted)"> / ${max}</span></div></div>
@@ -1339,7 +1340,7 @@ $("#copyBtn").onclick=()=>{
   const items=S.short.map(uni).filter(Boolean);
   if(!items.length)return toast("Shortlist is empty");
   const sm=scoreMap();
-  const txt="My uni shortlist — "+COURSES[S.course]+"\n\n"+items.map((u,i)=>{
+  const txt="My uni shortlist — "+CN()+"\n\n"+items.map((u,i)=>{
     const r=sm[u.id],od=S.openDay[u.id];
     return `${i+1}. ${u.name} (${u.city})\n   Status: ${S.status[u.id]||"Considering"}${r&&S.crit.length?" · Match "+r.pct+"%":""} · Room ~${RL(u)}${u.courses.includes(S.course)?" · Typical offer ~"+offer(u,S.course):""}${od?"\n   Open day: "+new Date(od).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):""}${S.notes[u.id]?"\n   Notes: "+S.notes[u.id]:""}`}).join("\n\n")+"\n\nMade with Quad";
   (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast("Shortlist copied 📋")).catch(()=>{
