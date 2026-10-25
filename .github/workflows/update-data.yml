@@ -11,6 +11,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-quad-data
+  cancel-in-progress: false   # never run two checks at once
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -22,12 +26,21 @@ jobs:
           node-version: 20
       - name: Collect halls prices from uni websites
         run: node tools/collect-halls.mjs
-      - name: Build quad-data.json
-        run: node tools/build-data.mjs
-      - name: Save changes
+      - name: Build quad-data.json and save
         run: |
+          # keep the fresh results, then line up with the latest version on GitHub so saving can't clash
+          cp data/halls.json "$RUNNER_TEMP/halls.json"
+          cp data/halls-review.md "$RUNNER_TEMP/halls-review.md"
+          git fetch origin main
+          git reset --hard origin/main
+          mkdir -p data
+          cp "$RUNNER_TEMP/halls.json" data/halls.json
+          cp "$RUNNER_TEMP/halls-review.md" data/halls-review.md
+          node tools/build-data.mjs
           git config user.name "quad-bot"
           git config user.email "quad-bot@users.noreply.github.com"
           git add quad-data.json data/
-          git diff --cached --quiet || git commit -m "Update data $(date +%F)"
-          git push
+          git diff --cached --quiet && exit 0
+          git commit -m "Update data $(date +%F)"
+          for i in 1 2 3; do git push && exit 0; git pull --rebase -X theirs origin main || true; sleep 5; done
+          exit 1
