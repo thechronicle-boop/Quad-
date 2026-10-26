@@ -399,6 +399,7 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
             <div class="lim-top">Max distance from home <span id="distVal"></span></div>
             <input type="range" id="maxDist" min="20" max="600" step="10">
           </div>
+          <div class="lim"><label class="cmpchk"><input type="checkbox" id="incJoint"> Include unis that only offer my course as a joint degree</label></div>
           <div class="lim"><button class="linkbtn" id="resetBtn">↺ Reset criteria &amp; limits</button></div>
         </div>
       </div>
@@ -554,7 +555,15 @@ const GT=[[168,"A*A*A*"],[160,"A*A*A"],[152,"A*AA"],[144,"AAA"],[136,"AAB"],[128
 function grades(p){if(p==null)return null;for(const [t,g] of GT)if(p>=t)return g;return "below DDD"}
 
 /* official course data for the chosen course */
-function CD(u,c=S.course){return u.du&&u.du.courses?u.du.courses[c]||null:null}
+function CD(u,c=S.course){
+  const base=u.du&&u.du.courses?u.du.courses[c]||null:null;if(!base)return null;
+  const vi=(S.variants||{})[u.id+"|"+c],V=vi!=null&&window.QUAD_VARIANTS&&QUAD_VARIANTS[c]&&QUAD_VARIANTS[c][u.id]?QUAD_VARIANTS[c][u.id][vi]:null;
+  if(!V)return base;
+  return {...base,title:V[0]+(V[13]?" ("+V[13]+")":""),url:V[1]||base.url,sat:V[2],tariff:V[3],cont:V[4],salary:V[5],work:V[6],placement:!!V[7],abroad:!!V[8],foundation:!!V[9],masters:!!V[10],jointOnly:!!V[11],accredited:!!V[12],n:1,exact:true};
+}
+const VLOAD={};
+function loadVariants(c,cb){if(!c||VLOAD[c]==="done"){cb&&cb();return}if(VLOAD[c])return;VLOAD[c]="loading";
+  const sc=document.createElement("script");sc.src="variants/"+c+".js";sc.onload=()=>{VLOAD[c]="done";cb&&cb()};sc.onerror=()=>{VLOAD[c]=null};document.head.appendChild(sc)}
 function gradeFit(u,pts){const c=CD(u);if(pts==null||!c||!c.tariff)return null;const diff=pts-c.tariff;
   const lab=diff>=16?["Above typical","good"]:diff>=-8?["Typical","blue"]:diff>=-24?["Below typical","amber"]:["Well below","warn"];
   return {diff,label:lab[0],cls:lab[1],s:clamp((diff+32)/40)}}
@@ -575,7 +584,7 @@ function feeLine(u){const n=u.nation==="eng"?null:u.nation;return !n?"£10,050 a
 /* =========================================================
    STATE
    ========================================================= */
-const DEF={incUnknown:false,course:"",route:"uni",qual:"alevel",grades:"",crit:[],home:"",homeLat:null,homeLon:null,room:"wet",maxRent:400,maxDist:600,
+const DEF={incUnknown:false,incJoint:true,variants:{},course:"",route:"uni",qual:"alevel",grades:"",crit:[],home:"",homeLat:null,homeLon:null,room:"wet",maxRent:400,maxDist:600,
   short:[],notes:{},cmp:[],status:{},openDay:{},money:"",spend:"",weeks:40,dark:null,sort:"match",ps:{},skip:[]};
 let S=load();
 function load(){try{const s=JSON.parse(localStorage.getItem("quad.v3"));return Object.assign({},DEF,s||{})}catch(e){return {...DEF}}}
@@ -626,6 +635,7 @@ function compute(st=S,applyLimits=true){
   const pool=st.route==="app"?APPS:st.route==="both"?ALL:UNIS;
   for(const u of pool){
     if(!u.courses.includes(st.course))continue;
+    if(st.incJoint===false&&u.type==="uni"){const cd=u.du.courses[st.course];if(cd&&cd.jointOnly)continue}
     const x=ctx(u,st);
     if(applyLimits){
       const pr=priceShown(u);
@@ -696,7 +706,7 @@ const courseSel=$("#course"),homeSel=$("#home");
 $("#courseCount").textContent=Object.keys(COURSES).length;
 courseSel.innerHTML=`<option value="">Choose your course…</option>`+Object.entries(COURSE_GROUPS).map(([g,l])=>`<optgroup label="${g}">${[...l].sort((a,b)=>a[1].localeCompare(b[1])).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</optgroup>`).join("");
 function fillHome(){homeSel.innerHTML=`<option value="">Choose your home town…</option>`+(S.home==="My location"||/^Postcode /.test(S.home)?`<option>${esc(S.home)}</option>`:"")+TOWNS.map(t=>`<option>${t[0]}</option>`).join("");homeSel.value=S.home||""}
-courseSel.onchange=()=>{S.course=courseSel.value;save();renderCrit();renderResults()};
+courseSel.onchange=()=>{S.course=courseSel.value;save();renderCrit();renderResults();loadVariants(S.course,()=>renderResults())};
 $("#qual").innerHTML=Object.entries(QUALS).map(([k,q])=>`<option value="${k}">${q.label}</option>`).join("");
 $("#tsel").innerHTML=`<option value="">Choose grade…</option>`+TLEVEL.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
 $("#qual").onchange=e=>{S.qual=e.target.value;S.grades="";save();renderQual();renderCrit();renderResults()};
@@ -718,13 +728,14 @@ $("#postcode").onkeydown=e=>{if(e.key==="Enter")lookupPostcode(e.target.value)};
 $("#geoBtn").onclick=()=>{if(!navigator.geolocation)return toast("Location not available");
   navigator.geolocation.getCurrentPosition(p=>{S.homeLat=p.coords.latitude;S.homeLon=p.coords.longitude;S.home="My location";save();fillHome();renderCrit();renderResults();toast("Using your location")},()=>toast("Couldn't get your location"))};
 $("#maxRent").oninput=e=>{S.maxRent=+e.target.value;limLabels();save();renderResults()};
+$("#incJoint").onchange=e=>{S.incJoint=e.target.checked;save();renderResults()};
 $("#incUnknown").onchange=e=>{S.incUnknown=e.target.checked;save();renderResults()};
 $("#maxDist").oninput=e=>{S.maxDist=+e.target.value;limLabels();save();renderResults()};
 $("#resetBtn").onclick=()=>{S.crit=[];S.maxRent=400;S.maxDist=600;save();renderMatch();toast("Criteria reset")};
 $("#mobileGo").onclick=()=>$("#results").scrollIntoView({behavior:"smooth"});
 $("#search").oninput=e=>{Q=e.target.value.trim().toLowerCase();renderResults()};
 $("#sort").onchange=e=>{S.sort=e.target.value;save();renderResults()};
-function limLabels(){$("#incUnknown").checked=!!S.incUnknown;$("#incUnknown").parentElement.style.display=S.maxRent<400?"flex":"none";$("#rentVal").textContent=S.maxRent>=400?"No limit":"£"+S.maxRent;$("#distVal").textContent=S.maxDist>=600?"No limit":S.maxDist+" mi"}
+function limLabels(){$("#incJoint").checked=S.incJoint!==false;$("#incUnknown").checked=!!S.incUnknown;$("#incUnknown").parentElement.style.display=S.maxRent<400?"flex":"none";$("#rentVal").textContent=S.maxRent>=400?"No limit":"£"+S.maxRent;$("#distVal").textContent=S.maxDist>=600?"No limit":S.maxDist+" mi"}
 const ROUTES={uni:"🎓 University",app:"💼 Apprenticeship",both:"Both"};
 function renderRoute(){
   $("#routePick").innerHTML=Object.entries(ROUTES).map(([k,l])=>`<button class="${S.route===k?"on":""}" data-route="${k}">${l}</button>`).join("");
@@ -769,6 +780,7 @@ function uniCard(r,i,rankOf){
         ${r.gf?`<span class="tag ${r.gf.cls}">🎯 ${r.gf.label} · entrants ≈ ${grades(c.tariff)} · ${c.tariff} pts</span>`:c&&c.tariff?`<span class="tag">Entrants ≈ ${grades(c.tariff)} · ${c.tariff} pts</span>`:""}
         ${r.miss.map(m=>`<span class="tag warn">Misses: ${m}</span>`).join("")}
         ${!r.miss.length&&r.pct>=75&&!r.gaps.length?`<span class="tag good">Strong fit</span>`:""}
+        ${c&&c.jointOnly?`<span class="tag amber" title="This uni only offers ${esc(CN())} as part of a joint degree">Joint honours only</span>`:""}
         ${r.gaps.length?`<span class="tag amber" title="No data for: ${esc(r.gaps.join(", "))} — counted as average">Based on ${r.have} of ${r.total}</span>`:""}
         ${u.rg?`<span class="tag">Russell Group</span>`:""}
       </div>
@@ -857,12 +869,12 @@ function openProfile(id){
     ${sourcesBox(u)}`);return}
   const hallsRows=h?Object.entries(ROOMS).map(([k,l])=>stat(l,h.rooms&&h.rooms[k]?`£${h.rooms[k]}/wk`:`<span class="nodata">Not listed</span>`)).join("")+stat("Catered option",h.catered?"Yes"+(h.cateredPrice?` · from £${h.cateredPrice}/wk`:""):"Not listed")+(h.from?stat("Cheapest room",`£${h.from}/wk`):""):"";
   modal(`
-    <div class="mhead">${r&&r.pct!=null?ring(r.pct,58):""}<div style="flex:1"><h2>${esc(u.name)}</h2><div class="meta"><span>📍 ${esc(u.city)}</span>${u.rg?"<span>Russell Group</span>":""}${u.tef?`<span>🏅 TEF ${u.tef}</span>`:""}</div></div><button class="iconbtn" onclick="closeModal()" aria-label="Close">✕</button></div>
+    <div class="mhead" data-prof-id="${u.id}">${r&&r.pct!=null?ring(r.pct,58):""}<div style="flex:1"><h2>${esc(u.name)}</h2><div class="meta"><span>📍 ${esc(u.city)}</span>${u.rg?"<span>Russell Group</span>":""}${u.tef?`<span>🏅 TEF ${u.tef}</span>`:""}</div></div><button class="iconbtn" onclick="closeModal()" aria-label="Close">✕</button></div>
     <div class="row" style="flex-wrap:wrap">${profStar(id)}${c&&c.url?`<a class="btn ghost sm" href="${esc(c.url)}" target="_blank" rel="noopener">Official course page ↗</a>`:""}${(h&&h.source)||u.accomUrl?`<a class="btn ghost sm" href="${esc((h&&h.source)||u.accomUrl)}" target="_blank" rel="noopener">Accommodation ↗</a>`:""}${journeyUrl(u)?`<a class="btn ghost sm" href="${journeyUrl(u)}" target="_blank" rel="noopener">🚆 Plan the journey ↗</a>`:""}</div>
     ${place(u).name?`<p class="src" style="margin-top:6px">🏫 ${esc(CN())} is taught at ${esc(place(u).name)}${(c.locs||[]).length>1?` (also: ${c.locs.filter(l=>l.name!==place(u).name).map(l=>esc(l.name)).join(", ")})`:""}.</p>`:""}
     ${x.d!=null?`<p class="src" style="margin-top:6px">${Math.round(x.d)} miles from home as the crow flies — tap "Plan the journey" for real travel times by train, bus or car.</p>`:""}
     <div class="msec"><h4>📊 ${esc(CN())} · official data</h4>
-      ${c?`<p class="hint" style="margin:0 0 8px">${esc(c.title)}${c.n>1?` and ${c.n-1} related course${c.n>2?"s":""}`:""}</p><div class="statgrid">
+      ${c?`${variantPicker(u)}<p class="hint" style="margin:0 0 8px">${c.exact?"Figures for this exact course":esc(c.title)+(c.n>1?` and ${c.n-1} related course${c.n>2?"s":""} combined`:"")}${c.jointOnly?` · <span class="tag amber">Joint honours only</span>`:""}</p><div class="statgrid">
         ${stat("Student satisfaction",c.sat!=null?c.sat+"%":NODATA)}${stat("Entrants' grades (typical)",c.tariff?`≈ ${grades(c.tariff)} · ${c.tariff} pts`:NODATA)}${stat("Your grades",x.gf?x.gf.label:userPoints()?NODATA:"Add in Match")}
         ${stat("Carry on after year 1",c.cont!=null?c.cont+"%":NODATA)}${stat("Graduate salary (median)",c.salary?fmt(c.salary):NODATA)}${stat("In work or study",c.work!=null?c.work+"%":NODATA)}
         ${stat("Placement year option",c.placement?"Yes":"No")}${stat("Year abroad option",c.abroad?"Yes":"No")}${stat("Accredited",c.accredited?"Yes":"No")}
@@ -876,6 +888,16 @@ function openProfile(id){
     <div class="msec"><h4>✍️ Personal statement tips for ${esc(CN())}</h4><ul class="bul">${psFor(u,S.course).map(l=>`<li>${esc(l)}</li>`).join("")}</ul></div>
     ${sourcesBox(u)}`);
 }
+function variantPicker(u){
+  const V=window.QUAD_VARIANTS&&QUAD_VARIANTS[S.course]&&QUAD_VARIANTS[S.course][u.id];
+  if(!V){loadVariants(S.course,()=>{if($("#vpick-wait"))openProfile(u.id)});return `<p class="hint" id="vpick-wait" style="margin:0 0 8px">Loading individual courses…</p>`}
+  if(V.length<2)return "";
+  const cur=(S.variants||{})[u.id+"|"+S.course];
+  return `<label class="hint" style="display:block;margin:0 0 8px">Choose the exact course <select class="field" id="vpick" style="margin-top:4px;padding:8px 10px">
+    <option value="">All ${V.length} courses combined</option>${V.map((v,i)=>`<option value="${i}" ${cur==i?"selected":""}>${esc(v[0])}${v[13]?" · "+esc(v[13]):""}${v[11]?" · joint":""}${v[9]?" · foundation yr":""}</option>`).join("")}</select></label>`;
+}
+document.addEventListener("change",e=>{if(e.target.id!=="vpick")return;const id=$(".modal [data-prof-id]")?.dataset.profId;if(!id)return;
+  S.variants=S.variants||{};const k=id+"|"+S.course;if(e.target.value==="")delete S.variants[k];else S.variants[k]=+e.target.value;save();openProfile(id);rerender()});
 function sourcesBox(u){
   const rows=[];
   if(u.type==="app")rows.push(["Programme","✅ HCPC register of approved programmes",LINKS.hcpc[1]]);
@@ -1060,28 +1082,38 @@ function renderCmp(){
     ["Tuition fee",u=>u.type==="app"?0:fee(u),v=>v?fmt(v):"Paid by employer","lo"],
     ["From home",u=>dist(u),v=>Math.round(v)+" mi","lo"]
   ];
-  $("#cmpBox").innerHTML=`<div class="card" style="padding:6px 6px 2px;margin-bottom:16px"><div class="cmpwrap"><table class="cmp"><tr><td></td>${us.map(u=>`<th>${esc(u.name)}</th>`).join("")}</tr>${
+  const COLS=["var(--green)","var(--blue)","var(--amber)"];
+  const metrics=[["😊 Student satisfaction",u=>(CD(u)||{}).sat,v=>v+"%",false],["🔁 Carry on after year 1",u=>(CD(u)||{}).cont,v=>v+"%",false],["💰 Graduate salary",u=>(CD(u)||{}).salary,v=>fmt(v),false],["💼 In work or study",u=>(CD(u)||{}).work,v=>v+"%",false],["🛏️ Halls per week",u=>(priceShown(u)||{}).p,v=>"£"+v,true],["🏠 Distance from home",u=>dist(u),v=>Math.round(v)+" mi",true]];
+  const charts=metrics.map(([l,f,fm,low])=>{const vals=us.map(u=>{const v=f(u);return v==null?null:v});const nums=vals.filter(v=>v!=null);if(!nums.length)return "";const max=Math.max(...nums);
+    return `<div style="margin-bottom:12px"><div class="grp-l" style="margin-bottom:5px">${l}${low?" · lower is better":""}</div>${us.map((u,i)=>`<div class="row" style="gap:8px;margin:3px 0"><span style="width:110px;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(u.name)}</span><div class="track" style="flex:1;height:14px;border-radius:6px;margin:0">${vals[i]==null?"":`<i style="width:${Math.max(3,vals[i]/max*100)}%;background:${COLS[i]};border-radius:6px"></i>`}</div><b style="width:72px;text-align:right;font-size:12.5px">${vals[i]==null?"—":fm(vals[i])}</b></div>`).join("")}</div>`}).join("");
+  $("#cmpBox").innerHTML=`<div class="card" style="padding:16px;margin-bottom:12px"><div class="grp-l" style="margin-bottom:10px">📊 Side by side</div>${charts}</div><div class="card" style="padding:6px 6px 2px;margin-bottom:16px"><div class="cmpwrap"><table class="cmp"><tr><td></td>${us.map(u=>`<th>${esc(u.name)}</th>`).join("")}</tr>${
     rows.map(([l,f,fm,dir])=>{const vals=us.map(u=>{try{const v=f(u);return v===undefined?null:v}catch(e){return null}});const nums=vals.filter(v=>typeof v==="number");
       const best=dir&&nums.length>1&&new Set(nums).size>1?(dir==="hi"?Math.max(...nums):Math.min(...nums)):null;
       return `<tr><td>${l}</td>${vals.map(v=>`<td class="${best!=null&&v===best?"best":""}">${v==null?"—":fm(v)}</td>`).join("")}</tr>`}).join("")}</table></div></div>`;
 }
 function renderPlanner(items){
   const ods=items.filter(u=>S.openDay[u.id]).map(u=>({u,date:S.openDay[u.id],d:daysTo(S.openDay[u.id])})).sort((a,b)=>a.date.localeCompare(b.date));
-  if(!ods.length){$("#odPlanner").innerHTML=`<div class="card" style="padding:14px 16px;margin-bottom:16px"><div class="grp-l">📅 Open day planner</div><p class="hint" style="margin:0">Add open day dates below and they'll line up here, with calendar downloads.</p></div>`;return}
+  if(!ods.length){$("#odPlanner").innerHTML=`<div class="card" style="padding:14px 16px;margin-bottom:16px"><div class="grp-l">📅 Open day planner</div><p class="hint" style="margin:0">Add open day dates below and they'll line up here. Add them to your calendar to get reminders a week and a day before.</p></div>`;return}
   let last="",html="";
   for(const o of ods){const dt=new Date(o.date+"T00:00:00"),mon=dt.toLocaleDateString("en-GB",{month:"long",year:"numeric"});
     if(mon!==last){html+=`<div class="grp-l" style="margin-top:10px">${mon}</div>`;last=mon}
     html+=`<div class="odrow ${o.d<0?"past":""}"><div class="oddate"><small>${dt.toLocaleDateString("en-GB",{weekday:"short"})}</small><b>${dt.getDate()}</b></div>
-      <div style="flex:1"><b style="font-size:14.5px">${esc(o.u.name)}</b><div class="hint" style="margin:0">${esc(o.u.city)} · ${o.d<0?"Been":o.d===0?"Today!":"in "+o.d+" day"+(o.d>1?"s":"")}</div></div>${o.d>=0?`<button class="btn ghost sm" data-ics="${o.u.id}">＋ Calendar</button>`:""}</div>`}
+      <div style="flex:1"><b style="font-size:14.5px">${esc(o.u.name)}</b><div class="hint" style="margin:0">${esc(o.u.city)} · ${o.d<0?"Been":o.d===0?"Today!":"in "+o.d+" day"+(o.d>1?"s":"")}</div></div>${o.d>=0?`<div class="row" style="gap:6px;flex-wrap:wrap;justify-content:flex-end"><button class="btn ghost sm" data-ics="${o.u.id}">＋ Calendar</button><a class="btn ghost sm" href="${gcal(o)}" target="_blank" rel="noopener">Google ↗</a></div>`:""}</div>`}
   const up=ods.filter(o=>o.d>=0);
   $("#odPlanner").innerHTML=`<div class="card" style="padding:14px 16px;margin-bottom:16px"><div class="row" style="justify-content:space-between"><div class="grp-l" style="margin:0">📅 Open day planner</div>${up.length>1?`<button class="linkbtn" id="icsAll">Add all ${up.length} to calendar</button>`:""}</div>${html}</div>`;
   $$("[data-ics]").forEach(b=>b.onclick=()=>ics([ods.find(o=>o.u.id===b.dataset.ics)]));if($("#icsAll"))$("#icsAll").onclick=()=>ics(up);
 }
+function gcal(o){const d=o.date.replace(/-/g,""),nx=new Date(o.date+"T00:00:00");nx.setDate(nx.getDate()+1);const z=n=>String(n).padStart(2,"0");
+  const e=nx.getFullYear()+z(nx.getMonth()+1)+z(nx.getDate());const what=(o.u.type==="app"?"Deadline / assessment – ":"Open day – ")+o.u.name;
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(what)+"&dates="+d+"/"+e+"&location="+encodeURIComponent(o.u.city)+"&details="+encodeURIComponent("Added from Quad")}
 function ics(list){const z=n=>String(n).padStart(2,"0");
   const ev=list.map(o=>{const d=o.date.replace(/-/g,""),nx=new Date(o.date+"T00:00:00");nx.setDate(nx.getDate()+1);const e=nx.getFullYear()+z(nx.getMonth()+1)+z(nx.getDate());
-    return ["BEGIN:VEVENT","UID:quad-"+o.u.id+"-"+d+"@quad","DTSTAMP:"+d+"T090000Z","DTSTART;VALUE=DATE:"+d,"DTEND;VALUE=DATE:"+e,"SUMMARY:Open day – "+o.u.name,"LOCATION:"+o.u.city,"END:VEVENT"].join("\r\n")}).join("\r\n");
+    const what=(o.u.type==="app"?"Deadline / assessment – ":"Open day – ")+o.u.name;
+    const alarm=(t,txt)=>["BEGIN:VALARM","TRIGGER:"+t,"ACTION:DISPLAY","DESCRIPTION:"+txt,"END:VALARM"];
+    return ["BEGIN:VEVENT","UID:quad-"+o.u.id+"-"+d+"@quad","DTSTAMP:"+d+"T090000Z","DTSTART;VALUE=DATE:"+d,"DTEND;VALUE=DATE:"+e,"SUMMARY:"+what,"LOCATION:"+o.u.city,
+      ...alarm("-P7D",what+" is in a week"),...alarm("-P1D",what+" is tomorrow"),"END:VEVENT"].join("\r\n")}).join("\r\n");
   const txt="BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Quad//Open days//EN\r\n"+ev+"\r\nEND:VCALENDAR";
-  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type:"text/calendar"}));a.download=list.length>1?"quad-open-days.ics":"open-day-"+list[0].u.id+".ics";document.body.appendChild(a);a.click();a.remove();toast("Calendar file downloaded 📅")}
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type:"text/calendar"}));a.download=list.length>1?"quad-open-days.ics":"open-day-"+list[0].u.id+".ics";document.body.appendChild(a);a.click();a.remove();toast("Calendar file downloaded — with reminders 📅")}
 
 /* share + copy */
 function enc(o){return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
@@ -1110,7 +1142,7 @@ $("#copyBtn").onclick=()=>{const items=S.short.map(uni).filter(Boolean);if(!item
   (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast("Shortlist copied 📋")).catch(()=>{const t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand("copy");toast("Shortlist copied 📋")}catch(e){toast("Couldn't copy")}t.remove()})};
 
 /* init */
-updCount();renderHome();
+updCount();renderHome();loadVariants(S.course);
 </script>
 </body>
 </html>

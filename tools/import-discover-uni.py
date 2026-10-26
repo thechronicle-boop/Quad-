@@ -283,13 +283,20 @@ def main():
             if rx.search(title) or any(sc.startswith(pref) for sc in sbj[k] for pref in CAH_MAP.get(code, [])):
                 agg[pub2id[k[0]]][code].append(k)
 
+    aims = {r["KISAIMCODE"]: r["KISAIMLABEL"] for r in rows("KISAIM")}
     out = {}
+    variants = defaultdict(dict)
     id2pub = {v: k for k, v in pub2id.items()}
     for uid, cmap in agg.items():
         k_pub = id2pub[uid]
         ucourses = {}
-        for code, keys in cmap.items():
-            def stat(table, field, popfield):
+        for code, allkeys in cmap.items():
+            # single-subject courses (one official subject code) give the figures when the uni has any;
+            # otherwise the subject is only offered as part of a joint degree
+            singles = [k for k in allkeys if len(set(sbj[k])) <= 1]
+            joint_only = not singles
+            keys = singles or allkeys
+            def stat(table, field, popfield, keys=keys):
                 return wavg([(num(table[k].get(field)), num(table[k].get(popfield))) for k in keys if k in table])
             nss_vals = []
             for k in keys:
@@ -307,7 +314,8 @@ def main():
             single = [k for k in keys if COURSE_RX[code].search(courses[k]["TITLE"] or "") and " and " not in (courses[k]["TITLE"] or "").lower() and " with " not in (courses[k]["TITLE"] or "").lower()]
             if single: best = min(single, key=lambda k: len(courses[k]["TITLE"]))
             c = {
-                "n": len(keys),
+                "n": len(allkeys),
+                "jointOnly": joint_only,
                 "title": courses[best]["TITLE"],
                 "url": courses[best]["CRSEURL"] or None,
                 "sat": round(wavg(nss_vals)) if nss_vals else None,
@@ -337,11 +345,31 @@ def main():
             if places and not (len(places) == 1 and main and abs(main["lat"] - places[0]["lat"]) + abs(main["lon"] - places[0]["lon"]) <= 0.02):
                 c["locs"] = places
             ucourses[code] = c
+            # every individual course in this group, so students can pick the exact one
+            vlist = []
+            for k in sorted(allkeys, key=lambda k: (len(set(sbj[k])) > 1, courses[k]["TITLE"] or "")):
+                r_ = courses[k]
+                t = [num(nss[k].get(f"T{i}")) for i in range(1, 8)] if k in nss else []
+                t = [x for x in t if x is not None]
+                sal_ = num(sal[k].get("GOINSTMED")) if k in sal else None
+                vlist.append([r_["TITLE"], r_["CRSEURL"] or None,
+                    round(sum(t) / len(t)) if t else None,
+                    tariff_median(tar[k]) if k in tar else None,
+                    round(num(cont[k].get("UCONT"))) if k in cont and num(cont[k].get("UCONT")) is not None else None,
+                    round(sal_ / 500) * 500 if sal_ else None,
+                    round(num(emp[k].get("WORKSTUDY"))) if k in emp and num(emp[k].get("WORKSTUDY")) is not None else None,
+                    1 if r_["SANDWICH"] in ("1", "2") else 0, 1 if r_["YEARABROAD"] in ("1", "2") else 0,
+                    1 if r_["FOUNDATION"] in ("1", "2") else 0, 1 if r_["KISAIMCODE"] in MASTERS else 0,
+                    1 if len(set(sbj[k])) > 1 else 0, 1 if k in accred else 0, aims.get(r_["KISAIMCODE"], "")])
+            variants[code][uid] = vlist[:40]
         out[uid] = {"courses": ucourses, "tef": tef.get(uid), "campus": campus.get(uid), **meta[uid]}
 
     os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
     result = {"published": published, "source": "Discover Uni dataset (HESA / Office for Students), CC BY 4.0", "unis": out}
     json.dump(result, open(os.path.join(ROOT, "data", "discover-uni.json"), "w"), separators=(",", ":"))
+    vdir = os.path.join(ROOT, "data", "variants"); os.makedirs(vdir, exist_ok=True)
+    for code, m in variants.items():
+        json.dump(m, open(os.path.join(vdir, code + ".json"), "w"), separators=(",", ":"))
     n = sum(len(u["courses"]) for u in out.values())
     print(f"Imported {len(out)} unis, {n} uni-course matches (dataset published {published})")
 

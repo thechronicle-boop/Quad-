@@ -43,7 +43,7 @@ jobs:
           node tools/build-data.mjs
           git config user.name "quad-bot"
           git config user.email "quad-bot@users.noreply.github.com"
-          git add -A quad-data.json quad-data.js data/ source/
+          git add -A quad-data.json quad-data.js variants/ data/ source/
           git diff --cached --quiet && exit 0
           git commit -m "Update data $(date +%F)"
           for i in 1 2 3; do git push && exit 0; git pull --rebase -X theirs origin main || true; sleep 5; done

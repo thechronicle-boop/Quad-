@@ -36,7 +36,8 @@ OTHER
 
 FILES
 - index.html: the app
-- quad-data.js and quad-data.json: all the data. These are built
+- quad-data.js, quad-data.json and variants/: all the data (variants/ holds
+  each individual course, loaded only when needed). These are built
   automatically, so don't edit them by hand.
 - tools/import-discover-uni.py: reads the Discover Uni zip
 - tools/collect-halls.mjs: the monthly halls price checker

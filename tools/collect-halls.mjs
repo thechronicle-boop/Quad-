@@ -116,7 +116,7 @@ async function crawl(uni) {
   const rooms = {};
   for (const t of ["shared", "wet", "full", "studio"]) {
     const v = all.filter(x => x.type === t && !x.catered).map(x => x.v);
-    if (v.length) rooms[t] = { median: median(v), min: Math.min(...v), max: Math.max(...v), n: v.length };
+    if (v.length) rooms[t] = { median: median(v), min: Math.min(...v), max: Math.max(...v), n: v.length, v: [...v].sort((a, b) => a - b) };
   }
   const cat = all.filter(x => x.catered).map(x => x.v);
   if (cat.length) rooms.catered = { median: median(cat), min: Math.min(...cat), max: Math.max(...cat), n: cat.length };
