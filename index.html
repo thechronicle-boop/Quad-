@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Quad · Uni Matcher</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect x='3' y='3' width='15' height='15' rx='4' fill='%232F6B4F'/%3E%3Crect x='22' y='3' width='15' height='15' rx='4' fill='%232F6B4F'/%3E%3Crect x='3' y='22' width='15' height='15' rx='4' fill='%232F6B4F'/%3E%3Crect x='24' y='24' width='13' height='13' rx='4' fill='%23E8A33D'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2048%2048%27%3E%3Crect%20width%3D%2748%27%20height%3D%2748%27%20rx%3D%2714%27%20fill%3D%27%232F7A57%27%2F%3E%3Ccircle%20cx%3D%2723%27%20cy%3D%2727%27%20r%3D%2710%27%20fill%3D%27none%27%20stroke%3D%27%23fff%27%20stroke-width%3D%275%27%2F%3E%3Cpath%20d%3D%27M29.5%2033.5%20L36.5%2040.5%27%20stroke%3D%27%23F2B544%27%20stroke-width%3D%275.2%27%20stroke-linecap%3D%27round%27%2F%3E%3Cpath%20d%3D%27M23%207.5%20L37%2013.5%20L23%2019.5%20L9%2013.5%20Z%27%20fill%3D%27%2314281F%27%2F%3E%3Cpath%20d%3D%27M35%2014.4%20V22%27%20stroke%3D%27%23F2B544%27%20stroke-width%3D%271.8%27%2F%3E%3Ccircle%20cx%3D%2735%27%20cy%3D%2723.2%27%20r%3D%272%27%20fill%3D%27%23F2B544%27%2F%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F6F4EE;--card:#FFFFFF;--soft:#F6F4EE;--ink:#17191E;--muted:#6B6F78;--line:#E6E2D8;
@@ -33,10 +33,19 @@ a{color:var(--green)}
 #loader{position:fixed;inset:0;z-index:80;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .5s,visibility .5s}
 #loader.gone{opacity:0;visibility:hidden}
 .bigmark{width:96px;height:96px}
-.bigmark rect{transform-origin:center;transform-box:fill-box;animation:pop .6s cubic-bezier(.3,1.6,.5,1) both}
-.bigmark rect:nth-child(2){animation-delay:.12s}.bigmark rect:nth-child(3){animation-delay:.24s}.bigmark rect:nth-child(4){animation-delay:.42s}
+.bigmark{filter:drop-shadow(0 10px 24px rgba(47,107,79,.35))}
+.bigmark .lg-bg,.bigmark .lg-q{transform-origin:center;transform-box:fill-box;animation:pop .6s cubic-bezier(.3,1.6,.5,1) both}
+.bigmark .lg-q{animation-delay:.12s}
+.bigmark .lg-tail{stroke-dasharray:12;stroke-dashoffset:12;animation:draw .4s .45s ease-out forwards}
+.bigmark .lg-cap{animation:capdrop .55s .6s cubic-bezier(.3,1.5,.5,1) both}
+.bigmark .lg-tassel{transform-origin:35px 14.4px;animation:swing 1.6s 1.1s ease-in-out both}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes capdrop{from{transform:translateY(-14px) rotate(-12deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes swing{0%{transform:rotate(0)}25%{transform:rotate(18deg)}50%{transform:rotate(-12deg)}75%{transform:rotate(6deg)}100%{transform:rotate(0)}}
+.brand:hover .lg-tassel{transform-origin:35px 14.4px;animation:swing 1.2s ease-in-out}
+.wordmark{font-family:"Bricolage Grotesque",Inter,sans-serif!important;font-weight:800!important;letter-spacing:-.045em;background:linear-gradient(120deg,var(--ink) 55%,var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
 @keyframes pop{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:none;opacity:1}}
-#loader h1{font-size:44px;animation:fade .6s .5s both}
+#loader h1{font-size:52px;line-height:1;animation:fade .6s .5s both}
 #loader p{color:var(--muted);animation:fade .6s .65s both;text-align:center;padding:0 24px}
 .loadbar{width:180px;height:4px;border-radius:9px;background:var(--line);overflow:hidden;animation:fade .4s .7s both}
 .loadbar i{display:block;height:100%;width:0;background:var(--green);border-radius:9px;animation:fill 1.4s .8s ease forwards}
@@ -49,7 +58,8 @@ a{color:var(--green)}
 header{position:sticky;top:0;z-index:20;background:var(--hdr);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .bar{max-width:1180px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
 .brand{display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-weight:700;font-size:22px}
-.brand svg{width:30px;height:30px}
+.brand svg{width:34px;height:34px}
+.brand .wordmark{font-size:25px}
 nav{margin-left:auto;display:flex;gap:2px;background:var(--card);padding:4px;border-radius:999px;border:1px solid var(--line)}
 nav button{padding:7px 13px;border-radius:999px;font-weight:600;font-size:14px;color:var(--muted);display:flex;align-items:center;gap:6px}
 nav button.on{background:var(--ink);color:var(--onink)}
@@ -282,13 +292,8 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
 <body>
 
 <div id="loader">
-  <svg class="bigmark" viewBox="0 0 40 40" aria-hidden="true">
-    <rect x="3" y="3" width="15" height="15" rx="4" fill="#2F6B4F"/>
-    <rect x="22" y="3" width="15" height="15" rx="4" fill="#2F6B4F"/>
-    <rect x="3" y="22" width="15" height="15" rx="4" fill="#2F6B4F"/>
-    <rect x="24" y="24" width="13" height="13" rx="4" fill="#E8A33D"/>
-  </svg>
-  <h1>Quad</h1>
+  <svg class="bigmark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="qgL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2A6148"/><stop offset="1" stop-color="#3FA07A"/></linearGradient></defs><rect class="lg-bg" width="48" height="48" rx="14" fill="url(#qgL)"/><circle class="lg-q" cx="23" cy="27" r="10" fill="none" stroke="#fff" stroke-width="5"/><path class="lg-tail" d="M29.5 33.5 L36.5 40.5" stroke="#F2B544" stroke-width="5.2" stroke-linecap="round"/><g class="lg-cap"><path d="M23 7.5 L37 13.5 L23 19.5 L9 13.5 Z" fill="#14281F"/><g class="lg-tassel"><path d="M35 14.4 V22" stroke="#F2B544" stroke-width="1.8" stroke-linecap="round"/><circle cx="35" cy="23.2" r="2" fill="#F2B544"/></g></g></svg>
+  <h1 class="wordmark">Quad</h1>
   <p>Pick what matters. Find unis that fit you.</p>
   <div class="loadbar"><i></i></div>
   <button id="enterBtn" class="btn primary">Enter Quad →</button>
@@ -297,8 +302,8 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
 <header>
   <div class="bar">
     <div class="brand">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="3" width="15" height="15" rx="4" fill="#2F6B4F"/><rect x="22" y="3" width="15" height="15" rx="4" fill="#2F6B4F"/><rect x="3" y="22" width="15" height="15" rx="4" fill="#2F6B4F"/><rect x="24" y="24" width="13" height="13" rx="4" fill="#E8A33D"/></svg>
-      <span>Quad</span>
+      <svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="qgH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2A6148"/><stop offset="1" stop-color="#3FA07A"/></linearGradient></defs><rect class="lg-bg" width="48" height="48" rx="14" fill="url(#qgH)"/><circle class="lg-q" cx="23" cy="27" r="10" fill="none" stroke="#fff" stroke-width="5"/><path class="lg-tail" d="M29.5 33.5 L36.5 40.5" stroke="#F2B544" stroke-width="5.2" stroke-linecap="round"/><g class="lg-cap"><path d="M23 7.5 L37 13.5 L23 19.5 L9 13.5 Z" fill="#14281F"/><g class="lg-tassel"><path d="M35 14.4 V22" stroke="#F2B544" stroke-width="1.8" stroke-linecap="round"/><circle cx="35" cy="23.2" r="2" fill="#F2B544"/></g></g></svg>
+      <span class="wordmark">Quad</span>
     </div>
     <nav>
       <button data-go="home" class="on">Home</button>
