@@ -6,6 +6,7 @@ const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "s
 let data = {}; try { data = JSON.parse(await fs.readFile("quad-data.json", "utf8")); } catch {}
 let halls = {}; try { halls = JSON.parse(await fs.readFile("data/halls.json", "utf8")); } catch {}
 let manual = {}; try { manual = JSON.parse(await fs.readFile("tools/halls-manual.json", "utf8")); } catch {}
+let du = null; try { du = JSON.parse(await fs.readFile("data/discover-uni.json", "utf8")); } catch {}
 
 data.version = today;
 data.halls = {};
@@ -29,5 +30,9 @@ for (const [id, m] of Object.entries(manual)) {
   data.halls[id] = { rooms: m.rooms || {}, from: m.from ?? null, catered: !!m.catered, cateredPrice: m.catPrice ?? null, checked: m.checked || "2026-10-25",
     year: m.year || null, weeks: m.weeks || null, note: m.note || null, confidence: "high", method: "checked by hand", source: m.source };
 }
-await fs.writeFile("quad-data.json", JSON.stringify(data, null, 1));
-console.log(`quad-data.json updated (${Object.keys(data.halls).length} unis with checked halls prices)`);
+if (du) data.du = du;
+delete data.parVerified; delete data.addCourse; delete data.removeCourse; delete data.unis;
+await fs.writeFile("quad-data.json", JSON.stringify(data));
+// quad-data.js lets the app load its data even when opened straight from a file
+await fs.writeFile("quad-data.js", "window.QUAD_DATA=" + JSON.stringify(data) + ";\n");
+console.log(`quad-data.json + quad-data.js updated (${Object.keys(data.halls).length} unis with checked halls prices${du ? ", Discover Uni data published " + du.published : ""})`);

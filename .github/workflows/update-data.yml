@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}     # lets you run it any time from the Actions tab
   push:
     branches: [main]
-    paths: ["tools/**", ".github/workflows/**"]   # also runs when the checker or uni list is updated
+    paths: ["tools/**", ".github/workflows/**", "source/**"]   # also runs when the checker is updated or a new Discover Uni zip is uploaded to source/
 
 permissions:
   contents: write
@@ -24,6 +24,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Import the official Discover Uni dataset (if a new zip was uploaded to source/)
+        run: |
+          if ls source/*.zip >/dev/null 2>&1; then python3 tools/import-discover-uni.py; cp data/discover-uni.json "$RUNNER_TEMP/discover-uni.json"; fi
       - name: Collect halls prices from uni websites
         run: node tools/collect-halls.mjs
       - name: Build quad-data.json and save
@@ -36,10 +39,11 @@ jobs:
           mkdir -p data
           cp "$RUNNER_TEMP/halls.json" data/halls.json
           cp "$RUNNER_TEMP/halls-review.md" data/halls-review.md
+          if [ -f "$RUNNER_TEMP/discover-uni.json" ]; then cp "$RUNNER_TEMP/discover-uni.json" data/discover-uni.json; git rm -q --cached source/*.zip 2>/dev/null || true; rm -f source/*.zip; fi
           node tools/build-data.mjs
           git config user.name "quad-bot"
           git config user.email "quad-bot@users.noreply.github.com"
-          git add quad-data.json data/
+          git add -A quad-data.json quad-data.js data/ source/
           git diff --cached --quiet && exit 0
           git commit -m "Update data $(date +%F)"
           for i in 1 2 3; do git push && exit 0; git pull --rebase -X theirs origin main || true; sleep 5; done

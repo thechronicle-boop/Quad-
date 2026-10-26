@@ -1,33 +1,46 @@
-QUAD - HOW THE DATA STAYS UP TO DATE
-====================================
+QUAD - WHERE THE DATA COMES FROM AND HOW IT STAYS UP TO DATE
+============================================================
 
-WHAT'S IN THIS FOLDER
+OFFICIAL DATA (updated once a year)
+Source: the Discover Uni dataset from HESA and the Office for Students,
+licensed under CC BY 4.0. It covers:
+- which unis run each course
+- student satisfaction (NSS)
+- entrants' grades
+- how many students carry on after year 1
+- graduate salary and jobs
+- placement years, years abroad and accreditation
+- TEF teaching ratings
+- campus locations
+
+How to update it each October:
+1. Go to hesa.ac.uk, then Open data, then "Discover Uni dataset".
+2. Download the CSV zip.
+3. Either send it to Claude, or upload it to the source/ folder in the
+   GitHub repository. GitHub imports it automatically.
+A yearly reminder is set for 24 October.
+
+HALLS PRICES (checked automatically every month)
+- Each uni's own published fee pages are checked automatically on the
+  1st of every month.
+- tools/halls-manual.json holds the prices that were checked by hand. A
+  newer automatic result replaces a hand-checked price.
+- data/halls-review.md lists the unis that need checking by hand.
+
+OTHER
+- Tuition fees use the government fee cap.
+- Degree apprenticeships only list programmes on the HCPC register, plus
+  links to live vacancy sites.
+- If a uni doesn't publish something, Quad says "No official data" or
+  "Not published" rather than guessing.
+
+FILES
 - index.html: the app
-- quad-data.json: the data file the app reads. It's updated automatically.
-- tools/collect-halls.mjs: the halls price checker. It visits every uni's
-  website, finds the accommodation price pages and reads the weekly price
-  for each room type.
-- tools/build-data.mjs: copies the checked prices into quad-data.json.
-- tools/unis.json: the list of uni websites. If the checker can't find a
-  uni's prices, paste that uni's price page link into its "start": [] list.
-- .github/workflows/update-data.yml: runs the checker on GitHub on the 1st
-  of every month. (This is a hidden folder. In Finder, press Cmd+Shift+.
-  to see it.)
-
-HOW CONFIDENT THE CHECKER IS
-- high: 6 or more prices plus a year like 2026/27 found. Used automatically.
-- medium: 3 to 5 prices found. Used, and marked with a yellow dot.
-- low or none: not used. The uni is listed in data/halls-review.md so you
-  can check it by hand. This happens when a site blocks robots or loads its
-  prices with JavaScript.
-
-CHECKED BY HAND (24 Oct 2026)
-- Paramedic Science courses and apprenticeships: HCPC register
-- Tuition fee cap in England: GBP 9,790 (2026/27), GBP 10,050 (2027/28)
-
-STILL ESTIMATES
-- Courses for other subjects, satisfaction, offers and graduate data.
-  Replace these with the Discover Uni dataset.
-
-OPTIONAL
-- Set REPORT_EMAIL in index.html so "Report a mistake" messages come to you.
+- quad-data.js and quad-data.json: all the data. These are built
+  automatically, so don't edit them by hand.
+- tools/import-discover-uni.py: reads the Discover Uni zip
+- tools/collect-halls.mjs: the monthly halls price checker
+- tools/build-data.mjs: combines everything into quad-data.js and
+  quad-data.json
+- tools/uni-ids.json: each uni's official ID (UKPRN)
+- tools/unis.json: the uni websites the halls price checker visits

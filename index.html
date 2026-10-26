@@ -272,7 +272,12 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
   .slrow{grid-template-columns:1fr}
   .statgrid{grid-template-columns:1fr 1fr}
 }
+.ok{color:var(--green)}
+.src{font-size:11.5px;color:var(--muted)}
+.src a{color:var(--muted)}
+.nodata{color:var(--muted);font-style:italic}
 </style>
+<script src="quad-data.js"></script>
 </head>
 <body>
 
@@ -312,7 +317,7 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
     <div class="hero">
       <div>
         <h1>Find the unis that <em>fit you</em>, not the league table.</h1>
-        <p>Choose your course, tap what matters — rent, distance from home, city life, grades, placement years — rank how much each one matters, and Quad ranks every uni for you.</p>
+        <p>Choose your course, tap what matters — halls prices, distance from home, student satisfaction, graduate jobs, placement years — rank how much each one matters, and Quad ranks every uni using official data.</p>
         <div class="ctas">
           <button class="btn primary" data-go="match">Start matching →</button>
           <button class="btn ghost" data-quiz>Help me choose</button>
@@ -322,7 +327,7 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
     </div>
 
     <div class="steps">
-      <div class="card step"><div class="n">1</div><h3>Pick your course</h3><p>Only unis that run it are counted. Add your predicted grades for a grade check.</p></div>
+      <div class="card step"><div class="n">1</div><h3>Pick your course</h3><p>Only unis that run it are counted. Add your predicted grades to see how they compare with real entrants.</p></div>
       <div class="card step"><div class="n">2</div><h3>Tap what matters</h3><p>Then set each one to nice to have, important or essential.</p></div>
       <div class="card step"><div class="n">3</div><h3>Get your ranking</h3><p>See why each uni scored how it did, then shortlist, compare and track your UCAS choices.</p></div>
     </div>
@@ -332,24 +337,20 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
 
     <h2 class="sec-title">Everything in Quad</h2>
     <div class="feat">
-      <div class="card"><div>🎯</div><b>Grade check</b><span>Safe, match, reach or long shot at every uni.</span></div>
+      <div class="card"><div>📊</div><b>Official course data</b><span>Satisfaction, graduate pay and jobs for your exact course.</span></div>
+      <div class="card"><div>🎯</div><b>Grade check</b><span>Your grades vs what real entrants had.</span></div>
+      <div class="card"><div>🛏️</div><b>Real halls prices</b><span>Checked from each uni's own fee pages.</span></div>
+      <div class="card"><div>🏅</div><b>TEF ratings</b><span>Gold, silver or bronze for teaching.</span></div>
       <div class="card"><div>🗺️</div><b>Map view</b><span>See where your matches are from home.</span></div>
-      <div class="card"><div>💷</div><b>Money planner</b><span>Yearly rent, living costs and what's left.</span></div>
+      <div class="card"><div>💷</div><b>Money planner</b><span>Halls and fees per year against your budget.</span></div>
       <div class="card"><div>📋</div><b>UCAS tracker</b><span>Considering → applied → offer → firm.</span></div>
       <div class="card"><div>⚖️</div><b>Compare</b><span>Three unis side by side, best value highlighted.</span></div>
-      <div class="card"><div>📅</div><b>Open day countdowns</b><span>Never miss a visit.</span></div>
-      <div class="card"><div>📝</div><b>Notes</b><span>Keep your thoughts on each uni.</span></div>
-      <div class="card"><div>🔗</div><b>Share a link</b><span>Parents or teachers open it — no account.</span></div>
+      <div class="card"><div>📅</div><b>Open day planner</b><span>Countdowns and calendar downloads.</span></div>
+      <div class="card"><div>✍️</div><b>Personal statement tips</b><span>What to show for your course.</span></div>
       <div class="card"><div>👆</div><b>Swipe mode</b><span>Right to save, left to skip.</span></div>
-      <div class="card"><div>🚆</div><b>Travel home</b><span>Train & coach costs in your budget.</span></div>
-      <div class="card"><div>🕌</div><b>Faith &amp; food</b><span>ISoc, prayer rooms, halal food nearby.</span></div>
-      <div class="card"><div>✍️</div><b>Personal statement fit</b><span>What each uni looks for.</span></div>
-      <div class="card"><div>📚</div><b>Course structure</b><span>Exams vs coursework, interviews, hours.</span></div>
-      <div class="card"><div>🛡️</div><b>Area &amp; safety</b><span>Safety and how student-friendly it is.</span></div>
-      <div class="card"><div>💼</div><b>Degree apprenticeships</b><span>Get paid, no fees — with sign-up links.</span></div>
-      <div class="card"><div>🛏️</div><b>Room types</b><span>Wet room, full bath, studio, catered.</span></div>
+      <div class="card"><div>🔗</div><b>Share a link</b><span>Parents or teachers open it — no account.</span></div>
     </div>
-    <p class="note">✅ Halls prices for 70 unis and tuition fees are checked against official sources. Anything not marked ✅ is an estimate. <button class="linkbtn" onclick="openData()">How accurate is Quad?</button></p>
+    <p class="note" id="homeNote"></p>
   </section>
 
   <!-- MATCH -->
@@ -379,13 +380,13 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
           <h3><span class="num">3</span>Limits &amp; home <span class="req opt">Optional</span></h3>
           <p class="hint">Leave any of these blank. Limits hide unis outside them.</p>
           <div class="lim">
-            <div class="lim-top"><span>Home town <span class="opt-l">· for distance &amp; travel</span></span> <button class="linkbtn" id="geoBtn">📍 Use my location</button></div>
+            <div class="lim-top"><span>Home town <span class="opt-l">· for distance</span></span> <button class="linkbtn" id="geoBtn">📍 Use my location</button></div>
             <select id="home" class="field"></select>
           </div>
           <div class="lim">
             <div class="lim-top">Room type you want</div>
             <div class="sub" id="roomPick" style="margin-top:0"></div>
-            <p class="hint" style="margin:6px 0 0">Wet room = shower, toilet &amp; sink in one tiled pod. Full bathroom = separate shower tray, more space.</p>
+            <p class="hint" style="margin:6px 0 0">En-suite = your own shower room. Studio = your own kitchen too.</p>
           </div>
           <div class="lim">
             <div class="lim-top">Max room price / week <span id="rentVal"></span></div>
@@ -405,13 +406,14 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
           <input id="search" class="field" placeholder="Search unis or cities…" autocomplete="off">
           <select id="sort" class="field">
             <option value="match">Best match</option>
-            <option value="rent">Cheapest rent</option>
+            <option value="rent">Cheapest halls</option>
             <option value="dist">Nearest</option>
-            <option value="rep">Reputation</option>
+            <option value="sat">Student satisfaction</option>
+            <option value="sal">Graduate salary</option>
           </select>
         </div>
         <div id="resList"></div>
-        <p class="note">✅ = checked against an official source. Other figures are estimates — prices are typical first-year halls per week for your room type. <button class="linkbtn" onclick="openData()">How accurate is Quad?</button></p>
+        <p class="note" id="resNote"></p>
       </div>
     </div>
     <button class="btn primary mobile-go" id="mobileGo">See my matches ↓</button>
@@ -452,329 +454,51 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
 
 <script>
 /* =========================================================
-   DATA (indicative, rounded — for comparison only)
-   setting: c city, k campus, t town · rent = typical first-year halls £/week
-   scores 1–10: col (higher = cheaper), rep, sat, night, green
-   pl = placement years widely offered, ab = study abroad widely offered
-   size = approx. total students (thousands)
+   QUAD — data comes from quad-data.js (built from official sources):
+   • Discover Uni dataset (HESA / Office for Students, CC BY 4.0): courses, NSS, entry tariff,
+     continuation, graduate outcomes, TEF, placement/abroad/accreditation, campus locations
+   • Halls prices checked from each uni's own published fee pages
    ========================================================= */
-const RAW = [
- ["oxf","University of Oxford","Oxford",51.75,-1.26,"t",180,3,10,8,5,7,0,1,27],
- ["cam","University of Cambridge","Cambridge",52.20,0.12,"t",180,3,10,8,5,7,0,1,24],
- ["imp","Imperial College London","London",51.50,-0.17,"c",270,1,10,7,9,4,1,1,22],
- ["ucl","UCL","London",51.52,-0.13,"c",270,1,9,7,9,4,0,1,50],
- ["kcl","King's College London","London",51.51,-0.12,"c",270,1,9,6,9,4,0,1,38],
- ["lse","LSE","London",51.51,-0.12,"c",270,1,9,6,9,3,0,1,13],
- ["qml","Queen Mary University of London","London",51.52,-0.04,"c",245,2,7,7,9,5,1,1,32],
- ["csg","City St George's, University of London","London",51.43,-0.17,"c",255,2,6,7,9,5,1,1,25],
- ["gre","University of Greenwich","London",51.48,-0.01,"c",225,2,5,7,8,7,1,1,25],
- ["kin","Kingston University","London",51.40,-0.30,"c",220,3,4,7,7,7,1,1,17],
- ["edi","University of Edinburgh","Edinburgh",55.94,-3.19,"c",200,4,9,6,8,8,0,1,41],
- ["gla","University of Glasgow","Glasgow",55.87,-4.29,"c",165,6,8,7,9,7,0,1,41],
- ["gcu","Glasgow Caledonian University","Glasgow",55.87,-4.25,"c",160,6,5,7,9,6,1,1,20],
- ["sta","University of St Andrews","St Andrews",56.34,-2.79,"t",220,3,10,9,4,9,0,1,11],
- ["abd","University of Aberdeen","Aberdeen",57.16,-2.10,"c",140,6,7,8,6,8,0,1,15],
- ["rgu","Robert Gordon University","Aberdeen",57.12,-2.14,"k",145,6,5,8,6,8,1,1,15],
- ["man","University of Manchester","Manchester",53.47,-2.23,"c",165,6,9,6,10,5,1,1,45],
- ["bri","University of Bristol","Bristol",51.46,-2.60,"c",200,3,9,6,9,7,1,1,32],
- ["uwe","UWE Bristol","Bristol",51.50,-2.55,"k",185,3,5,7,9,6,1,1,30],
- ["war","University of Warwick","Coventry",52.38,-1.56,"k",170,6,9,7,6,7,1,1,29],
- ["cov","Coventry University","Coventry",52.41,-1.50,"c",150,7,5,7,7,5,1,1,40],
- ["dur","Durham University","Durham",54.77,-1.58,"t",185,6,9,7,5,8,1,1,21],
- ["bir","University of Birmingham","Birmingham",52.45,-1.93,"k",165,6,8,7,8,7,1,1,38],
- ["lee","University of Leeds","Leeds",53.81,-1.55,"c",155,7,8,7,10,6,1,1,39],
- ["she","University of Sheffield","Sheffield",53.38,-1.49,"c",140,8,8,7,8,9,1,1,30],
- ["shu","Sheffield Hallam University","Sheffield",53.38,-1.47,"c",135,8,5,7,8,9,1,1,32],
- ["not","University of Nottingham","Nottingham",52.94,-1.20,"k",155,7,8,7,9,8,1,1,35],
- ["sou","University of Southampton","Southampton",50.93,-1.40,"c",165,5,8,7,7,7,1,1,25],
- ["exe","University of Exeter","Exeter",50.74,-3.53,"k",180,5,8,8,6,9,1,1,32],
- ["yor","University of York","York",53.95,-1.05,"k",160,6,8,8,6,9,1,1,21],
- ["ncl","Newcastle University","Newcastle",54.98,-1.61,"c",145,8,8,7,10,6,1,1,28],
- ["nor","Northumbria University","Newcastle",54.98,-1.61,"c",140,8,6,7,10,6,1,1,30],
- ["liv","University of Liverpool","Liverpool",53.41,-2.97,"c",140,8,7,7,9,6,1,1,30],
- ["cdf","Cardiff University","Cardiff",51.49,-3.18,"c",150,7,7,7,8,7,1,1,33],
- ["swa","Swansea University","Swansea",51.61,-3.98,"k",135,8,6,8,6,10,1,1,21],
- ["qub","Queen's University Belfast","Belfast",54.58,-5.93,"c",130,9,7,7,8,7,1,1,26],
- ["bat","University of Bath","Bath",51.38,-2.33,"k",190,4,9,9,5,8,1,1,20],
- ["lbo","Loughborough University","Loughborough",52.77,-1.23,"k",150,7,8,9,5,8,1,1,19],
- ["lan","Lancaster University","Lancaster",54.01,-2.79,"k",140,7,8,8,5,9,1,1,18],
- ["sur","University of Surrey","Guildford",51.24,-0.59,"k",180,3,7,8,5,8,1,1,16],
- ["lei","University of Leicester","Leicester",52.62,-1.12,"c",145,8,6,7,7,6,1,1,20],
- ["sus","University of Sussex","Brighton",50.87,-0.09,"k",170,3,7,6,9,9,1,1,18],
- ["brn","University of Brighton","Brighton",50.84,-0.12,"c",170,3,5,6,9,8,1,1,15],
- ["uea","University of East Anglia (UEA)","Norwich",52.62,1.24,"k",150,7,7,9,6,9,1,1,18],
- ["her","University of Hertfordshire","Hatfield",51.75,-0.24,"k",165,4,5,7,5,7,1,1,30],
- ["por","University of Portsmouth","Portsmouth",50.80,-1.09,"c",150,7,5,8,8,7,1,1,28],
- ["obu","Oxford Brookes University","Oxford",51.75,-1.22,"k",185,3,5,7,5,7,1,1,18],
- ["ply","University of Plymouth","Plymouth",50.38,-4.14,"c",140,7,5,7,7,9,1,1,18],
- ["bou","Bournemouth University","Bournemouth",50.74,-1.90,"k",165,5,5,7,7,9,1,1,17],
- ["aru","Anglia Ruskin University","Chelmsford",51.74,0.47,"c",165,4,4,7,5,6,1,1,30],
- ["edh","Edge Hill University","Ormskirk",53.56,-2.87,"k",130,8,4,8,4,9,1,0,15],
- ["lin","University of Lincoln","Lincoln",53.23,-0.55,"c",140,8,6,8,6,7,1,1,18],
- ["tee","Teesside University","Middlesbrough",54.57,-1.23,"c",110,10,4,7,6,6,1,1,26],
- ["ucn","University of Lancashire (was UCLan)","Preston",53.76,-2.71,"c",120,9,4,7,6,6,1,1,30],
- ["cum","University of Cumbria","Carlisle",54.89,-2.93,"t",125,8,3,7,3,10,0,0,10],
- ["hud","University of Huddersfield","Huddersfield",53.64,-1.78,"t",120,9,5,8,5,7,1,1,18],
- ["sfs","Staffordshire University","Stoke-on-Trent",53.01,-2.18,"c",115,10,4,7,5,6,1,1,15],
- ["wor","University of Worcester","Worcester",52.20,-2.24,"t",135,7,4,8,4,8,1,0,10],
- ["hul","University of Hull","Hull",53.77,-0.37,"k",120,9,5,8,6,6,1,1,15],
- ["kee","Keele University","Keele",53.00,-2.27,"k",130,9,6,9,3,10,1,1,12],
- ["bcu","Birmingham City University","Birmingham",52.48,-1.89,"c",150,6,5,7,8,5,1,1,30],
- ["dmu","De Montfort University","Leicester",52.63,-1.14,"c",140,8,5,7,7,6,1,1,27],
- ["ntu","Nottingham Trent University","Nottingham",52.96,-1.15,"c",150,7,6,8,9,6,1,1,40],
- ["ljmu","Liverpool John Moores University","Liverpool",53.40,-2.98,"c",135,8,5,7,9,6,1,1,27],
- ["brd","University of Bradford","Bradford",53.79,-1.76,"c",115,9,4,7,5,6,1,1,10],
- ["glos","University of Gloucestershire","Cheltenham",51.89,-2.08,"t",145,6,4,7,4,8,1,1,10],
- ["wlv","University of Wolverhampton","Wolverhampton",52.59,-2.13,"c",115,9,3,7,5,6,1,1,20],
- ["ysj","York St John University","York",53.96,-1.08,"c",150,6,4,8,6,8,1,1,8],
- ["uls","Ulster University","Belfast",54.60,-5.93,"c",125,9,5,7,7,7,1,1,30],
- ["bnu","Buckinghamshire New University","High Wycombe",51.63,-0.75,"t",160,4,3,7,4,7,1,0,11],
- ["ccc","Canterbury Christ Church University","Canterbury",51.28,1.09,"t",160,5,4,7,6,8,1,1,15],
- ["nth","University of Northampton","Northampton",52.23,-0.89,"k",140,7,4,7,5,7,1,1,12],
- ["bed","University of Bedfordshire","Luton",51.88,-0.41,"c",140,6,3,7,4,6,1,1,15],
- ["qmu","Queen Margaret University","Edinburgh",55.93,-3.07,"k",170,4,5,8,6,7,1,1,5],
- ["sun","University of Sunderland","Sunderland",54.90,-1.38,"c",115,9,4,7,6,7,1,1,15],
- ["wrx","Wrexham University","Wrexham",53.05,-3.00,"t",120,8,3,7,4,8,1,0,6],
- ["ugm","University of Greater Manchester","Bolton",53.58,-2.44,"t",115,9,3,7,4,6,1,0,8],
- ["der","University of Derby","Derby",52.94,-1.50,"k",130,8,4,8,5,7,1,1,20]
-];
-const RG = "oxf cam imp ucl kcl lse qml edi gla man bri war dur bir lee she not sou exe yor ncl liv cdf qub".split(" ");
-const SPORT = {lbo:10,bat:9,dur:9,bir:8,exe:8,not:8,sta:7,lee:7,man:7,edi:7,war:7,sur:7,lan:7,yor:7,ncl:7,swa:7,cdf:7,bri:7,oxf:7,cam:7,sou:7,kee:6};
-const GRAD = {oxf:10,cam:10,imp:10,lse:10,ucl:9,kcl:9,war:9,bat:9,dur:9,sta:9,edi:8,man:8,bri:8,lbo:8,not:8,bir:8,lee:8,exe:8,sou:8,yor:8,gla:8,she:8,ncl:8,sur:8,lan:8,qml:7,csg:8,rgu:8,cdf:7,liv:7,qub:7,abd:7,uea:7,lei:7,sus:6,kee:7};
-const DIV = {"Bradford":9,"Luton":9,"Wolverhampton":8,"Derby":7,"Bolton":7,"High Wycombe":6,"Northampton":6,"Sunderland":4,"Canterbury":4,"Cheltenham":4,"Wrexham":3,"London":10,"Birmingham":9,"Leicester":9,"Manchester":9,"Coventry":8,"Leeds":8,"Nottingham":8,"Preston":8,"Huddersfield":8,"Hatfield":7,"Sheffield":7,"Glasgow":7,"Cardiff":7,"Liverpool":7,"Stoke-on-Trent":7,"Oxford":7,"Bristol":6,"Edinburgh":6,"Newcastle":6,"Cambridge":6,"Southampton":6,"Portsmouth":6,"Loughborough":6,"Keele":6,"Middlesbrough":6,"Brighton":5,"Guildford":5,"Hull":5,"York":5,"Chelmsford":5,"Aberdeen":5,"Bath":5,"Swansea":5,"Bournemouth":5,"Lincoln":4,"Norwich":4,"Exeter":4,"Durham":4,"Lancaster":4,"St Andrews":4,"Belfast":4,"Plymouth":4,"Ormskirk":4,"Worcester":4,"Carlisle":3};
-
-const COURSES = {
- PAR:"Paramedic Science", MED:"Medicine", DEN:"Dentistry", NUR:"Nursing (Adult)", PHY:"Physiotherapy", PHA:"Pharmacy",
- BIO:"Biology / Biomedical Science", CHE:"Chemistry", MAT:"Mathematics", CS:"Computer Science", ENG:"Engineering",
- ECO:"Economics", BUS:"Business & Management", LAW:"Law", PSY:"Psychology", EN:"English Literature", HIS:"History"
-};
-const CORE = ["BIO","CHE","MAT","CS","ENG","ECO","BUS","LAW","PSY","EN","HIS"];
-/* Expanded catalogue — rule: all = most unis, res = research-led unis (rep 7+), voc = career-focused unis (rep 6 or below), or a list of uni ids.
-   Which unis run each of these is an ESTIMATE until replaced by the Discover Uni dataset. */
-const COURSE_GROUPS={
- "Health & medicine":[["MED"],["DEN"],["VET","Veterinary Science","bri cam edi gla liv not sur lin kee"],["NUR"],["NCH","Nursing (Children's)","@NUR"],["NMH","Nursing (Mental Health)","@NUR"],["MID","Midwifery","csg gre kin edi gla gcu rgu man bir lee she not sou ncl nor liv cdf swa qub sur lei brn uea her por obu ply bou aru edh lin tee ucn cum hud wor kee bcu dmu ntu brd uls bnu ccc nth bed qmu sun wlv der"],["PAR"],["PHY"],["OT","Occupational Therapy","csg gcu rgu she shu ncl nor liv cdf ply bou brn uea her cov obu ucn cum hud tee lin der bcu brd uls bnu ccc nth sun wor glos ysj qmu edh"],["RAD","Diagnostic Radiography","csg kin gcu rgu lee shu exe nor liv cdf swa ply her ucn cum hud tee der bcu ccc sun uls brd bnu qmu"],["ODP","Operating Department Practice","csg gre kin cov ply bou her edh lin tee ucn cum hud bcu ccc nth bed sun wlv wor glos uwe brn"],["SLT","Speech & Language Therapy","csg man she ncl cdf ply bir gcu qmu uls brn cum lei uea"],["NUT","Nutrition & Dietetics","kcl lee not sur ply bat ncl lin cov ucn gcu rgu qmu uls her bed hul"],["PHA"],["BMS","Biomedical Science","all"],["PSY"],["NEU","Neuroscience","res"]],
- "Sciences":[["BIO"],["BCH","Biochemistry","res"],["CHE"],["PHS","Physics","res"],["MAT"],["ENV","Environmental Science","all"],["GEO","Geography","all"],["ZOO","Zoology","res"],["FOR","Forensic Science","voc"]],
- "Computing & data":[["CS"],["SE","Software Engineering","all"],["DS","Data Science","all"],["AI","Artificial Intelligence","res"],["CYB","Cyber Security","voc"]],
- "Engineering & building":[["ENG"],["MEC","Mechanical Engineering","@ENG"],["ELE","Electrical & Electronic Engineering","@ENG"],["CIV","Civil Engineering","@ENG"],["AER","Aerospace Engineering","bri sou sur lbo she man not imp cov her kin bat ucn liv qub gla sta sfs ply edh"],["CHM","Chemical Engineering","imp ucl man bir she lee not bat lbo sur ncl abd qub swa edi gla tee hud bra"],["BEN","Biomedical Engineering","imp ucl kcl gla sur sus qub swa sou she not lbo ulster ncl"],["ARC","Architecture","ucl cam edi gla bat she not lee man ncl liv cdf qub kin gre uwe ply por brn obu ljmu ntu dmu bcu ucn lin hud uls sta sfs nth ccc"]],
- "Business, law & economics":[["BUS"],["ACC","Accounting & Finance","all"],["ECO"],["MKT","Marketing","all"],["LAW"],["CRI","Criminology","all"],["POL","Politics","res"],["IR","International Relations","res"],["TOU","Tourism & Events","voc"]],
- "Humanities & social sciences":[["EN"],["HIS"],["PHI","Philosophy","res"],["CLA","Classics","oxf cam ucl kcl edi gla sta man bri war dur bir lee not exe ncl liv cdf swa qub not rea"],["LNG","Modern Languages","res"],["LIN","Linguistics","res"],["SOC","Sociology","all"],["ANT","Anthropology","ucl lse kcl edi gla sta abd man bri dur bir sou exe sus kee brn obu ox cam"],["ARCH","Archaeology","oxf cam ucl edi gla abd man bri dur bir she not sou exe yor ncl liv cdf lei ply bou ccc"],["THE","Theology & Religion","oxf cam kcl edi gla sta abd man bri dur bir lee not exe cdf qub ccc ysj"],["SW","Social Work","voc"],["EDU","Primary Education (QTS)","voc"]],
- "Creative arts & media":[["ART","Fine Art","all"],["FAS","Fashion","voc"],["GD","Graphic Design","voc"],["FILM","Film & TV","all"],["MDC","Media & Communication","all"],["JOU","Journalism","voc"],["MUS","Music","all"],["DRA","Drama & Theatre","all"],["GAM","Games Design","voc"],["PHO","Photography","voc"]],
- "Sport":[["SPS","Sport & Exercise Science","all"],["SPM","Sport Management","voc"]]
-};
-const SMALL="qmu cum wrx ugm bnu".split(" ");
-for(const list of Object.values(COURSE_GROUPS))for(const [code,name] of list)if(name)COURSES[code]=name;
-const NOGROUP={imp:["Business, law & economics","Humanities & social sciences","Creative arts & media","Sport"],lse:["Health & medicine","Sciences","Engineering & building","Creative arts & media","Sport","Computing & data"],csg:["Humanities & social sciences"],qmu:["Engineering & building","Computing & data"],sta:["Engineering & building","Creative arts & media"],oxf:["Creative arts & media","Sport"],cam:["Creative arts & media","Sport"]};
-const EXTRA = {
- PAR:"aru bcu bou bnu ccc csg cov dmu edh gcu kee ljmu ntu obu qmu rgu shu swa tee nth bed brd brn cum uea glos ugm gre her hud hul uls wlv wor wrx ysj sur ply ucn por sun uwe lin sfs",
- MED:"oxf cam imp ucl kcl qml csg edi gla sta abd man bri bir lee she not sou exe yor ncl liv cdf qub lan lei sus brn uea ply kee hul edh ucn lin aru",
- DEN:"bri cdf gla kcl qml lee liv man ncl ply she qub abd ucn bir",
- NUR:"kcl csg gre kin edi gla gcu rgu man bri uwe cov bir lee she shu not sou exe yor ncl nor liv cdf swa qub lan sur lei sus brn uea her por obu ply bou aru edh lin tee ucn cum hud sfs wor hul kee",
- PHY:"kcl csg gcu rgu bir not sou cdf her cov brn por obu ply uwe shu nor edh bou lin tee ucn cum hud kee hul wor sur uea swa liv",
- PHA:"ucl kcl man not cdf qub bat rgu her brn por uea kee hud lin ucn bir"
-};
-const NO = {bnu:"CHE MAT ENG ECO",qmu:"CHE MAT CS ENG ECO LAW HIS EN",wrx:"CHE ECO",ugm:"CHE",ysj:"CHE ENG",ccc:"CHE ENG",glos:"CHE ENG",bed:"CHE HIS",nth:"CHE",imp:"LAW PSY EN HIS BUS",lse:"BIO CHE CS ENG EN",csg:"CHE EN HIS",rgu:"CHE EN HIS PSY",gcu:"CHE EN HIS",sta:"ENG LAW BUS",
- edh:"CHE ECO ENG",cum:"CHE MAT CS ENG ECO",wor:"CHE MAT ENG ECO",sfs:"CHE MAT",tee:"MAT",bou:"CHE MAT HIS",aru:"CHE",her:"CHE HIS",obu:"CHE",sur:"HIS",kee:"ENG"};
-const HEALTH = ["PAR","MED","DEN","NUR","PHY","NCH","NMH","MID","OT","RAD","ODP","SLT","NUT"];
-const APP_ALIAS={SE:"CS",CYB:"CS",AI:"CS",DS:"MAT",ACC:"ECO",MKT:"BUS",TOU:"BUS",MEC:"ENG",ELE:"ENG",CIV:"ENG",AER:"ENG",CHM:"ENG",BEN:"ENG",BCH:"CHE",BMS:"BIO",NEU:"BIO",NCH:"NUR",NMH:"NUR",PHS:"MAT"};
-
-const UNIS = RAW.map(r=>{
-  const [id,name,city,lat,lon,set,rent,col,rep,sat,night,green,pl,ab,size]=r;
-  const no=(NO[id]||"").split(" ");
-  const courses=CORE.filter(c=>!no.includes(c));
-  for(const k in EXTRA) if(EXTRA[k].split(" ").includes(id)) courses.push(k);
-  const rep_=r[8];
-  for(const [g,list] of Object.entries(COURSE_GROUPS)){
-    if((NOGROUP[id]||[]).includes(g))continue;
-    for(const [code,,rule] of list){
-      if(!rule||courses.includes(code))continue;
-      let ok=false;
-      if(rule==="all")ok=!SMALL.includes(id);
-      else if(rule==="res")ok=rep_>=7;
-      else if(rule==="voc")ok=rep_<=6&&!SMALL.includes(id)||["bcu","dmu","ljmu","ntu","shu","nor","por","ply","uwe","brn","cov","her","kin","gre","bou","ucn","hud","sfs","lin","tee","sun","wlv","der","nth","bed","ccc","glos","wor","edh","aru","obu"].includes(id);
-      else if(rule.startsWith("@"))ok=courses.includes(rule.slice(1));
-      else ok=rule.split(" ").includes(id);
-      if(ok&&!(NO[id]||"").split(" ").includes(code))courses.push(code);
-    }
-  }
-  return {id,name,city,lat,lon,set,rent,col,rep,sat,night,green,pl:!!pl,ab:!!ab,size,courses,
-    rg:RG.includes(id),sport:SPORT[id]||5,grad:GRAD[id]||Math.max(5,rep+1),div:DIV[city]||5};
-});
-
-/* =========================================================
-   DATA SOURCES & FRESHNESS
-   ========================================================= */
-let DATA_VERSION="24 Oct 2026",HALLS_N=0;
-const DATA_URL="quad-data.json"; // the app loads this file when hosted online; GitHub updates it every month
+const QD=window.QUAD_DATA||{halls:{},du:{unis:{}}};
+const DU=(QD.du&&QD.du.unis)||{};
 const REPORT_EMAIL="";  // ← put your email here so "Report a mistake" sends to you
-const PAR_HCPC="aru bcu bou bnu ccc csg cov dmu edh gcu kee ljmu ntu obu qmu rgu shu swa tee nth bed brd brn cum uea glos ugm gre her hud hul uls wlv wor wrx ysj".split(" ");
-const PAR_PAGE="sur ply ucn por sun".split(" ");
-const SRC={
- hcpc:["HCPC register of approved programmes","https://www.hcpc-uk.org/education/approved-programmes/","24 Oct 2026"],
- page:["The uni's own course page / UCAS","https://www.ucas.com/explore/search/courses","24 Oct 2026"],
- fees:["Tuition fee cap (England) — Times Higher Education, 26 Nov 2025","https://www.timeshighereducation.com/node/740241","24 Oct 2026"],
- disc:["Discover Uni dataset (official, yearly)","https://www.officeforstudents.org.uk/for-providers/student-protection-and-choice/discover-uni-and-the-discover-uni-dataset/discover-uni-dataset/",null]
-};
-function courseCheck(u,c){
-  if(u.type==="app")return u.src==="hcpc"?{ok:true,t:"✅ On the HCPC register",s:"hcpc"}:{ok:false,t:"⚠️ Example employer — check live adverts",s:null};
-  if(c==="PAR"){if(PAR_HCPC.includes(u.id))return {ok:true,t:"✅ Course on HCPC register",s:"hcpc"};if(PAR_PAGE.includes(u.id))return {ok:true,t:"✅ Course page checked",s:"page"};return {ok:false,t:"⚠️ Course not confirmed — check",s:null}}
-  return {ok:null,t:"Estimate — not yet checked",s:null};
-}
-const NATION={Edinburgh:"sco",Glasgow:"sco","St Andrews":"sco",Aberdeen:"sco",Cardiff:"wal",Swansea:"wal",Wrexham:"wal",Belfast:"ni"};
-function feeLine(u){const n=NATION[u.city];if(!n)return "£9,790 (2026/27) · £10,050 (2027/28)";return n==="sco"?"Set by the uni for students from England — check":n==="wal"?"Welsh fee rules — check":"NI fee rules — check"}
 
-/* Halls sub-data (indicative): room types & prices, catering, flat size, guarantee, walk */
-const CATERED="oxf cam dur sta bir lee not lbo yor lan bat bri man edi gla abd exe sou war kcl ucl imp lse qub ncl liv she cdf sur sus kee".split(" ");
-const NOGUAR="gre kin aru cov csg uwe".split(" ");
-const NOSTUDIO="cum wor edh oxf cam".split(" ");
-const ROOMS={shared:"Shared bathroom",wet:"En-suite · wet room",full:"En-suite · full bathroom",studio:"Studio (own kitchen)"};
-UNIS.forEach(u=>{
-  const ldn=u.city==="London",b=u.rent;
-  u.h={
-    rooms:{shared:b-28,wet:b,full:b+14,studio:NOSTUDIO.includes(u.id)?null:b+(ldn?95:70)},
-    catered:CATERED.includes(u.id),
-    flat:ldn?5:u.set==="k"?8:u.set==="t"?7:6,
-    guar:!NOGUAR.includes(u.id),
-    walk:ldn?30:u.set==="k"?7:u.set==="t"?15:20,
-    style:u.rep<=6?"Mostly modern wet-room pods":"Mix of wet rooms & full bathrooms",
-    bills:true,contract:ldn?51:u.set==="k"?40:42
-  };
+const UNIS=[["oxf","University of Oxford","Oxford",51.75,-1.26],["cam","University of Cambridge","Cambridge",52.2,0.12],["imp","Imperial College London","London",51.5,-0.17],["ucl","UCL","London",51.52,-0.13],["kcl","King's College London","London",51.51,-0.12],["lse","LSE","London",51.51,-0.12],["qml","Queen Mary University of London","London",51.52,-0.04],["csg","City St George's, University of London","London",51.43,-0.17],["gre","University of Greenwich","London",51.48,-0.01],["kin","Kingston University","London",51.4,-0.3],["edi","University of Edinburgh","Edinburgh",55.94,-3.19],["gla","University of Glasgow","Glasgow",55.87,-4.29],["gcu","Glasgow Caledonian University","Glasgow",55.87,-4.25],["sta","University of St Andrews","St Andrews",56.34,-2.79],["abd","University of Aberdeen","Aberdeen",57.16,-2.1],["rgu","Robert Gordon University","Aberdeen",57.12,-2.14],["man","University of Manchester","Manchester",53.47,-2.23],["bri","University of Bristol","Bristol",51.46,-2.6],["uwe","UWE Bristol","Bristol",51.5,-2.55],["war","University of Warwick","Coventry",52.38,-1.56],["cov","Coventry University","Coventry",52.41,-1.5],["dur","Durham University","Durham",54.77,-1.58],["bir","University of Birmingham","Birmingham",52.45,-1.93],["lee","University of Leeds","Leeds",53.81,-1.55],["she","University of Sheffield","Sheffield",53.38,-1.49],["shu","Sheffield Hallam University","Sheffield",53.38,-1.47],["not","University of Nottingham","Nottingham",52.94,-1.2],["sou","University of Southampton","Southampton",50.93,-1.4],["exe","University of Exeter","Exeter",50.74,-3.53],["yor","University of York","York",53.95,-1.05],["ncl","Newcastle University","Newcastle",54.98,-1.61],["nor","Northumbria University","Newcastle",54.98,-1.61],["liv","University of Liverpool","Liverpool",53.41,-2.97],["cdf","Cardiff University","Cardiff",51.49,-3.18],["swa","Swansea University","Swansea",51.61,-3.98],["qub","Queen's University Belfast","Belfast",54.58,-5.93],["bat","University of Bath","Bath",51.38,-2.33],["lbo","Loughborough University","Loughborough",52.77,-1.23],["lan","Lancaster University","Lancaster",54.01,-2.79],["sur","University of Surrey","Guildford",51.24,-0.59],["lei","University of Leicester","Leicester",52.62,-1.12],["sus","University of Sussex","Brighton",50.87,-0.09],["brn","University of Brighton","Brighton",50.84,-0.12],["uea","University of East Anglia (UEA)","Norwich",52.62,1.24],["her","University of Hertfordshire","Hatfield",51.75,-0.24],["por","University of Portsmouth","Portsmouth",50.8,-1.09],["obu","Oxford Brookes University","Oxford",51.75,-1.22],["ply","University of Plymouth","Plymouth",50.38,-4.14],["bou","Bournemouth University","Bournemouth",50.74,-1.9],["aru","Anglia Ruskin University","Chelmsford",51.74,0.47],["edh","Edge Hill University","Ormskirk",53.56,-2.87],["lin","University of Lincoln","Lincoln",53.23,-0.55],["tee","Teesside University","Middlesbrough",54.57,-1.23],["ucn","University of Lancashire (was UCLan)","Preston",53.76,-2.71],["cum","University of Cumbria","Carlisle",54.89,-2.93],["hud","University of Huddersfield","Huddersfield",53.64,-1.78],["sfs","Staffordshire University","Stoke-on-Trent",53.01,-2.18],["wor","University of Worcester","Worcester",52.2,-2.24],["hul","University of Hull","Hull",53.77,-0.37],["kee","Keele University","Keele",53.0,-2.27],["bcu","Birmingham City University","Birmingham",52.48,-1.89],["dmu","De Montfort University","Leicester",52.63,-1.14],["ntu","Nottingham Trent University","Nottingham",52.96,-1.15],["ljmu","Liverpool John Moores University","Liverpool",53.4,-2.98],["brd","University of Bradford","Bradford",53.79,-1.76],["glos","University of Gloucestershire","Cheltenham",51.89,-2.08],["wlv","University of Wolverhampton","Wolverhampton",52.59,-2.13],["ysj","York St John University","York",53.96,-1.08],["uls","Ulster University","Belfast",54.6,-5.93],["bnu","Buckinghamshire New University","High Wycombe",51.63,-0.75],["ccc","Canterbury Christ Church University","Canterbury",51.28,1.09],["nth","University of Northampton","Northampton",52.23,-0.89],["bed","University of Bedfordshire","Luton",51.88,-0.41],["qmu","Queen Margaret University","Edinburgh",55.93,-3.07],["sun","University of Sunderland","Sunderland",54.9,-1.38],["wrx","Wrexham University","Wrexham",53.05,-3.0],["ugm","University of Greater Manchester","Bolton",53.58,-2.44],["der","University of Derby","Derby",52.94,-1.5]].map(([id,name,city,lat,lon])=>{
+  const d=DU[id]||{};const c=d.campus;
+  return {type:"uni",id,name,city,lat:c?c.lat:lat,lon:c?c.lon:lon,du:d,courses:Object.keys(d.courses||{}),tef:d.tef||null,accomUrl:c&&c.accomUrl,halls:(QD.halls||{})[id]||null};
 });
-/* Faith, area, course structure, travel (indicative estimates) */
-const SAFE={"London":5,"Manchester":5,"Liverpool":5,"Leeds":5,"Middlesbrough":5,"Birmingham":5,"Nottingham":5,"Glasgow":6,"Bristol":6,"Leicester":6,"Coventry":6,"Newcastle":6,"Sheffield":6,"Cardiff":6,"Hull":6,"Preston":6,"Stoke-on-Trent":6,"Portsmouth":6,"Southampton":6,"Brighton":6,"Huddersfield":6,"St Andrews":9,"Keele":9,"Durham":8,"Lancaster":8,"Loughborough":8,"Bath":8,"Exeter":8,"York":8,"Guildford":8,"Ormskirk":8,"Carlisle":8,"Worcester":8,"Norwich":8};
-UNIS.forEach(u=>{
-  u.safe=SAFE[u.city]||7;
-  u.stu=Math.max(3,Math.min(10,Math.round(.6*u.night+.4*u.sat)));
-  u.f={isoc:u.div>=7?"Very active":u.div>=4?"Active":"Small",prayer:u.div>=5?"Dedicated prayer rooms":"Multi-faith room",halal:u.div>=8?"Lots nearby":u.div>=5?"Some nearby":"Limited"};
-});
-function hsh(t){let h=0;for(const ch of t)h=(h*31+ch.charCodeAt(0))>>>0;return h}
-function CS(u,c){
-  const h=hsh(u.id+c),health=HEALTH.includes(c);
-  const assess=health?["Balanced","Mostly coursework","Balanced"][h%3]:["Mostly exams","Balanced","Mostly coursework"][h%3];
-  let intv="None";
-  if(c==="MED"||c==="DEN")intv=h%2?"MMI":"Panel";
-  else if(c==="PAR")intv=["MMI","Panel","Group task + panel"][h%3];
-  else if(c==="NUR"||c==="PHY")intv=["MMI","Panel","Group task"][h%3];
-  else if(c==="PHA")intv=h%2?"Short interview":"None";
-  else if(u.id==="oxf"||u.id==="cam")intv="Panel";
-  const base=health?20:["BIO","CHE","ENG","CS","MAT"].includes(c)?16:["EN","HIS","LAW"].includes(c)?9:12;
-  const contact=base+h%5;
-  const ph={PAR:750+(h%6)*50,NUR:2300,PHY:1000+(h%4)*50}[c]||null;
-  const phLab=ph?"~"+ph.toLocaleString("en-GB")+" hrs":c==="MED"?"Clinical years 3–5":c==="DEN"?"Clinics from year 2":"—";
-  return {assess,intv,contact,ph,phLab};
-}
-const PSFIT={
- PAR:["Real experience of care or the public — care work, first aid, St John Ambulance, volunteering","That you understand the paramedic role beyond emergencies (falls, mental health, end of life)","Staying calm under pressure, communication and teamwork — with examples","Resilience and how you look after yourself","Some ask about driving: a full licence (and C1) can be needed for placements"],
- MED:["Work experience or volunteering, and what you learned from it — reflection matters most","Understanding of NHS values and the realities of being a doctor","Teamwork, empathy and leadership examples","Wider reading and an interest in science beyond A-levels","UCAT score (and how they use it differs per uni)"],
- DEN:["Shadowing a dentist, or experience in a care setting","Manual dexterity — art, music, models, crafts","Communication and empathy","Understanding of dentistry as a career","UCAT score"],
- NUR:["Caring experience — paid, voluntary or personal","The 6Cs: care, compassion, competence, communication, courage, commitment","Why nursing and why adult nursing in particular","Resilience and teamwork"],
- PHY:["Shadowing or speaking to a physio","Interest in movement, sport, rehab — linked to people, not just sport","Communication and motivating others","Understanding of the range of physio settings"],
- PHA:["Interest in medicines and chemistry","Pharmacy work experience or a part-time pharmacy job","Communication with patients","Attention to detail"]
-};
-const PSDEF=["Why this subject — a specific spark, not 'I've always loved it'","Reading, courses or projects beyond your A-levels","Skills from work, volunteering or societies, tied back to the course","What you want to do with the degree"];
-function psFor(u,c){
-  if(["NCH","NMH","MID","ODP"].includes(c))c="NUR";else if(["OT","RAD","SLT","NUT"].includes(c))c="PHY";
-  if(u.type==="app"){const l=["Why this employer and this sector — show you've researched them","Why an apprenticeship: earning, learning on the job, balancing work & study","Teamwork, communication and reliability — school, part-time work, volunteering","Expect online tests, a video interview and an assessment centre"];
-    if(c==="PAR")l.unshift("Many paramedic apprenticeships are for current ambulance staff — you may need to start as an Ambulance Care Assistant or EMT first","A full driving licence (often with C1) is usually needed");
-    if(u.nhs)l.push("NHS values (compassion, respect, working together) and your caring experience");return l}
-  const l=[...(PSFIT[c]||PSDEF)],cs=CS(u,c);
-  if(cs.intv!=="None")l.push("Interview: "+cs.intv+" — prepare scenarios and examples");
-  if(u.rep>=9)l.push("Very competitive here — show super-curricular depth");
-  if(u.pl&&!HEALTH.includes(c))l.push("Mention interest in their placement year");
-  if(u.ab)l.push("Study abroad option — mention if it appeals to you");
-  return l;
-}
-function tripCost(d,mode){if(d==null)return null;return mode==="coach"?Math.round((4+d*.09)*2):Math.round((8+d*.22)*.67*2)}
-const MODES={train:"Train (with railcard)",coach:"Coach"};
+const RG="oxf cam imp ucl kcl lse qml edi gla man bri war dur bir lee she not sou exe yor ncl liv cdf qub".split(" ");
+UNIS.forEach(u=>u.rg=RG.includes(u.id));
 
-/* Degree apprenticeships — EXAMPLE employers known for running them (schemes open & close each year) */
-const APPRAW=[
- // id, employer, scheme, fields, city, lat, lon, sector, salary k [lo,hi], prestige, study pattern, years, nhs
- ["bcu","Birmingham City University + ambulance employer","Paramedic Science degree apprenticeship","PAR","Birmingham",52.48,-1.89,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["dmu","De Montfort University + ambulance employer","Paramedic Practice degree apprenticeship","PAR","Leicester",52.63,-1.14,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["der","University of Derby + ambulance employer","Paramedic Practice degree apprenticeship","PAR","Derby",52.92,-1.48,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["tee","Teesside University + ambulance employer","Paramedic Practice degree apprenticeship","PAR","Middlesbrough",54.57,-1.23,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["bed","University of Bedfordshire + ambulance employer","Paramedic integrated degree apprenticeship","PAR","Luton",51.88,-0.42,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["gre","University of Greenwich + ambulance employer","Paramedic Science degree apprenticeship (London)","PAR","London",51.48,-0.01,"NHS ambulance",[25,29],7,"day",3,1,"hcpc"],
- ["grem","University of Greenwich + ambulance employer","Paramedic Science degree apprenticeship (Medway)","PAR","Chatham",51.38,0.53,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["hud","University of Huddersfield + ambulance employer","Paramedic Science degree apprenticeship","PAR","Huddersfield",53.64,-1.78,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["las","London Ambulance Service","Paramedic Science (work-based) with University of Cumbria","PAR","London",51.51,-0.13,"NHS ambulance",[25,29],7,"day",3,1,"hcpc"],
- ["nwas","North West Ambulance Service","Paramedic Science (work-based) with University of Cumbria","PAR","Bolton",53.58,-2.43,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["swast","South Western Ambulance Service","Paramedic Science (work-based) with University of Cumbria","PAR","Exeter",50.72,-3.53,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["eeast","East of England Ambulance Service","Paramedic Science (work-based) with University of Cumbria","PAR","Cambridge",52.20,0.12,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["scas","South Central Ambulance Service","Paramedic Science (work-based) with University of Cumbria","PAR","Bicester",51.90,-1.15,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["secamb","South East Coast Ambulance Service","Paramedic Science (work-based) with University of Cumbria","PAR","Crawley",51.11,-0.19,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["iow","Isle of Wight NHS Trust","Paramedic Science (work-based) with University of Cumbria","PAR","Newport (IoW)",50.70,-1.29,"NHS ambulance",[24,28],7,"day",3,1,"hcpc"],
- ["lth","Leeds Teaching Hospitals","Registered nurse degree apprenticeship","NUR","Leeds",53.80,-1.55,"NHS hospital",[23,26],7,"day",4,1],
- ["mft","Manchester University NHS FT","Registered nurse degree apprenticeship","NUR","Manchester",53.48,-2.24,"NHS hospital",[23,26],7,"day",4,1],
- ["uhb","University Hospitals Birmingham","Registered nurse degree apprenticeship","NUR","Birmingham",52.48,-1.90,"NHS hospital",[23,26],7,"day",4,1],
- ["gstt","Guy's and St Thomas' NHS FT","Registered nurse degree apprenticeship","NUR","London",51.50,-0.12,"NHS hospital",[25,29],8,"day",4,1],
- ["nuh","Nottingham University Hospitals","Registered nurse degree apprenticeship","NUR","Nottingham",52.94,-1.18,"NHS hospital",[23,26],7,"day",4,1],
- ["nuth","Newcastle upon Tyne Hospitals","Registered nurse degree apprenticeship","NUR","Newcastle",54.97,-1.62,"NHS hospital",[23,26],7,"day",4,1],
- ["sth","Sheffield Teaching Hospitals","Physiotherapist degree apprenticeship","PHY","Sheffield",53.38,-1.47,"NHS hospital",[23,26],7,"day",4,1],
- ["cuh","Cambridge University Hospitals","Physiotherapist degree apprenticeship","PHY","Cambridge",52.17,0.14,"NHS hospital",[23,26],8,"day",4,1],
- ["bt","BT Group","Digital & technology solutions","CS BUS","Birmingham",52.48,-1.90,"Telecoms",[21,26],7,"day",4,0],
- ["ibm","IBM","Digital & technology solutions","CS","Winchester",51.06,-1.31,"Technology",[22,27],8,"day",4,0],
- ["cap","Capgemini","Degree apprenticeship in software & data","CS MAT","Telford",52.68,-2.45,"Technology consulting",[20,24],7,"block",3,0],
- ["bbc","BBC","Software engineering degree apprenticeship","CS","Salford",53.47,-2.30,"Media",[21,25],8,"day",4,0],
- ["sky","Sky","Software engineering degree apprenticeship","CS","London",51.48,-0.32,"Media & tech",[23,28],8,"day",4,0],
- ["gchq","GCHQ","Cyber / technology degree apprenticeship","CS MAT","Cheltenham",51.90,-2.12,"Government security",[22,26],9,"block",3,0],
- ["ons","Office for National Statistics","Data scientist degree apprenticeship","MAT CS","Newport",51.59,-3.00,"Government",[22,26],8,"day",3,0],
- ["cs","Civil Service","Fast Track degree apprenticeship","BUS CS ECO","Newcastle",54.98,-1.61,"Government",[23,28],8,"day",3,0],
- ["bae","BAE Systems","Engineering degree apprenticeship","ENG","Barrow-in-Furness",54.11,-3.23,"Defence & engineering",[21,26],8,"day",4,0],
- ["rr","Rolls-Royce","Engineering degree apprenticeship","ENG","Derby",52.92,-1.48,"Aerospace",[21,26],9,"block",4,0],
- ["jlr","Jaguar Land Rover","Engineering / business degree apprenticeship","ENG BUS","Coventry",52.41,-1.51,"Automotive",[21,25],8,"block",4,0],
- ["nr","Network Rail","Engineering degree apprenticeship","ENG","Milton Keynes",52.04,-0.76,"Rail",[20,24],7,"block",4,0],
- ["airbus","Airbus","Engineering degree apprenticeship","ENG","Bristol",51.51,-2.58,"Aerospace",[21,25],8,"block",4,0],
- ["dyson","Dyson Institute","Engineering degree (work + study)","ENG","Malmesbury",51.58,-2.10,"Technology",[22,26],9,"day",4,0],
- ["arup","Arup","Civil engineering degree apprenticeship","ENG","London",51.52,-0.14,"Engineering consultancy",[22,27],8,"day",5,0],
- ["gs","Goldman Sachs","FICC & Equities / tech degree apprenticeship","ECO BUS MAT CS","London",51.51,-0.10,"Investment banking",[28,36],10,"day",3,0],
- ["jpm","J.P. Morgan","Degree apprenticeship (finance & tech)","ECO BUS CS","Bournemouth",50.72,-1.88,"Banking",[25,30],9,"day",3,0],
- ["lbg","Lloyds Banking Group","Degree apprenticeship (business, tech, data)","BUS CS MAT ECO","Bristol",51.45,-2.59,"Banking",[22,27],8,"day",3,0],
- ["nw","Nationwide","Degree apprenticeship (business & tech)","BUS CS","Swindon",51.56,-1.78,"Building society",[21,25],7,"day",3,0],
- ["pwc","PwC","Degree apprenticeship (tech & business)","BUS CS ECO","Birmingham",52.48,-1.90,"Big Four",[23,28],9,"block",4,0],
- ["kpmg","KPMG","Degree apprenticeship (audit, tax, tech)","BUS ECO CS","Leeds",53.80,-1.55,"Big Four",[22,27],9,"block",4,0],
- ["dtt","Deloitte","BrightStart degree apprenticeship","BUS CS ECO","Manchester",53.48,-2.24,"Big Four",[22,27],9,"block",4,0],
- ["ey","EY","Degree apprenticeship (business & tech)","BUS ECO CS","London",51.51,-0.11,"Big Four",[24,29],9,"day",4,0],
- ["dwf","DWF","Solicitor apprenticeship","LAW","Manchester",53.48,-2.24,"Law",[20,26],7,"day",6,0],
- ["pm","Pinsent Masons","Solicitor apprenticeship","LAW","Birmingham",52.48,-1.90,"Law",[21,27],8,"day",6,0],
- ["im","Irwin Mitchell","Solicitor apprenticeship","LAW","Sheffield",53.38,-1.47,"Law",[20,25],7,"day",6,0],
- ["bj","Browne Jacobson","Solicitor apprenticeship","LAW","Nottingham",52.95,-1.15,"Law",[20,25],7,"day",6,0],
- ["gsk","GSK","Laboratory scientist degree apprenticeship","CHE BIO","Stevenage",51.90,-0.20,"Pharmaceuticals",[20,25],9,"day",4,0],
- ["az","AstraZeneca","Laboratory scientist degree apprenticeship","CHE BIO","Macclesfield",53.26,-2.13,"Pharmaceuticals",[20,25],9,"day",4,0],
- ["pfz","Pfizer","Laboratory scientist degree apprenticeship","CHE BIO","Sandwich",51.27,1.34,"Pharmaceuticals",[20,24],8,"day",4,0],
- ["ukhsa","UK Health Security Agency","Laboratory / healthcare scientist apprenticeship","BIO CHE","Salisbury",51.07,-1.80,"Public health",[21,25],8,"day",4,0],
- ["unl","Unilever","Science / business degree apprenticeship","CHE BUS","Port Sunlight",53.35,-2.99,"Consumer goods",[20,25],8,"day",4,0]
-];
-const RELEASE={day:"Day release (1 day a week at uni)",block:"Block release (weeks at uni)",online:"Mostly online + workshops"};
-function nearestUni(lat,lon){let b=null,bd=1e9;for(const u of UNIS){const d=miles(lat,lon,u.lat,u.lon);if(d<bd){bd=d;b=u}}return b}
-const APPS=APPRAW.map(([id,name,scheme,fields,city,lat,lon,sector,sal,prest,rel,yrs,nhs,src])=>{
-  const n=nearestUni(lat,lon);
-  return {type:"app",src:src||"example",id:"ap-"+id,name,scheme,courses:fields.split(" "),city,lat,lon,sector,sal,rep:prest,rel,yrs,nhs:!!nhs,
-    set:"c",col:n.col,safe:n.safe,stu:n.stu,div:n.div,night:n.night,green:n.green,f:n.f,
-    prent:city==="London"?220:Math.round(n.rent*.7/5)*5,grad:9,sat:7,size:0,rg:false,pl:false,ab:false,sport:5};
-});
-UNIS.forEach(u=>u.type="uni");
+/* ---------- courses (names; which unis run them comes from the official data) ---------- */
+const COURSE_GROUPS={
+ "Health & medicine":[["MED","Medicine"],["DEN","Dentistry"],["VET","Veterinary Science"],["NUR","Nursing (Adult)"],["NCH","Nursing (Children's)"],["NMH","Nursing (Mental Health)"],["MID","Midwifery"],["PAR","Paramedic Science"],["PHY","Physiotherapy"],["OT","Occupational Therapy"],["RAD","Diagnostic Radiography"],["ODP","Operating Department Practice"],["SLT","Speech & Language Therapy"],["NUT","Nutrition & Dietetics"],["PHA","Pharmacy"],["BMS","Biomedical Science"],["PSY","Psychology"],["NEU","Neuroscience"]],
+ "Sciences":[["BIO","Biology"],["BCH","Biochemistry"],["CHE","Chemistry"],["PHS","Physics"],["MAT","Mathematics"],["ENV","Environmental Science"],["GEO","Geography"],["ZOO","Zoology"],["FOR","Forensic Science"]],
+ "Computing & data":[["CS","Computer Science"],["SE","Software Engineering"],["DS","Data Science"],["AI","Artificial Intelligence"],["CYB","Cyber Security"]],
+ "Engineering & building":[["ENG","Engineering (any)"],["MEC","Mechanical Engineering"],["ELE","Electrical & Electronic Engineering"],["CIV","Civil Engineering"],["AER","Aerospace Engineering"],["CHM","Chemical Engineering"],["BEN","Biomedical Engineering"],["ARC","Architecture"]],
+ "Business, law & economics":[["BUS","Business & Management"],["ACC","Accounting & Finance"],["ECO","Economics"],["MKT","Marketing"],["LAW","Law"],["CRI","Criminology"],["POL","Politics"],["IR","International Relations"],["TOU","Tourism & Events"]],
+ "Humanities & social sciences":[["EN","English"],["HIS","History"],["PHI","Philosophy"],["CLA","Classics"],["LNG","Modern Languages"],["LIN","Linguistics"],["SOC","Sociology"],["ANT","Anthropology"],["ARCH","Archaeology"],["THE","Theology & Religion"],["SW","Social Work"],["EDU","Primary Education (QTS)"]],
+ "Creative arts & media":[["ART","Fine Art"],["FAS","Fashion"],["GD","Graphic Design"],["FILM","Film & TV"],["MDC","Media & Communication"],["JOU","Journalism"],["MUS","Music"],["DRA","Drama & Theatre"],["GAM","Games Design"],["PHO","Photography"]],
+ "Sport":[["SPS","Sport & Exercise Science"],["SPM","Sport Management"]]
+};
+const COURSES={};for(const l of Object.values(COURSE_GROUPS))for(const [c,n] of l)COURSES[c]=n;
+const HEALTH=["MED","DEN","NUR","NCH","NMH","MID","PAR","PHY","OT","RAD","ODP","SLT","NUT"];
+
+/* ---------- degree apprenticeships: only programmes on an official register ---------- */
+const APPS=[
+ ["bcu","Birmingham City University","Paramedic Science degree apprenticeship","PAR","Birmingham",52.48,-1.89],
+ ["dmu","De Montfort University","Paramedic Practice degree apprenticeship","PAR","Leicester",52.63,-1.14],
+ ["der","University of Derby","Paramedic Practice degree apprenticeship","PAR","Derby",52.92,-1.48],
+ ["tee","Teesside University","Paramedic Practice degree apprenticeship","PAR","Middlesbrough",54.57,-1.23],
+ ["bed","University of Bedfordshire","Paramedic integrated degree apprenticeship","PAR","Luton",51.88,-0.42],
+ ["gre","University of Greenwich","Paramedic Science degree apprenticeship (London)","PAR","London",51.48,-0.01],
+ ["grem","University of Greenwich","Paramedic Science degree apprenticeship (Medway)","PAR","Chatham",51.38,0.53],
+ ["hud","University of Huddersfield","Paramedic Science degree apprenticeship","PAR","Huddersfield",53.64,-1.78]
+].map(([id,name,scheme,f,city,lat,lon])=>({type:"app",id:"ap-"+id,name,scheme,courses:[f],city,lat,lon,du:{},halls:null}));
 const ALL=UNIS.concat(APPS);
-const LINKS={
-  gov:["Find an apprenticeship (gov.uk)","https://www.findapprenticeship.service.gov.uk/"],
-  ucas:["UCAS apprenticeships","https://www.ucas.com/apprenticeships"],
-  nhs:["NHS Jobs","https://www.jobs.nhs.uk/"],
-  ofs:["Office for Students guide","https://www.officeforstudents.org.uk/for-students/planning-to-study/degree-apprenticeships-guide-for-apprentices/find-a-degree-apprenticeship/"]
-};
-function applyLinks(a){
-  const emp="https://www.google.com/search?q="+encodeURIComponent(a.name+" "+a.scheme+" apply");
-  const l=[[a.name+" careers page ↗",emp,true]];
-  if(a.nhs)l.push([LINKS.nhs[0]+" ↗",LINKS.nhs[1]]);
-  l.push([LINKS.gov[0]+" ↗",LINKS.gov[1]],[LINKS.ucas[0]+" ↗",LINKS.ucas[1]]);
-  return l;
-}
-function takeHome(k){const g=k*1000,t=Math.max(0,g-12570);return g-t*.28}
+const LINKS={gov:["Find an apprenticeship (gov.uk)","https://www.findapprenticeship.service.gov.uk/"],ucas:["UCAS apprenticeships","https://www.ucas.com/apprenticeships"],nhs:["NHS Jobs","https://www.jobs.nhs.uk/"],hcpc:["HCPC register","https://www.hcpc-uk.org/education/approved-programmes/"]};
 
-function R(u){if(u.type==="app")return u.prent;const p=u.h.rooms[S.room||"wet"];return p==null?999:p}
-const RSHORT={shared:"shared bath",wet:"wet room",full:"full bath",studio:"studio"};
-function RL(u){if(u.type==="app")return "£"+u.prent+"/wk private room";return R(u)>=999?"No studios":"£"+R(u)+"/wk "+RSHORT[S.room]}
-
-const TOWNS = [
+const TOWNS=[
  ["London",51.51,-0.13],["Birmingham",52.48,-1.90],["Manchester",53.48,-2.24],["Leeds",53.80,-1.55],["Liverpool",53.41,-2.98],
  ["Sheffield",53.38,-1.47],["Bristol",51.45,-2.59],["Newcastle",54.98,-1.61],["Nottingham",52.95,-1.15],["Leicester",52.64,-1.13],
  ["Coventry",52.41,-1.51],["Bradford",53.80,-1.75],["Luton",51.88,-0.42],["Reading",51.45,-0.97],["Milton Keynes",52.04,-0.76],
@@ -786,176 +510,146 @@ const TOWNS = [
  ["Glasgow",55.86,-4.25],["Edinburgh",55.95,-3.19],["Aberdeen",57.15,-2.09],["Dundee",56.46,-2.97],["Belfast",54.60,-5.93]
 ].sort((a,b)=>a[0].localeCompare(b[0]));
 
-/* Grades */
-const GV={"A*":56,A:48,B:40,C:32,D:24,E:16};
-const OFFERS=["CCC","BCC","BBC","BBB","ABB","AAB","AAA","A*AA","A*A*A"];
-function parseGrades(s){const m=(s||"").toUpperCase().replace(/\s/g,"").match(/A\*|[A-E]/g);if(!m||m.length<3)return null;return m.map(g=>GV[g]).sort((a,b)=>b-a).slice(0,3).reduce((a,b)=>a+b,0)}
-function offerIdx(u,c){
-  let i=u.rep>=10?7:u.rep>=9?6:u.rep>=8?5:u.rep>=6?4:u.rep>=5?3:2;
-  if(c==="MED"||c==="DEN"||c==="VET")i=u.rep>=9?7:6;
-  else if(c==="ARC"||c==="PHS"||c==="AER"||c==="CHM")i=Math.min(8,i+1);
-  else if(c==="PAR"||c==="PHY")i=Math.min(6,i+1);
-  else if(c==="NUR")i=Math.max(1,i-1);
-  else if((c==="MAT"||c==="CS")&&u.rep>=9)i=(u.id==="cam"&&c==="MAT")?8:Math.min(8,i+1);
-  return Math.min(8,i);
-}
-function offer(u,c){if(u.type==="app")return OFFERS[u.rep>=10?4:u.rep>=9?3:u.rep>=8?2:1];return OFFERS[offerIdx(u,c)]}
-function gradeFit(u,c,pts){
-  if(pts==null)return null;
-  const diff=pts-parseGrades(offer(u,c));
-  const lab=diff>=8?["Safe","good"]:diff>=0?["Match","blue"]:diff>=-8?["Reach","amber"]:["Long shot","warn"];
-  return {diff,label:lab[0],cls:lab[1],s:clamp((diff+24)/32)};
-}
-
-/* Money + travel (rough) */
-function livingWk(u){return u.col>=7?100:u.col>=4?120:150}
-function trainH(d){if(d==null)return null;const h=d/60+.4;return Math.max(.5,Math.round(h*2)/2)}
-function hrs(h){return h==null?"—":"~"+(h%1?h:h.toFixed(0))+"h"}
-
-/* =========================================================
-   CRITERIA
-   ========================================================= */
-const SETNAME={c:"City",k:"Campus",t:"Town"};
-const CRIT={
- rent:{g:"🛏️ Accommodation",ic:"💷",label:"Room price",score:u=>clamp((400-R(u))/290),val:u=>"£"+R(u)+"/wk"},
- cat:{only:"uni",g:"🛏️ Accommodation",ic:"🍽️",label:"Catered or self-catered",opts:{cat:"Catered",self:"Self-catered"},def:"self",score:(u,o)=>o==="cat"?(u.h.catered?1:0):1,val:(u,o)=>o==="cat"?(u.h.catered?"Catered halls":"No catered"):"Self-catered"},
- flat:{only:"uni",g:"🛏️ Accommodation",ic:"👫",label:"Flatmates",opts:{s:"Small (≤5)",m:"6–8",l:"Big (9+)"},def:"m",score:(u,o)=>{const b=u.h.flat<=5?"s":u.h.flat<=8?"m":"l";return b===o?1:(o==="m"||b==="m")?.5:.1},val:u=>"~"+u.h.flat+" per flat"},
- guar:{only:"uni",g:"🛏️ Accommodation",ic:"🔑",label:"Guaranteed 1st-year room",score:u=>u.h.guar?1:0,val:u=>u.h.guar?"Guaranteed":"Not guaranteed"},
- walk:{only:"uni",g:"🛏️ Accommodation",ic:"🚶",label:"Walk to campus",score:u=>clamp(1-(u.h.walk-5)/30),val:u=>"~"+u.h.walk+" min"},
- room:{only:"uni",g:"🛏️ Accommodation",ic:"🚿",label:"Room type on offer",score:u=>u.h.rooms[S.room]?1:0,val:u=>u.h.rooms[S.room]?"Available":"Not offered"},
- col:{g:"💷 Money",ic:"🛒",label:"Cost of living",score:u=>u.col/10,val:u=>lvl(u.col,["Pricey","Average","Cheap"])},
- dist:{g:"📍 Location",ic:"🏠",label:"Distance from home",opts:{close:"Close to home",mid:"1–2 hrs away",far:"Far away"},def:"close",
-   score:(u,o,x)=>x.d==null?.5:o==="far"?clamp(x.d/350):o==="mid"?clamp(1-Math.abs(x.d-90)/150):clamp(1-x.d/350),val:(u,o,x)=>x.d==null?"Set home":Math.round(x.d)+" mi"},
- set:{g:"📍 Location",ic:"🏙️",label:"City, campus or town",opts:{c:"City",k:"Campus",t:"Town"},def:"k",score:(u,o)=>u.set===o?1:.25,val:u=>SETNAME[u.set]},
- night:{g:"📍 Location",ic:"🎉",label:"Nightlife & social",score:u=>u.night/10,val:u=>u.night+"/10"},
- green:{g:"📍 Location",ic:"🌳",label:"Green space & outdoors",score:u=>u.green/10,val:u=>u.green+"/10"},
- div:{g:"📍 Location",ic:"🌍",label:"Diversity",score:u=>u.div/10,val:u=>u.div+"/10"},
- safe:{g:"📍 Location",ic:"🛡️",label:"Safety",score:u=>u.safe/10,val:u=>u.safe+"/10"},
- stu:{g:"📍 Location",ic:"🎒",label:"Student-friendly city",score:u=>u.stu/10,val:u=>u.stu+"/10"},
- home:{g:"📍 Location",ic:"🚆",label:"Cheap trip home",score:(u,o,x)=>x.d==null?.5:clamp(1-tripCost(x.d,S.mode)/120),val:(u,o,x)=>x.d==null?"Set home":"£"+tripCost(x.d,S.mode)+" return"},
- isoc:{g:"🕌 Faith & food",ic:"☪️",label:"Active ISoc",score:u=>u.div/10,val:u=>u.f.isoc},
- prayer:{g:"🕌 Faith & food",ic:"🕌",label:"Prayer rooms on campus",score:u=>u.div>=5?1:.5,val:u=>u.f.prayer},
- halal:{g:"🕌 Faith & food",ic:"🥙",label:"Halal food nearby",score:u=>clamp((u.div-2)/7),val:u=>u.f.halal},
- rep:{g:"🏛️ The uni",ic:"🏆",label:"Reputation",score:u=>u.rep/10,val:u=>u.rep+"/10"},
- sat:{only:"uni",g:"🏛️ The uni",ic:"😊",label:"Student satisfaction",score:u=>u.sat/10,val:u=>u.sat+"/10"},
- grad:{g:"🏛️ The uni",ic:"💼",label:"Graduate prospects",score:u=>u.grad/10,val:u=>u.grad+"/10"},
- sport:{only:"uni",g:"🏛️ The uni",ic:"⚽",label:"Sport & facilities",score:u=>u.sport/10,val:u=>u.sport+"/10"},
- size:{only:"uni",g:"🏛️ The uni",ic:"👥",label:"Uni size",opts:{s:"Small (<18k)",m:"Medium",l:"Big (30k+)"},def:"m",
-   score:(u,o)=>{const b=u.size<18?"s":u.size<30?"m":"l";return b===o?1:(o==="m"||b==="m")?.5:.1},val:u=>"~"+u.size+"k"},
- rg:{only:"uni",g:"🏛️ The uni",ic:"🎓",label:"Russell Group",score:u=>u.rg?1:0,val:u=>u.rg?"Yes":"No"},
- sal:{g:"💼 Apprenticeship",ic:"💰",label:"Earn a salary",score:u=>u.type==="app"?clamp((u.sal[0]-17)/15):0,val:u=>u.type==="app"?"£"+u.sal[0]+"–"+u.sal[1]+"k":"No salary"},
- debt:{g:"💼 Apprenticeship",ic:"🎓",label:"No tuition fees",score:u=>u.type==="app"?1:0,val:u=>u.type==="app"?"Fees paid":"Student loan"},
- rel:{only:"app",g:"💼 Apprenticeship",ic:"🗓️",label:"Study pattern",opts:{day:"Day release",block:"Block release"},def:"day",score:(u,o)=>u.rel===o?1:.3,val:u=>u.rel==="day"?"Day release":"Block release"},
- fit:{g:"📚 Course",ic:"🎯",label:"Grades fit",needs:"grades",score:(u,o,x)=>x.gf?x.gf.s:.5,val:(u,o,x)=>x.gf?x.gf.label:"Add grades"},
- assess:{only:"uni",g:"📚 Course",ic:"📝",label:"Exams or coursework",opts:{"Mostly exams":"Exams","Balanced":"Balanced","Mostly coursework":"Coursework"},def:"Balanced",
-   score:(u,o)=>{const a=CS(u,S.course).assess;return a===o?1:(a==="Balanced"||o==="Balanced")?.5:0},val:u=>CS(u,S.course).assess},
- intv:{only:"uni",g:"📚 Course",ic:"🗣️",label:"Interview style",opts:{MMI:"MMI",Panel:"Panel",None:"No interview"},def:"Panel",
-   score:(u,o)=>{const i=CS(u,S.course).intv;return i.includes(o)?1:o==="None"?0:i==="None"?.6:.3},val:u=>CS(u,S.course).intv},
- contact:{only:"uni",g:"📚 Course",ic:"⏱️",label:"Teaching hours",opts:{more:"More teaching",less:"More independent"},def:"more",
-   score:(u,o)=>{const c=CS(u,S.course).contact,b=HEALTH.includes(S.course)?20:12;const v=clamp((c-b+2)/8);return o==="more"?v:1-v},val:u=>"~"+CS(u,S.course).contact+" hrs/wk"},
- phrs:{only:"uni",g:"📚 Course",ic:"🩺",label:"Placement hours",score:u=>{const p=CS(u,S.course).ph;return p?clamp((p-700)/400):.5},val:u=>CS(u,S.course).phLab},
- pl:{only:"uni",g:"📚 Course",ic:"🧳",label:"Placement year",score:u=>u.pl?1:0,val:u=>u.pl?"Offered":"Rare"},
- ab:{only:"uni",g:"📚 Course",ic:"✈️",label:"Study abroad",score:u=>u.ab?1:0,val:u=>u.ab?"Offered":"Limited"}
-};
-const IMP=[["Nice to have",1],["Important",2.5],["Essential",5]];
-
-function CN(){return COURSES[S.course]||"your course"}
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
 function clamp(x){return Math.max(0,Math.min(1,x))}
-function lvl(v,w){return v>=7?w[2]:v>=4?w[1]:w[0]}
+function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function miles(a,b,c,d){const R=3959,t=Math.PI/180,x=(c-a)*t,y=(d-b)*t,h=Math.sin(x/2)**2+Math.cos(a*t)*Math.cos(c*t)*Math.sin(y/2)**2;return 2*R*Math.asin(Math.sqrt(h))}
+function fmt(n){return "£"+Math.round(n).toLocaleString("en-GB")}
+function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("show"),1700)}
+function color(s){return s>=.7?"var(--green)":s>=.4?"var(--amber)":"var(--red)"}
+function pctCol(p){return p>=70?"var(--green)":p>=45?"var(--amber)":"var(--red)"}
+function uni(id){return ALL.find(u=>u.id===id)}
+function CN(){return COURSES[S.course]||"your course"}
+const NODATA=`<span class="nodata">No official data</span>`;
+
+/* grades */
+const GV={"A*":56,A:48,B:40,C:32,D:24,E:16};
+function parseGrades(s){const m=(s||"").toUpperCase().replace(/\s/g,"").match(/A\*|[A-E]/g);if(!m||m.length<3)return null;return m.map(g=>GV[g]).sort((a,b)=>b-a).slice(0,3).reduce((a,b)=>a+b,0)}
+const GT=[[168,"A*A*A*"],[160,"A*A*A"],[152,"A*AA"],[144,"AAA"],[136,"AAB"],[128,"ABB"],[120,"BBB"],[112,"BBC"],[104,"BCC"],[96,"CCC"],[88,"CCD"],[80,"CDD"],[72,"DDD"]];
+function grades(p){if(p==null)return null;for(const [t,g] of GT)if(p>=t)return g;return "below DDD"}
+
+/* official course data for the chosen course */
+function CD(u,c=S.course){return u.du&&u.du.courses?u.du.courses[c]||null:null}
+function gradeFit(u,pts){const c=CD(u);if(pts==null||!c||!c.tariff)return null;const diff=pts-c.tariff;
+  const lab=diff>=16?["Above typical","good"]:diff>=-8?["Typical","blue"]:diff>=-24?["Below typical","amber"]:["Well below","warn"];
+  return {diff,label:lab[0],cls:lab[1],s:clamp((diff+32)/40)}}
+
+/* halls (checked prices only) */
+const ROOMS={shared:"Shared bathroom",wet:"En-suite",full:"Large / premium en-suite",studio:"Studio"};
+const RSHORT={shared:"shared bath",wet:"en-suite",full:"premium en-suite",studio:"studio"};
+function hallsFrom(u){const h=u.halls;if(!h)return null;const v=Object.values(h.rooms||{}).filter(Boolean);return h.from??(v.length?Math.min(...v):null)}
+function roomPrice(u){const h=u.halls;return h&&h.rooms&&h.rooms[S.room]?h.rooms[S.room]:null}
+function priceShown(u){const p=roomPrice(u);if(p)return {p,lab:`£${p}/wk ${RSHORT[S.room]}`};const f=hallsFrom(u);return f?{p:f,lab:`from £${f}/wk`}:null}
+
+/* TEF + tuition */
+const TEF={Gold:1,Silver:.6,Bronze:.25,"Requires improvement":0};
+const NATION={Edinburgh:"sco",Glasgow:"sco","St Andrews":"sco",Aberdeen:"sco",Cardiff:"wal",Swansea:"wal",Wrexham:"wal",Belfast:"ni"};
+function fee(u){const n=NATION[u.city];return n?null:10050}
+function feeLine(u){const n=NATION[u.city];return !n?"£10,050 a year (2027/28 cap, England)":n==="sco"?"Set by the uni for students from England — check":n==="wal"?"Welsh fee rules — check":"Northern Ireland fee rules — check"}
 
 /* =========================================================
    STATE
    ========================================================= */
-const DEF={course:"",grades:"",crit:[],home:"",homeLat:null,homeLon:null,maxRent:400,maxDist:600,
-  route:"uni",room:"wet",trips:2,mode:"train",ps:{},skip:[],short:[],notes:{},cmp:[],status:{},openDay:{},money:"",weeks:42,dark:null,sort:"match"};
+const DEF={course:"",route:"uni",grades:"",crit:[],home:"",homeLat:null,homeLon:null,room:"wet",maxRent:400,maxDist:600,
+  short:[],notes:{},cmp:[],status:{},openDay:{},money:"",spend:"",weeks:40,dark:null,sort:"match",ps:{},skip:[]};
 let S=load();
-function load(){try{const s=JSON.parse(localStorage.getItem("quad.v2"));return Object.assign({},DEF,s||{})}catch(e){return {...DEF}}}
-function save(){try{localStorage.setItem("quad.v2",JSON.stringify(S))}catch(e){}}
+function load(){try{const s=JSON.parse(localStorage.getItem("quad.v3"));return Object.assign({},DEF,s||{})}catch(e){return {...DEF}}}
+function save(){try{localStorage.setItem("quad.v3",JSON.stringify(S))}catch(e){}}
 let Q="";
 
-const $=s=>document.querySelector(s);
-const $$=s=>document.querySelectorAll(s);
-function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("show");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("show"),1700)}
-function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function color(s){return s>=.7?"var(--green)":s>=.4?"var(--amber)":"var(--red)"}
-function pctCol(p){return p>=70?"var(--green)":p>=45?"var(--amber)":"var(--red)"}
-function uni(id){return ALL.find(u=>u.id===id)}
+/* =========================================================
+   CRITERIA — every one uses official or checked data
+   ========================================================= */
+const IMP=[["Nice to have",1],["Important",2.5],["Essential",5]];
+const CRIT={
+ rent:{g:"🛏️ Halls",ic:"💷",label:"Halls price",score:u=>{const x=priceShown(u);return x?clamp((400-x.p)/290):null},val:u=>{const x=priceShown(u);return x?x.lab:"Not published"}},
+ room:{only:"uni",g:"🛏️ Halls",ic:"🚿",label:"Has my room type",score:u=>u.halls&&Object.keys(u.halls.rooms||{}).length?(roomPrice(u)?1:0):null,val:u=>roomPrice(u)?"Yes":u.halls?"Not listed":"Not published"},
+ cat:{only:"uni",g:"🛏️ Halls",ic:"🍽️",label:"Catered halls",score:u=>u.halls?(u.halls.catered?1:0):null,val:u=>u.halls?(u.halls.catered?"Yes":"Not listed"):"Not published"},
+ dist:{g:"📍 Location",ic:"🏠",label:"Distance from home",opts:{close:"Close to home",mid:"1–2 hrs away",far:"Far away"},def:"close",
+   score:(u,o,x)=>x.d==null?null:o==="far"?clamp(x.d/350):o==="mid"?clamp(1-Math.abs(x.d-90)/150):clamp(1-x.d/350),val:(u,o,x)=>x.d==null?"Set home":Math.round(x.d)+" mi"},
+ sat:{only:"uni",g:"📊 Your course",ic:"😊",label:"Student satisfaction",score:u=>{const c=CD(u);return c&&c.sat!=null?clamp((c.sat-60)/35):null},val:u=>{const c=CD(u);return c&&c.sat!=null?c.sat+"%":"No data"}},
+ cont:{only:"uni",g:"📊 Your course",ic:"🔁",label:"Students who carry on",score:u=>{const c=CD(u);return c&&c.cont!=null?clamp((c.cont-75)/23):null},val:u=>{const c=CD(u);return c&&c.cont!=null?c.cont+"%":"No data"}},
+ sal:{only:"uni",g:"📊 Your course",ic:"💰",label:"Graduate salary",score:u=>{const c=CD(u);return c&&c.salary?clamp((c.salary-20000)/25000):null},val:u=>{const c=CD(u);return c&&c.salary?fmt(c.salary):"No data"}},
+ work:{only:"uni",g:"📊 Your course",ic:"💼",label:"Graduates in work or study",score:u=>{const c=CD(u);return c&&c.work!=null?clamp((c.work-75)/23):null},val:u=>{const c=CD(u);return c&&c.work!=null?c.work+"%":"No data"}},
+ fit:{only:"uni",g:"📊 Your course",ic:"🎯",label:"My grades fit",score:(u,o,x)=>x.gf?x.gf.s:null,val:(u,o,x)=>x.gf?x.gf.label:(parseGrades(S.grades)?"No data":"Add grades")},
+ pl:{only:"uni",g:"📊 Your course",ic:"🧳",label:"Placement year option",score:u=>{const c=CD(u);return c?(c.placement?1:0):null},val:u=>{const c=CD(u);return c&&c.placement?"Yes":"No"}},
+ ab:{only:"uni",g:"📊 Your course",ic:"✈️",label:"Year abroad option",score:u=>{const c=CD(u);return c?(c.abroad?1:0):null},val:u=>{const c=CD(u);return c&&c.abroad?"Yes":"No"}},
+ acc:{only:"uni",g:"📊 Your course",ic:"📜",label:"Professionally accredited",score:u=>{const c=CD(u);return c?(c.accredited?1:0):null},val:u=>{const c=CD(u);return c&&c.accredited?"Yes":"No"}},
+ tef:{only:"uni",g:"🏛️ The uni",ic:"🏅",label:"Teaching rating (TEF)",score:u=>u.tef in TEF?TEF[u.tef]:null,val:u=>u.tef||"Not rated"},
+ rg:{only:"uni",g:"🏛️ The uni",ic:"🎓",label:"Russell Group",score:u=>u.rg?1:0,val:u=>u.rg?"Yes":"No"},
+ debt:{g:"💼 Apprenticeship",ic:"🎓",label:"No tuition fees",score:u=>u.type==="app"?1:0,val:u=>u.type==="app"?"Employer pays":"Student loan"}
+};
 
-/* Theme */
-function applyTheme(){
-  const dark=S.dark==null?matchMedia("(prefers-color-scheme: dark)").matches:S.dark;
-  document.documentElement.dataset.theme=dark?"dark":"light";$("#themeBtn").textContent=dark?"☀️":"🌙";
+/* =========================================================
+   SCORING
+   ========================================================= */
+function dist(u,st=S){return st.homeLat==null?null:miles(st.homeLat,st.homeLon,u.lat,u.lon)}
+function ctx(u,st=S){return {d:dist(u,st),gf:u.type==="uni"?gradeFit(u,parseGrades(st.grades)):null}}
+function compute(st=S,applyLimits=true){
+  const out=[];if(!st.course)return out;
+  const pool=st.route==="app"?APPS:st.route==="both"?ALL:UNIS;
+  for(const u of pool){
+    if(!u.courses.includes(st.course))continue;
+    const x=ctx(u,st);
+    if(applyLimits){
+      const pr=priceShown(u);if(pr&&pr.p>st.maxRent)continue;
+      if(x.d!=null&&st.maxDist<600&&x.d>st.maxDist)continue;
+    }
+    let tw=0,ts=0;const miss=[],parts=[];
+    for(const c of st.crit){
+      const def=CRIT[c.k];if(!def||def.only&&def.only!==u.type)continue;
+      const s=def.score(u,c.o,x);
+      parts.push({k:c.k,s,w:c.w,v:def.val(u,c.o,x)});
+      if(s==null)continue;
+      tw+=c.w;ts+=c.w*s;if(c.w===5&&s<.35)miss.push(def.label);
+    }
+    out.push({u,pct:tw?Math.round(ts/tw*100):null,parts,miss,...x});
+  }
+  out.sort((a,b)=>(b.pct??-1)-(a.pct??-1)||((CD(b.u)||{}).sat??0)-((CD(a.u)||{}).sat??0)||a.u.name.localeCompare(b.u.name));
+  return out;
 }
-$("#themeBtn").onclick=()=>{S.dark=document.documentElement.dataset.theme!=="dark";save();applyTheme()};
-applyTheme();
+function scoreMap(){return Object.fromEntries(compute(S,false).map(r=>[r.u.id,r]))}
 
-/* Loader */
+/* =========================================================
+   THEME, LOADER, NAV
+   ========================================================= */
+function applyTheme(){const dark=S.dark==null?matchMedia("(prefers-color-scheme: dark)").matches:S.dark;document.documentElement.dataset.theme=dark?"dark":"light";$("#themeBtn").textContent=dark?"☀️":"🌙"}
+$("#themeBtn").onclick=()=>{S.dark=document.documentElement.dataset.theme!=="dark";save();applyTheme()};applyTheme();
 setTimeout(()=>$("#enterBtn").classList.add("ready"),2100);
-$("#enterBtn").onclick=()=>{$("#loader").classList.add("gone");go("home")};
-
-/* Nav */
+$("#enterBtn").onclick=()=>{$("#loader").classList.add("gone");go("home");setTimeout(checkShare,350)};
 let PAGE="home";
-function go(p){
-  PAGE=p;
-  ["home","match","map","swipe","short"].forEach(x=>$("#p-"+x).classList.toggle("hidden",x!==p));
-  $$("nav button").forEach(b=>b.classList.toggle("on",b.dataset.go===p));
-  rerender();window.scrollTo({top:0,behavior:"smooth"});
-}
+function go(p){PAGE=p;["home","match","map","swipe","short"].forEach(x=>$("#p-"+x).classList.toggle("hidden",x!==p));
+  $$("nav button").forEach(b=>b.classList.toggle("on",b.dataset.go===p));rerender();window.scrollTo({top:0,behavior:"smooth"})}
 function rerender(){({home:renderHome,match:renderMatch,map:renderMap,swipe:renderSwipe,short:renderShort})[PAGE]()}
 document.addEventListener("click",e=>{
   const g=e.target.closest("[data-go]");if(g){go(g.dataset.go);return}
   if(e.target.closest("[data-quiz]")){openQuiz();return}
   const pr=e.target.closest("[data-prof]");if(pr){openProfile(pr.dataset.prof);return}
 });
-
-/* =========================================================
-   SCORING
-   ========================================================= */
-function dist(u,st=S){return st.homeLat==null?null:miles(st.homeLat,st.homeLon,u.lat,u.lon)}
-function ctx(u,st=S){const d=dist(u,st);return {d,gf:gradeFit(u,st.course,parseGrades(st.grades))}}
-function compute(st=S,applyLimits=true){
-  const out=[];
-  if(!st.course)return out;
-  const pool=st.route==="app"?APPS:st.route==="both"?ALL:UNIS;
-  for(const u of pool){
-    if(!u.courses.includes(st.course)&&!(u.type==="app"&&u.courses.includes(APP_ALIAS[st.course])))continue;
-    const x=ctx(u,st);
-    if(applyLimits){
-      if(R(u)>st.maxRent)continue;
-      if(x.d!=null&&st.maxDist<600&&x.d>st.maxDist)continue;
-    }
-    let tw=0,ts=0;const miss=[],parts=[];
-    for(const c of st.crit){
-      const def=CRIT[c.k];if(def.only&&def.only!==u.type)continue;const s=def.score(u,c.o,x);
-      tw+=c.w;ts+=c.w*s;parts.push({k:c.k,s,w:c.w,v:def.val(u,c.o,x)});
-      if(c.w===5&&s<.35)miss.push(def.label);
-    }
-    out.push({u,pct:tw?Math.round(ts/tw*100):null,parts,miss,...x});
-  }
-  out.sort((a,b)=>(b.pct??0)-(a.pct??0)||b.u.rep-a.u.rep||R(a.u)-R(b.u));
-  return out;
-}
-function scoreMap(){return Object.fromEntries(compute(S,false).map(r=>[r.u.id,r]))}
+const duDate=QD.du&&QD.du.published?new Date(QD.du.published).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}):"—";
+const HALLS_N=UNIS.filter(u=>u.halls).length;
+const NOTE=`📊 Course figures are official Discover Uni data (published ${duDate}). 🛏️ Halls prices checked from ${HALLS_N} unis' own fee pages. <button class="linkbtn" onclick="openData()">Where the data comes from</button>`;
+$("#homeNote").innerHTML=NOTE;$("#resNote").innerHTML=NOTE;
 
 /* =========================================================
    HOME
    ========================================================= */
 const PRESETS=[
- {ic:"💷",t:"Budget saver",d:"Cheap rent and living costs",crit:[["rent",5],["col",5],["sat",2.5]]},
- {ic:"🏠",t:"Close to home",d:"Easy trips back, decent uni",crit:[["dist",5,"close"],["rep",2.5],["rent",1]]},
- {ic:"🌆",t:"Big city life",d:"Nightlife, city, happy students",crit:[["night",5],["set",2.5,"c"],["sat",2.5]]},
- {ic:"🏆",t:"Top reputation",d:"Big names and job prospects",crit:[["rep",5],["grad",2.5],["sat",1]]}
+ {ic:"💷",t:"Budget saver",d:"Cheapest halls first",crit:[["rent",5],["sat",1]]},
+ {ic:"🏠",t:"Close to home",d:"Easy trips back",crit:[["dist",5,"close"],["sat",2.5]]},
+ {ic:"💼",t:"Best job prospects",d:"Graduate pay and jobs",crit:[["sal",5],["work",2.5]]},
+ {ic:"😊",t:"Happy students",d:"Satisfaction and staying on",crit:[["sat",5],["cont",2.5],["tef",1]]}
 ];
 function setPreset(p){S.crit=p.crit.map(([k,w,o])=>({k,w,o:o||CRIT[k].def}));save()}
 function renderHome(){
-  $("#presets").innerHTML=`<button class="card preset quiz" data-quiz><div class="ic">✨</div><b>Help me choose</b><span>10 quick questions</span></button>`+
+  $("#presets").innerHTML=`<button class="card preset quiz" data-quiz><div class="ic">✨</div><b>Help me choose</b><span>7 quick questions</span></button>`+
     PRESETS.map((p,i)=>`<button class="card preset" data-p="${i}"><div class="ic">${p.ic}</div><b>${p.t}</b><span>${p.d}</span></button>`).join("");
   $$("[data-p]").forEach(b=>b.onclick=()=>{const p=PRESETS[b.dataset.p];setPreset(p);go("match");toast(p.t+" applied")});
   let prev,label;
-  if(S.crit.length){prev=compute().slice(0,3);label="Your top matches · "+CN()}
-  else{const ex={...S,course:"CS",homeLat:null,maxRent:400,maxDist:600,crit:PRESETS[0].crit.map(([k,w])=>({k,w,o:CRIT[k].def}))};prev=compute(ex).slice(0,3);label="Example · Computer Science, budget saver"}
-  $("#heroPreview").innerHTML=`<div class="grp-l">${esc(label)}</div>`+(prev.length?prev.map((r,i)=>`<div class="mini" data-prof="${r.u.id}" style="cursor:pointer"><span class="rank">${i+1}</span><b>${esc(r.u.name)}</b><span class="pct">${r.pct}%</span></div>`).join(""):`<div class="mini"><b>No unis fit your limits yet</b></div>`);
+  if(S.course&&S.crit.length){prev=compute().slice(0,3);label="Your top matches · "+CN()}
+  else{const ex={...S,course:"CS",route:"uni",homeLat:null,maxRent:400,maxDist:600,crit:PRESETS[3].crit.map(([k,w])=>({k,w,o:CRIT[k].def}))};prev=compute(ex).slice(0,3);label="Example · Computer Science, happy students"}
+  $("#heroPreview").innerHTML=`<div class="grp-l">${esc(label)}</div>`+(prev.length?prev.map((r,i)=>`<div class="mini" data-prof="${r.u.id}" style="cursor:pointer"><span class="rank">${i+1}</span><b>${esc(r.u.name)}</b><span class="pct">${r.pct??"—"}%</span></div>`).join(""):`<div class="mini"><b>No unis fit your limits yet</b></div>`);
 }
 
 /* =========================================================
@@ -963,46 +657,38 @@ function renderHome(){
    ========================================================= */
 const courseSel=$("#course"),homeSel=$("#home");
 $("#courseCount").textContent=Object.keys(COURSES).length;
-courseSel.innerHTML=`<option value="">Choose your course…</option>`+Object.entries(COURSE_GROUPS).map(([g,list])=>`<optgroup label="${g}">${list.map(([c])=>[c,COURSES[c]]).sort((a,b)=>a[1].localeCompare(b[1])).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</optgroup>`).join("");
+courseSel.innerHTML=`<option value="">Choose your course…</option>`+Object.entries(COURSE_GROUPS).map(([g,l])=>`<optgroup label="${g}">${[...l].sort((a,b)=>a[1].localeCompare(b[1])).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</optgroup>`).join("");
 function fillHome(){homeSel.innerHTML=`<option value="">Choose your home town…</option>`+(S.home==="My location"?`<option>My location</option>`:"")+TOWNS.map(t=>`<option>${t[0]}</option>`).join("");homeSel.value=S.home||""}
-fillHome();
 courseSel.onchange=()=>{S.course=courseSel.value;save();renderCrit();renderResults()};
 $("#grades").oninput=e=>{S.grades=e.target.value;save();gradeLabel();renderCrit();renderResults()};
 function gradeLabel(){const p=parseGrades(S.grades);$("#gradePts").textContent=p?p+" UCAS pts":""}
-homeSel.onchange=()=>{
-  if(homeSel.value==="My location")return;
-  const t=TOWNS.find(x=>x[0]===homeSel.value);
-  S.home=homeSel.value;S.homeLat=t?t[1]:null;S.homeLon=t?t[2]:null;save();renderCrit();renderResults();
-};
-$("#geoBtn").onclick=()=>{
-  if(!navigator.geolocation)return toast("Location not available");
-  navigator.geolocation.getCurrentPosition(p=>{
-    S.homeLat=p.coords.latitude;S.homeLon=p.coords.longitude;S.home="My location";save();fillHome();renderCrit();renderResults();toast("Using your location");
-  },()=>toast("Couldn't get your location"));
-};
+homeSel.onchange=()=>{if(homeSel.value==="My location")return;const t=TOWNS.find(x=>x[0]===homeSel.value);S.home=homeSel.value;S.homeLat=t?t[1]:null;S.homeLon=t?t[2]:null;save();renderCrit();renderResults()};
+$("#geoBtn").onclick=()=>{if(!navigator.geolocation)return toast("Location not available");
+  navigator.geolocation.getCurrentPosition(p=>{S.homeLat=p.coords.latitude;S.homeLon=p.coords.longitude;S.home="My location";save();fillHome();renderCrit();renderResults();toast("Using your location")},()=>toast("Couldn't get your location"))};
 $("#maxRent").oninput=e=>{S.maxRent=+e.target.value;limLabels();save();renderResults()};
 $("#maxDist").oninput=e=>{S.maxDist=+e.target.value;limLabels();save();renderResults()};
 $("#resetBtn").onclick=()=>{S.crit=[];S.maxRent=400;S.maxDist=600;save();renderMatch();toast("Criteria reset")};
 $("#mobileGo").onclick=()=>$("#results").scrollIntoView({behavior:"smooth"});
 $("#search").oninput=e=>{Q=e.target.value.trim().toLowerCase();renderResults()};
 $("#sort").onchange=e=>{S.sort=e.target.value;save();renderResults()};
-function limLabels(){
-  $("#rentVal").textContent=S.maxRent>=400?"No limit":"£"+S.maxRent;
-  $("#distVal").textContent=S.maxDist>=600?"No limit":S.maxDist+" mi";
+function limLabels(){$("#rentVal").textContent=S.maxRent>=400?"No limit":"£"+S.maxRent;$("#distVal").textContent=S.maxDist>=600?"No limit":S.maxDist+" mi"}
+const ROUTES={uni:"🎓 University",app:"💼 Apprenticeship",both:"Both"};
+function renderRoute(){
+  $("#routePick").innerHTML=Object.entries(ROUTES).map(([k,l])=>`<button class="${S.route===k?"on":""}" data-route="${k}">${l}</button>`).join("");
+  $$("[data-route]").forEach(b=>b.onclick=()=>{S.route=b.dataset.route;save();renderRoute();renderCrit();renderResults()});
+  $("#routeHint").innerHTML=S.route==="uni"?"":`Degree apprenticeships: you work for an employer, get paid and get a degree with no tuition fees. Quad lists programmes on official registers; employers advertise vacancies all year — <a href="${LINKS.gov[1]}" target="_blank" rel="noopener">search live vacancies ↗</a>`;
 }
-
+function renderRoom(){
+  $("#roomPick").innerHTML=Object.entries(ROOMS).map(([k,l])=>`<button class="${S.room===k?"on":""}" data-room="${k}">${l}</button>`).join("");
+  $$("[data-room]").forEach(b=>b.onclick=()=>{S.room=b.dataset.room;save();renderRoom();renderResults();toast(ROOMS[S.room]+" prices")});
+}
 function renderCrit(){
-  const groups={};for(const k in CRIT){const o=CRIT[k].only;if(o&&S.route!=="both"&&o!==S.route)continue;if((k==="sal"||k==="debt"||k==="rel")&&S.route==="uni")continue;(groups[CRIT[k].g]=groups[CRIT[k].g]||[]).push(k)}
+  const groups={};
+  for(const k in CRIT){const o=CRIT[k].only;if(o&&S.route!=="both"&&o!==S.route)continue;if(k==="debt"&&S.route==="uni")continue;(groups[CRIT[k].g]=groups[CRIT[k].g]||[]).push(k)}
   $("#critPicker").innerHTML=Object.entries(groups).map(([g,ks])=>`<div class="grp"><div class="grp-l">${g}</div><div class="chips">${
-    ks.map(k=>`<button class="chip ${S.crit.some(c=>c.k===k)?"on":""}" data-c="${k}">${CRIT[k].ic} ${CRIT[k].label}</button>`).join("")}</div></div>`).join("")
-    +(HEALTH.includes(S.course)?`<p class="hint" style="margin:10px 0 0">🩺 Health courses build clinical placements in as standard, so "placement year" mostly matters for other subjects.</p>`:"");
-  $$("[data-c]").forEach(b=>b.onclick=()=>{
-    const k=b.dataset.c,i=S.crit.findIndex(c=>c.k===k);
-    if(i>-1)S.crit.splice(i,1);else S.crit.push({k,w:2.5,o:CRIT[k].def});
-    save();renderCrit();renderResults();
-  });
-  $("#critList").innerHTML=S.crit.length?`<div class="grp"><div class="grp-l">How much does it matter?</div>${S.crit.map((c,i)=>{
-    const d=CRIT[c.k];
+    ks.map(k=>`<button class="chip ${S.crit.some(c=>c.k===k)?"on":""}" data-c="${k}">${CRIT[k].ic} ${CRIT[k].label}</button>`).join("")}</div></div>`).join("");
+  $$("[data-c]").forEach(b=>b.onclick=()=>{const k=b.dataset.c,i=S.crit.findIndex(c=>c.k===k);if(i>-1)S.crit.splice(i,1);else S.crit.push({k,w:2.5,o:CRIT[k].def});save();renderCrit();renderResults()});
+  $("#critList").innerHTML=S.crit.length?`<div class="grp"><div class="grp-l">How much does it matter?</div>${S.crit.map((c,i)=>{const d=CRIT[c.k];if(!d)return "";
     return `<div class="crit"><div class="crit-top">${d.ic} ${d.label}<button class="x" data-rm="${i}" aria-label="Remove">×</button></div>
       ${d.opts?`<div class="sub">${Object.entries(d.opts).map(([o,l])=>`<button class="${c.o===o?"on":""}" data-o="${i}|${o}">${l}</button>`).join("")}</div>`:""}
       ${c.k==="dist"&&S.homeLat==null?`<p class="hint" style="margin:8px 0 0">↓ Set your home town in step 3.</p>`:""}
@@ -1012,428 +698,208 @@ function renderCrit(){
   $$("[data-w]").forEach(b=>b.onclick=()=>{const[i,w]=b.dataset.w.split("|");S.crit[i].w=+w;save();renderCrit();renderResults()});
   $$("[data-o]").forEach(b=>b.onclick=()=>{const[i,o]=b.dataset.o.split("|");S.crit[i].o=o;save();renderCrit();renderResults()});
 }
-
 function ring(p,size=62){
   const r=size*.42,c=2*Math.PI*r,sw=size*.1;
   return `<div class="ring" style="width:${size}px;height:${size}px"><svg viewBox="0 0 ${size} ${size}" style="width:${size}px;height:${size}px"><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="var(--track)" stroke-width="${sw}"/><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${pctCol(p)}" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-p/100)}"/></svg><b style="font-size:${size*.26}px">${p}%</b></div>`;
 }
-function renderResults(){
-  let list=compute();
-  const n=list.length;
-  if(Q)list=list.filter(r=>(r.u.name+" "+r.u.city).toLowerCase().includes(Q));
-  const sorters={rent:(a,b)=>R(a.u)-R(b.u),dist:(a,b)=>(a.d??1e9)-(b.d??1e9),rep:(a,b)=>b.u.rep-a.u.rep};
-  if(sorters[S.sort])list=[...list].sort(sorters[S.sort]);
-  $("#mobileGo").textContent=`See my matches (${n}) ↓`;
-  const what=S.route==="app"?"apprenticeship"+(n===1?"":"s"):S.route==="both"?"option"+(n===1?"":"s"):"uni"+(n===1?"":"s");
-  $("#resSub").textContent=`${n} ${what} for ${CN()}${S.crit.length?" · ranked by "+S.crit.length+" thing"+(S.crit.length>1?"s":"")+" you care about":""}`;
-  if(!S.course){$("#resSub").textContent="Pick a course to start";$("#resList").innerHTML=`<div class="card empty"><div class="ic">🎓</div><b>Choose your course first</b><p>Pick it in step 1 — it's the only thing you have to fill in.</p></div>`;return}
-  if(!n){$("#resList").innerHTML=S.route==="app"?`<div class="card empty"><div class="ic">💼</div><b>No example apprenticeships listed for ${esc(CN())}</b><p>Search live vacancies — new schemes appear all year.</p><br><div class="row" style="justify-content:center;flex-wrap:wrap"><a class="btn primary sm" href="${LINKS.gov[1]}" target="_blank" rel="noopener">Find an apprenticeship ↗</a><a class="btn ghost sm" href="${LINKS.ucas[1]}" target="_blank" rel="noopener">UCAS ↗</a></div></div>`:`<div class="card empty"><div class="ic">🔍</div><b>Nothing fits those limits</b><p>Try raising the rent or distance limit.</p></div>`;return}
-  if(!list.length){$("#resList").innerHTML=`<div class="card empty"><div class="ic">🔍</div><b>No matches for "${esc(Q)}"</b></div>`;return}
-  const rankOf=Object.fromEntries(compute().map((r,i)=>[r.u.id,i+1]));
-  const banner=S.crit.length?"":`<div class="card banner"><p>Showing every ${S.route==="app"?"apprenticeship":S.route==="both"?"uni and apprenticeship":"uni"} for ${esc(CN())}. Everything else is optional — add what matters in step 2 to rank them for you.</p><button class="btn primary sm" data-quiz>Help me choose</button></div>`;
-  $("#resList").innerHTML=banner+list.map((r,i)=>{
-    const u=r.u,on=S.short.includes(u.id);
-    const top=[...r.parts].sort((a,b)=>b.w-a.w).slice(0,6);
-    if(u.type==="app")return appRes(r,i,rankOf,top,on);
-    const quick=[["🎓",u.rep+"/10 reputation"],["😊",u.sat+"/10 satisfaction"],["🛡️",u.safe+"/10 safety"],["📝",CS(u,S.course).assess]];
-    return `<div class="card res" style="animation-delay:${Math.min(i,8)*30}ms">
-      ${r.pct!=null?ring(r.pct):`<div class="norank">#${rankOf[u.id]}</div>`}
-      <div>
-        <h3><span style="color:var(--muted);font:600 13px Inter,sans-serif">#${rankOf[u.id]}</span> <button data-prof="${u.id}">${esc(u.name)}</button></h3>
-        <div class="meta"><span>📍 ${u.city}</span><span>${SETNAME[u.set]}</span><span>${RL(u)}${u.hv?" ✅":""}</span>${u.h.catered?"<span>Catered option</span>":""}${r.d!=null?`<span>${Math.round(r.d)} mi · ${hrs(trainH(r.d))}</span>`:""}</div>
-        <div class="tags">
-          ${r.gf?`<span class="tag ${r.gf.cls}">🎯 ${r.gf.label} · typical ${offer(u,S.course)}</span>`:""}
-          ${r.miss.map(m=>`<span class="tag warn">Misses: ${m}</span>`).join("")}
-          ${!r.miss.length&&r.pct>=75?`<span class="tag good">Strong fit</span>`:""}
-          ${u.rg?`<span class="tag">Russell Group</span>`:""}
-          ${(()=>{const v=courseCheck(u,S.course);return v.ok===true?`<span class="tag good">${v.t}</span>`:v.ok===false?`<span class="tag amber">${v.t}</span>`:""})()}
-        </div>
-        ${r.pct==null?`<div class="meta" style="margin-top:8px">${quick.map(q=>`<span>${q[0]} ${q[1]}</span>`).join("")}</div>`:""}
-        <div class="reasons">${top.map(p=>`<div class="rz"><div class="t"><span>${CRIT[p.k].ic} ${CRIT[p.k].label}</span><span>${p.v}</span></div><div class="track"><i style="width:${Math.round(p.s*100)}%;background:${color(p.s)}"></i></div></div>`).join("")}</div>
-        <button class="toggle" data-prof="${u.id}">Full profile →</button>
-      </div>
-      <div class="acts"><button class="star ${on?"on":""}" data-s="${u.id}" aria-label="Shortlist">${on?"★":"☆"}</button></div>
-    </div>`}).join("");
-  $$("#resList [data-s]").forEach(b=>b.onclick=()=>toggleShort(b.dataset.s));
-}
-function appRes(r,i,rankOf,top,on){
-  const u=r.u;
+function bars(parts){return `<div class="reasons">${parts.map(p=>`<div class="rz"><div class="t"><span>${CRIT[p.k].ic} ${CRIT[p.k].label}</span><span>${p.v}</span></div><div class="track"><i style="width:${p.s==null?0:Math.round(p.s*100)}%;background:${p.s==null?"transparent":color(p.s)}"></i></div></div>`).join("")}</div>`}
+function uniCard(r,i,rankOf){
+  const u=r.u,on=S.short.includes(u.id),c=CD(u),pr=priceShown(u);
+  const top=[...r.parts].sort((a,b)=>b.w-a.w).slice(0,6);
+  const quick=c?[["😊",c.sat!=null?c.sat+"% satisfied":null],["💰",c.salary?fmt(c.salary)+" grad salary":null],["🔁",c.cont!=null?c.cont+"% carry on":null],["🏅",u.tef?"TEF "+u.tef:null]].filter(q=>q[1]):[];
   return `<div class="card res" style="animation-delay:${Math.min(i,8)*30}ms">
     ${r.pct!=null?ring(r.pct):`<div class="norank">#${rankOf[u.id]}</div>`}
     <div>
       <h3><span style="color:var(--muted);font:600 13px Inter,sans-serif">#${rankOf[u.id]}</span> <button data-prof="${u.id}">${esc(u.name)}</button></h3>
-      <div class="meta"><span>💼 ${esc(u.scheme)}</span></div>
-      <div class="meta"><span>📍 ${u.city}</span><span>💰 £${u.sal[0]}–${u.sal[1]}k</span><span>${u.rel==="day"?"Day release":"Block release"}</span><span>~${u.yrs} yrs</span>${r.d!=null?`<span>${Math.round(r.d)} mi</span>`:""}</div>
-      <div class="tags"><span class="tag apptag">Degree apprenticeship · no fees</span>${(()=>{const v=courseCheck(u,S.course);return `<span class="tag ${v.ok?"good":"amber"}">${v.t}</span>`})()}${r.gf?`<span class="tag ${r.gf.cls}">🎯 ${r.gf.label} · typical ${offer(u,S.course)}</span>`:""}${r.miss.map(m=>`<span class="tag warn">Misses: ${m}</span>`).join("")}${S.course==="PAR"&&u.scheme.includes("work-based")?`<span class="tag amber">For current ambulance staff</span>`:S.course==="PAR"?`<span class="tag amber">Often for current staff</span>`:""}</div>
-      ${top.length?`<div class="reasons">${top.map(p=>`<div class="rz"><div class="t"><span>${CRIT[p.k].ic} ${CRIT[p.k].label}</span><span>${p.v}</span></div><div class="track"><i style="width:${Math.round(p.s*100)}%;background:${color(p.s)}"></i></div></div>`).join("")}</div>`:""}
-      <div class="row" style="margin-top:8px;flex-wrap:wrap"><button class="toggle" style="margin:0" data-prof="${u.id}">Full profile →</button><a class="btn primary sm" href="${applyLinks(u)[0][1]}" target="_blank" rel="noopener">Apply ↗</a></div>
+      <div class="meta"><span>📍 ${esc(u.city)}</span>${c?`<span>📘 ${esc(c.title)}</span>`:""}<span>🛏️ ${pr?pr.lab+" ✅":"halls price not published"}</span>${r.d!=null?`<span>${Math.round(r.d)} mi</span>`:""}</div>
+      <div class="tags">
+        ${r.gf?`<span class="tag ${r.gf.cls}">🎯 ${r.gf.label} · entrants ≈ ${grades(c.tariff)}</span>`:c&&c.tariff?`<span class="tag">Entrants ≈ ${grades(c.tariff)}</span>`:""}
+        ${r.miss.map(m=>`<span class="tag warn">Misses: ${m}</span>`).join("")}
+        ${!r.miss.length&&r.pct>=75?`<span class="tag good">Strong fit</span>`:""}
+        ${u.rg?`<span class="tag">Russell Group</span>`:""}
+      </div>
+      ${r.pct==null&&quick.length?`<div class="meta" style="margin-top:8px">${quick.map(q=>`<span>${q[0]} ${q[1]}</span>`).join("")}</div>`:""}
+      ${top.length?bars(top):""}
+      <button class="toggle" data-prof="${u.id}">Full profile →</button>
     </div>
     <div class="acts"><button class="star ${on?"on":""}" data-s="${u.id}" aria-label="Shortlist">${on?"★":"☆"}</button></div>
   </div>`;
 }
-function openAppProfile(u){
-  const x=ctx(u),r=compute({...S,route:"both"},false).find(z=>z.u.id===u.id),m=moneyLine(u);
-  modal(`
-    <div class="mhead">${r&&r.pct!=null?ring(r.pct,58):""}<div style="flex:1"><div class="grp-l">Degree apprenticeship</div><h2>${esc(u.name)}</h2><div class="meta"><span>💼 ${esc(u.scheme)}</span><span>📍 ${u.city}</span></div></div><button class="iconbtn" onclick="closeModal()" aria-label="Close">✕</button></div>
-    <div class="row" style="flex-wrap:wrap">${profStar(u.id)}</div>
-    <div class="msec"><h4>📝 Where to sign up</h4>
-      <div class="applybox">${applyLinks(u).map((l,i)=>`<a class="btn ${i?"ghost":"primary"} sm" href="${l[1]}" target="_blank" rel="noopener">${esc(l[0])}</a>`).join("")}</div>
-      <p class="hint" style="margin:8px 0 0">Apply directly to the employer — not through your 5 UCAS choices. Most schemes open in autumn–spring for the next September; set alerts on Find an apprenticeship${u.nhs?" and NHS Jobs":""}.</p></div>
-    <div class="msec"><h4>The scheme</h4><div class="statgrid">
-      <div class="stat"><small>Salary (rough)</small><b>£${u.sal[0]}–${u.sal[1]}k</b></div><div class="stat"><small>Tuition fees</small><b>Paid by employer</b></div>
-      <div class="stat"><small>Length</small><b>~${u.yrs} years</b></div><div class="stat"><small>Study pattern</small><b>${RELEASE[u.rel]}</b></div>
-      <div class="stat"><small>Sector</small><b>${esc(u.sector)}</b></div><div class="stat"><small>Typical ask</small><b>~${offer(u,S.course)}${x.gf?" · "+x.gf.label:""}</b></div></div>
-      ${S.course==="PAR"?`<p class="hint" style="margin:0">Many paramedic apprenticeships are offered to people already working for the ambulance service (e.g. Ambulance Care Assistant, EMT). Check whether this one is open to new starters.</p>`:""}</div>
-    <div class="msec"><h4>Money per year (rough)</h4><div class="statgrid">
-      <div class="stat"><small>Take-home pay</small><b style="color:var(--green)">${fmt(m.income)}</b></div><div class="stat"><small>Private rent (52 wks)</small><b>${fmt(m.yr)}</b></div>
-      <div class="stat"><small>Food, travel, fun</small><b>${fmt(m.liv)}</b></div><div class="stat"><small>Trips home</small><b>${m.tc==null?"Set home":fmt(m.tr)}</b></div>
-      <div class="stat"><small>Left over</small><b style="color:${m.left>=0?"var(--green)":"var(--red)"}">${fmt(m.left)}</b></div></div></div>
-    <div class="msec"><h4>Area</h4><div class="statgrid"><div class="stat"><small>From home</small><b>${x.d==null?"Set home town":Math.round(x.d)+" mi · "+hrs(trainH(x.d))}</b></div><div class="stat"><small>Cost of living</small><b>${lvl(u.col,["Pricey","Average","Cheap"])}</b></div><div class="stat"><small>Safety</small><b>${u.safe}/10</b></div>
-      <div class="stat"><small>ISoc nearby uni</small><b>${u.f.isoc}</b></div><div class="stat"><small>Prayer space</small><b>${u.f.prayer}</b></div><div class="stat"><small>Halal food</small><b>${u.f.halal}</b></div></div></div>
-    <div class="msec"><h4>What they look for in your application</h4><ul class="bul">${psFor(u,S.course).map(l=>`<li>${esc(l)}</li>`).join("")}</ul></div>
-    ${sourcesBox(u)}`);
+function appCard(r,i,rankOf){
+  const u=r.u,on=S.short.includes(u.id);
+  return `<div class="card res" style="animation-delay:${Math.min(i,8)*30}ms">
+    ${r.pct!=null?ring(r.pct):`<div class="norank">#${rankOf[u.id]}</div>`}
+    <div>
+      <h3><span style="color:var(--muted);font:600 13px Inter,sans-serif">#${rankOf[u.id]}</span> <button data-prof="${u.id}">${esc(u.name)}</button></h3>
+      <div class="meta"><span>💼 ${esc(u.scheme)}</span><span>📍 ${esc(u.city)}</span>${r.d!=null?`<span>${Math.round(r.d)} mi</span>`:""}</div>
+      <div class="tags"><span class="tag apptag">Degree apprenticeship · no fees</span><span class="tag good">✅ On the HCPC register</span><span class="tag amber">Often for current staff</span></div>
+      ${r.parts.length?bars(r.parts):""}
+      <div class="row" style="margin-top:8px;flex-wrap:wrap"><button class="toggle" style="margin:0" data-prof="${u.id}">Full profile →</button><a class="btn primary sm" href="${LINKS.nhs[1]}" target="_blank" rel="noopener">Find vacancies ↗</a></div>
+    </div>
+    <div class="acts"><button class="star ${on?"on":""}" data-s="${u.id}" aria-label="Shortlist">${on?"★":"☆"}</button></div>
+  </div>`;
 }
-function sourcesBox(u){
-  const v=courseCheck(u,S.course),src=v.s?SRC[v.s]:null;
-  const rows=[[u.type==="app"?"Programme":"Course offered",v.t,src]];
-  if(u.type!=="app")rows.push(["Tuition fees","✅ Checked",SRC.fees]);
-  if(u.hv)rows.push(["Halls prices",`${u.hv.confidence==="high"?"✅":"🟡"} ${Object.keys(u.hv.rooms||{}).length?"Cheapest price per room type":"Starting price"} from the uni's published fees${u.hv.year?" ("+u.hv.year+")":""}${u.hv.from?" · rooms from £"+u.hv.from+"/wk":""}${u.hv.note?" · "+esc(u.hv.note):""}${Object.keys(u.hv.rooms||{}).length<4?" · other room types are estimates":""}`,["Source",u.hv.source,u.hv.checked]]);
-  rows.push([u.type==="app"?"Salary, location, study pattern":(u.hv?"Scores, offers, course structure":"Rent, rooms, scores, offers, course structure"),"Estimate — not yet checked",null],["Travel costs & distances","Calculated from straight-line distance",null]);
-  return `<div class="msec"><h4>Where this info comes from · data version ${DATA_VERSION}</h4>
-    ${rows.map(r=>`<div class="odrow" style="padding:7px 0"><div style="flex:1"><b style="font-size:13.5px">${r[0]}</b><div class="hint" style="margin:0">${r[1]}${r[2]?` · <a href="${r[2][1]}" target="_blank" rel="noopener">${esc(r[2][0])}</a> (checked ${r[2][2]})`:""}</div></div></div>`).join("")}
-    <div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="btn ghost sm" onclick="reportMistake('${u.id}')">🚩 Report a mistake</button><button class="btn ghost sm" onclick="openData()">How accurate is Quad?</button></div></div>`;
-}
-function reportMistake(id){
-  const u=uni(id);
-  modal(`<div class="mhead"><h2>Report a mistake</h2><button class="iconbtn" onclick="closeModal()">✕</button></div>
-    <p class="hint">What's wrong about ${esc(u.name)}? Add a link to the correct info if you have one.</p>
-    <textarea id="rmText" class="field" rows="5" placeholder="e.g. Studio rent is actually £210/wk — link…"></textarea>
-    <div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn primary sm" id="rmSend">Send</button></div>`);
-  $("#rmSend").onclick=()=>{
-    const body=`Quad data report (${DATA_VERSION})\nItem: ${u.name} [${u.id}]\nCourse: ${CN()}\n\n${$("#rmText").value}`;
-    if(REPORT_EMAIL){location.href="mailto:"+REPORT_EMAIL+"?subject="+encodeURIComponent("Quad mistake: "+u.name)+"&body="+encodeURIComponent(body);closeModal();toast("Thanks! Opening your email…")}
-    else{(navigator.clipboard?navigator.clipboard.writeText(body):Promise.reject()).then(()=>{closeModal();toast("Report copied — thanks!")}).catch(()=>{closeModal();toast("Thanks for the report")})}
-  };
-}
-function openData(){
-  const rows=[
-    ["🟡","Which unis run each course","Some health courses checked against official registers (24 Oct 2026); most subjects are estimates — to be replaced with the Discover Uni dataset","Partly checked"],
-    ["✅","Tuition fee cap (England)","£9,790 for 2026/27 · £10,050 for 2027/28","Checked 24 Oct 2026"],
-    [HALLS_N?"✅":"⚠️","Halls prices & room types",HALLS_N?`Collected from ${HALLS_N} unis' own websites by Quad's monthly checker — others are estimates`:"Estimate — Quad's monthly checker will collect these from each uni's website once the app is hosted",HALLS_N?"Updated "+DATA_VERSION:"Not yet checked"],
-    ["⚠️","Satisfaction, reputation, graduate prospects","Estimate — to be replaced with NSS & Discover Uni data","Not yet checked"],
-    ["⚠️","Typical offers","Estimate — check UCAS / the uni","Not yet checked"],
-    ["⚠️","Course structure, faith & food, safety, nightlife","Estimate","Not yet checked"],
-    ["🟡","Degree apprenticeships","Some checked against official registers; others are example employers — always check the live advert","Partly checked"],
-    ["🔁","Live apprenticeship vacancies","Use the links to Find an apprenticeship, UCAS & NHS Jobs — always current","Live"]
-  ];
-  modal(`<div class="mhead"><div style="flex:1"><div class="grp-l">Data version ${DATA_VERSION}</div><h2>How accurate is Quad?</h2></div><button class="iconbtn" onclick="closeModal()">✕</button></div>
-    <p class="hint">Anything marked ✅ has been checked against an official source. Anything marked ⚠️ is a rough estimate to help you compare — always check the uni or employer before you apply.</p>
-    ${rows.map(r=>`<div class="odrow"><div style="font-size:18px;width:26px">${r[0]}</div><div style="flex:1"><b style="font-size:14px">${r[1]}</b><div class="hint" style="margin:0">${r[2]} · ${r[3]}</div></div></div>`).join("")}
-    <div class="msec"><h4>Official sources</h4><div class="applybox">${Object.values(SRC).map(x=>`<a class="btn ghost sm" href="${x[1]}" target="_blank" rel="noopener">${esc(x[0].split(" —")[0])} ↗</a>`).join("")}</div></div>`);
+function renderResults(){
+  if(!S.course){$("#resSub").textContent="Pick a course to start";$("#resList").innerHTML=`<div class="card empty"><div class="ic">🎓</div><b>Choose your course first</b><p>Pick it in step 1 — it's the only thing you have to fill in.</p></div>`;$("#mobileGo").textContent="See my matches ↓";return}
+  let list=compute();const n=list.length;
+  if(Q)list=list.filter(r=>(r.u.name+" "+r.u.city).toLowerCase().includes(Q));
+  const sorters={rent:(a,b)=>((priceShown(a.u)||{}).p??1e9)-((priceShown(b.u)||{}).p??1e9),dist:(a,b)=>(a.d??1e9)-(b.d??1e9),sat:(a,b)=>((CD(b.u)||{}).sat??-1)-((CD(a.u)||{}).sat??-1),sal:(a,b)=>((CD(b.u)||{}).salary??-1)-((CD(a.u)||{}).salary??-1)};
+  if(sorters[S.sort])list=[...list].sort(sorters[S.sort]);
+  const what=S.route==="app"?"apprenticeship"+(n===1?"":"s"):S.route==="both"?"option"+(n===1?"":"s"):"uni"+(n===1?"":"s");
+  $("#mobileGo").textContent=`See my matches (${n}) ↓`;
+  $("#resSub").textContent=`${n} ${what} for ${CN()}${S.crit.length?" · ranked by "+S.crit.length+" thing"+(S.crit.length>1?"s":"")+" you care about":""}`;
+  if(!n){$("#resList").innerHTML=S.route==="app"?`<div class="card empty"><div class="ic">💼</div><b>No registered degree apprenticeships listed for ${esc(CN())}</b><p>Employers advertise new ones all year — search live vacancies.</p><br><div class="row" style="justify-content:center;flex-wrap:wrap"><a class="btn primary sm" href="${LINKS.gov[1]}" target="_blank" rel="noopener">Find an apprenticeship ↗</a><a class="btn ghost sm" href="${LINKS.ucas[1]}" target="_blank" rel="noopener">UCAS ↗</a></div></div>`:`<div class="card empty"><div class="ic">🔍</div><b>Nothing fits those limits</b><p>Try raising the price or distance limit.</p></div>`;return}
+  if(!list.length){$("#resList").innerHTML=`<div class="card empty"><div class="ic">🔍</div><b>No matches for "${esc(Q)}"</b></div>`;return}
+  const rankOf=Object.fromEntries(compute().map((r,i)=>[r.u.id,i+1]));
+  const banner=S.crit.length?"":`<div class="card banner"><p>Showing every ${S.route==="app"?"apprenticeship":S.route==="both"?"uni and apprenticeship":"uni"} for ${esc(CN())}. Everything else is optional — add what matters in step 2 to rank them for you.</p><button class="btn primary sm" data-quiz>Help me choose</button></div>`;
+  $("#resList").innerHTML=banner+list.map((r,i)=>r.u.type==="app"?appCard(r,i,rankOf):uniCard(r,i,rankOf)).join("");
+  $$("#resList [data-s]").forEach(b=>b.onclick=()=>toggleShort(b.dataset.s));
 }
 function toggleShort(id){
   const i=S.short.indexOf(id);
-  if(i>-1){S.short.splice(i,1);S.cmp=S.cmp.filter(x=>x!==id);toast("Removed from shortlist")}
-  else{S.short.push(id);toast("Added to shortlist ★")}
-  save();updCount();rerender();
-  if($("#modalRoot").innerHTML&&$("#profStar"))$("#profStar").outerHTML=profStar(id);
+  if(i>-1){S.short.splice(i,1);S.cmp=S.cmp.filter(x=>x!==id);toast("Removed from shortlist")}else{S.short.push(id);toast("Added to shortlist ★")}
+  save();updCount();rerender();if($("#profStar"))$("#profStar").outerHTML=profStar(id);
 }
 function updCount(){$("#slCount").textContent=S.short.length}
-function renderRoom(){
-  $("#roomPick").innerHTML=Object.entries(ROOMS).map(([k,l])=>`<button class="${S.room===k?"on":""}" data-room="${k}">${l}</button>`).join("");
-  $$("[data-room]").forEach(b=>b.onclick=()=>{S.room=b.dataset.room;save();renderRoom();renderResults();toast(ROOMS[S.room]+" prices")});
-}
-const ROUTES={uni:"🎓 University",app:"💼 Apprenticeship",both:"Both"};
-function renderRoute(){
-  $("#routePick").innerHTML=Object.entries(ROUTES).map(([k,l])=>`<button class="${S.route===k?"on":""}" data-route="${k}">${l}</button>`).join("");
-  $$("[data-route]").forEach(b=>b.onclick=()=>{S.route=b.dataset.route;save();renderRoute();renderCrit();renderResults()});
-  $("#routeHint").innerHTML=S.route==="uni"?"":`Degree apprenticeships: you work for an employer, get paid and get a degree with no tuition fees. Listings are <b>example employers</b> — schemes open and close each year. <a href="${LINKS.gov[1]}" target="_blank" rel="noopener">Search live vacancies ↗</a>`;
-}
-function renderMatch(){
-  renderRoute();renderRoom();
-  courseSel.value=S.course;$("#grades").value=S.grades;gradeLabel();fillHome();
-  $("#maxRent").value=S.maxRent;$("#maxDist").value=S.maxDist;$("#sort").value=S.sort;$("#search").value=Q;limLabels();
-  renderCrit();renderResults();
+function renderMatch(){renderRoute();renderRoom();courseSel.value=S.course;$("#grades").value=S.grades;gradeLabel();fillHome();
+  $("#maxRent").value=S.maxRent;$("#maxDist").value=S.maxDist;$("#sort").value=S.sort;$("#search").value=Q;limLabels();renderCrit();renderResults()}
+
+/* =========================================================
+   MONEY (checked halls price + tuition fee; your own spending)
+   ========================================================= */
+function moneyLine(u){
+  const pr=priceShown(u),halls=pr?pr.p*S.weeks:null,f=u.type==="app"?0:fee(u),spend=(parseFloat(S.spend)||0)*S.weeks,have=parseFloat(S.money);
+  const tot=(halls||0)+(f||0)+spend;
+  return {halls,fee:f,spend,tot,known:halls!=null&&f!=null,left:isNaN(have)?null:have-tot};
 }
 
 /* =========================================================
-   MODALS
+   MODALS: profile, sources, report, data page
    ========================================================= */
-function modal(html){
-  $("#modalRoot").innerHTML=`<div class="ov" id="ov"><div class="card modal" role="dialog">${html}</div></div>`;
-  $("#ov").onclick=e=>{if(e.target.id==="ov")closeModal()};
-  document.body.style.overflow="hidden";
-}
+function modal(html){$("#modalRoot").innerHTML=`<div class="ov" id="ov"><div class="card modal" role="dialog">${html}</div></div>`;$("#ov").onclick=e=>{if(e.target.id==="ov")closeModal()};document.body.style.overflow="hidden"}
 function closeModal(){$("#modalRoot").innerHTML="";document.body.style.overflow=""}
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
-
 function profStar(id){const on=S.short.includes(id);return `<button id="profStar" class="btn ${on?"ghost":"primary"} sm" onclick="toggleShort('${id}')">${on?"★ Shortlisted":"☆ Add to shortlist"}</button>`}
-function moneyLine(u){
-  if(u.type==="app"){const yr=u.prent*52,liv=livingWk(u)*52,d=dist(u),tc=tripCost(d,S.mode),tr=tc==null?0:tc*S.trips*3,inc=takeHome((u.sal[0]+u.sal[1])/2),have=parseFloat(S.money)||0;
-    return {yr,liv,tr,tc,income:inc,tot:yr+liv+tr,left:have+inc-yr-liv-tr}}
-  const yr=(R(u)<999?R(u):u.h.rooms.wet)*S.weeks,liv=livingWk(u)*S.weeks,tot=yr+liv,have=parseFloat(S.money);
-  const d=dist(u),tc=tripCost(d,S.mode),tr=tc==null?0:tc*S.trips*3;
-  return {yr,liv,tr,tc,tot:tot+tr,left:isNaN(have)?null:have-tot-tr};
-}
-function fmt(n){return "£"+Math.round(n).toLocaleString("en-GB")}
+const stat=(a,b)=>`<div class="stat"><small>${a}</small><b>${b}</b></div>`;
+const PSFIT={
+ MED:["Work experience or volunteering in a caring role, and what you learned from it","Understanding of NHS values and what being a doctor involves","Teamwork, empathy and leadership examples","Wider reading beyond your A-levels","Most medical schools also need an admissions test (UCAT)"],
+ NUR:["Caring experience — paid, voluntary or personal","The NHS values and why this branch of nursing","Resilience, communication and teamwork with examples"],
+ PAR:["Experience of care or helping the public — first aid, volunteering, care work","Understanding of the role beyond emergencies","Calm under pressure, communication and teamwork — with examples","A full driving licence is often needed for placements"],
+ LAW:["Why law — a specific case, issue or experience, not 'I like arguing'","Reading around: law in the news, books, court visits","Analytical writing and debating with examples"],
+ CS:["Projects you've built — apps, games, websites, scripts","Maths and problem-solving beyond the syllabus","What area of computing excites you and why"]
+};
+const PSDEF=["Why this subject — a specific spark, not 'I've always loved it'","Reading, courses or projects beyond your A-levels","Skills from work, volunteering or societies, tied back to the course","What you want to do with the degree"];
+function psFor(u,c){if(["NCH","NMH","MID","ODP"].includes(c))c="NUR";if(["DEN","VET"].includes(c))c="MED";if(["SE","DS","AI","CYB"].includes(c))c="CS";const l=[...(PSFIT[c]||PSDEF)];
+  if(u.type==="app")l.unshift("Why an apprenticeship: learning on the job, balancing work & study","Expect online tests, interviews and an assessment day");return l}
 function openProfile(id){
-  if(uni(id).type==="app")return openAppProfile(uni(id));
-  const u=uni(id),x=ctx(u),r=compute(S,false).find(z=>z.u.id===id);
-  const offers=u.courses.includes(S.course);
-  const m=moneyLine(u);
-  const st=[["Your room",RL(u)],["Cost of living",lvl(u.col,["Pricey","Average","Cheap"])],["Setting",SETNAME[u.set]],
-    ["From home",x.d==null?"Set home town":Math.round(x.d)+" mi"],["Train home",x.d==null?"—":hrs(trainH(x.d))+" (rough)"],["Size","~"+u.size+"k students"],
-    ["Reputation",u.rep+"/10"],["Satisfaction",u.sat+"/10"],["Graduate prospects",u.grad+"/10"],
-    ["Nightlife",u.night+"/10"],["Green space",u.green+"/10"],["Sport",u.sport+"/10"],
-    ["Diversity",u.div+"/10"],["Placement year",u.pl?"Widely offered":"Rare"],["Study abroad",u.ab?"Widely offered":"Limited"]];
-  const courseList=u.courses.map(c=>COURSES[c]).sort();
-  const link="https://www.google.com/search?q="+encodeURIComponent(u.name+" "+CN()+" undergraduate course");
+  const u=uni(id);if(!u)return;const x=ctx(u),r=compute({...S,route:"both"},false).find(z=>z.u.id===id),c=CD(u),h=u.halls,m=moneyLine(u);
+  if(u.type==="app"){modal(`
+    <div class="mhead"><div style="flex:1"><div class="grp-l">Degree apprenticeship</div><h2>${esc(u.name)}</h2><div class="meta"><span>💼 ${esc(u.scheme)}</span><span>📍 ${esc(u.city)}</span></div></div><button class="iconbtn" onclick="closeModal()" aria-label="Close">✕</button></div>
+    <div class="row" style="flex-wrap:wrap">${profStar(u.id)}</div>
+    <div class="msec"><h4>📝 Where to sign up</h4><div class="applybox">${[LINKS.nhs,LINKS.gov,LINKS.ucas].map((l,i)=>`<a class="btn ${i?"ghost":"primary"} sm" href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join("")}</div>
+      <p class="hint" style="margin:8px 0 0">You apply to the employer, not through your 5 UCAS choices. Many health apprenticeships are offered to people already working in the NHS — check whether a vacancy is open to new starters.</p></div>
+    <div class="msec"><h4>The programme</h4><div class="statgrid">${stat("Tuition fees","Paid by employer")}${stat("From home",x.d==null?"Set home town":Math.round(x.d)+" mi")}${stat("Register","✅ HCPC approved")}</div></div>
+    <div class="msec"><h4>What they look for</h4><ul class="bul">${psFor(u,S.course).map(l=>`<li>${esc(l)}</li>`).join("")}</ul></div>
+    ${sourcesBox(u)}`);return}
+  const hallsRows=h?Object.entries(ROOMS).map(([k,l])=>stat(l,h.rooms&&h.rooms[k]?`£${h.rooms[k]}/wk`:`<span class="nodata">Not listed</span>`)).join("")+stat("Catered option",h.catered?"Yes"+(h.cateredPrice?` · from £${h.cateredPrice}/wk`:""):"Not listed")+(h.from?stat("Cheapest room",`£${h.from}/wk`):""):"";
   modal(`
-    <div class="mhead">${r&&S.crit.length?ring(r.pct,58):""}<div style="flex:1"><h2>${esc(u.name)}</h2><div class="meta"><span>📍 ${u.city}</span>${u.rg?"<span>Russell Group</span>":""}</div></div><button class="iconbtn" onclick="closeModal()" aria-label="Close">✕</button></div>
-    <div class="row" style="flex-wrap:wrap">${profStar(id)}<a class="btn ghost sm" href="${link}" target="_blank" rel="noopener">Course page ↗</a></div>
-    <div class="msec"><h4>${esc(CN())}</h4>
-      ${offers?`<div class="tags"><span class="tag">Typical offer ≈ ${offer(u,S.course)}</span>${x.gf?`<span class="tag ${x.gf.cls}">🎯 ${x.gf.label} for your ${esc(S.grades.toUpperCase())}</span>`:`<span class="tag">Add predicted grades in Match for a grade check</span>`}</div>
-      ${HEALTH.includes(S.course)?`<p class="hint" style="margin:8px 0 0">Health courses usually include an interview, clinical placements built into the course and extra checks (DBS, occupational health). Check the uni's page for its exact process.</p>`:""}`
-      :`<p class="hint">This uni doesn't appear to run ${esc(CN())}.</p>`}
-    </div>
-    ${r&&r.parts.length?`<div class="msec"><h4>How it scores for you</h4><div class="reasons">${r.parts.map(p=>`<div class="rz"><div class="t"><span>${CRIT[p.k].ic} ${CRIT[p.k].label}</span><span>${p.v}</span></div><div class="track"><i style="width:${Math.round(p.s*100)}%;background:${color(p.s)}"></i></div></div>`).join("")}</div></div>`:""}
-    <div class="msec"><h4>At a glance</h4><div class="statgrid">${st.map(([a,b])=>`<div class="stat"><small>${a}</small><b>${b}</b></div>`).join("")}</div></div>
-    <div class="msec"><h4>Accommodation · first-year halls</h4>
-      <div class="statgrid">${Object.entries(ROOMS).map(([k,l])=>`<div class="stat" style="${k===S.room?"outline:2px solid var(--green)":""}"><small>${l}</small><b>${u.h.rooms[k]==null?"Not offered":"£"+u.h.rooms[k]+"/wk"}</b></div>`).join("")}
-      <div class="stat"><small>Bathrooms</small><b>${u.h.style}</b></div><div class="stat"><small>Catering</small><b>${u.h.catered?"Catered & self-catered":"Self-catered only"}</b></div>
-      <div class="stat"><small>Flatmates</small><b>~${u.h.flat} per flat</b></div><div class="stat"><small>First-year room</small><b>${u.h.guar?"Guaranteed*":"Not guaranteed"}</b></div>
-      <div class="stat"><small>Walk to campus</small><b>~${u.h.walk} min</b></div><div class="stat"><small>Bills</small><b>${u.h.bills?"Included":"Extra"}</b></div>
-      <div class="stat"><small>Typical contract</small><b>${u.h.contract} weeks</b></div></div>
-      <p class="hint" style="margin:0">*Usually if you firm the uni and apply for halls by the deadline. Years 2–3 most students rent privately — often cheaper.</p>
-    </div>
-    <div class="msec"><h4>Money per year (rough)</h4>
-      <div class="statgrid"><div class="stat"><small>${ROOMS[S.room]} (${S.weeks} wks)</small><b>${fmt(m.yr)}</b></div><div class="stat"><small>Tuition fee (student loan) ✅</small><b style="font-size:12.5px">${feeLine(u)}</b></div><div class="stat"><small>Food, local travel, fun</small><b>${fmt(m.liv)}</b></div><div class="stat"><small>Trips home (${S.trips}/term)</small><b>${m.tc==null?"Set home":fmt(m.tr)}</b></div>
-      <div class="stat"><small>${m.left==null?"Total":"Left over"}</small><b style="color:${m.left==null?"inherit":m.left>=0?"var(--green)":"var(--red)"}">${m.left==null?fmt(m.tot):fmt(m.left)}</b></div></div>
-      ${m.left==null?`<p class="hint">Add your yearly budget on the Shortlist page to see what's left.</p>`:""}
-    </div>
-    ${offers?(()=>{const cs=CS(u,S.course);return `<div class="msec"><h4>Course structure · ${esc(CN())}</h4><div class="statgrid">
-      <div class="stat"><small>Assessment</small><b>${cs.assess}</b></div><div class="stat"><small>Interview</small><b>${cs.intv}</b></div>
-      <div class="stat"><small>Teaching hours</small><b>~${cs.contact} hrs/wk</b></div><div class="stat"><small>Placement hours</small><b>${cs.phLab}</b></div>
-      <div class="stat"><small>Placement year</small><b>${u.pl&&!HEALTH.includes(S.course)?"Optional":HEALTH.includes(S.course)?"Built in":"Rare"}</b></div><div class="stat"><small>Study abroad</small><b>${u.ab?"Available":"Limited"}</b></div></div></div>`})():""}
-    <div class="msec"><h4>Faith &amp; food</h4><div class="statgrid"><div class="stat"><small>ISoc</small><b>${u.f.isoc}</b></div><div class="stat"><small>Prayer space</small><b>${u.f.prayer}</b></div><div class="stat"><small>Halal food</small><b>${u.f.halal}</b></div></div></div>
-    <div class="msec"><h4>Area</h4><div class="statgrid"><div class="stat"><small>Safety</small><b>${u.safe}/10</b></div><div class="stat"><small>Student-friendly</small><b>${u.stu}/10</b></div><div class="stat"><small>Diversity</small><b>${u.div}/10</b></div></div></div>
-    <div class="msec"><h4>Getting home</h4>${x.d==null?`<p class="hint" style="margin:0">Set your home town in Match to see travel costs.</p>`:`<div class="statgrid"><div class="stat"><small>Train return (railcard)</small><b>~£${tripCost(x.d,"train")}</b></div><div class="stat"><small>Coach return</small><b>~£${tripCost(x.d,"coach")}</b></div><div class="stat"><small>Journey</small><b>${hrs(trainH(x.d))} by train</b></div></div>`}</div>
-    ${offers?`<div class="msec"><h4>Personal statement fit — what they look for</h4><ul class="bul">${psFor(u,S.course).map(l=>`<li>${esc(l)}</li>`).join("")}</ul></div>`:""}
-    <div class="msec"><h4>Other courses here</h4><p class="hint" style="margin:0">${courseList.join(" · ")}</p></div>
+    <div class="mhead">${r&&r.pct!=null?ring(r.pct,58):""}<div style="flex:1"><h2>${esc(u.name)}</h2><div class="meta"><span>📍 ${esc(u.city)}</span>${u.rg?"<span>Russell Group</span>":""}${u.tef?`<span>🏅 TEF ${u.tef}</span>`:""}</div></div><button class="iconbtn" onclick="closeModal()" aria-label="Close">✕</button></div>
+    <div class="row" style="flex-wrap:wrap">${profStar(id)}${c&&c.url?`<a class="btn ghost sm" href="${esc(c.url)}" target="_blank" rel="noopener">Official course page ↗</a>`:""}${(h&&h.source)||u.accomUrl?`<a class="btn ghost sm" href="${esc((h&&h.source)||u.accomUrl)}" target="_blank" rel="noopener">Accommodation ↗</a>`:""}</div>
+    <div class="msec"><h4>📊 ${esc(CN())} · official data</h4>
+      ${c?`<p class="hint" style="margin:0 0 8px">${esc(c.title)}${c.n>1?` and ${c.n-1} related course${c.n>2?"s":""}`:""}</p><div class="statgrid">
+        ${stat("Student satisfaction",c.sat!=null?c.sat+"%":NODATA)}${stat("Entrants' grades (typical)",c.tariff?`≈ ${grades(c.tariff)} · ${c.tariff} pts`:NODATA)}${stat("Your grades",x.gf?x.gf.label:parseGrades(S.grades)?NODATA:"Add in Match")}
+        ${stat("Carry on after year 1",c.cont!=null?c.cont+"%":NODATA)}${stat("Graduate salary (median)",c.salary?fmt(c.salary):NODATA)}${stat("In work or study",c.work!=null?c.work+"%":NODATA)}
+        ${stat("Placement year option",c.placement?"Yes":"No")}${stat("Year abroad option",c.abroad?"Yes":"No")}${stat("Accredited",c.accredited?"Yes":"No")}</div>
+        <p class="src">Satisfaction = National Student Survey (final-year students, last two years). Salary and jobs = graduates 15 months after finishing. Grades = UCAS points of recent entrants, so real offers can differ.</p>`
+       :`<p class="hint">This uni doesn't appear to run ${esc(CN())} as a full-time degree in the official data.</p>`}</div>
+    ${r&&r.parts.length?`<div class="msec"><h4>How it scores for you</h4>${bars(r.parts)}</div>`:""}
+    <div class="msec"><h4>🛏️ First-year halls</h4>${h?`<div class="statgrid">${hallsRows}</div><p class="src">Cheapest price per room type from the uni's published fees${h.year?" ("+esc(h.year)+")":""}${h.note?" · "+esc(h.note):""}.</p>`:`<p class="hint" style="margin:0">This uni doesn't publish its prices in a way we could check. ${u.accomUrl?`See <a href="${esc(u.accomUrl)}" target="_blank" rel="noopener">its accommodation page ↗</a>.`:""}</p>`}</div>
+    <div class="msec"><h4>💷 Money per year</h4><div class="statgrid">
+      ${stat(`Halls (${S.weeks} wks)`,m.halls!=null?fmt(m.halls):NODATA)}${stat("Tuition fee (student loan)",`<span style="font-size:12.5px">${feeLine(u)}</span>`)}${stat("Your own spending",S.spend?fmt(m.spend):`<span class="nodata">Add on Shortlist</span>`)}</div></div>
+    <div class="msec"><h4>✍️ Personal statement tips for ${esc(CN())}</h4><ul class="bul">${psFor(u,S.course).map(l=>`<li>${esc(l)}</li>`).join("")}</ul></div>
     ${sourcesBox(u)}`);
 }
+function sourcesBox(u){
+  const rows=[];
+  if(u.type==="app")rows.push(["Programme","✅ HCPC register of approved programmes",LINKS.hcpc[1]]);
+  else{
+    rows.push(["Course, satisfaction, grades, outcomes, TEF, location",`✅ Discover Uni dataset, published ${duDate}`,"https://www.hesa.ac.uk/support/tools-and-downloads/unistats"]);
+    rows.push(["Halls prices",u.halls?`✅ ${esc(u.halls.method==="automatic"?"Collected automatically":"Checked")} from the uni's fee page${u.halls.checked?" ("+esc(u.halls.checked)+")":""}`:"Not published by the uni",u.halls&&u.halls.source]);
+    rows.push(["Tuition fees","✅ Government fee cap","https://www.timeshighereducation.com/node/740241"]);
+  }
+  rows.push(["Distance","Straight-line distance from your home town",null]);
+  return `<div class="msec"><h4>Where this comes from</h4>${rows.map(r=>`<div class="odrow" style="padding:7px 0"><div style="flex:1"><b style="font-size:13.5px">${r[0]}</b><div class="hint" style="margin:0">${r[1]}${r[2]?` · <a href="${esc(r[2])}" target="_blank" rel="noopener">source ↗</a>`:""}</div></div></div>`).join("")}
+    <div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="btn ghost sm" onclick="reportMistake('${u.id}')">🚩 Report a mistake</button><button class="btn ghost sm" onclick="openData()">About the data</button></div></div>`;
+}
+function reportMistake(id){
+  const u=uni(id);
+  modal(`<div class="mhead"><h2>Report a mistake</h2><button class="iconbtn" onclick="closeModal()">✕</button></div><p class="hint">What's wrong about ${esc(u.name)}? Add a link to the correct info if you have one.</p>
+    <textarea id="rmText" class="field" rows="5" placeholder="e.g. En-suite is now £210/wk — link…"></textarea><div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn primary sm" id="rmSend">Send</button></div>`);
+  $("#rmSend").onclick=()=>{const body=`Quad data report\nItem: ${u.name} [${u.id}]\nCourse: ${CN()}\n\n${$("#rmText").value}`;
+    if(REPORT_EMAIL){location.href="mailto:"+REPORT_EMAIL+"?subject="+encodeURIComponent("Quad mistake: "+u.name)+"&body="+encodeURIComponent(body);closeModal();toast("Thanks! Opening your email…")}
+    else{(navigator.clipboard?navigator.clipboard.writeText(body):Promise.reject()).then(()=>{closeModal();toast("Report copied — thanks!")}).catch(()=>{closeModal();toast("Thanks for the report")})}};
+}
+function openData(){
+  const rows=[
+    ["Which unis run each course","Discover Uni dataset — every full-time first degree at each uni"],
+    ["Student satisfaction","National Student Survey, final-year students (average of the 7 survey themes)"],
+    ["Entrants' grades","UCAS tariff points of recent entrants (Discover Uni)"],
+    ["Carry on after year 1","Continuation data (Discover Uni)"],
+    ["Graduate salary & jobs","Graduate Outcomes survey, 15 months after finishing (Discover Uni)"],
+    ["Placement year, year abroad, accreditation","Course records (Discover Uni)"],
+    ["Teaching rating","Teaching Excellence Framework (Office for Students)"],
+    ["Campus locations","Official campus coordinates (Discover Uni)"],
+    ["Halls prices",`Checked from ${HALLS_N} unis' own published fee pages; re-checked automatically each month`],
+    ["Tuition fees","Government fee cap"],
+    ["Degree apprenticeships","Programmes on the HCPC register, plus links to live vacancy sites"]
+  ];
+  modal(`<div class="mhead"><div style="flex:1"><div class="grp-l">Official data · published ${duDate}</div><h2>Where Quad's data comes from</h2></div><button class="iconbtn" onclick="closeModal()">✕</button></div>
+    <p class="hint">Every figure in Quad comes from an official source or the uni's own website. Where a uni hasn't published something, Quad says so instead of guessing.</p>
+    ${rows.map(r=>`<div class="odrow"><div style="font-size:18px;width:26px">✅</div><div style="flex:1"><b style="font-size:14px">${r[0]}</b><div class="hint" style="margin:0">${r[1]}</div></div></div>`).join("")}
+    <p class="src" style="margin-top:12px">Contains Discover Uni data from HESA and the Office for Students, licensed under CC BY 4.0. Distances are straight-line from your home town. Survey and outcomes data describe past students, so check each uni's own pages before applying.</p>`);
+}
 
-/* Quiz — one question at a time */
+/* quiz */
 const QUIZ=[
- {q:"How much does money matter?",o:[["Tight budget — cheaper the better",[["rent",5],["col",5]]],["It matters a bit",[["rent",2.5],["col",1]]],["Not a big worry",[]]]},
- {q:"What room do you want?",o:[["Cheapest — happy to share a bathroom",[["rent",2.5]],{room:"shared"}],["En-suite wet room (shower pod)",[],{room:"wet"}],["En-suite with a full bathroom",[],{room:"full"}],["Studio — my own kitchen too",[["room",5]],{room:"studio"}]]},
- {q:"Food in first year?",o:[["Catered — meals made for me",[["cat",5,"cat"]]],["Self-catered — I'll cook",[]],["Don't mind",[]]]},
- {q:"How many flatmates?",o:[["Small flat (5 or fewer)",[["flat",2.5,"s"]]],["6–8 is good",[["flat",1,"m"]]],["Big flat, more people!",[["flat",2.5,"l"]]],["Don't mind",[]]]},
+ {q:"How much does money matter?",o:[["Tight budget — cheaper halls the better",[["rent",5]]],["It matters a bit",[["rent",2.5]]],["Not a big worry",[]]]},
  {q:"How far from home do you want to be?",o:[["Close — easy to get back",[["dist",5,"close"]]],["1–2 hours away",[["dist",2.5,"mid"]]],["Far — fresh start",[["dist",2.5,"far"]]],["Don't mind",[]]]},
- {q:"What kind of place?",o:[["Big city buzz",[["set",2.5,"c"]]],["Campus bubble",[["set",2.5,"k"]]],["Quieter town & nature",[["set",2.5,"t"],["green",2.5]]],["No preference",[]]]},
- {q:"What's your social life like?",o:[["Out a lot — nightlife matters",[["night",5]]],["Sport & societies",[["sport",2.5]]],["Some going out",[["night",1]]],["Not bothered",[]]]},
- {q:"How important is the uni's name?",o:[["Very — reputation & jobs",[["rep",5],["grad",2.5]]],["Somewhat",[["rep",2.5]]],["Happy students matter more",[["sat",5]]]]},
- {q:"Faith & community life?",o:[["Really important (ISoc, prayer rooms, halal food)",[["isoc",2.5],["prayer",5],["halal",5]]],["Nice to have",[["isoc",1],["halal",1]]],["Not a factor",[]]]},
- {q:"How do you like to be assessed?",o:[["Exams",[["assess",2.5,"Mostly exams"]]],["Coursework",[["assess",2.5,"Mostly coursework"]]],["A mix",[["assess",1,"Balanced"]]],["Don't mind",[]]]}
+ {q:"What room do you want?",o:[["Cheapest — happy to share a bathroom",[],{room:"shared"}],["En-suite",[],{room:"wet"}],["Bigger en-suite",[],{room:"full"}],["Studio — my own kitchen too",[["room",5]],{room:"studio"}]]},
+ {q:"Food in first year?",o:[["Catered — meals made for me",[["cat",5]]],["Self-catered — I'll cook",[]],["Don't mind",[]]]},
+ {q:"What matters most about the course?",o:[["Happy students",[["sat",5],["cont",2.5]]],["Good jobs and pay after",[["sal",5],["work",2.5]]],["Great teaching",[["tef",5],["sat",2.5]]],["A bit of everything",[["sat",2.5],["sal",2.5]]]]},
+ {q:"Fancy a year out on the course?",o:[["Placement year in industry",[["pl",5]]],["Year abroad",[["ab",5]]],["Either sounds good",[["pl",1],["ab",1]]],["No thanks",[]]]},
+ {q:"Does professional accreditation matter?",o:[["Yes — I want it recognised by the profession",[["acc",2.5]]],["Not sure / don't mind",[]]]}
 ];
 let QS={i:0,a:[]};
 function openQuiz(){QS={i:0,a:[]};drawQuiz()}
 function drawQuiz(){
   const it=QUIZ[QS.i],last=QS.i===QUIZ.length-1;
   modal(`<div class="mhead"><h2 style="font-size:15px;font-family:Inter,sans-serif;color:var(--muted)">Question ${QS.i+1} of ${QUIZ.length}</h2><button class="iconbtn" onclick="closeModal()" aria-label="Close">✕</button></div>
-    <div class="qprog"><i style="width:${(QS.i+1)/QUIZ.length*100}%"></i></div>
-    <h2 style="font-size:26px">${it.q}</h2>
+    <div class="qprog"><i style="width:${(QS.i+1)/QUIZ.length*100}%"></i></div><h2 style="font-size:26px">${it.q}</h2>
     <div class="qopts">${it.o.map((o,j)=>`<button class="qopt ${QS.a[QS.i]===j?"on":""}" data-qo="${j}">${o[0]}</button>`).join("")}</div>
-    <div class="qnav"><button class="btn ghost sm" id="qBack" ${QS.i?"":"style='visibility:hidden'"}>← Back</button>
-    <button class="btn primary" id="qNext" ${QS.a[QS.i]==null?"disabled":""}>${last?"See my matches →":"Next →"}</button></div>`);
+    <div class="qnav"><button class="btn ghost sm" id="qBack" ${QS.i?"":"style='visibility:hidden'"}>← Back</button><button class="btn primary" id="qNext" ${QS.a[QS.i]==null?"disabled":""}>${last?"See my matches →":"Next →"}</button></div>`);
   $$("[data-qo]").forEach(b=>b.onclick=()=>{QS.a[QS.i]=+b.dataset.qo;drawQuiz()});
   $("#qBack").onclick=()=>{QS.i--;drawQuiz()};
-  $("#qNext").onclick=()=>{
-    if(!last){QS.i++;drawQuiz();return}
-    const m={};QS.a.forEach((j,i)=>{const ex=QUIZ[i].o[j][2];if(ex&&ex.room)S.room=ex.room});QS.a.forEach((j,i)=>QUIZ[i].o[j][1].forEach(([k,w,o])=>{m[k]={k,w,o:o||CRIT[k].def}}));
-    if(parseGrades(S.grades))m.fit={k:"fit",w:2.5,o:undefined};
-    S.crit=Object.values(m);if(!S.crit.length)S.crit=[{k:"sat",w:2.5}];
-    save();closeModal();go("match");toast("Criteria set from your answers ✨");
-  };
+  $("#qNext").onclick=()=>{if(!last){QS.i++;drawQuiz();return}
+    const m={};QS.a.forEach((j,i)=>{const o=QUIZ[i].o[j];if(o[2]&&o[2].room)S.room=o[2].room;o[1].forEach(([k,w,op])=>{m[k]={k,w,o:op||CRIT[k].def}})});
+    if(parseGrades(S.grades))m.fit={k:"fit",w:2.5};S.crit=Object.values(m);if(!S.crit.length)S.crit=[{k:"sat",w:2.5}];
+    save();closeModal();go("match");toast(S.course?"Criteria set from your answers ✨":"Now pick your course ✨")};
 }
 
 /* =========================================================
    MAP
    ========================================================= */
-const GB=[[-5,58.6],[-3,58.65],[-3.05,58.4],[-4,57.95],[-3.8,57.65],[-2,57.7],[-1.8,57.45],[-2.1,57.1],[-2.5,56.6],[-2.8,56.35],[-3.2,56.05],[-2.6,56],[-2,55.8],[-1.6,55.6],[-1.4,55],[-1.2,54.6],[-.4,54.3],[.1,53.6],[.3,53.1],[1.3,52.9],[1.75,52.5],[1.6,52],[1,51.8],[.6,51.5],[1.4,51.35],[1,51.05],[.3,50.78],[-1,50.75],[-2,50.6],[-3,50.65],[-3.5,50.35],[-4.2,50.35],[-5.1,50],[-5.7,50.05],[-4.6,50.75],[-4.2,51.2],[-3,51.2],[-2.7,51.5],[-3.3,51.4],[-4.3,51.65],[-5.2,51.75],[-4.2,52.25],[-4.1,52.9],[-4.7,52.8],[-4.5,53.4],[-3.1,53.35],[-2.9,53.75],[-3.2,54.1],[-3.5,54.5],[-3.3,54.9],[-4.4,54.85],[-5,54.7],[-5.1,55.2],[-4.9,55.7],[-5.6,55.4],[-5.6,56],[-5.9,56.6],[-5.6,57.3],[-5.8,57.9]];
-const NI=[[-5.5,54.3],[-5.9,54.6],[-5.7,55],[-6.2,55.25],[-7.3,55.2],[-7.6,54.95],[-8.1,54.6],[-7.6,54.1],[-6.6,54.05],[-6,54]];
-const K=60,CX=.58;
+const GB=[[-5,58.6],[-3,58.65],[-3.05,58.4],[-4,57.95],[-3.8,57.65],[-2,57.7],[-1.8,57.45],[-2.1,57.1],[-2.5,56.6],[-2.8,56.35],[-3.2,56.05],[-2.6,56],[-2,55.8],[-1.6,55.6],[-1.4,55],[-1.2,54.6],[-.4,54.3],[.1,53.6],[.3,53.1],[1.3,52.9],[1.75,52.5],[1.6,52],[1,51.8],[.6,51.5],[1.4,51.35],[1,51.05],[.3,50.78],[-1,50.75],[-2,50.6],[-3,50.65],[-3.5,50.35],[-4.2,50.35],[-5.1,50],[-5.7,50.05],[-4.6,50.75],[-4.2,51.2],[-3,51.2],[-2.7,51.5],[-3.3,51.4],[-4.3,51.65],[-5.2,51.75],[-4.2,52.25],[-4.1,52.9],[-4.7,52.8],[-4.5,53.4],[-3.1,53.35],[-2.9,53.75],[-3.2,54.1],[-3.5,54.5],[-3.3,54.9],[-4.4,54.85],[-5,54.7],[-5.1,55.2],[-4.9,55.7],[-5.6,55.4],[-5.6,56],[-5.9,56.6],[-5.6,57.3],[-5.8,57.9]],NI=[[-5.5,54.3],[-5.9,54.6],[-5.7,55],[-6.2,55.25],[-7.3,55.2],[-7.6,54.95],[-8.1,54.6],[-7.6,54.1],[-6.6,54.05],[-6,54]],K=60,CX=.58;
 function px(lon,lat){return [((lon+8.4)*CX*K).toFixed(1),((58.9-lat)*K).toFixed(1)]}
 function poly(p){return p.map(([a,b])=>px(a,b).join(",")).join(" ")}
 function renderMap(){
   const list=compute(),has=S.crit.length;
-  $("#mapSub").textContent=`${list.length} ${S.route==="app"?"apprenticeships":S.route==="both"?"options":"unis"} for ${CN()}${has?"":" · pick criteria in Match to colour by score"}`;
+  $("#mapSub").textContent=S.course?`${list.length} ${S.route==="app"?"apprenticeships":S.route==="both"?"options":"unis"} for ${CN()}${has?"":" · pick criteria in Match to colour by score"}`:"Pick a course in Match to see unis on the map";
   const W=Math.round(10.4*CX*K),H=Math.round(9.1*K);
-  let dots=[...list].reverse().map(r=>{const[x,y]=px(r.u.lon,r.u.lat);const c=has?pctCol(r.pct):"var(--green)";
-    return `<g data-prof="${r.u.id}" style="cursor:pointer"><title>${esc(r.u.name)}${has?" · "+r.pct+"%":""}</title><circle class="dot" cx="${x}" cy="${y}" r="6.5" fill="${c}" stroke="var(--card)" stroke-width="2"/>${S.short.includes(r.u.id)?`<text x="${+x+8}" y="${+y-6}" font-size="11" fill="var(--amber)">★</text>`:""}</g>`}).join("");
-  let home="";
-  if(S.homeLat!=null){const[x,y]=px(S.homeLon,S.homeLat);home=`<g><circle cx="${x}" cy="${y}" r="9" fill="var(--blue)" opacity=".25"/><circle cx="${x}" cy="${y}" r="5" fill="var(--blue)" stroke="var(--card)" stroke-width="2"/><text x="${+x+10}" y="${+y+4}" font-size="11" font-weight="700" fill="var(--blue)" font-family="Inter,sans-serif">Home</text></g>`}
+  const dots=[...list].reverse().map(r=>{const[x,y]=px(r.u.lon,r.u.lat);const c=has&&r.pct!=null?pctCol(r.pct):"var(--green)";
+    return `<g data-prof="${r.u.id}" style="cursor:pointer"><title>${esc(r.u.name)}${has&&r.pct!=null?" · "+r.pct+"%":""}</title><circle class="dot" cx="${x}" cy="${y}" r="6.5" fill="${c}" stroke="var(--card)" stroke-width="2"/>${S.short.includes(r.u.id)?`<text x="${+x+8}" y="${+y-6}" font-size="11" fill="var(--amber)">★</text>`:""}</g>`}).join("");
+  let home="";if(S.homeLat!=null){const[x,y]=px(S.homeLon,S.homeLat);home=`<g><circle cx="${x}" cy="${y}" r="9" fill="var(--blue)" opacity=".25"/><circle cx="${x}" cy="${y}" r="5" fill="var(--blue)" stroke="var(--card)" stroke-width="2"/><text x="${+x+10}" y="${+y+4}" font-size="11" font-weight="700" fill="var(--blue)" font-family="Inter,sans-serif">Home</text></g>`}
   $("#mapSvg").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Map of matching universities"><polygon points="${poly(GB)}" fill="var(--land)" stroke="var(--line)" stroke-width="1.5" stroke-linejoin="round"/><polygon points="${poly(NI)}" fill="var(--land)" stroke="var(--line)" stroke-width="1.5" stroke-linejoin="round"/>${dots}${home}</svg>`;
-  $("#mapTop").innerHTML=list.slice(0,10).map((r,i)=>`<div class="mini card" data-prof="${r.u.id}"><span class="rank">${i+1}</span><b style="font-size:14px">${esc(r.u.name)}<br><span style="font-weight:400;color:var(--muted);font-size:12.5px">${r.u.city}${r.d!=null?" · "+Math.round(r.d)+" mi":""}</span></b>${has?`<span class="pct" style="color:${pctCol(r.pct)}">${r.pct}%</span>`:""}</div>`).join("")||`<p class="hint">No unis fit your limits.</p>`;
-}
-
-/* =========================================================
-   SHORTLIST
-   ========================================================= */
-const STATUSES=["Considering","Applied","Offer","Firm","Insurance","Declined"];
-const ASTAT=["Considering","Applied","Online tests","Assessment centre","Offer","Accepted","Declined"];
-function daysTo(d){if(!d)return null;const t=new Date(d+"T00:00:00"),n=new Date();n.setHours(0,0,0,0);return Math.round((t-n)/864e5)}
-function renderShort(){
-  const items=S.short.map(uni).filter(Boolean);
-  const applied=items.filter(u=>u.type!=="app"&&(S.status[u.id]||"Considering")!=="Considering").length;
-  const max=(S.course==="MED"||S.course==="DEN")?"5 (max 4 for "+CN()+")":"5";
-  const nextOD=items.map(u=>({u,d:daysTo(S.openDay[u.id])})).filter(o=>o.d!=null&&o.d>=0).sort((a,b)=>a.d-b.d)[0];
-  $("#slHead").innerHTML=`
-    <div class="card"><div class="grp-l">UCAS choices used</div><div class="big" style="color:${applied>5?"var(--red)":"inherit"}">${applied}<span style="font-size:16px;color:var(--muted)"> / ${max}</span></div></div>
-    <div class="card"><div class="grp-l">Next open day</div><div class="big">${nextOD?(nextOD.d===0?"Today!":nextOD.d+" days"):"—"}</div><div class="hint" style="margin:0">${nextOD?esc(nextOD.u.name):"Add dates below"}</div></div>
-    <div class="card"><div class="grp-l">My money per year</div><div class="row" style="margin-top:4px"><input id="money" class="field" inputmode="numeric" placeholder="Loan + savings, £" value="${esc(S.money)}" style="padding:8px 10px"><select id="weeks" class="field" style="width:auto;padding:8px 10px">${[38,40,42,44,51].map(w=>`<option ${S.weeks==w?"selected":""} value="${w}">${w} wks</option>`).join("")}</select></div></div>
-    <div class="card"><div class="grp-l">Trips home</div><div class="row" style="margin-top:4px"><select id="trips" class="field" style="padding:8px 10px">${[0,1,2,3,4,6].map(t=>`<option ${S.trips==t?"selected":""} value="${t}">${t}/term</option>`).join("")}</select><select id="mode" class="field" style="padding:8px 10px">${Object.entries(MODES).map(([k,l])=>`<option ${S.mode===k?"selected":""} value="${k}">${k==="train"?"Train":"Coach"}</option>`).join("")}</select></div>${S.homeLat==null?`<div class="hint" style="margin:4px 0 0">Set home town in Match</div>`:""}</div>`;
-  $("#trips").onchange=e=>{S.trips=+e.target.value;save();renderShort()};
-  $("#mode").onchange=e=>{S.mode=e.target.value;save();renderShort()};
-  $("#money").onchange=e=>{S.money=e.target.value.replace(/[^\d.]/g,"");save();renderShort()};
-  $("#weeks").onchange=e=>{S.weeks=+e.target.value;save();renderShort()};
-  if(!items.length){$("#cmpBox").innerHTML="";$("#odPlanner").innerHTML="";$("#slList").innerHTML=`<div class="card empty"><div class="ic">⭐</div><b>Nothing saved yet</b><p>Tap the star on any match to save it here.</p><br><button class="btn primary" data-go="match">Find unis →</button></div>`;return}
-  const sm=scoreMap();
-  $("#slList").innerHTML=items.map(u=>{
-    const r=sm[u.id],st=S.status[u.id]||"Considering",od=daysTo(S.openDay[u.id]),m=moneyLine(u);
-    if(u.type==="app")return `<div class="card sl"><div class="sl-top">${r&&r.pct!=null?ring(r.pct,54):""}
-      <div style="flex:1;min-width:180px"><h3 class="serif"><button data-prof="${u.id}" style="font:inherit;text-align:left">${esc(u.name)}</button></h3>
-      <div class="meta"><span>💼 ${esc(u.scheme)}</span><span>📍 ${u.city}</span><span>£${u.sal[0]}–${u.sal[1]}k</span><span class="tag apptag">Apprenticeship</span></div></div>
-      <label class="cmpchk"><input type="checkbox" data-cmp="${u.id}" ${S.cmp.includes(u.id)?"checked":""}> Compare</label><button class="star on" data-s="${u.id}" aria-label="Remove">★</button></div>
-      <div class="slrow"><div><label>Application status<select class="field" data-st="${u.id}">${ASTAT.map(s=>`<option ${s===st?"selected":""}>${s}</option>`).join("")}</select></label></div>
-      <div><label>Deadline / assessment day<input type="date" class="field" data-od="${u.id}" value="${S.openDay[u.id]||""}"></label></div>
-      <div><label>Sign up<a class="btn primary sm" style="margin-top:3px;width:100%" href="${applyLinks(u)[0][1]}" target="_blank" rel="noopener">Apply ↗</a></label></div></div>
-      <div class="money">💰 Take-home ${fmt(m.income)} − rent ${fmt(m.yr)} − living ${fmt(m.liv)}${m.tc!=null?" − trips "+fmt(m.tr):""} = <b style="color:${m.left>=0?"var(--green)":"var(--red)"}">${fmt(m.left)}</b>/yr</div>
-      <textarea data-n="${u.id}" placeholder="Notes — deadline, online tests, assessment centre…">${esc(S.notes[u.id]||"")}</textarea></div>`;
-    return `<div class="card sl">
-    <div class="sl-top">${r&&S.crit.length?ring(r.pct,54):""}
-      <div style="flex:1;min-width:180px"><h3 class="serif"><button data-prof="${u.id}" style="font:inherit;text-align:left">${esc(u.name)}</button></h3>
-      <div class="meta"><span>📍 ${u.city}</span><span>${RL(u)}</span>${r&&r.d!=null?`<span>${Math.round(r.d)} mi</span>`:""}${r&&r.gf?`<span class="tag ${r.gf.cls}">🎯 ${r.gf.label}</span>`:""}${od!=null&&od>=0?`<span class="tag amber">📅 Open day ${od===0?"today":"in "+od+" day"+(od>1?"s":"")}</span>`:""}</div></div>
-      <label class="cmpchk"><input type="checkbox" data-cmp="${u.id}" ${S.cmp.includes(u.id)?"checked":""}> Compare</label>
-      <button class="star on" data-s="${u.id}" aria-label="Remove">★</button></div>
-    <div class="slrow">
-      <div><label>UCAS status<select class="field" data-st="${u.id}">${STATUSES.map(s=>`<option ${s===st?"selected":""}>${s}</option>`).join("")}</select></label></div>
-      <div><label>Open day<input type="date" class="field" data-od="${u.id}" value="${S.openDay[u.id]||""}"></label></div>
-      <div><label>Typical offer<div class="field" style="background:transparent">${u.courses.includes(S.course)?offer(u,S.course):"Course not offered"}</div></label></div>
-    </div>
-    <div class="money">💷 Room ${fmt(m.yr)} + living ${fmt(m.liv)}${m.tc!=null?" + trips home "+fmt(m.tr):""} = <b>${fmt(m.tot)}</b>/yr${m.left!=null?` · <b style="color:${m.left>=0?"var(--green)":"var(--red)"}">${m.left>=0?fmt(m.left)+" left":fmt(-m.left)+" short"}</b>`:""}</div>
-    <textarea data-n="${u.id}" placeholder="Notes — entry grades, interview, halls you liked, ISoc, halal food nearby…">${esc(S.notes[u.id]||"")}</textarea>
-    ${u.courses.includes(S.course)?`<details class="ps"><summary>✍️ Personal statement fit for ${esc(u.name.replace("University of ",""))}</summary><ul class="bul">${psFor(u,S.course).map(l=>`<li>${esc(l)}</li>`).join("")}</ul>
-      <textarea data-ps="${u.id}" placeholder="What I'll mention for this uni…" style="background:var(--card)">${esc(S.ps[u.id]||"")}</textarea></details>`:""}</div>`}).join("");
-  $$("[data-ps]").forEach(t=>t.oninput=()=>{S.ps[t.dataset.ps]=t.value;save()});
-  $$("#slList [data-s]").forEach(b=>b.onclick=()=>toggleShort(b.dataset.s));
-  $$("[data-n]").forEach(t=>t.oninput=()=>{S.notes[t.dataset.n]=t.value;save()});
-  renderPlanner(items);
-  $$("[data-st]").forEach(s=>s.onchange=()=>{S.status[s.dataset.st]=s.value;save();renderShort();if(s.value==="Firm"||s.value==="Offer")toast(s.value==="Firm"?"Firm choice set 🎉":"Offer! 🎉")});
-  $$("[data-od]").forEach(s=>s.onchange=()=>{S.openDay[s.dataset.od]=s.value;save();renderShort()});
-  $$("[data-cmp]").forEach(c=>c.onchange=()=>{
-    const id=c.dataset.cmp;
-    if(c.checked){if(S.cmp.length>=3){c.checked=false;return toast("Compare up to 3")}S.cmp.push(id)}else S.cmp=S.cmp.filter(x=>x!==id);
-    save();renderCmp();
-  });
-  renderCmp();
-}
-function renderCmp(){
-  const us=S.cmp.map(uni).filter(Boolean);
-  if(us.length<2){$("#cmpBox").innerHTML=us.length?`<p class="hint">Tick one more uni to compare.</p>`:"";return}
-  const sm=scoreMap(),pts=parseGrades(S.grades);
-  const rows=[
-    ["Match",u=>sm[u.id]&&S.crit.length?sm[u.id].pct:null,v=>v==null?"—":v+"%","hi"],
-    ["Typical offer",u=>u.courses.includes(S.course)?offer(u,S.course):"—",v=>v,null],
-    ["Grade check",u=>{const g=gradeFit(u,S.course,pts);return g?g.label:"—"},v=>v,null],
-    ["Your room type",u=>R(u),v=>v>=999?"Not offered":"£"+v+"/wk","lo"],
-    ["Yearly total",u=>moneyLine(u).tot,v=>fmt(v),"lo"],
-    ["Shared bathroom",u=>u.h.rooms.shared,v=>"£"+v+"/wk","lo"],["En-suite wet room",u=>u.h.rooms.wet,v=>"£"+v+"/wk","lo"],
-    ["En-suite full bath",u=>u.h.rooms.full,v=>"£"+v+"/wk","lo"],["Studio",u=>u.h.rooms.studio,v=>v==null?"Not offered":"£"+v+"/wk","lo"],
-    ["Catered option",u=>u.h.catered?1:0,v=>v?"Yes":"No","hi"],["Flatmates",u=>u.h.flat,v=>"~"+v,null],
-    ["Room guaranteed",u=>u.h.guar?1:0,v=>v?"Yes":"No","hi"],["Walk to campus",u=>u.h.walk,v=>"~"+v+" min","lo"],
-    ["Cost of living",u=>u.col,v=>lvl(v,["Pricey","Average","Cheap"]),"hi"],
-    ["From home",u=>dist(u),v=>v==null?"—":Math.round(v)+" mi","lo"],
-    ["Setting",u=>SETNAME[u.set]+" · "+u.city,v=>v,null],
-    ["Reputation",u=>u.rep,v=>v+"/10","hi"],["Satisfaction",u=>u.sat,v=>v+"/10","hi"],["Graduate prospects",u=>u.grad,v=>v+"/10","hi"],
-    ["Nightlife",u=>u.night,v=>v+"/10","hi"],["Green space",u=>u.green,v=>v+"/10","hi"],["Sport",u=>u.sport,v=>v+"/10","hi"],
-    ["Diversity",u=>u.div,v=>v+"/10","hi"],["Safety",u=>u.safe,v=>v+"/10","hi"],["Student-friendly",u=>u.stu,v=>v+"/10","hi"],
-    ["ISoc",u=>u.f.isoc,v=>v,null],["Prayer space",u=>u.f.prayer,v=>v,null],["Halal food",u=>u.f.halal,v=>v,null],
-    ["Assessment",u=>CS(u,S.course).assess,v=>v,null],["Interview",u=>CS(u,S.course).intv,v=>v,null],["Teaching hours",u=>CS(u,S.course).contact,v=>"~"+v+"/wk",null],
-    ["Trip home",u=>tripCost(dist(u),S.mode),v=>v==null?"—":"£"+v,"lo"],["Size",u=>u.size,v=>"~"+v+"k",null],
-    ["Placement year",u=>u.pl?1:0,v=>v?"Yes":"Rare","hi"],["Study abroad",u=>u.ab?1:0,v=>v?"Yes":"Limited","hi"]
-  ];
-  $("#cmpBox").innerHTML=`<div class="card" style="padding:6px 6px 2px;margin-bottom:16px"><div class="cmpwrap"><table class="cmp"><tr><td></td>${us.map(u=>`<th>${esc(u.name)}</th>`).join("")}</tr>${
-    [["Type",u=>u.type==="app"?"Apprenticeship":"University",v=>v,null],["Salary",u=>u.type==="app"?u.sal[0]:null,v=>"from £"+v+"k","hi"],["Tuition fees",u=>u.type==="app"?"Paid by employer":"Student loan",v=>v,null]].concat(rows).map(([l,f,fm,dir])=>{const vals=us.map(u=>{try{const v=f(u);return v===undefined?null:v}catch(e){return null}});const nums=vals.filter(v=>typeof v==="number");
-      const best=dir&&nums.length>1&&new Set(nums).size>1?(dir==="hi"?Math.max(...nums):Math.min(...nums)):null;
-      return `<tr><td>${l}</td>${vals.map(v=>`<td class="${best!=null&&v===best?"best":""}">${v==null?"—":fm(v)}</td>`).join("")}</tr>`}).join("")
-  }</table></div></div>`;
-}
-$("#copyBtn").onclick=()=>{
-  const items=S.short.map(uni).filter(Boolean);
-  if(!items.length)return toast("Shortlist is empty");
-  const sm=scoreMap();
-  const txt="My uni shortlist — "+CN()+"\n\n"+items.map((u,i)=>{
-    const r=sm[u.id],od=S.openDay[u.id];
-    return `${i+1}. ${u.name} (${u.city})\n   Status: ${S.status[u.id]||"Considering"}${r&&S.crit.length?" · Match "+r.pct+"%":""} · Room ~${RL(u)}${u.courses.includes(S.course)?" · Typical offer ~"+offer(u,S.course):""}${od?"\n   Open day: "+new Date(od).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):""}${S.notes[u.id]?"\n   Notes: "+S.notes[u.id]:""}`}).join("\n\n")+"\n\nMade with Quad";
-  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast("Shortlist copied 📋")).catch(()=>{
-    const t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand("copy");toast("Shortlist copied 📋")}catch(e){toast("Couldn't copy")}t.remove();
-  });
-};
-
-/* =========================================================
-   OPEN DAY PLANNER
-   ========================================================= */
-function renderPlanner(items){
-  const ods=items.filter(u=>S.openDay[u.id]).map(u=>({u,date:S.openDay[u.id],d:daysTo(S.openDay[u.id])})).sort((a,b)=>a.date.localeCompare(b.date));
-  if(!ods.length){$("#odPlanner").innerHTML=`<div class="card" style="padding:14px 16px;margin-bottom:16px"><div class="grp-l">📅 Open day planner</div><p class="hint" style="margin:0">Add open day dates on your unis below and they'll line up here, with calendar downloads.</p></div>`;return}
-  let last="",html="";
-  for(const o of ods){
-    const dt=new Date(o.date+"T00:00:00"),mon=dt.toLocaleDateString("en-GB",{month:"long",year:"numeric"});
-    if(mon!==last){html+=`<div class="grp-l" style="margin-top:10px">${mon}</div>`;last=mon}
-    html+=`<div class="odrow ${o.d<0?"past":""}"><div class="oddate"><small>${dt.toLocaleDateString("en-GB",{weekday:"short"})}</small><b>${dt.getDate()}</b></div>
-      <div style="flex:1"><b style="font-size:14.5px">${esc(o.u.name)}</b><div class="hint" style="margin:0">${o.u.city} · ${o.d<0?"Been":o.d===0?"Today!":"in "+o.d+" day"+(o.d>1?"s":"")}${S.homeLat!=null?" · "+hrs(trainH(dist(o.u)))+" each way":""}</div></div>
-      ${o.d>=0?`<button class="btn ghost sm" data-ics="${o.u.id}">＋ Calendar</button>`:""}</div>`;
-  }
-  const up=ods.filter(o=>o.d>=0);
-  $("#odPlanner").innerHTML=`<div class="card" style="padding:14px 16px;margin-bottom:16px"><div class="row" style="justify-content:space-between"><div class="grp-l" style="margin:0">📅 Open day planner</div>${up.length>1?`<button class="linkbtn" id="icsAll">Add all ${up.length} to calendar</button>`:""}</div>${html}</div>`;
-  $$("[data-ics]").forEach(b=>b.onclick=()=>ics([ods.find(o=>o.u.id===b.dataset.ics)]));
-  if($("#icsAll"))$("#icsAll").onclick=()=>ics(up);
-}
-function ics(list){
-  const z=n=>String(n).padStart(2,"0");
-  const ev=list.map(o=>{const d=o.date.replace(/-/g,""),nx=new Date(o.date+"T00:00:00");nx.setDate(nx.getDate()+1);
-    const e=nx.getFullYear()+z(nx.getMonth()+1)+z(nx.getDate());
-    return ["BEGIN:VEVENT","UID:quad-"+o.u.id+"-"+d+"@quad","DTSTAMP:"+d+"T090000Z","DTSTART;VALUE=DATE:"+d,"DTEND;VALUE=DATE:"+e,"SUMMARY:Open day – "+o.u.name,"LOCATION:"+o.u.city,"END:VEVENT"].join("\r\n")}).join("\r\n");
-  const txt="BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Quad//Open days//EN\r\n"+ev+"\r\nEND:VCALENDAR";
-  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type:"text/calendar"}));a.download=list.length>1?"quad-open-days.ics":"open-day-"+list[0].u.id+".ics";
-  document.body.appendChild(a);a.click();a.remove();toast("Calendar file downloaded 📅");
-}
-
-/* =========================================================
-   SHARE LINK
-   ========================================================= */
-function enc(o){return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
-function dec(t){t=t.replace(/-/g,"+").replace(/_/g,"/");while(t.length%4)t+="=";return JSON.parse(decodeURIComponent(escape(atob(t))))}
-$("#shareBtn").onclick=()=>{
-  if(!S.short.length)return toast("Shortlist is empty");
-  const data={c:S.course,g:S.grades,s:S.short,st:S.status,o:S.openDay,n:S.notes,r:S.room};
-  const url=location.href.split("#")[0]+"#share="+enc(data);
-  const done=()=>toast("Share link copied 🔗");
-  (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(done).catch(()=>{
-    modal(`<div class="mhead"><h2>Share link</h2><button class="iconbtn" onclick="closeModal()">✕</button></div><p class="hint">Copy this link and send it — anyone can open it, no account needed.</p><textarea class="field" rows="4" readonly onclick="this.select()">${esc(url)}</textarea>`);
-  });
-};
-function checkShare(){
-  const m=location.hash.match(/share=([^&]+)/);if(!m)return;
-  let d;try{d=dec(m[1])}catch(e){return toast("That share link is broken")}
-  const us=(d.s||[]).map(uni).filter(Boolean);if(!us.length)return;
-  modal(`<div class="mhead"><div style="flex:1"><div class="grp-l">Shared with you</div><h2>A Quad shortlist · ${esc(COURSES[d.c]||"")}</h2>${d.g?`<p class="hint" style="margin:4px 0 0">Predicted ${esc(d.g)}</p>`:""}</div><button class="iconbtn" onclick="closeModal()">✕</button></div>
-    ${us.map((u,i)=>`<div class="sl card" style="box-shadow:none"><div class="sl-top"><div style="flex:1"><h3 class="serif" style="font-size:17px">${i+1}. ${esc(u.name)}</h3>
-      <div class="meta"><span>📍 ${u.city}</span><span class="tag">${esc((d.st||{})[u.id]||"Considering")}</span>${(d.o||{})[u.id]?`<span class="tag amber">📅 ${new Date(d.o[u.id]).toLocaleDateString("en-GB",{day:"numeric",month:"short"})}</span>`:""}</div></div>
-      <button class="btn ghost sm" data-prof="${u.id}">Profile</button></div>${(d.n||{})[u.id]?`<p class="hint" style="margin:8px 0 0">📝 ${esc(d.n[u.id])}</p>`:""}</div>`).join("")}
-    <div class="row" style="justify-content:flex-end;margin-top:8px"><button class="btn ghost sm" onclick="closeModal()">Just looking</button><button class="btn primary sm" id="impShare">Add to my shortlist</button></div>`);
-  $("#impShare").onclick=()=>{us.forEach(u=>{if(!S.short.includes(u.id))S.short.push(u.id)});Object.assign(S.openDay,d.o||{});save();updCount();closeModal();history.replaceState(null,"",location.href.split("#")[0]);toast("Added "+us.length+" unis ★");go("short")};
+  $("#mapTop").innerHTML=list.slice(0,10).map((r,i)=>`<div class="mini card" data-prof="${r.u.id}"><span class="rank">${i+1}</span><b style="font-size:14px">${esc(r.u.name)}<br><span style="font-weight:400;color:var(--muted);font-size:12.5px">${esc(r.u.city)}${r.d!=null?" · "+Math.round(r.d)+" mi":""}</span></b>${has&&r.pct!=null?`<span class="pct" style="color:${pctCol(r.pct)}">${r.pct}%</span>`:""}</div>`).join("")||`<p class="hint">${S.course?"No unis fit your limits.":"Choose a course first."}</p>`;
 }
 
 /* =========================================================
@@ -1441,76 +907,142 @@ function checkShare(){
    ========================================================= */
 function deck(){return compute().filter(r=>!S.short.includes(r.u.id)&&!S.skip.includes(r.u.id))}
 function swCard(r,back){
-  if(r.u.type==="app"){const u=r.u;return `<div class="card scard ${back?"back":""}" ${back?"":'id="swTop"'}>
-    <span class="stamp yes">SAVE</span><span class="stamp no">SKIP</span>
-    <div class="row" style="gap:14px">${r.pct!=null?ring(r.pct):""}<div><div class="grp-l">Degree apprenticeship</div><h2>${esc(u.name)}</h2><div class="meta"><span>📍 ${u.city}</span></div></div></div>
-    <div class="meta"><span>💼 ${esc(u.scheme)}</span></div>
-    <div class="statgrid" style="grid-template-columns:1fr 1fr;margin:4px 0">
-      <div class="stat"><small>Salary</small><b>£${u.sal[0]}–${u.sal[1]}k</b></div><div class="stat"><small>Fees</small><b>Paid</b></div>
-      <div class="stat"><small>Study pattern</small><b>${u.rel==="day"?"Day release":"Block release"}</b></div><div class="stat"><small>Length</small><b>~${u.yrs} yrs</b></div>
-      <div class="stat"><small>From home</small><b>${r.d==null?"—":Math.round(r.d)+" mi"}</b></div><div class="stat"><small>Typical ask</small><b>~${offer(u,S.course)}</b></div></div>
-  </div>`}
-  const u=r.u,cs=CS(u,S.course);
-  return `<div class="card scard ${back?"back":""}" ${back?"":'id="swTop"'}>
-    <span class="stamp yes">SAVE</span><span class="stamp no">SKIP</span>
-    <div class="row" style="gap:14px">${r.pct!=null?ring(r.pct):""}<div><h2>${esc(u.name)}</h2><div class="meta"><span>📍 ${u.city}</span><span>${SETNAME[u.set]}</span>${u.rg?"<span>Russell Group</span>":""}</div></div></div>
-    <div class="tags">${r.gf?`<span class="tag ${r.gf.cls}">🎯 ${r.gf.label} · ${offer(u,S.course)}</span>`:`<span class="tag">Typical offer ${offer(u,S.course)}</span>`}${r.miss.map(m=>`<span class="tag warn">Misses: ${m}</span>`).join("")}</div>
-    <div class="statgrid" style="grid-template-columns:1fr 1fr;margin:4px 0">
-      <div class="stat"><small>${ROOMS[S.room]}</small><b>${R(u)>=999?"Not offered":"£"+R(u)+"/wk"}</b></div>
-      <div class="stat"><small>From home</small><b>${r.d==null?"—":Math.round(r.d)+" mi"}</b></div>
-      <div class="stat"><small>Reputation</small><b>${u.rep}/10</b></div><div class="stat"><small>Satisfaction</small><b>${u.sat}/10</b></div>
-      <div class="stat"><small>Assessment</small><b>${cs.assess}</b></div><div class="stat"><small>Interview</small><b>${cs.intv}</b></div>
-    </div>
-    ${r.parts.length?`<div class="reasons" style="margin-top:0">${r.parts.slice(0,4).map(p=>`<div class="rz"><div class="t"><span>${CRIT[p.k].ic} ${CRIT[p.k].label}</span><span>${p.v}</span></div><div class="track"><i style="width:${Math.round(p.s*100)}%;background:${color(p.s)}"></i></div></div>`).join("")}</div>`:""}
-  </div>`;
+  const u=r.u,c=CD(u),pr=priceShown(u);
+  const body=u.type==="app"?`<div class="meta"><span>💼 ${esc(u.scheme)}</span></div><div class="statgrid" style="grid-template-columns:1fr 1fr;margin:4px 0">${stat("Fees","Paid by employer")}${stat("From home",r.d==null?"—":Math.round(r.d)+" mi")}</div>`
+   :`<div class="tags">${c&&c.tariff?`<span class="tag ${r.gf?r.gf.cls:""}">🎯 ${r.gf?r.gf.label+" · ":""}entrants ≈ ${grades(c.tariff)}</span>`:""}${r.miss.map(m=>`<span class="tag warn">Misses: ${m}</span>`).join("")}</div>
+     <div class="statgrid" style="grid-template-columns:1fr 1fr;margin:4px 0">${stat("Satisfaction",c&&c.sat!=null?c.sat+"%":NODATA)}${stat("Graduate salary",c&&c.salary?fmt(c.salary):NODATA)}
+     ${stat("Carry on after year 1",c&&c.cont!=null?c.cont+"%":NODATA)}${stat("Halls",pr?pr.lab:NODATA)}${stat("TEF",u.tef||NODATA)}${stat("From home",r.d==null?"—":Math.round(r.d)+" mi")}</div>`;
+  return `<div class="card scard ${back?"back":""}" ${back?"":'id="swTop"'}><span class="stamp yes">SAVE</span><span class="stamp no">SKIP</span>
+    <div class="row" style="gap:14px">${r.pct!=null?ring(r.pct):""}<div>${u.type==="app"?`<div class="grp-l">Degree apprenticeship</div>`:""}<h2>${esc(u.name)}</h2><div class="meta"><span>📍 ${esc(u.city)}</span>${u.rg?"<span>Russell Group</span>":""}</div></div></div>${body}</div>`;
 }
-let swLast=null;
 function renderSwipe(){
+  if(!S.course){$("#swSub").textContent="Pick a course in Match first";$("#swBtns").classList.add("hidden");$("#swDeck").innerHTML=`<div class="card empty" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center"><div class="ic">🎓</div><b>Choose your course first</b><br><div class="row" style="justify-content:center"><button class="btn primary" data-go="match">Go to Match</button></div></div>`;return}
   const d=deck();
-  $("#swSub").textContent=d.length?`${d.length} uni${d.length>1?"s":""} left · right to shortlist, left to skip`:"All done!";
-  $("#swBtns").classList.toggle("hidden",!d.length);
+  $("#swSub").textContent=d.length?`${d.length} left · right to shortlist, left to skip`:"All done!";$("#swBtns").classList.toggle("hidden",!d.length);
   if(!d.length){$("#swDeck").innerHTML=`<div class="card empty" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center"><div class="ic">🎉</div><b>You've been through every match</b><p>${S.short.length} on your shortlist.</p><br><div class="row" style="justify-content:center"><button class="btn primary" data-go="short">See shortlist</button></div></div>`;return}
   $("#swDeck").innerHTML=(d[1]?swCard(d[1],true):"")+swCard(d[0],false);
   const el=$("#swTop"),id=d[0].u.id;let sx=0,dx=0,down=false;
   el.onpointerdown=e=>{if(e.target.closest("button"))return;down=true;sx=e.clientX;dx=0;el.classList.add("drag");el.setPointerCapture(e.pointerId)};
-  el.onpointermove=e=>{if(!down)return;dx=e.clientX-sx;el.style.transform=`translateX(${dx}px) rotate(${dx/18}deg)`;
-    el.querySelector(".stamp.yes").style.opacity=clamp(dx/100);el.querySelector(".stamp.no").style.opacity=clamp(-dx/100)};
-  el.onpointerup=()=>{if(!down)return;down=false;el.classList.remove("drag");
-    if(dx>100)swipe(id,true);else if(dx<-100)swipe(id,false);else if(Math.abs(dx)<5)openProfile(id);else{el.style.transform="";el.querySelectorAll(".stamp").forEach(s=>s.style.opacity=0)}};
+  el.onpointermove=e=>{if(!down)return;dx=e.clientX-sx;el.style.transform=`translateX(${dx}px) rotate(${dx/18}deg)`;el.querySelector(".stamp.yes").style.opacity=clamp(dx/100);el.querySelector(".stamp.no").style.opacity=clamp(-dx/100)};
+  el.onpointerup=()=>{if(!down)return;down=false;el.classList.remove("drag");if(dx>100)swipe(id,true);else if(dx<-100)swipe(id,false);else if(Math.abs(dx)<5)openProfile(id);else{el.style.transform="";el.querySelectorAll(".stamp").forEach(s=>s.style.opacity=0)}};
   $("#swYes").onclick=()=>swipe(id,true);$("#swNo").onclick=()=>swipe(id,false);$("#swInfo").onclick=()=>openProfile(id);
 }
-function swipe(id,yes){
-  const el=$("#swTop");if(el){el.style.transform=`translateX(${yes?600:-600}px) rotate(${yes?30:-30}deg)`;el.style.opacity=0}
-  setTimeout(()=>{if(yes){S.short.push(id);updCount();toast("Shortlisted ★")}else S.skip.push(id);swLast=id;save();renderSwipe()},230);
-}
+function swipe(id,yes){const el=$("#swTop");if(el){el.style.transform=`translateX(${yes?600:-600}px) rotate(${yes?30:-30}deg)`;el.style.opacity=0}
+  setTimeout(()=>{if(yes){S.short.push(id);updCount();toast("Shortlisted ★")}else S.skip.push(id);save();renderSwipe()},230)}
 $("#swReset").onclick=()=>{S.skip=[];save();renderSwipe();toast("Skipped unis are back")};
 document.addEventListener("keydown",e=>{if(PAGE!=="swipe"||$("#modalRoot").innerHTML)return;const d=deck();if(!d.length)return;if(e.key==="ArrowRight")swipe(d[0].u.id,true);if(e.key==="ArrowLeft")swipe(d[0].u.id,false)});
 
 /* =========================================================
-   REMOTE DATA UPDATES — edit quad-data.json and the app picks it up
+   SHORTLIST
    ========================================================= */
-async function loadRemote(){
-  if(!DATA_URL)return;
-  try{
-    const r=await fetch(DATA_URL,{cache:"no-store"});if(!r.ok)return;const d=await r.json();
-    if(d.version)DATA_VERSION=d.version;
-    for(const [id,o] of Object.entries(d.unis||{})){const u=uni(id);if(u){if(o.h)Object.assign(u.h,o.h);const {h,...rest}=o;Object.assign(u,rest)}}
-    HALLS_N=0;
-    for(const [id,hv] of Object.entries(d.halls||{})){const u=uni(id);if(!u||!u.h)continue;
-      for(const [k,v] of Object.entries(hv.rooms||{}))if(v)u.h.rooms[k]=v;
-      if(hv.catered)u.h.catered=true;if(hv.rooms&&hv.rooms.wet)u.rent=hv.rooms.wet;else if(hv.from&&!Object.keys(hv.rooms||{}).length){const k=hv.from-u.h.rooms.shared;for(const t in u.h.rooms)if(u.h.rooms[t]!=null)u.h.rooms[t]+=k;u.rent+=k}
-      u.hv=hv;HALLS_N++}
-    if(d.parVerified){PAR_HCPC.length=0;PAR_HCPC.push(...d.parVerified)}
-    if(d.removeCourse)for(const [id,cs] of Object.entries(d.removeCourse)){const u=uni(id);if(u)u.courses=u.courses.filter(c=>!cs.includes(c))}
-    if(d.addCourse)for(const [id,cs] of Object.entries(d.addCourse)){const u=uni(id);if(u)cs.forEach(c=>{if(!u.courses.includes(c))u.courses.push(c)})}
-    rerender();
-  }catch(e){}
+const STATUSES=["Considering","Applied","Offer","Firm","Insurance","Declined"];
+const ASTAT=["Considering","Applied","Online tests","Assessment day","Offer","Accepted","Declined"];
+function daysTo(d){if(!d)return null;const t=new Date(d+"T00:00:00"),n=new Date();n.setHours(0,0,0,0);return Math.round((t-n)/864e5)}
+function renderShort(){
+  const items=S.short.map(uni).filter(Boolean);
+  const applied=items.filter(u=>u.type!=="app"&&(S.status[u.id]||"Considering")!=="Considering").length;
+  const max=["MED","DEN","VET"].includes(S.course)?"5 (max 4 for "+CN()+")":"5";
+  const nextOD=items.map(u=>({u,d:daysTo(S.openDay[u.id])})).filter(o=>o.d!=null&&o.d>=0).sort((a,b)=>a.d-b.d)[0];
+  $("#slHead").innerHTML=`
+    <div class="card"><div class="grp-l">UCAS choices used</div><div class="big" style="color:${applied>5?"var(--red)":"inherit"}">${applied}<span style="font-size:16px;color:var(--muted)"> / ${max}</span></div></div>
+    <div class="card"><div class="grp-l">Next open day</div><div class="big">${nextOD?(nextOD.d===0?"Today!":nextOD.d+" days"):"—"}</div><div class="hint" style="margin:0">${nextOD?esc(nextOD.u.name):"Add dates below"}</div></div>
+    <div class="card"><div class="grp-l">My money per year</div><div class="row" style="margin-top:4px"><input id="money" class="field" inputmode="numeric" placeholder="Loan + savings, £" value="${esc(S.money)}" style="padding:8px 10px"><select id="weeks" class="field" style="width:auto;padding:8px 10px">${[38,40,42,44,51].map(w=>`<option ${S.weeks==w?"selected":""} value="${w}">${w} wks</option>`).join("")}</select></div></div>
+    <div class="card"><div class="grp-l">My spending per week</div><input id="spend" class="field" inputmode="numeric" placeholder="Food, travel, fun — £" value="${esc(S.spend)}" style="padding:8px 10px;margin-top:4px"></div>`;
+  $("#money").onchange=e=>{S.money=e.target.value.replace(/[^\d.]/g,"");save();renderShort()};
+  $("#spend").onchange=e=>{S.spend=e.target.value.replace(/[^\d.]/g,"");save();renderShort()};
+  $("#weeks").onchange=e=>{S.weeks=+e.target.value;save();renderShort()};
+  if(!items.length){$("#cmpBox").innerHTML="";$("#odPlanner").innerHTML="";$("#slList").innerHTML=`<div class="card empty"><div class="ic">⭐</div><b>Nothing saved yet</b><p>Tap the star on any match to save it here.</p><br><button class="btn primary" data-go="match">Find unis →</button></div>`;return}
+  const sm=scoreMap();
+  $("#slList").innerHTML=items.map(u=>{
+    const r=sm[u.id],st=S.status[u.id]||"Considering",od=daysTo(S.openDay[u.id]),m=moneyLine(u),c=CD(u),pr=priceShown(u),isApp=u.type==="app";
+    return `<div class="card sl"><div class="sl-top">${r&&r.pct!=null?ring(r.pct,54):""}
+      <div style="flex:1;min-width:180px"><h3 class="serif"><button data-prof="${u.id}" style="font:inherit;text-align:left">${esc(u.name)}</button></h3>
+      <div class="meta"><span>📍 ${esc(u.city)}</span>${isApp?`<span>💼 ${esc(u.scheme)}</span><span class="tag apptag">Apprenticeship</span>`:`<span>🛏️ ${pr?pr.lab:"halls price not published"}</span>`}${r&&r.d!=null?`<span>${Math.round(r.d)} mi</span>`:""}${r&&r.gf?`<span class="tag ${r.gf.cls}">🎯 ${r.gf.label}</span>`:""}${od!=null&&od>=0?`<span class="tag amber">📅 ${isApp?"Deadline":"Open day"} ${od===0?"today":"in "+od+" day"+(od>1?"s":"")}</span>`:""}</div></div>
+      <label class="cmpchk"><input type="checkbox" data-cmp="${u.id}" ${S.cmp.includes(u.id)?"checked":""}> Compare</label><button class="star on" data-s="${u.id}" aria-label="Remove">★</button></div>
+      <div class="slrow">
+        <div><label>${isApp?"Application status":"UCAS status"}<select class="field" data-st="${u.id}">${(isApp?ASTAT:STATUSES).map(s=>`<option ${s===st?"selected":""}>${s}</option>`).join("")}</select></label></div>
+        <div><label>${isApp?"Deadline / assessment day":"Open day"}<input type="date" class="field" data-od="${u.id}" value="${S.openDay[u.id]||""}"></label></div>
+        <div><label>${isApp?"Fees":"Entrants' grades (typical)"}<div class="field" style="background:transparent">${isApp?"Paid by employer":c&&c.tariff?"≈ "+grades(c.tariff):"No official data"}</div></label></div></div>
+      ${isApp?"":`<div class="money">💷 Halls ${m.halls!=null?fmt(m.halls):"not published"}${m.fee?" + fees "+fmt(m.fee):""}${S.spend?" + your spending "+fmt(m.spend):""}${m.halls!=null?` = <b>${fmt(m.tot)}</b>/yr`:""}${m.left!=null&&m.halls!=null?` · <b style="color:${m.left>=0?"var(--green)":"var(--red)"}">${m.left>=0?fmt(m.left)+" left":fmt(-m.left)+" short"}</b>`:""}</div>`}
+      <textarea data-n="${u.id}" placeholder="Notes — what you liked, questions to ask, things to check…">${esc(S.notes[u.id]||"")}</textarea>
+      <details class="ps"><summary>✍️ Personal statement tips</summary><ul class="bul">${psFor(u,S.course).map(l=>`<li>${esc(l)}</li>`).join("")}</ul>
+        <textarea data-ps="${u.id}" placeholder="What I'll mention for this one…" style="background:var(--card)">${esc(S.ps[u.id]||"")}</textarea></details></div>`}).join("");
+  $$("[data-ps]").forEach(t=>t.oninput=()=>{S.ps[t.dataset.ps]=t.value;save()});
+  $$("#slList [data-s]").forEach(b=>b.onclick=()=>toggleShort(b.dataset.s));
+  $$("[data-n]").forEach(t=>t.oninput=()=>{S.notes[t.dataset.n]=t.value;save()});
+  $$("[data-st]").forEach(s=>s.onchange=()=>{S.status[s.dataset.st]=s.value;save();renderShort();if(["Firm","Offer","Accepted"].includes(s.value))toast(s.value==="Offer"?"Offer! 🎉":"Congrats! 🎉")});
+  $$("[data-od]").forEach(s=>s.onchange=()=>{S.openDay[s.dataset.od]=s.value;save();renderShort()});
+  $$("[data-cmp]").forEach(c=>c.onchange=()=>{const id=c.dataset.cmp;if(c.checked){if(S.cmp.length>=3){c.checked=false;return toast("Compare up to 3")}S.cmp.push(id)}else S.cmp=S.cmp.filter(x=>x!==id);save();renderCmp()});
+  renderPlanner(items);renderCmp();
 }
-loadRemote();
+function renderCmp(){
+  const us=S.cmp.map(uni).filter(Boolean);
+  if(us.length<2){$("#cmpBox").innerHTML=us.length?`<p class="hint">Tick one more to compare.</p>`:"";return}
+  const sm=scoreMap(),pts=parseGrades(S.grades);
+  const rows=[
+    ["Match",u=>sm[u.id]?sm[u.id].pct:null,v=>v+"%","hi"],
+    ["Type",u=>u.type==="app"?"Apprenticeship":"University",v=>v,null],
+    ["Course",u=>(CD(u)||{}).title,v=>esc(v),null],
+    ["Student satisfaction",u=>(CD(u)||{}).sat,v=>v+"%","hi"],
+    ["Entrants' grades",u=>(CD(u)||{}).tariff,v=>"≈ "+grades(v),null],
+    ["Your grades",u=>{const g=gradeFit(u,pts);return g?g.label:null},v=>v,null],
+    ["Carry on after year 1",u=>(CD(u)||{}).cont,v=>v+"%","hi"],
+    ["Graduate salary",u=>(CD(u)||{}).salary,v=>fmt(v),"hi"],
+    ["In work or study",u=>(CD(u)||{}).work,v=>v+"%","hi"],
+    ["Placement year",u=>CD(u)?(CD(u).placement?1:0):null,v=>v?"Yes":"No","hi"],
+    ["Year abroad",u=>CD(u)?(CD(u).abroad?1:0):null,v=>v?"Yes":"No","hi"],
+    ["Accredited",u=>CD(u)?(CD(u).accredited?1:0):null,v=>v?"Yes":"No","hi"],
+    ["TEF",u=>u.tef,v=>v,null],
+    ["Russell Group",u=>u.type==="uni"?(u.rg?1:0):null,v=>v?"Yes":"No",null],
+    ...Object.entries(ROOMS).map(([k,l])=>[l,u=>u.halls&&u.halls.rooms?u.halls.rooms[k]||null:null,v=>"£"+v+"/wk","lo"]),
+    ["Catered halls",u=>u.halls?(u.halls.catered?1:0):null,v=>v?"Yes":"Not listed",null],
+    ["Halls per year",u=>moneyLine(u).halls,v=>fmt(v),"lo"],
+    ["Tuition fee",u=>u.type==="app"?0:fee(u),v=>v?fmt(v):"Paid by employer","lo"],
+    ["From home",u=>dist(u),v=>Math.round(v)+" mi","lo"]
+  ];
+  $("#cmpBox").innerHTML=`<div class="card" style="padding:6px 6px 2px;margin-bottom:16px"><div class="cmpwrap"><table class="cmp"><tr><td></td>${us.map(u=>`<th>${esc(u.name)}</th>`).join("")}</tr>${
+    rows.map(([l,f,fm,dir])=>{const vals=us.map(u=>{try{const v=f(u);return v===undefined?null:v}catch(e){return null}});const nums=vals.filter(v=>typeof v==="number");
+      const best=dir&&nums.length>1&&new Set(nums).size>1?(dir==="hi"?Math.max(...nums):Math.min(...nums)):null;
+      return `<tr><td>${l}</td>${vals.map(v=>`<td class="${best!=null&&v===best?"best":""}">${v==null?"—":fm(v)}</td>`).join("")}</tr>`}).join("")}</table></div></div>`;
+}
+function renderPlanner(items){
+  const ods=items.filter(u=>S.openDay[u.id]).map(u=>({u,date:S.openDay[u.id],d:daysTo(S.openDay[u.id])})).sort((a,b)=>a.date.localeCompare(b.date));
+  if(!ods.length){$("#odPlanner").innerHTML=`<div class="card" style="padding:14px 16px;margin-bottom:16px"><div class="grp-l">📅 Open day planner</div><p class="hint" style="margin:0">Add open day dates below and they'll line up here, with calendar downloads.</p></div>`;return}
+  let last="",html="";
+  for(const o of ods){const dt=new Date(o.date+"T00:00:00"),mon=dt.toLocaleDateString("en-GB",{month:"long",year:"numeric"});
+    if(mon!==last){html+=`<div class="grp-l" style="margin-top:10px">${mon}</div>`;last=mon}
+    html+=`<div class="odrow ${o.d<0?"past":""}"><div class="oddate"><small>${dt.toLocaleDateString("en-GB",{weekday:"short"})}</small><b>${dt.getDate()}</b></div>
+      <div style="flex:1"><b style="font-size:14.5px">${esc(o.u.name)}</b><div class="hint" style="margin:0">${esc(o.u.city)} · ${o.d<0?"Been":o.d===0?"Today!":"in "+o.d+" day"+(o.d>1?"s":"")}</div></div>${o.d>=0?`<button class="btn ghost sm" data-ics="${o.u.id}">＋ Calendar</button>`:""}</div>`}
+  const up=ods.filter(o=>o.d>=0);
+  $("#odPlanner").innerHTML=`<div class="card" style="padding:14px 16px;margin-bottom:16px"><div class="row" style="justify-content:space-between"><div class="grp-l" style="margin:0">📅 Open day planner</div>${up.length>1?`<button class="linkbtn" id="icsAll">Add all ${up.length} to calendar</button>`:""}</div>${html}</div>`;
+  $$("[data-ics]").forEach(b=>b.onclick=()=>ics([ods.find(o=>o.u.id===b.dataset.ics)]));if($("#icsAll"))$("#icsAll").onclick=()=>ics(up);
+}
+function ics(list){const z=n=>String(n).padStart(2,"0");
+  const ev=list.map(o=>{const d=o.date.replace(/-/g,""),nx=new Date(o.date+"T00:00:00");nx.setDate(nx.getDate()+1);const e=nx.getFullYear()+z(nx.getMonth()+1)+z(nx.getDate());
+    return ["BEGIN:VEVENT","UID:quad-"+o.u.id+"-"+d+"@quad","DTSTAMP:"+d+"T090000Z","DTSTART;VALUE=DATE:"+d,"DTEND;VALUE=DATE:"+e,"SUMMARY:Open day – "+o.u.name,"LOCATION:"+o.u.city,"END:VEVENT"].join("\r\n")}).join("\r\n");
+  const txt="BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Quad//Open days//EN\r\n"+ev+"\r\nEND:VCALENDAR";
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type:"text/calendar"}));a.download=list.length>1?"quad-open-days.ics":"open-day-"+list[0].u.id+".ics";document.body.appendChild(a);a.click();a.remove();toast("Calendar file downloaded 📅")}
+
+/* share + copy */
+function enc(o){return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
+function dec(t){t=t.replace(/-/g,"+").replace(/_/g,"/");while(t.length%4)t+="=";return JSON.parse(decodeURIComponent(escape(atob(t))))}
+$("#shareBtn").onclick=()=>{if(!S.short.length)return toast("Shortlist is empty");
+  const url=location.href.split("#")[0]+"#share="+enc({c:S.course,g:S.grades,s:S.short,st:S.status,o:S.openDay,n:S.notes});
+  (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(()=>toast("Share link copied 🔗")).catch(()=>modal(`<div class="mhead"><h2>Share link</h2><button class="iconbtn" onclick="closeModal()">✕</button></div><p class="hint">Copy this link and send it — anyone can open it, no account needed.</p><textarea class="field" rows="4" readonly onclick="this.select()">${esc(url)}</textarea>`))};
+function checkShare(){const m=location.hash.match(/share=([^&]+)/);if(!m)return;let d;try{d=dec(m[1])}catch(e){return toast("That share link is broken")}
+  const us=(d.s||[]).map(uni).filter(Boolean);if(!us.length)return;
+  modal(`<div class="mhead"><div style="flex:1"><div class="grp-l">Shared with you</div><h2>A Quad shortlist${COURSES[d.c]?" · "+esc(COURSES[d.c]):""}</h2>${d.g?`<p class="hint" style="margin:4px 0 0">Predicted ${esc(d.g)}</p>`:""}</div><button class="iconbtn" onclick="closeModal()">✕</button></div>
+    ${us.map((u,i)=>`<div class="sl card" style="box-shadow:none"><div class="sl-top"><div style="flex:1"><h3 class="serif" style="font-size:17px">${i+1}. ${esc(u.name)}</h3><div class="meta"><span>📍 ${esc(u.city)}</span><span class="tag">${esc((d.st||{})[u.id]||"Considering")}</span>${(d.o||{})[u.id]?`<span class="tag amber">📅 ${new Date(d.o[u.id]).toLocaleDateString("en-GB",{day:"numeric",month:"short"})}</span>`:""}</div></div><button class="btn ghost sm" data-prof="${u.id}">Profile</button></div>${(d.n||{})[u.id]?`<p class="hint" style="margin:8px 0 0">📝 ${esc(d.n[u.id])}</p>`:""}</div>`).join("")}
+    <div class="row" style="justify-content:flex-end;margin-top:8px"><button class="btn ghost sm" onclick="closeModal()">Just looking</button><button class="btn primary sm" id="impShare">Add to my shortlist</button></div>`);
+  $("#impShare").onclick=()=>{us.forEach(u=>{if(!S.short.includes(u.id))S.short.push(u.id)});if(d.c&&!S.course)S.course=d.c;Object.assign(S.openDay,d.o||{});save();updCount();closeModal();history.replaceState(null,"",location.href.split("#")[0]);toast("Added "+us.length+" ★");go("short")};
+}
+$("#copyBtn").onclick=()=>{const items=S.short.map(uni).filter(Boolean);if(!items.length)return toast("Shortlist is empty");const sm=scoreMap();
+  const txt="My uni shortlist — "+CN()+"\n\n"+items.map((u,i)=>{const r=sm[u.id],od=S.openDay[u.id],c=CD(u),pr=priceShown(u);
+    return `${i+1}. ${u.name} (${u.city})\n   Status: ${S.status[u.id]||"Considering"}${r&&r.pct!=null?" · Match "+r.pct+"%":""}${c&&c.sat!=null?" · Satisfaction "+c.sat+"%":""}${pr?" · Halls "+pr.lab:""}${od?"\n   Open day: "+new Date(od).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):""}${S.notes[u.id]?"\n   Notes: "+S.notes[u.id]:""}`}).join("\n\n")+"\n\nMade with Quad";
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast("Shortlist copied 📋")).catch(()=>{const t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand("copy");toast("Shortlist copied 📋")}catch(e){toast("Couldn't copy")}t.remove()})};
 
 /* init */
 updCount();renderHome();
-$("#enterBtn").addEventListener("click",()=>setTimeout(checkShare,350));
 </script>
 </body>
 </html>
