@@ -1,0 +1,9 @@
+{
+  // Cloudflare settings: Quad is a ready-made website, so this just serves the files.
+  "name": "quad",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./",
+    "not_found_handling": "single-page-application"
+  }
+}

@@ -1,0 +1,9 @@
+# files that are for building/updating Quad, not part of the website
+.git
+.github
+tools
+data
+source
+README.txt
+wrangler.jsonc
+node_modules
