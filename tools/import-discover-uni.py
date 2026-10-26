@@ -252,9 +252,12 @@ def main():
 
     # main campus location = location with most courses
     loc_count = defaultdict(lambda: defaultdict(int))
+    course_locs = defaultdict(list)
     for r in rows("COURSELOCATION"):
         k = (r["PUBUKPRN"], r["KISCOURSEID"], r["KISMODE"])
-        if k in courses and r["LOCID"]: loc_count[r["PUBUKPRN"]][(r["UKPRN"], r["LOCID"])] += 1
+        if k in courses and r["LOCID"]:
+            loc_count[r["PUBUKPRN"]][(r["UKPRN"], r["LOCID"])] += 1
+            course_locs[k].append((r["UKPRN"], r["LOCID"]))
     locs = {}
     for r in rows("LOCATION"):
         locs[(r["UKPRN"], r["LOCID"])] = r
@@ -319,6 +322,20 @@ def main():
                 "masters": any(courses[k]["KISAIMCODE"] in MASTERS for k in keys),
                 "parttime": any(COURSE_RX[code].search(t) for t in parttime[k_pub]),
             }
+            # every campus this course is taught at (multi-campus unis); the app uses the one nearest the student
+            lc = defaultdict(int)
+            for k in keys:
+                for L in set(course_locs.get(k, [])): lc[L] += 1
+            places = []
+            for key, _ in sorted(lc.items(), key=lambda x: -x[1]):
+                L = locs.get(key)
+                if L and num(L["LATITUDE"]) and num(L["LONGITUDE"]):
+                    p_ = {"lat": round(num(L["LATITUDE"]), 4), "lon": round(num(L["LONGITUDE"]), 4), "name": L["LOCNAME"]}
+                    if all(abs(p_["lat"] - q["lat"]) + abs(p_["lon"] - q["lon"]) > 0.02 for q in places): places.append(p_)
+                if len(places) >= 4: break
+            main = campus.get(uid)
+            if places and not (len(places) == 1 and main and abs(main["lat"] - places[0]["lat"]) + abs(main["lon"] - places[0]["lon"]) <= 0.02):
+                c["locs"] = places
             ucourses[code] = c
         out[uid] = {"courses": ucourses, "tef": tef.get(uid), "campus": campus.get(uid), **meta[uid]}
 

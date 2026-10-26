@@ -393,6 +393,7 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
           <div class="lim">
             <div class="lim-top">Max room price / week <span id="rentVal"></span></div>
             <input type="range" id="maxRent" min="80" max="400" step="10">
+            <label class="cmpchk" style="margin-top:6px"><input type="checkbox" id="incUnknown"> Include unis that don't publish halls prices</label>
           </div>
           <div class="lim">
             <div class="lim-top">Max distance from home <span id="distVal"></span></div>
@@ -574,7 +575,7 @@ function feeLine(u){const n=u.nation==="eng"?null:u.nation;return !n?"£10,050 a
 /* =========================================================
    STATE
    ========================================================= */
-const DEF={course:"",route:"uni",qual:"alevel",grades:"",crit:[],home:"",homeLat:null,homeLon:null,room:"wet",maxRent:400,maxDist:600,
+const DEF={incUnknown:false,course:"",route:"uni",qual:"alevel",grades:"",crit:[],home:"",homeLat:null,homeLon:null,room:"wet",maxRent:400,maxDist:600,
   short:[],notes:{},cmp:[],status:{},openDay:{},money:"",spend:"",weeks:40,dark:null,sort:"match",ps:{},skip:[]};
 let S=load();
 function load(){try{const s=JSON.parse(localStorage.getItem("quad.v3"));return Object.assign({},DEF,s||{})}catch(e){return {...DEF}}}
@@ -610,8 +611,15 @@ const CRIT={
 /* =========================================================
    SCORING
    ========================================================= */
-function journeyUrl(u){return S.homeLat==null?null:`https://www.google.com/maps/dir/?api=1&origin=${S.homeLat},${S.homeLon}&destination=${encodeURIComponent(u.name+", "+u.city)}&travelmode=transit`}
-function dist(u,st=S){return st.homeLat==null?null:miles(st.homeLat,st.homeLon,u.lat,u.lon)}
+function journeyUrl(u){if(S.homeLat==null)return null;const p=place(u);return `https://www.google.com/maps/dir/?api=1&origin=${S.homeLat},${S.homeLon}&destination=${p.lat},${p.lon}&travelmode=transit`}
+function campusTag(u){const p=place(u);return p&&p.name?`<span>🏫 ${esc(p.name)}</span>`:""}
+function place(u,st=S){
+  const c=u.du&&u.du.courses?u.du.courses[st.course]:null,L=c&&c.locs;
+  if(!L||!L.length)return {lat:u.lat,lon:u.lon,name:null};
+  if(st.homeLat==null)return L[0];
+  return L.reduce((b,x)=>miles(st.homeLat,st.homeLon,x.lat,x.lon)<miles(st.homeLat,st.homeLon,b.lat,b.lon)?x:b,L[0]);
+}
+function dist(u,st=S){if(st.homeLat==null)return null;const p=place(u,st);return miles(st.homeLat,st.homeLon,p.lat,p.lon)}
 function ctx(u,st=S){return {d:dist(u,st),gf:u.type==="uni"?gradeFit(u,userPoints(st)):null}}
 function compute(st=S,applyLimits=true){
   const out=[];if(!st.course)return out;
@@ -620,18 +628,20 @@ function compute(st=S,applyLimits=true){
     if(!u.courses.includes(st.course))continue;
     const x=ctx(u,st);
     if(applyLimits){
-      const pr=priceShown(u);if(pr&&pr.p>st.maxRent)continue;
+      const pr=priceShown(u);
+      if(st.maxRent<400&&u.type==="uni"){if(pr?pr.p>st.maxRent:!st.incUnknown)continue}
       if(x.d!=null&&st.maxDist<600&&x.d>st.maxDist)continue;
     }
-    let tw=0,ts=0;const miss=[],parts=[];
+    let tw=0,ts=0,have=0,total=0;const miss=[],parts=[],gaps=[];
     for(const c of st.crit){
       const def=CRIT[c.k];if(!def||def.only&&def.only!==u.type)continue;
       const s=def.score(u,c.o,x);
       parts.push({k:c.k,s,w:c.w,v:def.val(u,c.o,x)});
-      if(s==null)continue;
-      tw+=c.w;ts+=c.w*s;if(c.w===5&&s<.35)miss.push(def.label);
+      total++;tw+=c.w;
+      if(s==null){ts+=c.w*.5;gaps.push(def.label);continue}   // no data → counted as average, not ignored
+      have++;ts+=c.w*s;if(c.w===5&&s<.35)miss.push(def.label);
     }
-    out.push({u,pct:tw?Math.round(ts/tw*100):null,parts,miss,...x});
+    out.push({u,pct:tw?Math.round(ts/tw*100):null,parts,miss,gaps,have,total,...x});
   }
   out.sort((a,b)=>(b.pct??-1)-(a.pct??-1)||((CD(b.u)||{}).sat??0)-((CD(a.u)||{}).sat??0)||a.u.name.localeCompare(b.u.name));
   return out;
@@ -708,12 +718,13 @@ $("#postcode").onkeydown=e=>{if(e.key==="Enter")lookupPostcode(e.target.value)};
 $("#geoBtn").onclick=()=>{if(!navigator.geolocation)return toast("Location not available");
   navigator.geolocation.getCurrentPosition(p=>{S.homeLat=p.coords.latitude;S.homeLon=p.coords.longitude;S.home="My location";save();fillHome();renderCrit();renderResults();toast("Using your location")},()=>toast("Couldn't get your location"))};
 $("#maxRent").oninput=e=>{S.maxRent=+e.target.value;limLabels();save();renderResults()};
+$("#incUnknown").onchange=e=>{S.incUnknown=e.target.checked;save();renderResults()};
 $("#maxDist").oninput=e=>{S.maxDist=+e.target.value;limLabels();save();renderResults()};
 $("#resetBtn").onclick=()=>{S.crit=[];S.maxRent=400;S.maxDist=600;save();renderMatch();toast("Criteria reset")};
 $("#mobileGo").onclick=()=>$("#results").scrollIntoView({behavior:"smooth"});
 $("#search").oninput=e=>{Q=e.target.value.trim().toLowerCase();renderResults()};
 $("#sort").onchange=e=>{S.sort=e.target.value;save();renderResults()};
-function limLabels(){$("#rentVal").textContent=S.maxRent>=400?"No limit":"£"+S.maxRent;$("#distVal").textContent=S.maxDist>=600?"No limit":S.maxDist+" mi"}
+function limLabels(){$("#incUnknown").checked=!!S.incUnknown;$("#incUnknown").parentElement.style.display=S.maxRent<400?"flex":"none";$("#rentVal").textContent=S.maxRent>=400?"No limit":"£"+S.maxRent;$("#distVal").textContent=S.maxDist>=600?"No limit":S.maxDist+" mi"}
 const ROUTES={uni:"🎓 University",app:"💼 Apprenticeship",both:"Both"};
 function renderRoute(){
   $("#routePick").innerHTML=Object.entries(ROUTES).map(([k,l])=>`<button class="${S.route===k?"on":""}" data-route="${k}">${l}</button>`).join("");
@@ -753,11 +764,12 @@ function uniCard(r,i,rankOf){
     ${r.pct!=null?ring(r.pct):`<div class="norank">#${rankOf[u.id]}</div>`}
     <div>
       <h3><span style="color:var(--muted);font:600 13px Inter,sans-serif">#${rankOf[u.id]}</span> <button data-prof="${u.id}">${esc(u.name)}</button></h3>
-      <div class="meta"><span>📍 ${esc(u.city)}</span>${c?`<span>📘 ${esc(c.title)}</span>`:""}<span>🛏️ ${pr?pr.lab+" ✅":"halls price not published"}</span>${r.d!=null?`<span>${Math.round(r.d)} mi <a href="${journeyUrl(u)}" target="_blank" rel="noopener" title="Real travel times">🚆 journey ↗</a></span>`:""}</div>
+      <div class="meta"><span>📍 ${esc(u.city)}</span>${campusTag(u)}${c?`<span>📘 ${esc(c.title)}</span>`:""}<span>🛏️ ${pr?pr.lab+" ✅":"halls price not published"}</span>${r.d!=null?`<span>${Math.round(r.d)} mi <a href="${journeyUrl(u)}" target="_blank" rel="noopener" title="Real travel times">🚆 journey ↗</a></span>`:""}</div>
       <div class="tags">
         ${r.gf?`<span class="tag ${r.gf.cls}">🎯 ${r.gf.label} · entrants ≈ ${grades(c.tariff)} · ${c.tariff} pts</span>`:c&&c.tariff?`<span class="tag">Entrants ≈ ${grades(c.tariff)} · ${c.tariff} pts</span>`:""}
         ${r.miss.map(m=>`<span class="tag warn">Misses: ${m}</span>`).join("")}
-        ${!r.miss.length&&r.pct>=75?`<span class="tag good">Strong fit</span>`:""}
+        ${!r.miss.length&&r.pct>=75&&!r.gaps.length?`<span class="tag good">Strong fit</span>`:""}
+        ${r.gaps.length?`<span class="tag amber" title="No data for: ${esc(r.gaps.join(", "))} — counted as average">Based on ${r.have} of ${r.total}</span>`:""}
         ${u.rg?`<span class="tag">Russell Group</span>`:""}
       </div>
       ${r.pct==null&&quick.length?`<div class="meta" style="margin-top:8px">${quick.map(q=>`<span>${q[0]} ${q[1]}</span>`).join("")}</div>`:""}
@@ -847,6 +859,7 @@ function openProfile(id){
   modal(`
     <div class="mhead">${r&&r.pct!=null?ring(r.pct,58):""}<div style="flex:1"><h2>${esc(u.name)}</h2><div class="meta"><span>📍 ${esc(u.city)}</span>${u.rg?"<span>Russell Group</span>":""}${u.tef?`<span>🏅 TEF ${u.tef}</span>`:""}</div></div><button class="iconbtn" onclick="closeModal()" aria-label="Close">✕</button></div>
     <div class="row" style="flex-wrap:wrap">${profStar(id)}${c&&c.url?`<a class="btn ghost sm" href="${esc(c.url)}" target="_blank" rel="noopener">Official course page ↗</a>`:""}${(h&&h.source)||u.accomUrl?`<a class="btn ghost sm" href="${esc((h&&h.source)||u.accomUrl)}" target="_blank" rel="noopener">Accommodation ↗</a>`:""}${journeyUrl(u)?`<a class="btn ghost sm" href="${journeyUrl(u)}" target="_blank" rel="noopener">🚆 Plan the journey ↗</a>`:""}</div>
+    ${place(u).name?`<p class="src" style="margin-top:6px">🏫 ${esc(CN())} is taught at ${esc(place(u).name)}${(c.locs||[]).length>1?` (also: ${c.locs.filter(l=>l.name!==place(u).name).map(l=>esc(l.name)).join(", ")})`:""}.</p>`:""}
     ${x.d!=null?`<p class="src" style="margin-top:6px">${Math.round(x.d)} miles from home as the crow flies — tap "Plan the journey" for real travel times by train, bus or car.</p>`:""}
     <div class="msec"><h4>📊 ${esc(CN())} · official data</h4>
       ${c?`<p class="hint" style="margin:0 0 8px">${esc(c.title)}${c.n>1?` and ${c.n-1} related course${c.n>2?"s":""}`:""}</p><div class="statgrid">
@@ -856,7 +869,7 @@ function openProfile(id){
         ${stat("Foundation year option",c.foundation?"Yes":"No")}${stat("Integrated master's option",c.masters?"Yes":"No")}${stat("Part-time option",c.parttime?"Yes":"No")}</div>
         <p class="src">Entrants' grades are shown as the A-level equivalent of their UCAS points, so they work for any qualification. Satisfaction = National Student Survey (final-year students, last two years). Salary and jobs = graduates 15 months after finishing. Grades = UCAS points of recent entrants, so real offers can differ.</p>`
        :`<p class="hint">This uni doesn't appear to run ${esc(CN())} as a full-time degree in the official data.</p>`}</div>
-    ${r&&r.parts.length?`<div class="msec"><h4>How it scores for you</h4>${bars(r.parts)}</div>`:""}
+    ${r&&r.parts.length?`<div class="msec"><h4>How it scores for you</h4>${bars(r.parts)}${r.gaps.length?`<p class="src">No published data for: ${esc(r.gaps.join(", "))}. These count as average so the score stays fair.</p>`:""}</div>`:""}
     <div class="msec"><h4>🛏️ First-year halls</h4>${h?`<div class="statgrid">${hallsRows}</div><p class="src">Cheapest price per room type from the uni's published fees${h.year?" for "+esc(hallsYear(u)):""}${h.note?" · "+esc(h.note):""}. ${String(h.year||"").includes("2027")?"":"Unis usually publish next year's (2027/28) prices between January and March, and they're normally a little higher — Quad updates automatically when they're out."}</p>`:`<p class="hint" style="margin:0">This uni doesn't publish its prices in a way we could check. ${u.accomUrl?`See <a href="${esc(u.accomUrl)}" target="_blank" rel="noopener">its accommodation page ↗</a>.`:""}</p>`}</div>
     <div class="msec"><h4>💷 Money per year</h4><div class="statgrid">
       ${stat(`Halls (${S.weeks} wks)`,m.halls!=null?fmt(m.halls):NODATA)}${stat("Tuition fee (student loan)",`<span style="font-size:12.5px">${feeLine(u)}</span>`)}${stat("Your own spending",S.spend?fmt(m.spend):`<span class="nodata">Add on Shortlist</span>`)}</div></div>
@@ -939,7 +952,7 @@ function renderMap(){
   const list=compute(),has=S.crit.length;
   $("#mapSub").textContent=S.course?`${list.length} ${S.route==="app"?"apprenticeships":S.route==="both"?"options":"unis"} for ${CN()}${has?"":" · pick criteria in Match to colour by score"}`:"Pick a course in Match to see unis on the map";
   const W=Math.round(10.4*CX*K),H=Math.round(9.1*K);
-  const dots=[...list].reverse().map(r=>{const[x,y]=px(r.u.lon,r.u.lat);const c=has&&r.pct!=null?pctCol(r.pct):"var(--green)";
+  const dots=[...list].reverse().map(r=>{const pl=place(r.u);const[x,y]=px(pl.lon,pl.lat);const c=has&&r.pct!=null?pctCol(r.pct):"var(--green)";
     return `<g data-prof="${r.u.id}" style="cursor:pointer"><title>${esc(r.u.name)}${has&&r.pct!=null?" · "+r.pct+"%":""}</title><circle class="dot" cx="${x}" cy="${y}" r="6.5" fill="${c}" stroke="var(--card)" stroke-width="2"/>${S.short.includes(r.u.id)?`<text x="${+x+8}" y="${+y-6}" font-size="11" fill="var(--amber)">★</text>`:""}</g>`}).join("");
   let home="";if(S.homeLat!=null){const[x,y]=px(S.homeLon,S.homeLat);home=`<g><circle cx="${x}" cy="${y}" r="9" fill="var(--blue)" opacity=".25"/><circle cx="${x}" cy="${y}" r="5" fill="var(--blue)" stroke="var(--card)" stroke-width="2"/><text x="${+x+10}" y="${+y+4}" font-size="11" font-weight="700" fill="var(--blue)" font-family="Inter,sans-serif">Home</text></g>`}
   $("#mapSvg").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Map of matching universities"><polygon points="${poly(GB)}" fill="var(--land)" stroke="var(--line)" stroke-width="1.5" stroke-linejoin="round"/><polygon points="${poly(NI)}" fill="var(--land)" stroke="var(--line)" stroke-width="1.5" stroke-linejoin="round"/>${dots}${home}</svg>`;
@@ -1074,8 +1087,16 @@ function ics(list){const z=n=>String(n).padStart(2,"0");
 function enc(o){return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
 function dec(t){t=t.replace(/-/g,"+").replace(/_/g,"/");while(t.length%4)t+="=";return JSON.parse(decodeURIComponent(escape(atob(t))))}
 $("#shareBtn").onclick=()=>{if(!S.short.length)return toast("Shortlist is empty");
-  const url=location.href.split("#")[0]+"#share="+enc({c:S.course,g:S.grades,s:S.short,st:S.status,o:S.openDay,n:S.notes});
-  (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(()=>toast("Share link copied 🔗")).catch(()=>modal(`<div class="mhead"><h2>Share link</h2><button class="iconbtn" onclick="closeModal()">✕</button></div><p class="hint">Copy this link and send it — anyone can open it, no account needed.</p><textarea class="field" rows="4" readonly onclick="this.select()">${esc(url)}</textarea>`))};
+  const make=withNotes=>location.href.split("#")[0]+"#share="+enc({c:S.course,s:S.short,st:S.status,o:S.openDay,...(withNotes?{n:S.notes,g:S.grades}:{})});
+  const draw=withNotes=>{const url=make(withNotes);modal(`<div class="mhead"><h2>Share your shortlist</h2><button class="iconbtn" onclick="closeModal()">✕</button></div>
+    <p class="hint">Anyone with this link can see your shortlist, statuses and open days — no account needed.</p>
+    <label class="cmpchk" style="margin:4px 0 10px"><input type="checkbox" id="shNotes" ${withNotes?"checked":""}> Also include my notes and predicted grades</label>
+    ${withNotes?`<p class="hint" style="color:var(--red)">Only tick this if you're happy for anyone who gets the link to read your notes.</p>`:""}
+    <textarea class="field" rows="3" readonly onclick="this.select()">${esc(url)}</textarea>
+    <div class="row" style="justify-content:flex-end;margin-top:10px"><button class="btn primary sm" id="shCopy">Copy link</button></div>`);
+    $("#shNotes").onchange=e=>draw(e.target.checked);
+    $("#shCopy").onclick=()=>{(navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(()=>{closeModal();toast("Share link copied 🔗")}).catch(()=>toast("Select the link and copy it"))};};
+  draw(false);};
 function checkShare(){const m=location.hash.match(/share=([^&]+)/);if(!m)return;let d;try{d=dec(m[1])}catch(e){return toast("That share link is broken")}
   const us=(d.s||[]).map(uni).filter(Boolean);if(!us.length)return;
   modal(`<div class="mhead"><div style="flex:1"><div class="grp-l">Shared with you</div><h2>A Quad shortlist${COURSES[d.c]?" · "+esc(COURSES[d.c]):""}</h2>${d.g?`<p class="hint" style="margin:4px 0 0">Predicted ${esc(d.g)}</p>`:""}</div><button class="iconbtn" onclick="closeModal()">✕</button></div>
