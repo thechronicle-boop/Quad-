@@ -210,6 +210,16 @@ input[type=range]{width:100%;accent-color:var(--green)}
 details.ps{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--soft)}
 details.ps summary{cursor:pointer;font-weight:600;font-size:13.5px}
 .bul{margin:8px 0 0 18px;font-size:13.5px}
+details.visit{background:var(--amber-2);border-color:transparent}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px 18px;margin-top:10px}
+.vq{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:13.5px}
+.stars{display:flex;gap:1px}.stars button{font-size:21px;line-height:1;padding:2px 1px;color:color-mix(in srgb,var(--muted) 35%,transparent);transition:transform .12s}
+.stars button.on{color:var(--amber)}.stars button:hover{transform:scale(1.15)}
+.vq.col{flex-direction:column;align-items:flex-start;gap:6px}
+.vchips{display:flex;gap:6px;flex-wrap:wrap}.vchips button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:600}
+.vchips button.on{background:var(--ink);color:var(--onink);border-color:var(--ink)}
+.vsum{margin-left:6px;color:var(--amber);letter-spacing:1px}
+details.visit textarea{background:var(--card);margin-top:8px}
 .bul li{margin:3px 0}
 .odrow{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
 .odrow:last-child{border:none}
@@ -503,14 +513,14 @@ UNIS.forEach(u=>u.rg=RG.includes(u.id));
 
 /* ---------- courses (names; which unis run them comes from the official data) ---------- */
 const COURSE_GROUPS={
- "Health & medicine":[["MED","Medicine"],["DEN","Dentistry"],["VET","Veterinary Science"],["NUR","Nursing (Adult)"],["NCH","Nursing (Children's)"],["NMH","Nursing (Mental Health)"],["MID","Midwifery"],["PAR","Paramedic Science"],["PHY","Physiotherapy"],["OT","Occupational Therapy"],["RAD","Diagnostic Radiography"],["ODP","Operating Department Practice"],["SLT","Speech & Language Therapy"],["NUT","Nutrition & Dietetics"],["PHA","Pharmacy"],["BMS","Biomedical Science"],["PSY","Psychology"],["NEU","Neuroscience"]],
- "Sciences":[["BIO","Biology"],["BCH","Biochemistry"],["CHE","Chemistry"],["PHS","Physics"],["MAT","Mathematics"],["ENV","Environmental Science"],["GEO","Geography"],["ZOO","Zoology"],["FOR","Forensic Science"]],
- "Computing & data":[["CS","Computer Science"],["SE","Software Engineering"],["DS","Data Science"],["AI","Artificial Intelligence"],["CYB","Cyber Security"]],
- "Engineering & building":[["ENG","Engineering (any)"],["MEC","Mechanical Engineering"],["ELE","Electrical & Electronic Engineering"],["CIV","Civil Engineering"],["AER","Aerospace Engineering"],["CHM","Chemical Engineering"],["BEN","Biomedical Engineering"],["ARC","Architecture"]],
- "Business, law & economics":[["BUS","Business & Management"],["ACC","Accounting & Finance"],["ECO","Economics"],["MKT","Marketing"],["LAW","Law"],["CRI","Criminology"],["POL","Politics"],["IR","International Relations"],["TOU","Tourism & Events"]],
- "Humanities & social sciences":[["EN","English"],["HIS","History"],["PHI","Philosophy"],["CLA","Classics"],["LNG","Modern Languages"],["LIN","Linguistics"],["SOC","Sociology"],["ANT","Anthropology"],["ARCH","Archaeology"],["THE","Theology & Religion"],["SW","Social Work"],["EDU","Primary Education (QTS)"]],
- "Creative arts & media":[["ART","Fine Art"],["FAS","Fashion"],["GD","Graphic Design"],["FILM","Film & TV"],["MDC","Media & Communication"],["JOU","Journalism"],["MUS","Music"],["DRA","Drama & Theatre"],["GAM","Games Design"],["PHO","Photography"]],
- "Sport":[["SPS","Sport & Exercise Science"],["SPM","Sport Management"]]
+ "Health & medicine":[["MED","Medicine"],["DEN","Dentistry"],["VET","Veterinary Science"],["NUR","Nursing (Adult)"],["NCH","Nursing (Children's)"],["NMH","Nursing (Mental Health)"],["MID","Midwifery"],["PAR","Paramedic Science"],["PHY","Physiotherapy"],["OT","Occupational Therapy"],["RAD","Diagnostic Radiography"],["ODP","Operating Department Practice"],["SLT","Speech & Language Therapy"],["NUT","Nutrition & Dietetics"],["PHA","Pharmacy"],["BMS","Biomedical Science"],["PSY","Psychology"],["NEU","Neuroscience"],["LDN","Nursing (Learning Disabilities)"],["DHT","Dental Hygiene & Therapy"],["OPT","Optometry"],["POD","Podiatry"],["PHL","Pharmacology & Pharmaceutical Science"],["MSC","Medical Sciences"],["PUB","Public Health"],["HSC","Health & Social Care"],["STH","Sports Therapy & Rehabilitation"],["VN","Veterinary Nursing"],["CNS","Counselling"]],
+ "Sciences":[["BIO","Biology"],["BCH","Biochemistry"],["CHE","Chemistry"],["PHS","Physics"],["MAT","Mathematics"],["ENV","Environmental Science"],["GEO","Geography"],["ZOO","Zoology"],["FOR","Forensic Science"],["GEL","Geology & Earth Sciences"],["MAR","Marine Biology"],["MIC","Microbiology"],["GEN","Genetics"],["ECL","Ecology & Conservation"],["NSC","Natural Sciences"],["BIT","Biotechnology"],["ANS","Animal & Equine Science"],["AGR","Agriculture"],["FDS","Food Science"],["ACT","Actuarial Science"]],
+ "Computing & data":[["CS","Computer Science"],["SE","Software Engineering"],["DS","Data Science"],["AI","Artificial Intelligence"],["CYB","Cyber Security"],["IT","Information Technology"]],
+ "Engineering & building":[["ENG","Engineering (any)"],["MEC","Mechanical Engineering"],["ELE","Electrical & Electronic Engineering"],["CIV","Civil Engineering"],["AEN","Architectural Engineering"],["AER","Aerospace Engineering"],["CHM","Chemical Engineering"],["BEN","Biomedical Engineering"],["ARC","Architecture"],["MCT","Mechatronics & Robotics"],["AUT","Automotive & Motorsport Engineering"],["PDE","Product Design"],["ATE","Architectural Technology"],["QS","Quantity Surveying"],["BSV","Building Surveying"],["CON","Construction Management"],["REA","Real Estate"],["PLN","Urban Planning"]],
+ "Business, law & economics":[["BUS","Business & Management"],["ACC","Accounting & Finance"],["ECO","Economics"],["MKT","Marketing"],["LAW","Law"],["CRI","Criminology"],["POL","Politics"],["IR","International Relations"],["TOU","Tourism, Events & Hospitality"],["HRM","Human Resource Management"],["POC","Professional Policing"]],
+ "Humanities & social sciences":[["EN","English"],["HIS","History"],["PHI","Philosophy"],["CLA","Classics"],["LNG","Modern Languages"],["LIN","Linguistics"],["SOC","Sociology"],["ANT","Anthropology"],["ARCH","Archaeology"],["THE","Theology & Religion"],["SW","Social Work"],["EDU","Primary Education (QTS)"],["EDS","Education Studies"],["ECS","Early Childhood Studies"],["SPO","Social Policy"],["SSC","Social Sciences"],["DEV","International Development"],["HOA","History of Art"],["LIB","Liberal Arts"]],
+ "Creative arts & media":[["ART","Fine Art"],["FAS","Fashion"],["GD","Graphic Design"],["FILM","Film & TV"],["MDC","Media & Communication"],["JOU","Journalism"],["MUS","Music"],["DRA","Drama, Theatre & Performing Arts"],["GAM","Games Design"],["PHO","Photography"],["CW","Creative Writing"],["ILL","Illustration"],["ANI","Animation"],["INT","Interior Design"],["TEX","Textile Design"],["DAN","Dance"],["MTH","Musical Theatre"],["MPR","Music Production & Sound"]],
+ "Sport":[["SPS","Sport & Exercise Science"],["SPM","Sport Management"],["COA","Sport Coaching & PE"]]
 };
 const COURSES={};for(const l of Object.values(COURSE_GROUPS))for(const [c,n] of l)COURSES[c]=n;
 const HEALTH=["MED","DEN","NUR","NCH","NMH","MID","PAR","PHY","OT","RAD","ODP","SLT","NUT"];
@@ -611,7 +621,7 @@ function feeLine(u){const n=u.nation==="eng"?null:u.nation;return !n?"£10,050 a
    STATE
    ========================================================= */
 const DEF={incUnknown:false,incJoint:true,variants:{},course:"",route:"uni",qual:"alevel",grades:"",crit:[],home:"",homeLat:null,homeLon:null,room:"wet",maxRent:400,maxDist:600,
-  short:[],notes:{},cmp:[],status:{},openDay:{},money:"",spend:"",weeks:40,dark:null,sort:"match",ps:{},skip:[]};
+  short:[],notes:{},cmp:[],status:{},openDay:{},money:"",spend:"",weeks:40,dark:null,sort:"match",ps:{},skip:[],visit:{}};
 let S=load();
 function load(){try{const s=JSON.parse(localStorage.getItem("quad.v3"));return Object.assign({},DEF,s||{})}catch(e){return {...DEF}}}
 function save(){try{localStorage.setItem("quad.v3",JSON.stringify(S))}catch(e){}}
@@ -621,6 +631,7 @@ let Q="";
    CRITERIA — every one uses official or checked data
    ========================================================= */
 const IMP=[["Nice to have",1],["Important",2.5],["Essential",5]];
+const VLIKE={yes:1,ok:.5,no:0};
 const CRIT={
  rent:{g:"🛏️ Halls",ic:"💷",label:"Halls price",score:u=>{const x=priceShown(u);return x?clamp((400-x.p)/290):null},val:u=>{const x=priceShown(u);return x?x.lab:"Not published"}},
  room:{only:"uni",g:"🛏️ Halls",ic:"🚿",label:"Has my room type",score:u=>u.halls&&Object.keys(u.halls.rooms||{}).length?(roomPrice(u)?1:0):null,val:u=>roomPrice(u)?"Yes":u.halls?"Not listed":"Not published"},
@@ -640,6 +651,8 @@ const CRIT={
  acc:{only:"uni",g:"📊 Your course",ic:"📜",label:"Professionally accredited",score:u=>{const c=CD(u);return c?(c.accredited?1:0):null},val:u=>{const c=CD(u);return c&&c.accredited?"Yes":"No"}},
  tef:{only:"uni",g:"🏛️ The uni",ic:"🏅",label:"Teaching rating (TEF)",score:u=>u.tef in TEF?TEF[u.tef]:null,val:u=>u.tef||"Not rated"},
  rg:{only:"uni",g:"🏛️ The uni",ic:"🎓",label:"Russell Group",score:u=>u.rg?1:0,val:u=>u.rg?"Yes":"No"},
+ visit:{only:"uni",g:"🎟️ My open days",ic:"⭐",label:"My open day rating",score:u=>{const v=S.visit[u.id];return v&&v.overall?(v.overall-1)/4:null},val:u=>{const v=S.visit[u.id];return v&&v.overall?v.overall+" / 5":"Not rated yet"}},
+ vroom:{only:"uni",g:"🎟️ My open days",ic:"🛏️",label:"Liked the room I saw",score:u=>{const v=S.visit[u.id];return v&&v.room in VLIKE?VLIKE[v.room]:null},val:u=>{const v=S.visit[u.id];return v&&v.room?{yes:"Loved it",ok:"It was OK",no:"Didn't like it"}[v.room]:"Not rated yet"}},
  debt:{g:"💼 Apprenticeship",ic:"🎓",label:"No tuition fees",score:u=>u.type==="app"?1:0,val:u=>u.type==="app"?"Employer pays":"Student loan"}
 };
 
@@ -905,7 +918,7 @@ const PSFIT={
  CS:["Projects you've built — apps, games, websites, scripts","Maths and problem-solving beyond the syllabus","What area of computing excites you and why"]
 };
 const PSDEF=["Why this subject — a specific spark, not 'I've always loved it'","Reading, courses or projects beyond your A-levels","Skills from work, volunteering or societies, tied back to the course","What you want to do with the degree"];
-function psFor(u,c){if(["NCH","NMH","MID","ODP"].includes(c))c="NUR";if(["DEN","VET"].includes(c))c="MED";if(["SE","DS","AI","CYB"].includes(c))c="CS";const l=[...(PSFIT[c]||PSDEF)];
+function psFor(u,c){if(["NCH","NMH","LDN","MID","ODP"].includes(c))c="NUR";if(["DEN","VET"].includes(c))c="MED";if(["SE","DS","AI","CYB"].includes(c))c="CS";const l=[...(PSFIT[c]||PSDEF)];
   if(u.type==="app")l.unshift("Why an apprenticeship: learning on the job, balancing work & study","Expect online tests, interviews and an assessment day");return l}
 function openProfile(id){
   const u=uni(id);if(!u)return;const x=ctx(u),r=compute({...S,route:"both"},false).find(z=>z.u.id===id),c=CD(u),h=u.halls,m=moneyLine(u);
@@ -1067,6 +1080,19 @@ document.addEventListener("keydown",e=>{if(PAGE!=="swipe"||$("#modalRoot").inner
 const STATUSES=["Considering","Applied","Offer","Firm","Insurance","Declined"];
 const ASTAT=["Considering","Applied","Online tests","Assessment day","Offer","Accepted","Declined"];
 function daysTo(d){if(!d)return null;const t=new Date(d+"T00:00:00"),n=new Date();n.setHours(0,0,0,0);return Math.round((t-n)/864e5)}
+const VQ=[["overall","Overall feel"],["campus","Campus"],["area","Town / city"],["course","Course talk"],["halls","Halls I saw"],["people","Students & staff"]];
+function stars(id,f,n){return `<div class="stars" role="radiogroup" aria-label="${f}">${[1,2,3,4,5].map(i=>`<button type="button" data-vr="${id}|${f}|${i}" class="${i<=(n||0)?"on":""}" aria-label="${i} star${i>1?"s":""}">★</button>`).join("")}</div>`}
+function vchips(id,f,cur,opts){return `<div class="vchips">${opts.map(([k,l])=>`<button type="button" data-vc="${id}|${f}|${k}" class="${cur===k?"on":""}">${l}</button>`).join("")}</div>`}
+function visitBox(u){const v=S.visit[u.id]||{},done=Object.keys(v).some(k=>v[k]);
+  return `<details class="ps visit" data-vbox="${u.id}" ${done||S.visitOpen===u.id?"open":""}><summary>🎟️ After the open day: how did it go?${v.overall?`<span class="vsum">${"★".repeat(v.overall)}</span>`:""}</summary>
+    <div class="vq col" style="margin-top:10px"><b>Did you like the room you saw?</b>${vchips(u.id,"room",v.room,[["yes","😍 Loved it"],["ok","😐 It was OK"],["no","👎 No"]])}</div>
+    <div class="vgrid">${VQ.map(([f,l])=>`<div class="vq"><span>${l}</span>${stars(u.id,f,v[f])}</div>`).join("")}</div>
+    <div class="vq col" style="margin-top:10px"><span>Could you see yourself here?</span>${vchips(u.id,"fit",v.fit,[["yes","Yes"],["maybe","Maybe"],["no","No"]])}</div>
+    <textarea data-vt="${u.id}|liked" rows="2" placeholder="What I liked (the room, the vibe, the people…)">${esc(v.liked||"")}</textarea>
+    <textarea data-vt="${u.id}|off" rows="2" placeholder="What put me off">${esc(v.off||"")}</textarea>
+    <p class="hint" style="margin:6px 0 0">Add <b>⭐ My open day rating</b> or <b>🛏️ Liked the room I saw</b> in Match to rank unis by how your visits went.</p></details>`}
+function visitLine(u){const v=S.visit[u.id];if(!v)return "";const bits=[];if(v.overall)bits.push("Overall "+v.overall+"/5");if(v.room)bits.push("Room: "+{yes:"loved it",ok:"OK",no:"didn't like it"}[v.room]);
+  VQ.slice(1).forEach(([f,l])=>{if(v[f])bits.push(l+" "+v[f]+"/5")});let t=bits.length?"\n   Open day: "+bits.join(" · "):"";if(v.liked)t+="\n   Liked: "+v.liked;if(v.off)t+="\n   Put off by: "+v.off;return t}
 function renderShort(){
   const items=S.short.map(uni).filter(Boolean);
   const applied=items.filter(u=>u.type!=="app"&&(S.status[u.id]||"Considering")!=="Considering").length;
@@ -1094,9 +1120,14 @@ function renderShort(){
         <div><label>${isApp?"Fees":"Entrants' grades (typical)"}<div class="field" style="background:transparent">${isApp?"Paid by employer":c&&c.tariff?"≈ "+grades(c.tariff):"No official data"}</div></label></div></div>
       ${isApp?"":`<div class="money">💷 Halls ${m.halls!=null?fmt(m.halls):"not published"}${m.fee?" + fees "+fmt(m.fee):""}${S.spend?" + your spending "+fmt(m.spend):""}${m.halls!=null?` = <b>${fmt(m.tot)}</b>/yr`:""}${m.left!=null&&m.halls!=null?` · <b style="color:${m.left>=0?"var(--green)":"var(--red)"}">${m.left>=0?fmt(m.left)+" left":fmt(-m.left)+" short"}</b>`:""}</div>`}
       <textarea data-n="${u.id}" placeholder="Notes — what you liked, questions to ask, things to check…">${esc(S.notes[u.id]||"")}</textarea>
+      ${isApp?"":visitBox(u)}
       <details class="ps"><summary>✍️ Personal statement tips</summary><ul class="bul">${psFor(u,S.course).map(l=>`<li>${esc(l)}</li>`).join("")}</ul>
         <textarea data-ps="${u.id}" placeholder="What I'll mention for this one…" style="background:var(--card)">${esc(S.ps[u.id]||"")}</textarea></details></div>`}).join("");
   $$("[data-ps]").forEach(t=>t.oninput=()=>{S.ps[t.dataset.ps]=t.value;save()});
+  const vset=(id,f,val)=>{S.visit[id]=Object.assign({},S.visit[id]);if(S.visit[id][f]===val)delete S.visit[id][f];else S.visit[id][f]=val;S.visitOpen=id;save();const y=scrollY;renderShort();window.scrollTo(0,y)};
+  $$("[data-vr]").forEach(b=>b.onclick=()=>{const [id,f,n]=b.dataset.vr.split("|");vset(id,f,+n)});
+  $$("[data-vc]").forEach(b=>b.onclick=()=>{const [id,f,k]=b.dataset.vc.split("|");vset(id,f,k)});
+  $$("[data-vt]").forEach(t=>t.oninput=()=>{const [id,f]=t.dataset.vt.split("|");S.visit[id]=Object.assign({},S.visit[id],{[f]:t.value});save()});
   $$("#slList [data-s]").forEach(b=>b.onclick=()=>toggleShort(b.dataset.s));
   $$("[data-n]").forEach(t=>t.oninput=()=>{S.notes[t.dataset.n]=t.value;save()});
   $$("[data-st]").forEach(s=>s.onchange=()=>{S.status[s.dataset.st]=s.value;save();renderShort();if(["Firm","Offer","Accepted"].includes(s.value))toast(s.value==="Offer"?"Offer! 🎉":"Congrats! 🎉")});
@@ -1169,10 +1200,10 @@ function ics(list){const z=n=>String(n).padStart(2,"0");
 function enc(o){return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
 function dec(t){t=t.replace(/-/g,"+").replace(/_/g,"/");while(t.length%4)t+="=";return JSON.parse(decodeURIComponent(escape(atob(t))))}
 $("#shareBtn").onclick=()=>{if(!S.short.length)return toast("Shortlist is empty");
-  const make=withNotes=>location.href.split("#")[0]+"#share="+enc({c:S.course,s:S.short,st:S.status,o:S.openDay,...(withNotes?{n:S.notes,g:S.grades}:{})});
+  const make=withNotes=>location.href.split("#")[0]+"#share="+enc({c:S.course,s:S.short,st:S.status,o:S.openDay,...(withNotes?{n:S.notes,g:S.grades,v:S.visit}:{})});
   const draw=withNotes=>{const url=make(withNotes);modal(`<div class="mhead"><h2>Share your shortlist</h2><button class="iconbtn" onclick="closeModal()">✕</button></div>
     <p class="hint">Anyone with this link can see your shortlist, statuses and open days — no account needed.</p>
-    <label class="cmpchk" style="margin:4px 0 10px"><input type="checkbox" id="shNotes" ${withNotes?"checked":""}> Also include my notes and predicted grades</label>
+    <label class="cmpchk" style="margin:4px 0 10px"><input type="checkbox" id="shNotes" ${withNotes?"checked":""}> Also include my notes, open day ratings and predicted grades</label>
     ${withNotes?`<p class="hint" style="color:var(--red)">Only tick this if you're happy for anyone who gets the link to read your notes.</p>`:""}
     <textarea class="field" rows="3" readonly onclick="this.select()">${esc(url)}</textarea>
     <div class="row" style="justify-content:flex-end;margin-top:10px"><button class="btn primary sm" id="shCopy">Copy link</button></div>`);
@@ -1188,7 +1219,7 @@ function checkShare(){const m=location.hash.match(/share=([^&]+)/);if(!m)return;
 }
 $("#copyBtn").onclick=()=>{const items=S.short.map(uni).filter(Boolean);if(!items.length)return toast("Shortlist is empty");const sm=scoreMap();
   const txt="My uni shortlist — "+CN()+"\n\n"+items.map((u,i)=>{const r=sm[u.id],od=S.openDay[u.id],c=CD(u),pr=priceShown(u);
-    return `${i+1}. ${u.name} (${u.city})\n   Status: ${S.status[u.id]||"Considering"}${r&&r.pct!=null?" · Match "+r.pct+"%":""}${c&&c.sat!=null?" · Satisfaction "+c.sat+"%":""}${pr?" · Halls "+pr.lab:""}${od?"\n   Open day: "+new Date(od).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):""}${S.notes[u.id]?"\n   Notes: "+S.notes[u.id]:""}`}).join("\n\n")+"\n\nMade with Quad";
+    return `${i+1}. ${u.name} (${u.city})\n   Status: ${S.status[u.id]||"Considering"}${r&&r.pct!=null?" · Match "+r.pct+"%":""}${c&&c.sat!=null?" · Satisfaction "+c.sat+"%":""}${pr?" · Halls "+pr.lab:""}${od?"\n   Open day: "+new Date(od).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):""}${S.notes[u.id]?"\n   Notes: "+S.notes[u.id]:""}${visitLine(u)}`}).join("\n\n")+"\n\nMade with Quad";
   (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast("Shortlist copied 📋")).catch(()=>{const t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand("copy");toast("Shortlist copied 📋")}catch(e){toast("Couldn't copy")}t.remove()})};
 
 /* init */
