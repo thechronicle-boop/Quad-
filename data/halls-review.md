@@ -1,6 +1,6 @@
 # Halls prices to check by hand
 
-Checked 2026-10-25. High-confidence results are used automatically; medium are used but flagged; low/none are not used.
+Checked 2026-10-26. High-confidence results are used automatically; medium are used but flagged; low/none are not used.
 
 - **University of Oxford** — none — add a start URL in tools/unis.json
 - **University of Cambridge** — none — add a start URL in tools/unis.json
@@ -28,6 +28,7 @@ Checked 2026-10-25. High-confidence results are used automatically; medium are u
 - **University of Liverpool** — none — add a start URL in tools/unis.json
 - **Cardiff University** — none — add a start URL in tools/unis.json
 - **Queen's University Belfast** — none — add a start URL in tools/unis.json
+- **University of Bath** — low — https://www.bath.ac.uk/corporate-information/postgraduate-accommodation-prices/
 - **Loughborough University** — none — add a start URL in tools/unis.json
 - **University of Leicester** — none — add a start URL in tools/unis.json
 - **University of East Anglia (UEA)** — none — add a start URL in tools/unis.json

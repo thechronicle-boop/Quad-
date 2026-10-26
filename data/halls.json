@@ -2,7 +2,7 @@
  "oxf": {
   "id": "oxf",
   "name": "University of Oxford",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -14,7 +14,7 @@
  "cam": {
   "id": "cam",
   "name": "University of Cambridge",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -26,7 +26,7 @@
  "imp": {
   "id": "imp",
   "name": "Imperial College London",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "low",
   "year": "2026-27",
   "catered": false,
@@ -49,7 +49,7 @@
  "ucl": {
   "id": "ucl",
   "name": "UCL",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": "2026-27",
   "catered": false,
@@ -81,7 +81,7 @@
  "kcl": {
   "id": "kcl",
   "name": "King's College London",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -93,7 +93,7 @@
  "lse": {
   "id": "lse",
   "name": "LSE",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -105,7 +105,7 @@
  "qml": {
   "id": "qml",
   "name": "Queen Mary University of London",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "low",
   "year": null,
   "catered": false,
@@ -128,7 +128,7 @@
  "csg": {
   "id": "csg",
   "name": "City St George's, University of London",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -140,7 +140,7 @@
  "gre": {
   "id": "gre",
   "name": "University of Greenwich",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026-27",
   "catered": false,
@@ -190,7 +190,7 @@
  "kin": {
   "id": "kin",
   "name": "Kingston University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -202,7 +202,7 @@
  "edi": {
   "id": "edi",
   "name": "University of Edinburgh",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -214,7 +214,7 @@
  "gla": {
   "id": "gla",
   "name": "University of Glasgow",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026-2027",
   "catered": false,
@@ -257,7 +257,7 @@
  "gcu": {
   "id": "gcu",
   "name": "Glasgow Caledonian University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -269,7 +269,7 @@
  "sta": {
   "id": "sta",
   "name": "University of St Andrews",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -281,7 +281,7 @@
  "abd": {
   "id": "abd",
   "name": "University of Aberdeen",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -293,7 +293,7 @@
  "rgu": {
   "id": "rgu",
   "name": "Robert Gordon University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/2027",
   "catered": false,
@@ -326,7 +326,7 @@
  "man": {
   "id": "man",
   "name": "University of Manchester",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": true,
@@ -367,7 +367,7 @@
  "bri": {
   "id": "bri",
   "name": "University of Bristol",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -379,7 +379,7 @@
  "uwe": {
   "id": "uwe",
   "name": "UWE Bristol",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": null,
   "catered": false,
@@ -424,7 +424,7 @@
  "war": {
   "id": "war",
   "name": "University of Warwick",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -436,7 +436,7 @@
  "cov": {
   "id": "cov",
   "name": "Coventry University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": "2026/27",
   "catered": false,
@@ -461,7 +461,7 @@
  "dur": {
   "id": "dur",
   "name": "Durham University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -473,7 +473,7 @@
  "bir": {
   "id": "bir",
   "name": "University of Birmingham",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": null,
   "catered": false,
@@ -506,7 +506,7 @@
  "lee": {
   "id": "lee",
   "name": "University of Leeds",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": false,
@@ -544,7 +544,7 @@
  "she": {
   "id": "she",
   "name": "University of Sheffield",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": true,
@@ -596,7 +596,7 @@
  "shu": {
   "id": "shu",
   "name": "Sheffield Hallam University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "low",
   "year": "2026/27",
   "catered": false,
@@ -626,7 +626,7 @@
  "not": {
   "id": "not",
   "name": "University of Nottingham",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": "2026/27",
   "catered": false,
@@ -659,7 +659,7 @@
  "sou": {
   "id": "sou",
   "name": "University of Southampton",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026-27",
   "catered": false,
@@ -709,7 +709,7 @@
  "exe": {
   "id": "exe",
   "name": "University of Exeter",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": "2026-27",
   "catered": false,
@@ -741,7 +741,7 @@
  "yor": {
   "id": "yor",
   "name": "University of York",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -753,7 +753,7 @@
  "ncl": {
   "id": "ncl",
   "name": "Newcastle University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": false,
@@ -795,7 +795,7 @@
  "nor": {
   "id": "nor",
   "name": "Northumbria University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": false,
@@ -839,7 +839,7 @@
  "liv": {
   "id": "liv",
   "name": "University of Liverpool",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -851,7 +851,7 @@
  "cdf": {
   "id": "cdf",
   "name": "Cardiff University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -863,7 +863,7 @@
  "swa": {
   "id": "swa",
   "name": "Swansea University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2027/2028",
   "catered": false,
@@ -899,7 +899,7 @@
  "qub": {
   "id": "qub",
   "name": "Queen's University Belfast",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -911,41 +911,31 @@
  "bat": {
   "id": "bat",
   "name": "University of Bath",
-  "checked": "2026-10-25",
-  "confidence": "high",
+  "checked": "2026-10-26",
+  "confidence": "low",
   "year": "2026/27",
   "catered": false,
   "rooms": {
    "wet": {
-    "median": 260,
-    "min": 206,
-    "max": 315,
-    "n": 5
-   },
-   "studio": {
-    "median": 282,
-    "min": 255,
-    "max": 315,
-    "n": 4
+    "median": 276,
+    "min": 260,
+    "max": 292,
+    "n": 2
    }
   },
   "sources": [
-   "https://www.bath.ac.uk/corporate-information/postgraduate-accommodation-prices/",
-   "https://www.bath.ac.uk/student-accommodation/green-park-house-student-accommodation/"
+   "https://www.bath.ac.uk/corporate-information/postgraduate-accommodation-prices/"
   ],
   "pagesVisited": 18,
   "examples": [
    "wet £260: £260 to £292 |",
-   "wet £292: £260 to £292 |",
-   "wet £206: Rooms in Green Park House cost between £206 and £315 per week. There are 461 rooms in Green Park House, including 299 ensuite rooms priced at £232 per week and ",
-   "wet £315: Rooms in Green Park House cost between £206 and £315 per week. There are 461 rooms in Green Park House, including 299 ensuite rooms priced at £232 per week and ",
-   "wet £232: Rooms in Green Park House cost between £206 and £315 per week. There are 461 rooms in Green Park House, including 299 ensuite rooms priced at £232 per week and "
+   "wet £292: £260 to £292 |"
   ]
  },
  "lbo": {
   "id": "lbo",
   "name": "Loughborough University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -957,7 +947,7 @@
  "lan": {
   "id": "lan",
   "name": "Lancaster University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": true,
@@ -997,7 +987,7 @@
  "sur": {
   "id": "sur",
   "name": "University of Surrey",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": false,
@@ -1036,7 +1026,7 @@
  "lei": {
   "id": "lei",
   "name": "University of Leicester",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1048,7 +1038,7 @@
  "sus": {
   "id": "sus",
   "name": "University of Sussex",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": false,
@@ -1091,28 +1081,28 @@
  "brn": {
   "id": "brn",
   "name": "University of Brighton",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026-27",
   "catered": false,
   "rooms": {
    "shared": {
-    "median": 208,
+    "median": 200,
     "min": 173,
     "max": 243,
-    "n": 11
+    "n": 13
    },
    "wet": {
-    "median": 243,
-    "min": 211.5,
+    "median": 215,
+    "min": 185.15,
     "max": 270,
-    "n": 5
+    "n": 10
    },
    "studio": {
     "median": 282,
     "min": 136,
     "max": 484,
-    "n": 7
+    "n": 8
    }
   },
   "sources": [
@@ -1120,7 +1110,8 @@
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/index.aspx",
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/circus-street-halls.aspx",
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/moulsecoomb-halls.aspx",
-   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/city-halls.aspx"
+   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/city-halls.aspx",
+   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/falmer-halls.aspx"
   ],
   "pagesVisited": 18,
   "examples": [
@@ -1134,7 +1125,7 @@
  "uea": {
   "id": "uea",
   "name": "University of East Anglia (UEA)",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1146,7 +1137,7 @@
  "her": {
   "id": "her",
   "name": "University of Hertfordshire",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1158,7 +1149,7 @@
  "por": {
   "id": "por",
   "name": "University of Portsmouth",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2027/28",
   "catered": true,
@@ -1208,7 +1199,7 @@
  "obu": {
   "id": "obu",
   "name": "Oxford Brookes University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": false,
@@ -1252,7 +1243,7 @@
  "ply": {
   "id": "ply",
   "name": "University of Plymouth",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026-27",
   "catered": false,
@@ -1290,7 +1281,7 @@
  "bou": {
   "id": "bou",
   "name": "Bournemouth University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1302,7 +1293,7 @@
  "aru": {
   "id": "aru",
   "name": "Anglia Ruskin University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1314,19 +1305,19 @@
  "edh": {
   "id": "edh",
   "name": "Edge Hill University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
   "rooms": {},
   "sources": [],
-  "pagesVisited": 18,
+  "pagesVisited": 5,
   "examples": []
  },
  "lin": {
   "id": "lin",
   "name": "University of Lincoln",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1338,7 +1329,7 @@
  "tee": {
   "id": "tee",
   "name": "Teesside University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": "2026/27",
   "catered": false,
@@ -1363,7 +1354,7 @@
  "ucn": {
   "id": "ucn",
   "name": "University of Lancashire (was UCLan)",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": null,
   "catered": true,
@@ -1401,7 +1392,7 @@
  "cum": {
   "id": "cum",
   "name": "University of Cumbria",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": false,
@@ -1437,19 +1428,19 @@
  "hud": {
   "id": "hud",
   "name": "University of Huddersfield",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
   "rooms": {},
   "sources": [],
-  "pagesVisited": 3,
+  "pagesVisited": 5,
   "examples": []
  },
  "sfs": {
   "id": "sfs",
   "name": "Staffordshire University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": null,
   "catered": false,
@@ -1490,7 +1481,7 @@
  "wor": {
   "id": "wor",
   "name": "University of Worcester",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1502,7 +1493,7 @@
  "hul": {
   "id": "hul",
   "name": "University of Hull",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": "2026/27",
   "catered": false,
@@ -1535,7 +1526,7 @@
  "kee": {
   "id": "kee",
   "name": "Keele University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": false,
@@ -1576,7 +1567,7 @@
  "bcu": {
   "id": "bcu",
   "name": "Birmingham City University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": "2026-27",
   "catered": false,
@@ -1609,7 +1600,7 @@
  "dmu": {
   "id": "dmu",
   "name": "De Montfort University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": false,
@@ -1653,7 +1644,7 @@
  "ntu": {
   "id": "ntu",
   "name": "Nottingham Trent University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1665,7 +1656,7 @@
  "ljmu": {
   "id": "ljmu",
   "name": "Liverpool John Moores University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1677,7 +1668,7 @@
  "brd": {
   "id": "brd",
   "name": "University of Bradford",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1689,7 +1680,7 @@
  "glos": {
   "id": "glos",
   "name": "University of Gloucestershire",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1701,7 +1692,7 @@
  "wlv": {
   "id": "wlv",
   "name": "University of Wolverhampton",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1713,7 +1704,7 @@
  "ysj": {
   "id": "ysj",
   "name": "York St John University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": null,
   "catered": false,
@@ -1763,7 +1754,7 @@
  "uls": {
   "id": "uls",
   "name": "Ulster University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1775,7 +1766,7 @@
  "bnu": {
   "id": "bnu",
   "name": "Buckinghamshire New University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1787,7 +1778,7 @@
  "ccc": {
   "id": "ccc",
   "name": "Canterbury Christ Church University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": null,
   "catered": false,
@@ -1827,7 +1818,7 @@
  "nth": {
   "id": "nth",
   "name": "University of Northampton",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026/27",
   "catered": false,
@@ -1871,7 +1862,7 @@
  "bed": {
   "id": "bed",
   "name": "University of Bedfordshire",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1883,7 +1874,7 @@
  "qmu": {
   "id": "qmu",
   "name": "Queen Margaret University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": "2026/27",
   "catered": false,
@@ -1909,7 +1900,7 @@
  "sun": {
   "id": "sun",
   "name": "University of Sunderland",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": "2026–2027",
   "catered": false,
@@ -1950,7 +1941,7 @@
  "wrx": {
   "id": "wrx",
   "name": "Wrexham University",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "medium",
   "year": "2026/27",
   "catered": false,
@@ -1982,7 +1973,7 @@
  "ugm": {
   "id": "ugm",
   "name": "University of Greater Manchester",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "none",
   "year": null,
   "catered": false,
@@ -1994,7 +1985,7 @@
  "der": {
   "id": "der",
   "name": "University of Derby",
-  "checked": "2026-10-25",
+  "checked": "2026-10-26",
   "confidence": "high",
   "year": "2026-27",
   "catered": false,
