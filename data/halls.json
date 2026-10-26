@@ -35,7 +35,10 @@
     "median": 308,
     "min": 308,
     "max": 308,
-    "n": 1
+    "n": 1,
+    "v": [
+     308
+    ]
    }
   },
   "sources": [
@@ -58,13 +61,20 @@
     "median": 155,
     "min": 150,
     "max": 159.6,
-    "n": 2
+    "n": 2,
+    "v": [
+     150,
+     159.6
+    ]
    },
    "full": {
     "median": 387.24,
     "min": 387.24,
     "max": 387.24,
-    "n": 1
+    "n": 1,
+    "v": [
+     387.24
+    ]
    }
   },
   "sources": [
@@ -114,7 +124,10 @@
     "median": 170,
     "min": 170,
     "max": 170,
-    "n": 1
+    "n": 1,
+    "v": [
+     170
+    ]
    }
   },
   "sources": [
@@ -149,25 +162,81 @@
     "median": 221,
     "min": 220.5,
     "max": 220.5,
-    "n": 2
+    "n": 2,
+    "v": [
+     220.5,
+     220.5
+    ]
    },
    "wet": {
     "median": 266.28,
     "min": 145.95,
     "max": 398.86,
-    "n": 43
+    "n": 43,
+    "v": [
+     145.95,
+     173.88,
+     173.88,
+     192.43,
+     211.68,
+     212.31,
+     215.95,
+     215.95,
+     215.95,
+     216.86,
+     224.91,
+     224.91,
+     226.38,
+     226.38,
+     226.94,
+     230.51,
+     232.19,
+     232.19,
+     237.79,
+     237.79,
+     266.28,
+     266.28,
+     266.28,
+     271.18,
+     271.18,
+     274.89,
+     274.89,
+     287.57,
+     287.57,
+     291.76,
+     291.76,
+     299.74,
+     302.19,
+     308.91,
+     308.91,
+     310.24,
+     348.04,
+     348.04,
+     373.45,
+     373.45,
+     377.44,
+     398.86,
+     398.86
+    ]
    },
    "full": {
     "median": 217,
     "min": 216.86,
     "max": 216.86,
-    "n": 2
+    "n": 2,
+    "v": [
+     216.86,
+     216.86
+    ]
    },
    "studio": {
     "median": 220.5,
     "min": 220.5,
     "max": 220.5,
-    "n": 1
+    "n": 1,
+    "v": [
+     220.5
+    ]
    }
   },
   "sources": [
@@ -223,19 +292,61 @@
     "median": 185.99,
     "min": 172.9,
     "max": 228.06,
-    "n": 19
+    "n": 19,
+    "v": [
+     172.9,
+     172.9,
+     175,
+     175,
+     175,
+     175,
+     183.05,
+     183.05,
+     185.99,
+     185.99,
+     203,
+     203,
+     208.04,
+     208.04,
+     209.51,
+     209.51,
+     217,
+     217,
+     228.06
+    ]
    },
    "full": {
     "median": 216,
     "min": 187.81,
     "max": 224.84,
-    "n": 8
+    "n": 8,
+    "v": [
+     187.81,
+     187.81,
+     211.05,
+     211.05,
+     220.99,
+     220.99,
+     224.84,
+     224.84
+    ]
    },
    "studio": {
     "median": 220.01,
     "min": 210,
     "max": 239.82,
-    "n": 9
+    "n": 9,
+    "v": [
+     210,
+     210,
+     217.98,
+     217.98,
+     220.01,
+     220.01,
+     221.48,
+     224.49,
+     239.82
+    ]
    }
   },
   "sources": [
@@ -302,13 +413,23 @@
     "median": 110,
     "min": 101.92,
     "max": 119.49,
-    "n": 4
+    "n": 4,
+    "v": [
+     101.92,
+     109.13,
+     111.23,
+     119.49
+    ]
    },
    "wet": {
     "median": 150,
     "min": 145.18,
     "max": 154.49,
-    "n": 2
+    "n": 2,
+    "v": [
+     145.18,
+     154.49
+    ]
    }
   },
   "sources": [
@@ -335,13 +456,25 @@
     "median": 180,
     "min": 119,
     "max": 198,
-    "n": 6
+    "n": 6,
+    "v": [
+     119,
+     161,
+     178,
+     181,
+     189,
+     198
+    ]
    },
    "wet": {
     "median": 219,
     "min": 175,
     "max": 263,
-    "n": 2
+    "n": 2,
+    "v": [
+     175,
+     263
+    ]
    },
    "catered": {
     "median": 184,
@@ -388,25 +521,49 @@
     "median": 125,
     "min": 117.71,
     "max": 131.48,
-    "n": 2
+    "n": 2,
+    "v": [
+     117.71,
+     131.48
+    ]
    },
    "wet": {
     "median": 197,
     "min": 149.09,
     "max": 233.65,
-    "n": 10
+    "n": 10,
+    "v": [
+     149.09,
+     164.59,
+     177.95,
+     181.34,
+     187.14,
+     206.86,
+     216.13,
+     221.24,
+     221.51,
+     233.65
+    ]
    },
    "full": {
     "median": 230,
     "min": 210.02,
     "max": 248.99,
-    "n": 2
+    "n": 2,
+    "v": [
+     210.02,
+     248.99
+    ]
    },
    "studio": {
     "median": 255,
     "min": 209.51,
     "max": 300.54,
-    "n": 2
+    "n": 2,
+    "v": [
+     209.51,
+     300.54
+    ]
    }
   },
   "sources": [
@@ -445,7 +602,12 @@
     "median": 162,
     "min": 154,
     "max": 167,
-    "n": 3
+    "n": 3,
+    "v": [
+     154,
+     162,
+     167
+    ]
    }
   },
   "sources": [
@@ -482,13 +644,27 @@
     "median": 147,
     "min": 137,
     "max": 213,
-    "n": 3
+    "n": 3,
+    "v": [
+     137,
+     147,
+     213
+    ]
    },
    "wet": {
     "median": 223,
     "min": 189,
     "max": 324,
-    "n": 7
+    "n": 7,
+    "v": [
+     189,
+     200,
+     222,
+     223,
+     230,
+     233,
+     324
+    ]
    }
   },
   "sources": [
@@ -515,13 +691,43 @@
     "median": 155,
     "min": 122,
     "max": 235,
-    "n": 9
+    "n": 9,
+    "v": [
+     122,
+     125,
+     125,
+     137,
+     155,
+     165,
+     169,
+     185,
+     235
+    ]
    },
    "wet": {
     "median": 195,
     "min": 168,
     "max": 259,
-    "n": 17
+    "n": 17,
+    "v": [
+     168,
+     169,
+     191,
+     191,
+     191,
+     192,
+     192,
+     192,
+     195,
+     199,
+     199,
+     199,
+     200,
+     207,
+     208,
+     208,
+     259
+    ]
    }
   },
   "sources": [
@@ -553,25 +759,55 @@
     "median": 156,
     "min": 151.41,
     "max": 173.32,
-    "n": 6
+    "n": 6,
+    "v": [
+     151.41,
+     151.41,
+     155.68,
+     155.68,
+     173.32,
+     173.32
+    ]
    },
    "wet": {
     "median": 194.32,
     "min": 179.97,
     "max": 195.72,
-    "n": 9
+    "n": 9,
+    "v": [
+     179.97,
+     179.97,
+     179.97,
+     179.97,
+     194.32,
+     194.32,
+     195.72,
+     195.72,
+     195.72
+    ]
    },
    "full": {
     "median": 211,
     "min": 208.95,
     "max": 212.17,
-    "n": 4
+    "n": 4,
+    "v": [
+     208.95,
+     208.95,
+     212.17,
+     212.17
+    ]
    },
    "studio": {
     "median": 240.38,
     "min": 227.68,
     "max": 240.38,
-    "n": 3
+    "n": 3,
+    "v": [
+     227.68,
+     240.38,
+     240.38
+    ]
    },
    "catered": {
     "median": 194.46,
@@ -605,13 +841,19 @@
     "median": 109,
     "min": 109,
     "max": 109,
-    "n": 1
+    "n": 1,
+    "v": [
+     109
+    ]
    },
    "full": {
     "median": 119,
     "min": 119,
     "max": 119,
-    "n": 1
+    "n": 1,
+    "v": [
+     119
+    ]
    }
   },
   "sources": [
@@ -635,13 +877,22 @@
     "median": 207,
     "min": 188,
     "max": 225,
-    "n": 4
+    "n": 4,
+    "v": [
+     188,
+     199,
+     214,
+     225
+    ]
    },
    "full": {
     "median": 242,
     "min": 242,
     "max": 242,
-    "n": 1
+    "n": 1,
+    "v": [
+     242
+    ]
    }
   },
   "sources": [
@@ -668,25 +919,95 @@
     "median": 165,
     "min": 118.5,
     "max": 241.71,
-    "n": 24
+    "n": 24,
+    "v": [
+     118.5,
+     118.5,
+     139.09,
+     139.09,
+     144.2,
+     144.2,
+     157.64,
+     157.64,
+     157.64,
+     157.64,
+     164.85,
+     164.85,
+     164.85,
+     164.85,
+     169.96,
+     169.96,
+     185.92,
+     185.92,
+     185.92,
+     185.92,
+     223.3,
+     223.3,
+     241.71,
+     241.71
+    ]
    },
    "wet": {
     "median": 190,
     "min": 173.93,
     "max": 270.06,
-    "n": 24
+    "n": 24,
+    "v": [
+     173.93,
+     175.93,
+     177.45,
+     177.45,
+     177.45,
+     179.43,
+     179.43,
+     179.43,
+     180.53,
+     180.53,
+     190.46,
+     190.46,
+     190.46,
+     194.67,
+     194.67,
+     194.67,
+     194.67,
+     200.83,
+     214.2,
+     214.2,
+     223.51,
+     223.51,
+     270.06,
+     270.06
+    ]
    },
    "full": {
     "median": 236.25,
     "min": 234.85,
     "max": 236.25,
-    "n": 3
+    "n": 3,
+    "v": [
+     234.85,
+     236.25,
+     236.25
+    ]
    },
    "studio": {
     "median": 267.75,
     "min": 185.92,
     "max": 284.48,
-    "n": 11
+    "n": 11,
+    "v": [
+     185.92,
+     252.56,
+     262.64,
+     262.64,
+     262.64,
+     267.75,
+     267.75,
+     267.75,
+     281.12,
+     284.48,
+     284.48
+    ]
    }
   },
   "sources": [
@@ -718,13 +1039,20 @@
     "median": 215.04,
     "min": 215.04,
     "max": 215.04,
-    "n": 1
+    "n": 1,
+    "v": [
+     215.04
+    ]
    },
    "wet": {
     "median": 175,
     "min": 139.09,
     "max": 210.77,
-    "n": 2
+    "n": 2,
+    "v": [
+     139.09,
+     210.77
+    ]
    }
   },
   "sources": [
@@ -762,19 +1090,39 @@
     "median": 190,
     "min": 155,
     "max": 224,
-    "n": 2
+    "n": 2,
+    "v": [
+     155,
+     224
+    ]
    },
    "wet": {
     "median": 190,
     "min": 142.8,
     "max": 205.25,
-    "n": 10
+    "n": 10,
+    "v": [
+     142.8,
+     156.78,
+     175.13,
+     178.65,
+     185,
+     195,
+     197,
+     197.4,
+     199,
+     205.25
+    ]
    },
    "studio": {
     "median": 194,
     "min": 190.05,
     "max": 197.4,
-    "n": 2
+    "n": 2,
+    "v": [
+     190.05,
+     197.4
+    ]
    }
   },
   "sources": [
@@ -804,19 +1152,39 @@
     "median": 175,
     "min": 164.01,
     "max": 194,
-    "n": 9
+    "n": 9,
+    "v": [
+     164.01,
+     168,
+     169.05,
+     171.01,
+     175,
+     179.2,
+     184,
+     192,
+     194
+    ]
    },
    "full": {
     "median": 182,
     "min": 182,
     "max": 182,
-    "n": 2
+    "n": 2,
+    "v": [
+     182,
+     182
+    ]
    },
    "studio": {
     "median": 203,
     "min": 203,
     "max": 238.92,
-    "n": 3
+    "n": 3,
+    "v": [
+     203,
+     203,
+     238.92
+    ]
    }
   },
   "sources": [
@@ -872,13 +1240,26 @@
     "median": 136,
     "min": 100,
     "max": 258,
-    "n": 8
+    "n": 8,
+    "v": [
+     100,
+     100,
+     130,
+     130,
+     141,
+     176,
+     258,
+     258
+    ]
    },
    "full": {
     "median": 183,
     "min": 183,
     "max": 183,
-    "n": 1
+    "n": 1,
+    "v": [
+     183
+    ]
    }
   },
   "sources": [
@@ -912,24 +1293,47 @@
   "id": "bat",
   "name": "University of Bath",
   "checked": "2026-10-26",
-  "confidence": "low",
+  "confidence": "high",
   "year": "2026/27",
   "catered": false,
   "rooms": {
    "wet": {
-    "median": 276,
-    "min": 260,
-    "max": 292,
-    "n": 2
+    "median": 260,
+    "min": 206,
+    "max": 315,
+    "n": 5,
+    "v": [
+     206,
+     232,
+     260,
+     292,
+     315
+    ]
+   },
+   "studio": {
+    "median": 282,
+    "min": 255,
+    "max": 315,
+    "n": 4,
+    "v": [
+     255,
+     276,
+     288,
+     315
+    ]
    }
   },
   "sources": [
-   "https://www.bath.ac.uk/corporate-information/postgraduate-accommodation-prices/"
+   "https://www.bath.ac.uk/corporate-information/postgraduate-accommodation-prices/",
+   "https://www.bath.ac.uk/student-accommodation/green-park-house-student-accommodation/"
   ],
   "pagesVisited": 18,
   "examples": [
    "wet £260: £260 to £292 |",
-   "wet £292: £260 to £292 |"
+   "wet £292: £260 to £292 |",
+   "wet £206: Rooms in Green Park House cost between £206 and £315 per week. There are 461 rooms in Green Park House, including 299 ensuite rooms priced at £232 per week and ",
+   "wet £315: Rooms in Green Park House cost between £206 and £315 per week. There are 461 rooms in Green Park House, including 299 ensuite rooms priced at £232 per week and ",
+   "wet £232: Rooms in Green Park House cost between £206 and £315 per week. There are 461 rooms in Green Park House, including 299 ensuite rooms priced at £232 per week and "
   ]
  },
  "lbo": {
@@ -956,13 +1360,25 @@
     "median": 203.42,
     "min": 185.5,
     "max": 206.08,
-    "n": 5
+    "n": 5,
+    "v": [
+     185.5,
+     203.42,
+     203.42,
+     206.08,
+     206.08
+    ]
    },
    "studio": {
     "median": 241.36,
     "min": 136.64,
     "max": 273.28,
-    "n": 3
+    "n": 3,
+    "v": [
+     136.64,
+     241.36,
+     273.28
+    ]
    },
    "catered": {
     "median": 277,
@@ -996,19 +1412,45 @@
     "median": 261,
     "min": 208.5,
     "max": 325.5,
-    "n": 10
+    "n": 10,
+    "v": [
+     208.5,
+     211.5,
+     217,
+     217,
+     260.63,
+     260.63,
+     271.25,
+     312.75,
+     317,
+     325.5
+    ]
    },
    "full": {
     "median": 245,
     "min": 242,
     "max": 247,
-    "n": 2
+    "n": 2,
+    "v": [
+     242,
+     247
+    ]
    },
    "studio": {
     "median": 331,
     "min": 302,
     "max": 346.55,
-    "n": 8
+    "n": 8,
+    "v": [
+     302,
+     312,
+     320,
+     326.7,
+     334.95,
+     336.7,
+     344.95,
+     346.55
+    ]
    }
   },
   "sources": [
@@ -1047,19 +1489,38 @@
     "median": 156,
     "min": 123.2,
     "max": 188.09,
-    "n": 2
+    "n": 2,
+    "v": [
+     123.2,
+     188.09
+    ]
    },
    "wet": {
-    "median": 221,
+    "median": 221.27,
     "min": 189,
     "max": 235.69,
-    "n": 6
+    "n": 7,
+    "v": [
+     189,
+     205.8,
+     221.27,
+     221.27,
+     221.27,
+     235.69,
+     235.69
+    ]
    },
    "studio": {
     "median": 206,
     "min": 132.58,
     "max": 221.27,
-    "n": 4
+    "n": 4,
+    "v": [
+     132.58,
+     205.8,
+     205.8,
+     221.27
+    ]
    }
   },
   "sources": [
@@ -1067,7 +1528,8 @@
    "https://www.sussex.ac.uk/study/accommodation/on-campus/swanborough",
    "https://www.sussex.ac.uk/study/accommodation/on-campus/stanmer-court",
    "https://www.sussex.ac.uk/study/accommodation/on-campus/northfield",
-   "https://www.sussex.ac.uk/study/accommodation/on-campus"
+   "https://www.sussex.ac.uk/study/accommodation/on-campus",
+   "https://www.sussex.ac.uk/study/accommodation/on-campus/west-slope"
   ],
   "pagesVisited": 18,
   "examples": [
@@ -1087,22 +1549,51 @@
   "catered": false,
   "rooms": {
    "shared": {
-    "median": 200,
+    "median": 208,
     "min": 173,
     "max": 243,
-    "n": 13
+    "n": 11,
+    "v": [
+     173,
+     192,
+     192,
+     193,
+     200,
+     208,
+     210,
+     211.5,
+     218,
+     235,
+     243
+    ]
    },
    "wet": {
-    "median": 215,
-    "min": 185.15,
+    "median": 243,
+    "min": 211.5,
     "max": 270,
-    "n": 10
+    "n": 5,
+    "v": [
+     211.5,
+     235,
+     243,
+     265,
+     270
+    ]
    },
    "studio": {
     "median": 282,
     "min": 136,
     "max": 484,
-    "n": 8
+    "n": 7,
+    "v": [
+     136,
+     180,
+     230,
+     282,
+     290,
+     300,
+     484
+    ]
    }
   },
   "sources": [
@@ -1110,8 +1601,7 @@
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/index.aspx",
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/circus-street-halls.aspx",
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/moulsecoomb-halls.aspx",
-   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/city-halls.aspx",
-   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/falmer-halls.aspx"
+   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/city-halls.aspx"
   ],
   "pagesVisited": 18,
   "examples": [
@@ -1158,19 +1648,82 @@
     "median": 130,
     "min": 120,
     "max": 194,
-    "n": 11
+    "n": 11,
+    "v": [
+     120,
+     120,
+     120,
+     130,
+     130,
+     130,
+     130,
+     146,
+     175,
+     187,
+     194
+    ]
    },
    "wet": {
     "median": 184,
     "min": 142,
     "max": 208,
-    "n": 41
+    "n": 41,
+    "v": [
+     142,
+     148,
+     148,
+     148,
+     148,
+     162,
+     162,
+     162,
+     162,
+     165,
+     165,
+     165,
+     165,
+     170,
+     170,
+     178,
+     178,
+     178,
+     178,
+     184,
+     184,
+     184,
+     184,
+     184,
+     184,
+     184,
+     188,
+     189,
+     189,
+     194,
+     195,
+     195,
+     197,
+     201,
+     201,
+     201,
+     201,
+     201,
+     205,
+     208,
+     208
+    ]
    },
    "studio": {
     "median": 194,
     "min": 188,
     "max": 201,
-    "n": 5
+    "n": 5,
+    "v": [
+     188,
+     194,
+     194,
+     197,
+     201
+    ]
    },
    "catered": {
     "median": 187,
@@ -1208,19 +1761,49 @@
     "median": 180,
     "min": 139.02,
     "max": 222.53,
-    "n": 10
+    "n": 10,
+    "v": [
+     139.02,
+     164.85,
+     164.85,
+     164.85,
+     164.85,
+     194.67,
+     194.67,
+     199.78,
+     199.78,
+     222.53
+    ]
    },
    "wet": {
     "median": 203,
     "min": 175.07,
     "max": 231.7,
-    "n": 12
+    "n": 12,
+    "v": [
+     175.07,
+     175.07,
+     184.85,
+     184.85,
+     202.83,
+     202.83,
+     202.83,
+     204.96,
+     204.96,
+     204.96,
+     204.96,
+     231.7
+    ]
    },
    "full": {
     "median": 239,
     "min": 231.7,
     "max": 247.24,
-    "n": 2
+    "n": 2,
+    "v": [
+     231.7,
+     247.24
+    ]
    }
   },
   "sources": [
@@ -1252,13 +1835,28 @@
     "median": 141,
     "min": 141,
     "max": 141,
-    "n": 2
+    "n": 2,
+    "v": [
+     141,
+     141
+    ]
    },
    "wet": {
     "median": 209.5,
     "min": 188,
     "max": 233,
-    "n": 9
+    "n": 9,
+    "v": [
+     188,
+     209.5,
+     209.5,
+     209.5,
+     209.5,
+     215,
+     230,
+     230,
+     233
+    ]
    }
   },
   "sources": [
@@ -1311,7 +1909,7 @@
   "catered": false,
   "rooms": {},
   "sources": [],
-  "pagesVisited": 5,
+  "pagesVisited": 18,
   "examples": []
  },
  "lin": {
@@ -1338,7 +1936,12 @@
     "median": 160,
     "min": 155,
     "max": 160,
-    "n": 3
+    "n": 3,
+    "v": [
+     155,
+     160,
+     160
+    ]
    }
   },
   "sources": [
@@ -1363,13 +1966,19 @@
     "median": 126,
     "min": 126,
     "max": 126,
-    "n": 1
+    "n": 1,
+    "v": [
+     126
+    ]
    },
    "wet": {
     "median": 133,
     "min": 133,
     "max": 133,
-    "n": 1
+    "n": 1,
+    "v": [
+     133
+    ]
    },
    "catered": {
     "median": 81,
@@ -1401,13 +2010,27 @@
     "median": 108,
     "min": 108,
     "max": 108,
-    "n": 1
+    "n": 1,
+    "v": [
+     108
+    ]
    },
    "wet": {
     "median": 146,
     "min": 141.46,
     "max": 153,
-    "n": 9
+    "n": 9,
+    "v": [
+     141.46,
+     141.46,
+     146,
+     146,
+     146,
+     146,
+     146,
+     153,
+     153
+    ]
    }
   },
   "sources": [
@@ -1449,19 +2072,33 @@
     "median": 175,
     "min": 175,
     "max": 192,
-    "n": 3
+    "n": 3,
+    "v": [
+     175,
+     175,
+     192
+    ]
    },
    "full": {
     "median": 188,
     "min": 188,
     "max": 210,
-    "n": 3
+    "n": 3,
+    "v": [
+     188,
+     188,
+     210
+    ]
    },
    "studio": {
     "median": 223,
     "min": 212,
     "max": 233,
-    "n": 2
+    "n": 2,
+    "v": [
+     212,
+     233
+    ]
    }
   },
   "sources": [
@@ -1502,13 +2139,21 @@
     "median": 99,
     "min": 99,
     "max": 99,
-    "n": 1
+    "n": 1,
+    "v": [
+     99
+    ]
    },
    "full": {
     "median": 114,
     "min": 114,
     "max": 119,
-    "n": 3
+    "n": 3,
+    "v": [
+     114,
+     114,
+     119
+    ]
    }
   },
   "sources": [
@@ -1535,19 +2180,32 @@
     "median": 143.71,
     "min": 128.03,
     "max": 232.05,
-    "n": 5
+    "n": 5,
+    "v": [
+     128.03,
+     143.71,
+     143.71,
+     232.05,
+     232.05
+    ]
    },
    "wet": {
     "median": 195.02,
     "min": 195.02,
     "max": 195.02,
-    "n": 1
+    "n": 1,
+    "v": [
+     195.02
+    ]
    },
    "full": {
     "median": 231.98,
     "min": 231.98,
     "max": 231.98,
-    "n": 1
+    "n": 1,
+    "v": [
+     231.98
+    ]
    }
   },
   "sources": [
@@ -1576,13 +2234,21 @@
     "median": 174,
     "min": 171.34,
     "max": 176.48,
-    "n": 2
+    "n": 2,
+    "v": [
+     171.34,
+     176.48
+    ]
    },
    "studio": {
     "median": 190,
     "min": 179,
     "max": 200,
-    "n": 2
+    "n": 2,
+    "v": [
+     179,
+     200
+    ]
    }
   },
   "sources": [
@@ -1609,19 +2275,53 @@
     "median": 146,
     "min": 118.5,
     "max": 386.95,
-    "n": 14
+    "n": 14,
+    "v": [
+     118.5,
+     136.5,
+     139,
+     142,
+     145,
+     145,
+     145,
+     147,
+     161,
+     162,
+     165,
+     200,
+     200,
+     386.95
+    ]
    },
    "full": {
     "median": 138,
     "min": 118,
     "max": 155,
-    "n": 13
+    "n": 13,
+    "v": [
+     118,
+     118,
+     128,
+     134,
+     137,
+     138,
+     138,
+     143,
+     147,
+     148,
+     155,
+     155,
+     155
+    ]
    },
    "studio": {
     "median": 180,
     "min": 180,
     "max": 180,
-    "n": 1
+    "n": 1,
+    "v": [
+     180
+    ]
    }
   },
   "sources": [
@@ -1713,25 +2413,57 @@
     "median": 158,
     "min": 132,
     "max": 180,
-    "n": 8
+    "n": 8,
+    "v": [
+     132,
+     132,
+     132,
+     149,
+     166,
+     172,
+     174,
+     180
+    ]
    },
    "wet": {
     "median": 172,
     "min": 129,
     "max": 208,
-    "n": 7
+    "n": 7,
+    "v": [
+     129,
+     166,
+     172,
+     172,
+     180,
+     205,
+     208
+    ]
    },
    "full": {
     "median": 190,
     "min": 174,
     "max": 211,
-    "n": 7
+    "n": 7,
+    "v": [
+     174,
+     180,
+     180,
+     190,
+     190,
+     200,
+     211
+    ]
    },
    "studio": {
     "median": 230,
     "min": 229,
     "max": 230,
-    "n": 2
+    "n": 2,
+    "v": [
+     229,
+     230
+    ]
    }
   },
   "sources": [
@@ -1787,19 +2519,31 @@
     "median": 158,
     "min": 155.96,
     "max": 161,
-    "n": 2
+    "n": 2,
+    "v": [
+     155.96,
+     161
+    ]
    },
    "wet": {
     "median": 173,
     "min": 170.94,
     "max": 175.98,
-    "n": 2
+    "n": 2,
+    "v": [
+     170.94,
+     175.98
+    ]
    },
    "full": {
     "median": 176,
     "min": 175.98,
     "max": 175.98,
-    "n": 2
+    "n": 2,
+    "v": [
+     175.98,
+     175.98
+    ]
    }
   },
   "sources": [
@@ -1827,19 +2571,31 @@
     "median": 164,
     "min": 164,
     "max": 164,
-    "n": 1
+    "n": 1,
+    "v": [
+     164
+    ]
    },
    "wet": {
     "median": 117,
     "min": 97,
     "max": 178,
-    "n": 3
+    "n": 3,
+    "v": [
+     97,
+     117,
+     178
+    ]
    },
    "studio": {
     "median": 176,
     "min": 144,
     "max": 208,
-    "n": 2
+    "n": 2,
+    "v": [
+     144,
+     208
+    ]
    }
   },
   "sources": [
@@ -1883,7 +2639,12 @@
     "median": 151,
     "min": 151,
     "max": 151,
-    "n": 3
+    "n": 3,
+    "v": [
+     151,
+     151,
+     151
+    ]
    }
   },
   "sources": [
@@ -1909,19 +2670,30 @@
     "median": 106,
     "min": 104,
     "max": 107,
-    "n": 2
+    "n": 2,
+    "v": [
+     104,
+     107
+    ]
    },
    "wet": {
     "median": 134,
     "min": 131,
     "max": 137,
-    "n": 2
+    "n": 2,
+    "v": [
+     131,
+     137
+    ]
    },
    "full": {
     "median": 150,
     "min": 150,
     "max": 150,
-    "n": 1
+    "n": 1,
+    "v": [
+     150
+    ]
    }
   },
   "sources": [
@@ -1950,13 +2722,21 @@
     "median": 132.5,
     "min": 132.5,
     "max": 132.5,
-    "n": 1
+    "n": 1,
+    "v": [
+     132.5
+    ]
    },
    "full": {
     "median": 140,
     "min": 95,
     "max": 190,
-    "n": 3
+    "n": 3,
+    "v": [
+     95,
+     140,
+     190
+    ]
    }
   },
   "sources": [
@@ -1994,25 +2774,48 @@
     "median": 141,
     "min": 128.59,
     "max": 500,
-    "n": 6
+    "n": 6,
+    "v": [
+     128.59,
+     128.59,
+     140.56,
+     140.56,
+     500,
+     500
+    ]
    },
    "wet": {
     "median": 159,
     "min": 119.42,
     "max": 180.81,
-    "n": 4
+    "n": 4,
+    "v": [
+     119.42,
+     144.78,
+     173.83,
+     180.81
+    ]
    },
    "full": {
     "median": 184,
     "min": 128.59,
     "max": 188.76,
-    "n": 4
+    "n": 4,
+    "v": [
+     128.59,
+     180.03,
+     187.25,
+     188.76
+    ]
    },
    "studio": {
     "median": 170.59,
     "min": 170.59,
     "max": 170.59,
-    "n": 1
+    "n": 1,
+    "v": [
+     170.59
+    ]
    }
   },
   "sources": [
@@ -2031,5 +2834,2092 @@
    "shared £140.56: We know the cost of living is a key consideration when choosing university, so we are offering an exclusive discount to make your move to our award-winning hall",
    "shared £128.59: We know the cost of living is a key consideration when choosing university, so we are offering an exclusive discount to make your move to our award-winning hall"
   ]
+ },
+ "p10000163": {
+  "id": "p10000163",
+  "name": "Health Sciences University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 0,
+  "examples": []
+ },
+ "p10000385": {
+  "id": "p10000385",
+  "name": "Arts University Bournemouth",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 10,
+  "examples": []
+ },
+ "p10000571": {
+  "id": "p10000571",
+  "name": "Bath Spa University",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "shared": {
+    "median": 158,
+    "min": 87,
+    "max": 205,
+    "n": 4,
+    "v": [
+     87,
+     154,
+     162,
+     205
+    ]
+   },
+   "wet": {
+    "median": 197,
+    "min": 184,
+    "max": 235,
+    "n": 4,
+    "v": [
+     184,
+     186,
+     208,
+     235
+    ]
+   },
+   "studio": {
+    "median": 280,
+    "min": 249,
+    "max": 310,
+    "n": 2,
+    "v": [
+     249,
+     310
+    ]
+   }
+  },
+  "sources": [
+   "https://www.bathspa.ac.uk/student-life/accommodation/rents/"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "wet £235: Standard room with ensuite Cost per week: £235.00",
+   "shared £205: Standard room with shared bathroom (Townhouse) Cost per week: £205.00",
+   "studio £310: Studio Cost per week: £310.00",
+   "wet £184: Standard room with ensuite shower (shared toilet facilities) Cost per week: £184.00",
+   "studio £249: Studio Cost per week: £249.00"
+  ]
+ },
+ "p10000712": {
+  "id": "p10000712",
+  "name": "University College Birmingham",
+  "checked": "2026-10-26",
+  "confidence": "low",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 146,
+    "min": 134,
+    "max": 158,
+    "n": 2,
+    "v": [
+     134,
+     158
+    ]
+   }
+  },
+  "sources": [
+   "https://www.ucb.ac.uk/university/student-life/accommodation/the-maltings/"
+  ],
+  "pagesVisited": 16,
+  "examples": [
+   "wet £134: The weekly rent for 2026/27 is £134 standard / £158 en suite",
+   "wet £158: The weekly rent for 2026/27 is £134 standard / £158 en suite"
+  ]
+ },
+ "p10000961": {
+  "id": "p10000961",
+  "name": "Brunel University of London",
+  "checked": "2026-10-26",
+  "confidence": "low",
+  "year": "2026/2027",
+  "catered": false,
+  "rooms": {
+   "shared": {
+    "median": 281.68,
+    "min": 281.68,
+    "max": 281.68,
+    "n": 1,
+    "v": [
+     281.68
+    ]
+   }
+  },
+  "sources": [
+   "https://www.brunel.ac.uk/life/accommodation/rents-and-contract-lengths"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "shared £281.68: Cost per week: £281.68 |"
+  ]
+ },
+ "p10002718": {
+  "id": "p10002718",
+  "name": "Goldsmiths, University of London",
+  "checked": "2026-10-26",
+  "confidence": "low",
+  "year": "2026-27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 230,
+    "min": 230,
+    "max": 230,
+    "n": 1,
+    "v": [
+     230
+    ]
+   }
+  },
+  "sources": [
+   "https://www.gold.ac.uk/accommodation/halls/loring-hall/"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "wet £230: £230"
+  ]
+ },
+ "p10003614": {
+  "id": "p10003614",
+  "name": "University of Winchester",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 0,
+  "examples": []
+ },
+ "p10003854": {
+  "id": "p10003854",
+  "name": "Leeds Arts University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 1,
+  "examples": []
+ },
+ "p10003861": {
+  "id": "p10003861",
+  "name": "Leeds Beckett University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 18,
+  "examples": []
+ },
+ "p10003863": {
+  "id": "p10003863",
+  "name": "Leeds Trinity University",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 145,
+    "min": 113,
+    "max": 155,
+    "n": 43,
+    "v": [
+     113,
+     119,
+     119,
+     119,
+     119,
+     119,
+     141,
+     141,
+     141,
+     141,
+     141,
+     141,
+     145,
+     145,
+     145,
+     145,
+     145,
+     145,
+     145,
+     145,
+     145,
+     145,
+     145,
+     145,
+     149,
+     149,
+     149,
+     149,
+     149,
+     149,
+     149,
+     149,
+     149,
+     149,
+     149,
+     149,
+     149,
+     151,
+     155,
+     155,
+     155,
+     155,
+     155
+    ]
+   },
+   "full": {
+    "median": 149,
+    "min": 145,
+    "max": 155,
+    "n": 3,
+    "v": [
+     145,
+     149,
+     155
+    ]
+   }
+  },
+  "sources": [
+   "https://www.leedstrinity.ac.uk/accommodation/",
+   "https://www.leedstrinity.ac.uk/accommodation/all-saints-court/",
+   "https://www.leedstrinity.ac.uk/accommodation/clarence-dock-village/",
+   "https://www.leedstrinity.ac.uk/accommodation/fountains-court/",
+   "https://www.leedstrinity.ac.uk/accommodation/kirkstall-hall/",
+   "https://www.leedstrinity.ac.uk/accommodation/trinity-close/"
+  ],
+  "pagesVisited": 11,
+  "examples": [
+   "wet £145: £145 to £149 per week",
+   "wet £149: £145 to £149 per week",
+   "wet £141: £141 - £145 per week",
+   "wet £145: £141 - £145 per week",
+   "wet £119: £119 per week - limited availability"
+  ]
+ },
+ "p10003956": {
+  "id": "p10003956",
+  "name": "Liverpool Hope University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 18,
+  "examples": []
+ },
+ "p10004048": {
+  "id": "p10004048",
+  "name": "London Metropolitan University",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026-27",
+  "catered": false,
+  "rooms": {
+   "shared": {
+    "median": 210,
+    "min": 200,
+    "max": 270,
+    "n": 5,
+    "v": [
+     200,
+     202.58,
+     210,
+     230,
+     270
+    ]
+   },
+   "wet": {
+    "median": 303,
+    "min": 250,
+    "max": 450,
+    "n": 8,
+    "v": [
+     250,
+     260,
+     279,
+     295,
+     310,
+     349,
+     369,
+     450
+    ]
+   },
+   "full": {
+    "median": 294,
+    "min": 294,
+    "max": 294,
+    "n": 1,
+    "v": [
+     294
+    ]
+   }
+  },
+  "sources": [
+   "https://www.londonmet.ac.uk/services-and-facilities/accommodation/halls-of-residence/",
+   "https://www.londonmet.ac.uk/services-and-facilities/accommodation/summer-accommodation/"
+  ],
+  "pagesVisited": 14,
+  "examples": [
+   "shared £210: Single rooms available from £210 per week",
+   "shared £200: Single rooms available from £200 per week",
+   "shared £230: Single rooms available from £230 per week",
+   "shared £202.58: Single rooms from £202.58 per week",
+   "wet £369: En-suite rooms from £369 per week"
+  ]
+ },
+ "p10004078": {
+  "id": "p10004078",
+  "name": "London South Bank University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 0,
+  "examples": []
+ },
+ "p10004180": {
+  "id": "p10004180",
+  "name": "Manchester Metropolitan University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 18,
+  "examples": []
+ },
+ "p10004351": {
+  "id": "p10004351",
+  "name": "Middlesex University",
+  "checked": "2026-10-26",
+  "confidence": "medium",
+  "year": null,
+  "catered": false,
+  "rooms": {
+   "shared": {
+    "median": 221,
+    "min": 217.35,
+    "max": 224.28,
+    "n": 2,
+    "v": [
+     217.35,
+     224.28
+    ]
+   },
+   "wet": {
+    "median": 245,
+    "min": 245.28,
+    "max": 245.28,
+    "n": 2,
+    "v": [
+     245.28,
+     245.28
+    ]
+   },
+   "full": {
+    "median": 239.68,
+    "min": 239.68,
+    "max": 239.68,
+    "n": 1,
+    "v": [
+     239.68
+    ]
+   }
+  },
+  "sources": [
+   "https://www.mdx.ac.uk/student-life/accommodation/",
+   "https://www.mdx.ac.uk/student-life/accommodation/usher-hall/",
+   "https://www.mdx.ac.uk/student-life/accommodation/writtle-house/"
+  ],
+  "pagesVisited": 17,
+  "examples": [
+   "wet £245.28: Located opposite our campus, ideal if you want the convenience of living moments from lectures. A small hall of residence with ensuite rooms, shared kitchen and",
+   "full £239.68: Shared flat in one of our largest halls with ensuite rooms for 6 students. £239.68/week. Off-campus, a 20-minute walk to Hendon campus. Close to Colindale Under",
+   "wet £245.28: Ensuite rooms at Usher Hall cost £245.28 per week. Rent is paid in two termly instalments.",
+   "shared £217.35: Standard rooms at Writtle House cost £217.35 per week, whilst double rooms cost £224.28 per week. Rent is paid in two termly instalments.",
+   "shared £224.28: Standard rooms at Writtle House cost £217.35 per week, whilst double rooms cost £224.28 per week. Rent is paid in two termly instalments."
+  ]
+ },
+ "p10004775": {
+  "id": "p10004775",
+  "name": "Norwich University of the Arts",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 0,
+  "examples": []
+ },
+ "p10005127": {
+  "id": "p10005127",
+  "name": "Arts University Plymouth",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 1,
+  "examples": []
+ },
+ "p10005389": {
+  "id": "p10005389",
+  "name": "Ravensbourne University London",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 2,
+  "examples": []
+ },
+ "p10005451": {
+  "id": "p10005451",
+  "name": "Arden University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 2,
+  "examples": []
+ },
+ "p10005470": {
+  "id": "p10005470",
+  "name": "Richmond, The American International University in London",
+  "checked": "2026-10-26",
+  "confidence": "low",
+  "year": null,
+  "catered": false,
+  "rooms": {
+   "studio": {
+    "median": 393,
+    "min": 393,
+    "max": 393,
+    "n": 1,
+    "v": [
+     393
+    ]
+   }
+  },
+  "sources": [
+   "https://www.richmond.ac.uk/accommodation/"
+  ],
+  "pagesVisited": 3,
+  "examples": [
+   "studio £393: £393 per week (35 weeks)"
+  ]
+ },
+ "p10005545": {
+  "id": "p10005545",
+  "name": "Royal Agricultural University",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026-27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 246,
+    "min": 210,
+    "max": 266,
+    "n": 8,
+    "v": [
+     210,
+     210,
+     210,
+     225,
+     266,
+     266,
+     266,
+     266
+    ]
+   },
+   "full": {
+    "median": 273,
+    "min": 230,
+    "max": 273,
+    "n": 3,
+    "v": [
+     230,
+     273,
+     273
+    ]
+   }
+  },
+  "sources": [
+   "https://www.rau.ac.uk/student-life/accommodation-and-campus/explore-our-halls-of-residence",
+   "https://www.rau.ac.uk/student-life/accommodation-and-campus/on-campus-accommodation-fees-2026-27"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "wet £266: En-suite single | Coad Court (UG) | £266 | £9,310 |",
+   "wet £210: En-suite single | Vic Hughes 1 (PG/UG) | N/A | £210 | £7,350 |",
+   "wet £266: En-suite single | Vic Hughes 2 (PG/UG) | £266 | N/A | £9,310 |",
+   "wet £210: En-suite single | West Lodge (UG) | £210 | £7,350 |",
+   "full £273: Large en-suite single | Woodlands 1 (PG/UG) | £273 | £230 | Half board £9,555"
+  ]
+ },
+ "p10005553": {
+  "id": "p10005553",
+  "name": "Royal Holloway, University of London",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 2,
+  "examples": []
+ },
+ "p10006022": {
+  "id": "p10006022",
+  "name": "Southampton Solent University",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 159.25,
+    "min": 130.2,
+    "max": 170.1,
+    "n": 5,
+    "v": [
+     130.2,
+     159.25,
+     159.25,
+     170.1,
+     170.1
+    ]
+   },
+   "full": {
+    "median": 146.65,
+    "min": 130.2,
+    "max": 184.8,
+    "n": 3,
+    "v": [
+     130.2,
+     146.65,
+     184.8
+    ]
+   }
+  },
+  "sources": [
+   "https://www.solent.ac.uk/accommodation",
+   "https://students.solent.ac.uk/university-life/accommodation/accommodation-fees"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "wet £159.25: £159.25 per week",
+   "wet £170.1: £170.10 per week",
+   "full £130.2: £130.20 per week",
+   "wet £159.25: £159.25 | £6,529.25* | Standard en-suite room | David Moxon and Deanery residences |",
+   "wet £170.1: £170.10 | £6,974.10* | Superior en-suite room | Kimber residence |"
+  ]
+ },
+ "p10006427": {
+  "id": "p10006427",
+  "name": "University for the Creative Arts",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 0,
+  "examples": []
+ },
+ "p10006566": {
+  "id": "p10006566",
+  "name": "University Of West London",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 263,
+    "min": 263,
+    "max": 263,
+    "n": 1,
+    "v": [
+     263
+    ]
+   },
+   "full": {
+    "median": 295,
+    "min": 295,
+    "max": 295,
+    "n": 1,
+    "v": [
+     295
+    ]
+   },
+   "studio": {
+    "median": 325,
+    "min": 320,
+    "max": 370,
+    "n": 6,
+    "v": [
+     320,
+     320,
+     325,
+     325,
+     370,
+     370
+    ]
+   }
+  },
+  "sources": [
+   "https://www.uwl.ac.uk/student-life/accommodation?redirect=1&source=accommodation",
+   "https://www.uwl.ac.uk/student-life/accommodation/chapter-white-city",
+   "https://www.uwl.ac.uk/student-life/accommodation/paragon"
+  ],
+  "pagesVisited": 7,
+  "examples": [
+   "studio £320: Prices from £320 per week",
+   "studio £325: Prices from £325 per week",
+   "studio £370: Prices from £370 per week",
+   "wet £263: Prices from £263 per week",
+   "full £295: Prices from £295 per week"
+  ]
+ },
+ "p10007114": {
+  "id": "p10007114",
+  "name": "University of the Highlands and Islands",
+  "checked": "2026-10-26",
+  "confidence": "low",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "studio": {
+    "median": 211,
+    "min": 211,
+    "max": 211,
+    "n": 1,
+    "v": [
+     211
+    ]
+   }
+  },
+  "sources": [
+   "https://www.uhi.ac.uk/en/studying-at-uhi/accommodation/uni/studio/"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "studio £211: Studio room weekly rate 26/27: £211"
+  ]
+ },
+ "p10007137": {
+  "id": "p10007137",
+  "name": "University Of Chichester",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 197.75,
+    "min": 171.64,
+    "max": 228.48,
+    "n": 7,
+    "v": [
+     171.64,
+     180.25,
+     186.2,
+     197.75,
+     201.67,
+     220.22,
+     228.48
+    ]
+   },
+   "studio": {
+    "median": 223,
+    "min": 186.2,
+    "max": 309.96,
+    "n": 8,
+    "v": [
+     186.2,
+     212.59,
+     212.59,
+     223.23,
+     223.23,
+     295.19,
+     295.19,
+     309.96
+    ]
+   }
+  },
+  "sources": [
+   "https://www.chi.ac.uk/student-life/accommodation/",
+   "https://www.chi.ac.uk/student-life/accommodation/type/self-catered-chichester-city/",
+   "https://www.chi.ac.uk/student-life/accommodation/type/villa-maria-self-catered-with-ensuite/"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "wet £220.22: Ashling Hall | 39 | | ✓ | | ✓ | ✓ | £220.22 |",
+   "wet £197.75: Amberley Hall | 39 | ✓ | | ✓ | | ✓ | £197.75 |",
+   "wet £228.48: Barbara Smith Halls | 39 or 40 | | ✓ | ✓ | | ✓ | £228.48 |",
+   "wet £201.67: Longbrook | 39 or 40 | | ✓ | | ✓ | ✓ | Small Single – £201.67",
+   "studio £223.23: Studio single occupancy – £223.23"
+  ]
+ },
+ "p10007144": {
+  "id": "p10007144",
+  "name": "University of East London",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 210,
+    "min": 182,
+    "max": 231,
+    "n": 17,
+    "v": [
+     182,
+     189,
+     189,
+     189,
+     189,
+     189,
+     189,
+     189,
+     210,
+     217,
+     217,
+     217,
+     217,
+     224,
+     224,
+     231,
+     231
+    ]
+   },
+   "full": {
+    "median": 224,
+    "min": 224,
+    "max": 224,
+    "n": 1,
+    "v": [
+     224
+    ]
+   },
+   "studio": {
+    "median": 238,
+    "min": 189,
+    "max": 238,
+    "n": 10,
+    "v": [
+     189,
+     189,
+     224,
+     238,
+     238,
+     238,
+     238,
+     238,
+     238,
+     238
+    ]
+   }
+  },
+  "sources": [
+   "https://www.uel.ac.uk/study/student-accommodation-university-east-london",
+   "https://www.uel.ac.uk/study/accommodation/room-types-prices-payment-plans",
+   "https://www.uel.ac.uk/study/accommodation/how-apply-student-accommodation-uel-202627",
+   "https://www.uel.ac.uk/study/accommodation/accommodation-students-disabilities-additional-needs",
+   "https://www.uel.ac.uk/study/accommodation/off-campus-housing"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "studio £189: UEL accommodation prices for 2026/27 start at £189 per week for a West Halls standard room, rising to £238 per week for an East Halls studio. All prices are ful",
+   "studio £238: UEL accommodation prices for 2026/27 start at £189 per week for a West Halls standard room, rising to £238 per week for an East Halls studio. All prices are ful",
+   "studio £189: UEL student accommodation prices for 2026/27 range from £189 per week for a West Halls standard en-suite room to £238 per week for an East Halls self-contained ",
+   "studio £238: UEL student accommodation prices for 2026/27 range from £189 per week for a West Halls standard en-suite room to £238 per week for an East Halls self-contained ",
+   "wet £224: 54 sq. metre shared kitchen area. Recently refurbished throughout. Social area including sofas and a TV, with a TV licence included. 13 m2 single occupancy en-s"
+  ]
+ },
+ "p10007150": {
+  "id": "p10007150",
+  "name": "University of Kent",
+  "checked": "2026-10-26",
+  "confidence": "medium",
+  "year": "2026/2027",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 252,
+    "min": 250,
+    "max": 282.24,
+    "n": 3,
+    "v": [
+     250,
+     252,
+     282.24
+    ]
+   }
+  },
+  "sources": [
+   "https://www.kent.ac.uk/accommodation/canterbury/prices"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "wet £252: £252.00 |",
+   "wet £282.24: £282.24 |",
+   "wet £250: When accepting a room offer you will need to pay an Advanced Rent Payment of £250 . This amount is then deducted from your first rent instalment when it is due."
+  ]
+ },
+ "p10007156": {
+  "id": "p10007156",
+  "name": "University Of Salford",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 9,
+  "examples": []
+ },
+ "p10007162": {
+  "id": "p10007162",
+  "name": "University of the Arts, London",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 0,
+  "examples": []
+ },
+ "p10007165": {
+  "id": "p10007165",
+  "name": "University Of Westminster",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026–27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 262,
+    "min": 247.87,
+    "max": 275.75,
+    "n": 2,
+    "v": [
+     247.87,
+     275.75
+    ]
+   },
+   "full": {
+    "median": 223.16,
+    "min": 216.37,
+    "max": 276.9,
+    "n": 5,
+    "v": [
+     216.37,
+     216.37,
+     223.16,
+     228.34,
+     276.9
+    ]
+   },
+   "studio": {
+    "median": 275.87,
+    "min": 275.87,
+    "max": 275.87,
+    "n": 1,
+    "v": [
+     275.87
+    ]
+   }
+  },
+  "sources": [
+   "https://www.westminster.ac.uk/study/accommodation/paying-your-hall-rent",
+   "https://www.westminster.ac.uk/study/accommodation/harrow-hall",
+   "https://www.westminster.ac.uk/study/accommodation/marylebone-hall",
+   "https://www.westminster.ac.uk/study/accommodation/olympic-way-unite-students"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "full £216.37: | £216.37",
+   "full £228.34: | £228.34",
+   "full £216.37: Size approx. 10.3 square metres | £216.37 | £8,222.06 | 38 weeks | 12 September 2026–5 June 2027 |",
+   "studio £275.87: Size approx. 21 square metres | £275.87 | £10,483.06 |",
+   "full £223.16: Size approx. 16.3 square metres | £223.16"
+  ]
+ },
+ "p10007759": {
+  "id": "p10007759",
+  "name": "Aston University",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 155,
+    "min": 137,
+    "max": 178.35,
+    "n": 17,
+    "v": [
+     137,
+     137,
+     142,
+     142,
+     144,
+     144,
+     144,
+     144,
+     155,
+     155,
+     155,
+     155,
+     160,
+     172,
+     172.2,
+     178.35,
+     178.35
+    ]
+   }
+  },
+  "sources": [
+   "https://www.aston.ac.uk/undergraduate/your-application/accommodation/returning-students",
+   "https://www.aston.ac.uk/undergraduate/your-application/accommodation/postgraduate-accommodation",
+   "https://www.aston.ac.uk/undergraduate/your-application/accommodation/accommodation-for-new-undergraduate-students"
+  ],
+  "pagesVisited": 13,
+  "examples": [
+   "wet £137: Available for £137 per week on a 51-week contract. 44-week contracts are available for £172.20 per week.",
+   "wet £172.2: Available for £137 per week on a 51-week contract. 44-week contracts are available for £172.20 per week.",
+   "wet £142: Available for £142 per week on 51-week contract. 44-week contracts are available for £178.35 per week.",
+   "wet £178.35: Available for £142 per week on 51-week contract. 44-week contracts are available for £178.35 per week.",
+   "wet £160: Available for £160 per week on a 44-week contract. In James Watt and Mary Sturge buildings only"
+  ]
+ },
+ "p10007760": {
+  "id": "p10007760",
+  "name": "Birkbeck, University of London",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026 - 28",
+  "catered": true,
+  "rooms": {
+   "shared": {
+    "median": 293,
+    "min": 264.08,
+    "max": 306.62,
+    "n": 4,
+    "v": [
+     264.08,
+     285.35,
+     301.59,
+     306.62
+    ]
+   },
+   "wet": {
+    "median": 204.58,
+    "min": 204.58,
+    "max": 204.58,
+    "n": 1,
+    "v": [
+     204.58
+    ]
+   },
+   "studio": {
+    "median": 343,
+    "min": 333.17,
+    "max": 351.92,
+    "n": 2,
+    "v": [
+     333.17,
+     351.92
+    ]
+   },
+   "catered": {
+    "median": 359.35,
+    "min": 327.54,
+    "max": 380.17,
+    "n": 5
+   }
+  },
+  "sources": [
+   "https://www.bbk.ac.uk/student-services/accommodation/the-garden-halls",
+   "https://www.bbk.ac.uk/student-services/accommodation/accommodation-scholarship",
+   "https://www.bbk.ac.uk/student-services/accommodation/college-hall",
+   "https://www.bbk.ac.uk/student-services/accommodation/connaught-hall",
+   "https://www.bbk.ac.uk/student-services/accommodation/handel-mansions",
+   "https://www.bbk.ac.uk/student-services/accommodation/international-hall"
+  ],
+  "pagesVisited": 17,
+  "examples": [
+   "wet £359.35: Single, en-suite HPT, catered : £359.35 per week Number of rooms: 1",
+   "wet £204.58: Price : £204.58 per week (this price is offered exclusively for Birkbeck selected ISH scholars)",
+   "shared £329.88: Single, shared bathroom, catered : £329.88 per week Number of rooms: 10",
+   "wet £380.17: Single, en-suite, catered : £380.17 per week Number of rooms: 10",
+   "wet £380.17: DDA Single, en-suite, catered : £380.17 per week"
+  ]
+ },
+ "p10007764": {
+  "id": "p10007764",
+  "name": "Heriot-Watt University",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2027/2028",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 189,
+    "min": 161,
+    "max": 448.88,
+    "n": 9,
+    "v": [
+     161,
+     161,
+     161,
+     189,
+     189,
+     189,
+     189,
+     224,
+     448.88
+    ]
+   },
+   "studio": {
+    "median": 196,
+    "min": 161,
+    "max": 196,
+    "n": 3,
+    "v": [
+     161,
+     196,
+     196
+    ]
+   }
+  },
+  "sources": [
+   "https://www.hw.ac.uk/study/fees-and-funding/scholarships-and-bursaries/free-accommodation-for-a-semester",
+   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/future-years-accommodation/traditional-non-en-suite-room",
+   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/future-years-accommodation/traditional-en-suite-room-pg",
+   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/future-years-accommodation/traditional-en-suite-room",
+   "https://www.hw.ac.uk/campuses/scottish-borders/accommodation"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "wet £189: Traditional Ensuite | £189.00 | £7560.00 | £756.00 | £3213.00 | £3591.00 |",
+   "wet £224: Contemporary Room in a flat | £224.00 | £8960.00 | £896.00 | £3213.00 | £4851.00 |",
+   "wet £448.88: Traditional ensuite - £448.88 per instalment",
+   "wet £161: Traditional non en suite room | £161.00 | £644.00 | 50 weeks | £8050.00 | £741.00* |",
+   "wet £161: Traditional non en suite room | £161.00 | £644.00 | 40 weeks | £6440.00 | £725.00* |"
+  ]
+ },
+ "p10007772": {
+  "id": "p10007772",
+  "name": "Edinburgh Napier University",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 200,
+    "min": 128.59,
+    "max": 500,
+    "n": 6,
+    "v": [
+     128.59,
+     199.78,
+     199.78,
+     199.78,
+     211.75,
+     500
+    ]
+   },
+   "full": {
+    "median": 214.62,
+    "min": 214.62,
+    "max": 214.62,
+    "n": 1,
+    "v": [
+     214.62
+    ]
+   },
+   "studio": {
+    "median": 240,
+    "min": 239.82,
+    "max": 239.82,
+    "n": 2,
+    "v": [
+     239.82,
+     239.82
+    ]
+   }
+  },
+  "sources": [
+   "https://www.napier.ac.uk/study-with-us/accommodation/rent-and-financial-information",
+   "https://www.napier.ac.uk/study-with-us/accommodation/bainfield",
+   "https://www.napier.ac.uk/study-with-us/accommodation/orwell-terrace",
+   "https://www.napier.ac.uk/study-with-us/accommodation/slateford"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "wet £500: Remaining rent after £500",
+   "wet £199.78: Standard en-suite: £199.78 per week, total rent £7,819.96",
+   "wet £211.75: City view en-suite: £211.75 per week, total rent £8,288.50",
+   "studio £239.82: Studio flat: £239.82 per week, total rent £9,387.24",
+   "wet £128.59: Twin/shared en-suite bedroom: £128.59 per week per tenant, total rent £5,033.38"
+  ]
+ },
+ "p10007776": {
+  "id": "p10007776",
+  "name": "Roehampton University",
+  "checked": "2026-10-26",
+  "confidence": "medium",
+  "year": null,
+  "catered": false,
+  "rooms": {
+   "shared": {
+    "median": 170,
+    "min": 146,
+    "max": 170,
+    "n": 5,
+    "v": [
+     146,
+     170,
+     170,
+     170,
+     170
+    ]
+   }
+  },
+  "sources": [
+   "https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/bede-house/",
+   "https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/aldersgate-court/",
+   "https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/epworth-court/",
+   "https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/garden-court/",
+   "https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/new-court/"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "shared £146: £146 p/week",
+   "shared £170: £170 p/week",
+   "shared £170: £170 p/week*",
+   "shared £170: £170 p/week",
+   "shared £170: £170 p/week"
+  ]
+ },
+ "p10007780": {
+  "id": "p10007780",
+  "name": "SOAS University of London",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": true,
+  "rooms": {
+   "shared": {
+    "median": 217,
+    "min": 185,
+    "max": 329.88,
+    "n": 20,
+    "v": [
+     185,
+     185,
+     185,
+     198,
+     198,
+     198,
+     203,
+     203,
+     203,
+     216,
+     217.54,
+     219,
+     219,
+     219,
+     248.12,
+     281.88,
+     301.59,
+     326.33,
+     327.54,
+     329.88
+    ]
+   },
+   "wet": {
+    "median": 339.92,
+    "min": 247.76,
+    "max": 380.17,
+    "n": 7,
+    "v": [
+     247.76,
+     247.76,
+     339.92,
+     339.92,
+     359.29,
+     379.76,
+     380.17
+    ]
+   },
+   "full": {
+    "median": 310.49,
+    "min": 310.49,
+    "max": 310.49,
+    "n": 1,
+    "v": [
+     310.49
+    ]
+   },
+   "studio": {
+    "median": 351.92,
+    "min": 323.59,
+    "max": 418,
+    "n": 7,
+    "v": [
+     323.59,
+     333.17,
+     346.48,
+     351.92,
+     388,
+     403.73,
+     418
+    ]
+   },
+   "catered": {
+    "median": 359.35,
+    "min": 318.72,
+    "max": 430.57,
+    "n": 3
+   }
+  },
+  "sources": [
+   "https://www.soas.ac.uk/study/accommodation/postgraduate-halls",
+   "https://www.soas.ac.uk/garden-halls",
+   "https://www.soas.ac.uk/study/accommodation/undergraduate-halls/wood-green-hall",
+   "https://www.soas.ac.uk/study/accommodation/undergraduate-halls",
+   "https://www.soas.ac.uk/study/accommodation/undergraduate-halls/dinwiddy-house",
+   "https://www.soas.ac.uk/international-hall"
+  ],
+  "pagesVisited": 15,
+  "examples": [
+   "studio £418: | £418-£388 |",
+   "studio £388: | £418-£388 |",
+   "shared £198: | £198-£185 |",
+   "shared £185: | £198-£185 |",
+   "shared £219: | £219 |"
+  ]
+ },
+ "p10007787": {
+  "id": "p10007787",
+  "name": "University Of Buckingham",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 18,
+  "examples": []
+ },
+ "p10007791": {
+  "id": "p10007791",
+  "name": "University Of Essex",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026-27",
+  "catered": false,
+  "rooms": {
+   "shared": {
+    "median": 162,
+    "min": 109.9,
+    "max": 282.87,
+    "n": 30,
+    "v": [
+     109.9,
+     126.42,
+     127.89,
+     132.79,
+     134.26,
+     134.33,
+     137.83,
+     140.98,
+     142.87,
+     146.44,
+     147.91,
+     147.91,
+     150.08,
+     157.92,
+     157.92,
+     165.83,
+     165.83,
+     167.86,
+     176.26,
+     177.87,
+     178.64,
+     186.83,
+     187.6,
+     199.36,
+     209.37,
+     245.63,
+     245.63,
+     277.9,
+     277.9,
+     282.87
+    ]
+   },
+   "wet": {
+    "median": 190.47,
+    "min": 82.88,
+    "max": 228.62,
+    "n": 23,
+    "v": [
+     82.88,
+     92.89,
+     101.78,
+     101.78,
+     171.92,
+     174.93,
+     181.23,
+     185.22,
+     188.93,
+     190.12,
+     190.33,
+     190.47,
+     192.92,
+     194.53,
+     197.89,
+     198.38,
+     199.64,
+     200.06,
+     202.58,
+     202.58,
+     207.83,
+     212.73,
+     228.62
+    ]
+   },
+   "full": {
+    "median": 213.01,
+    "min": 177.87,
+    "max": 275.87,
+    "n": 37,
+    "v": [
+     177.87,
+     177.87,
+     181.93,
+     181.93,
+     191.03,
+     196.84,
+     197.89,
+     198.87,
+     202.86,
+     203.42,
+     206.71,
+     206.71,
+     207.83,
+     208.18,
+     208.88,
+     212.73,
+     212.87,
+     212.87,
+     213.01,
+     213.64,
+     214.9,
+     217.07,
+     218.61,
+     223.37,
+     223.58,
+     223.58,
+     224.07,
+     225.68,
+     235.34,
+     236.39,
+     237.86,
+     242.9,
+     248.22,
+     249.76,
+     250.18,
+     272.51,
+     275.87
+    ]
+   },
+   "studio": {
+    "median": 260,
+    "min": 249.69,
+    "max": 270.83,
+    "n": 8,
+    "v": [
+     249.69,
+     251.79,
+     257.88,
+     257.88,
+     262.22,
+     264.39,
+     270.83,
+     270.83
+    ]
+   }
+  },
+  "sources": [
+   "https://www.essex.ac.uk/life/cost-of-living-support",
+   "https://www.essex.ac.uk/accommodation/colchester/wolfson-court",
+   "https://www.essex.ac.uk/accommodation/colchester/rent-charges"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "shared £109.9: When it comes to choosing accommodation, whilst there are privately owned off-campus options out there, University owned accommodation not only gives you the co",
+   "shared £147.91: Single shared facilities | £147.91 per week |",
+   "shared £157.92: Premium single shared facilities | £157.92 per week |",
+   "shared £127.89: North Towers - single room with shared facilities - £127.89 per week",
+   "shared £277.9: North Towers - self-contained apartments from - £277.90 per week"
+  ]
+ },
+ "p10007793": {
+  "id": "p10007793",
+  "name": "University of South Wales",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 0,
+  "examples": []
+ },
+ "p10007800": {
+  "id": "p10007800",
+  "name": "University of the West of Scotland",
+  "checked": "2026-10-26",
+  "confidence": "medium",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "shared": {
+    "median": 98,
+    "min": 98,
+    "max": 98,
+    "n": 1,
+    "v": [
+     98
+    ]
+   },
+   "wet": {
+    "median": 122,
+    "min": 122,
+    "max": 122,
+    "n": 2,
+    "v": [
+     122,
+     122
+    ]
+   },
+   "studio": {
+    "median": 176,
+    "min": 176,
+    "max": 176,
+    "n": 1,
+    "v": [
+     176
+    ]
+   }
+  },
+  "sources": [
+   "https://www.uws.ac.uk/university-life/accommodation/paisley-campus-accommodation/",
+   "https://www.uws.ac.uk/university-life/accommodation/ayr-campus-accommodation/"
+  ],
+  "pagesVisited": 9,
+  "examples": [
+   "wet £122: £122.00 per week (38 week full term)",
+   "shared £98: £98.00 per week (38 week full term)",
+   "studio £176: £176.00 per week (38 week full term)",
+   "wet £122: £122 per week (38 week full term)"
+  ]
+ },
+ "p10007802": {
+  "id": "p10007802",
+  "name": "University Of Reading",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "shared": {
+    "median": 193,
+    "min": 166.32,
+    "max": 244.23,
+    "n": 12,
+    "v": [
+     166.32,
+     166.32,
+     180.39,
+     180.39,
+     188.02,
+     190.61,
+     194.88,
+     213.57,
+     220.15,
+     234.85,
+     234.85,
+     244.23
+    ]
+   },
+   "wet": {
+    "median": 217,
+    "min": 217.07,
+    "max": 295.33,
+    "n": 4,
+    "v": [
+     217.07,
+     217.07,
+     217.07,
+     295.33
+    ]
+   },
+   "full": {
+    "median": 285.11,
+    "min": 217.07,
+    "max": 364.7,
+    "n": 5,
+    "v": [
+     217.07,
+     254.17,
+     285.11,
+     295.33,
+     364.7
+    ]
+   }
+  },
+  "sources": [
+   "https://www.reading.ac.uk/ready-to-study/accommodation/locations/st-georges-hall",
+   "https://www.reading.ac.uk/ready-to-study/accommodation/locations/st-patricks-hall",
+   "https://www.reading.ac.uk/ready-to-study/accommodation/room-types/standard-room",
+   "https://www.reading.ac.uk/ready-to-study/accommodation/locations/sherfield-hall",
+   "https://www.reading.ac.uk/ready-to-study/accommodation/room-types/en-suite-room",
+   "https://www.reading.ac.uk/ready-to-study/accommodation/locations/stenton-hall"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "wet £217.07: £217.07 (40 and 51 weeks) |",
+   "shared £180.39: £180.39 (40 weeks) |",
+   "shared £188.02: £188.02 (40 weeks) |",
+   "shared £190.61: £190.61 (40 weeks) |",
+   "shared £166.32: 2026/27 price per week: £166.32–£234.85"
+  ]
+ },
+ "p10007804": {
+  "id": "p10007804",
+  "name": "University of Stirling",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 18,
+  "examples": []
+ },
+ "p10007805": {
+  "id": "p10007805",
+  "name": "University of Strathclyde",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "shared": {
+    "median": 141,
+    "min": 133.49,
+    "max": 154.56,
+    "n": 6,
+    "v": [
+     133.49,
+     133.49,
+     141.19,
+     141.19,
+     146.16,
+     154.56
+    ]
+   },
+   "wet": {
+    "median": 182,
+    "min": 182,
+    "max": 182,
+    "n": 1,
+    "v": [
+     182
+    ]
+   }
+  },
+  "sources": [
+   "https://www.strath.ac.uk/studywithus/accommodation/undergraduateaccommodation/",
+   "https://www.strath.ac.uk/studywithus/accommodation/postgraduateaccommodation/",
+   "https://www.strath.ac.uk/studywithus/accommodation/exchangestudents/"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "shared £133.49: Standard Room - £133.49 per week (2026/27)",
+   "shared £141.19: Standard room with wash hand basin - £141.19 per week (2026/27)",
+   "wet £182: Standard ensuite room - £182.00 per week (2026/27)",
+   "shared £133.49: Standard Room - £133.49 per week (2026/27)",
+   "shared £141.19: Standard room with wash hand basin - £141.19 per week (2026/27)"
+  ]
+ },
+ "p10007811": {
+  "id": "p10007811",
+  "name": "Lincoln Bishop University",
+  "checked": "2026-10-26",
+  "confidence": "high",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "shared": {
+    "median": 123,
+    "min": 123,
+    "max": 123,
+    "n": 4,
+    "v": [
+     123,
+     123,
+     123,
+     123
+    ]
+   },
+   "wet": {
+    "median": 152,
+    "min": 152,
+    "max": 152,
+    "n": 7,
+    "v": [
+     152,
+     152,
+     152,
+     152,
+     152,
+     152,
+     152
+    ]
+   },
+   "full": {
+    "median": 170,
+    "min": 164,
+    "max": 175,
+    "n": 6,
+    "v": [
+     164,
+     164,
+     164,
+     175,
+     175,
+     175
+    ]
+   },
+   "studio": {
+    "median": 190,
+    "min": 190,
+    "max": 190,
+    "n": 3,
+    "v": [
+     190,
+     190,
+     190
+    ]
+   }
+  },
+  "sources": [
+   "https://www.lincolnbishop.ac.uk/continuing-accommodation-for-current-students",
+   "https://www.lincolnbishop.ac.uk/accommodation-further-information",
+   "https://www.lincolnbishop.ac.uk/student/accommodation/student-village",
+   "https://www.lincolnbishop.ac.uk/student/accommodation/wickham-hall",
+   "https://www.lincolnbishop.ac.uk/student/accommodation/constance-stewart-hall"
+  ],
+  "pagesVisited": 11,
+  "examples": [
+   "wet £152: Wickham Hall (En-Suite) | 46 weeks* | £152.00 | £6,992.00 |",
+   "shared £123: Constance Stewart Hall (Shared Facilities) | 46 weeks* | £123.00 | £5,658.00 |",
+   "wet £152: Standard En Suite Bedrooms (Blocks) | £152.00 | £6,992.00 |",
+   "full £164: Premium Standard En-Suite (Townhouse) | £164.00 | £7,544.00 |",
+   "full £175: Deluxe En Suite Bedrooms | £175.00 | £8,050.00 |"
+  ]
+ },
+ "p10007832": {
+  "id": "p10007832",
+  "name": "Birmingham Newman University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 0,
+  "examples": []
+ },
+ "p10007843": {
+  "id": "p10007843",
+  "name": "St Mary's University, Twickenham",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 18,
+  "examples": []
+ },
+ "p10007848": {
+  "id": "p10007848",
+  "name": "University of Chester",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 18,
+  "examples": []
+ },
+ "p10007849": {
+  "id": "p10007849",
+  "name": "Abertay University",
+  "checked": "2026-10-26",
+  "confidence": "low",
+  "year": null,
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 159.47,
+    "min": 159.47,
+    "max": 159.47,
+    "n": 1,
+    "v": [
+     159.47
+    ]
+   }
+  },
+  "sources": [
+   "https://www.abertay.ac.uk/accommodation/rent-costs/"
+  ],
+  "pagesVisited": 13,
+  "examples": [
+   "wet £159.47: £159.47"
+  ]
+ },
+ "p10007852": {
+  "id": "p10007852",
+  "name": "University of Dundee",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 0,
+  "examples": []
+ },
+ "p10007854": {
+  "id": "p10007854",
+  "name": "Cardiff Metropolitan University",
+  "checked": "2026-10-26",
+  "confidence": "medium",
+  "year": null,
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 168,
+    "min": 160,
+    "max": 179,
+    "n": 6,
+    "v": [
+     160,
+     165,
+     167,
+     168.31,
+     172.5,
+     179
+    ]
+   },
+   "full": {
+    "median": 172,
+    "min": 168.31,
+    "max": 175,
+    "n": 2,
+    "v": [
+     168.31,
+     175
+    ]
+   }
+  },
+  "sources": [
+   "https://www.cardiffmet.ac.uk/study/accommodation/halls-of-residence/partner-halls/arofan-house-yugo/",
+   "https://www.cardiffmet.ac.uk/study/accommodation/halls-of-residence/partner-halls/cambrian-point-unite-students/",
+   "https://www.cardiffmet.ac.uk/study/accommodation/halls-of-residence/partner-halls/the-bakery-unite-students/",
+   "https://www.cardiffmet.ac.uk/study/accommodation/halls-of-residence/partner-halls/north-court-now-students/",
+   "https://www.cardiffmet.ac.uk/study/accommodation/halls-of-residence/partner-halls/blackweir-lodge-unite-students/"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "wet £160: £160/week - 42-week contract",
+   "wet £165: £165/week - 42-week contract",
+   "full £175: £175/week - 42-week contract",
+   "wet £168.31: £168.31/week - 44-week contract",
+   "wet £167: £167.00/week, 44 week-contract"
+  ]
+ },
+ "p10007856": {
+  "id": "p10007856",
+  "name": "Aberystwyth University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 18,
+  "examples": []
+ },
+ "p10007857": {
+  "id": "p10007857",
+  "name": "Bangor University",
+  "checked": "2026-10-26",
+  "confidence": "medium",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 62.5,
+    "min": 62,
+    "max": 82.5,
+    "n": 3,
+    "v": [
+     62,
+     62.5,
+     82.5
+    ]
+   },
+   "full": {
+    "median": 90,
+    "min": 89.5,
+    "max": 89.5,
+    "n": 2,
+    "v": [
+     89.5,
+     89.5
+    ]
+   }
+  },
+  "sources": [
+   "https://www.bangor.ac.uk/accommodation/rooms-may",
+   "https://www.bangor.ac.uk/accommodation/rooms/ffriddoedd/en-suite-large-modern-may"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "wet £62: £62 per week",
+   "wet £62.5: £62.50 per week",
+   "wet £82.5: £82.50 per week",
+   "full £89.5: £89.50 per week",
+   "full £89.5: £89.50 per week (2025/26)*"
+  ]
+ },
+ "p10007858": {
+  "id": "p10007858",
+  "name": "University of Wales: Trinity Saint David",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 11,
+  "examples": []
+ },
+ "p10008640": {
+  "id": "p10008640",
+  "name": "Falmouth University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 0,
+  "examples": []
+ },
+ "p10014001": {
+  "id": "p10014001",
+  "name": "University of Suffolk",
+  "checked": "2026-10-26",
+  "confidence": "low",
+  "year": null,
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 157,
+    "min": 157,
+    "max": 157,
+    "n": 1,
+    "v": [
+     157
+    ]
+   }
+  },
+  "sources": [
+   "https://www.uos.ac.uk/accommodation/athena-hall/"
+  ],
+  "pagesVisited": 10,
+  "examples": [
+   "wet £157: £157.00"
+  ]
+ },
+ "p10037449": {
+  "id": "p10037449",
+  "name": "Plymouth Marjon University",
+  "checked": "2026-10-26",
+  "confidence": "medium",
+  "year": null,
+  "catered": false,
+  "rooms": {
+   "shared": {
+    "median": 126,
+    "min": 121,
+    "max": 134,
+    "n": 5,
+    "v": [
+     121,
+     126,
+     126,
+     126,
+     134
+    ]
+   },
+   "wet": {
+    "median": 137,
+    "min": 126,
+    "max": 147,
+    "n": 2,
+    "v": [
+     126,
+     147
+    ]
+   }
+  },
+  "sources": [
+   "https://www.marjon.ac.uk/student-life/accommodation/halls/student-village/",
+   "https://www.marjon.ac.uk/student-life/accommodation/halls/dix-hall/",
+   "https://www.marjon.ac.uk/student-life/accommodation/halls/clark-cromwell-hudson-halls/",
+   "https://www.marjon.ac.uk/student-life/accommodation/halls/coleridge-kay-shuttleworth-and-tufnell-halls/"
+  ],
+  "pagesVisited": 18,
+  "examples": [
+   "shared £134: Standard rooms including accessible rooms are £134 per week",
+   "shared £121: Smaller rooms (B & F Rooms) are £121 per week",
+   "shared £126: Standard rooms are £126 per week",
+   "wet £126: Mobility rooms including wet room are £126 per week",
+   "shared £126: Standard rooms are £126 per week"
+  ]
+ },
+ "p10037544": {
+  "id": "p10037544",
+  "name": "BIMM University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 9,
+  "examples": []
+ },
+ "p10039956": {
+  "id": "p10039956",
+  "name": "University of Law",
+  "checked": "2026-10-26",
+  "confidence": "medium",
+  "year": "2026/27",
+  "catered": false,
+  "rooms": {
+   "wet": {
+    "median": 131,
+    "min": 117,
+    "max": 235,
+    "n": 3,
+    "v": [
+     117,
+     131,
+     235
+    ]
+   },
+   "studio": {
+    "median": 197,
+    "min": 197,
+    "max": 197,
+    "n": 1,
+    "v": [
+     197
+    ]
+   }
+  },
+  "sources": [
+   "https://www.law.ac.uk/students/accommodation/"
+  ],
+  "pagesVisited": 4,
+  "examples": [
+   "wet £235: For 2026/27 we have secured Gold Ensuite rooms at £235 per week (inclusive of bills) Gold Ensuite | Hotwells House Bristol Student Accommodation | Dwell UK for ",
+   "studio £197: For 2026/27 we have secured rooms at £197 per week for a 50 week contract length.",
+   "wet £117: For 2026/27 we have secured rooms at £117 and £131 per week for a 50 week contract length.",
+   "wet £131: For 2026/27 we have secured rooms at £117 and £131 per week for a 50 week contract length."
+  ]
+ },
+ "p10040812": {
+  "id": "p10040812",
+  "name": "Harper Adams University",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 18,
+  "examples": []
+ },
+ "p10067648": {
+  "id": "p10067648",
+  "name": "Ua92",
+  "checked": "2026-10-26",
+  "confidence": "none",
+  "year": null,
+  "catered": false,
+  "rooms": {},
+  "sources": [],
+  "pagesVisited": 3,
+  "examples": []
  }
 }

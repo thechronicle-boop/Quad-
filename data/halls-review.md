@@ -28,7 +28,6 @@ Checked 2026-10-26. High-confidence results are used automatically; medium are u
 - **University of Liverpool** — none — add a start URL in tools/unis.json
 - **Cardiff University** — none — add a start URL in tools/unis.json
 - **Queen's University Belfast** — none — add a start URL in tools/unis.json
-- **University of Bath** — low — https://www.bath.ac.uk/corporate-information/postgraduate-accommodation-prices/
 - **Loughborough University** — none — add a start URL in tools/unis.json
 - **University of Leicester** — none — add a start URL in tools/unis.json
 - **University of East Anglia (UEA)** — none — add a start URL in tools/unis.json
@@ -58,3 +57,47 @@ Checked 2026-10-26. High-confidence results are used automatically; medium are u
 - **University of Sunderland** — medium — https://www.sunderland.ac.uk/student-life/accommodation/panns-bank
 - **Wrexham University** — medium — https://wrexham.ac.uk/accommodation/student-accommodation/
 - **University of Greater Manchester** — none — add a start URL in tools/unis.json
+- **Health Sciences University** — none — add a start URL in tools/unis.json
+- **Arts University Bournemouth** — none — add a start URL in tools/unis.json
+- **University College Birmingham** — low — https://www.ucb.ac.uk/university/student-life/accommodation/the-maltings/
+- **Brunel University of London** — low — https://www.brunel.ac.uk/life/accommodation/rents-and-contract-lengths
+- **Goldsmiths, University of London** — low — https://www.gold.ac.uk/accommodation/halls/loring-hall/
+- **University of Winchester** — none — add a start URL in tools/unis.json
+- **Leeds Arts University** — none — add a start URL in tools/unis.json
+- **Leeds Beckett University** — none — add a start URL in tools/unis.json
+- **Liverpool Hope University** — none — add a start URL in tools/unis.json
+- **London South Bank University** — none — add a start URL in tools/unis.json
+- **Manchester Metropolitan University** — none — add a start URL in tools/unis.json
+- **Middlesex University** — medium — https://www.mdx.ac.uk/student-life/accommodation/
+- **Norwich University of the Arts** — none — add a start URL in tools/unis.json
+- **Arts University Plymouth** — none — add a start URL in tools/unis.json
+- **Ravensbourne University London** — none — add a start URL in tools/unis.json
+- **Arden University** — none — add a start URL in tools/unis.json
+- **Richmond, The American International University in London** — low — https://www.richmond.ac.uk/accommodation/
+- **Royal Holloway, University of London** — none — add a start URL in tools/unis.json
+- **University for the Creative Arts** — none — add a start URL in tools/unis.json
+- **University of the Highlands and Islands** — low — https://www.uhi.ac.uk/en/studying-at-uhi/accommodation/uni/studio/
+- **University of Kent** — medium — https://www.kent.ac.uk/accommodation/canterbury/prices
+- **University Of Salford** — none — add a start URL in tools/unis.json
+- **University of the Arts, London** — none — add a start URL in tools/unis.json
+- **Roehampton University** — medium — https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/bede-house/
+- **University Of Buckingham** — none — add a start URL in tools/unis.json
+- **University of South Wales** — none — add a start URL in tools/unis.json
+- **University of the West of Scotland** — medium — https://www.uws.ac.uk/university-life/accommodation/paisley-campus-accommodation/
+- **University of Stirling** — none — add a start URL in tools/unis.json
+- **Birmingham Newman University** — none — add a start URL in tools/unis.json
+- **St Mary's University, Twickenham** — none — add a start URL in tools/unis.json
+- **University of Chester** — none — add a start URL in tools/unis.json
+- **Abertay University** — low — https://www.abertay.ac.uk/accommodation/rent-costs/
+- **University of Dundee** — none — add a start URL in tools/unis.json
+- **Cardiff Metropolitan University** — medium — https://www.cardiffmet.ac.uk/study/accommodation/halls-of-residence/partner-halls/arofan-house-yugo/
+- **Aberystwyth University** — none — add a start URL in tools/unis.json
+- **Bangor University** — medium — https://www.bangor.ac.uk/accommodation/rooms-may
+- **University of Wales: Trinity Saint David** — none — add a start URL in tools/unis.json
+- **Falmouth University** — none — add a start URL in tools/unis.json
+- **University of Suffolk** — low — https://www.uos.ac.uk/accommodation/athena-hall/
+- **Plymouth Marjon University** — medium — https://www.marjon.ac.uk/student-life/accommodation/halls/student-village/
+- **BIMM University** — none — add a start URL in tools/unis.json
+- **University of Law** — medium — https://www.law.ac.uk/students/accommodation/
+- **Harper Adams University** — none — add a start URL in tools/unis.json
+- **Ua92** — none — add a start URL in tools/unis.json
