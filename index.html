@@ -54,7 +54,16 @@ a{color:var(--green)}
 #enterBtn{opacity:0;pointer-events:none;transition:opacity .4s,transform .2s}
 #enterBtn.ready{opacity:1;pointer-events:auto}
 
+
+/* Licence lock */
+#lock{position:fixed;inset:0;z-index:90;background:var(--bg);display:grid;place-items:center;padding:20px}
+#lock .card{max-width:420px;width:100%;text-align:center;padding:30px 24px}
+#lock svg{width:72px;height:72px;margin:0 auto 6px;display:block}
+#lock h2{font-size:26px;margin:6px 0}#lock p{color:var(--muted);font-size:14px}
+#lock .lmsg{min-height:22px;margin-top:12px;font-size:13px;color:var(--red)}
+
 /* Shell */
+.slS{display:none}
 header{position:sticky;top:0;z-index:20;background:var(--hdr);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .bar{max-width:1180px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
 .brand{display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-weight:700;font-size:22px}
@@ -274,6 +283,15 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
 @media (max-width:620px){
   .brand span{display:none}
   nav button{padding:7px 9px;font-size:13px}
+  .bar{gap:6px;padding:10px 10px}
+  nav{min-width:0;padding:3px}
+  nav button{padding:6px 7px;font-size:12.5px;gap:4px}
+  .brand svg{width:30px;height:30px}
+}
+@media (max-width:400px){
+  .brand svg{width:26px;height:26px}
+  .slT{display:none}.slS{display:inline}
+  nav button{padding:6px 5px;font-size:12px}
   .res{grid-template-columns:auto 1fr}
   .acts{grid-column:1/-1;flex-direction:row}
   .presets,.feat{grid-template-columns:1fr}
@@ -287,6 +305,7 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
 .src a{color:var(--muted)}
 .nodata{color:var(--muted);font-style:italic}
 </style>
+<script src="config.js"></script>
 <script src="quad-data.js"></script>
 </head>
 <body>
@@ -299,6 +318,8 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
   <button id="enterBtn" class="btn primary">Enter Quad →</button>
 </div>
 
+<div id="lock" class="hidden"></div>
+
 <header>
   <div class="bar">
     <div class="brand">
@@ -310,7 +331,7 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
       <button data-go="match">Match</button>
       <button data-go="map">Map</button>
       <button data-go="swipe">Swipe</button>
-      <button data-go="short">Shortlist <span class="count" id="slCount">0</span></button>
+      <button data-go="short" aria-label="Shortlist"><span class="slT">Shortlist</span><span class="slS">★</span> <span class="count" id="slCount">0</span></button>
     </nav>
     <button class="iconbtn" id="themeBtn" aria-label="Toggle dark mode">🌙</button>
   </div>
@@ -668,8 +689,32 @@ function scoreMap(){return Object.fromEntries(compute(S,false).map(r=>[r.u.id,r]
    ========================================================= */
 function applyTheme(){const dark=S.dark==null?matchMedia("(prefers-color-scheme: dark)").matches:S.dark;document.documentElement.dataset.theme=dark?"dark":"light";$("#themeBtn").textContent=dark?"☀️":"🌙"}
 $("#themeBtn").onclick=()=>{S.dark=document.documentElement.dataset.theme!=="dark";save();applyTheme()};applyTheme();
-setTimeout(()=>$("#enterBtn").classList.add("ready"),2100);
-$("#enterBtn").onclick=()=>{$("#loader").classList.add("gone");go("home");setTimeout(checkShare,350)};
+/* paid access: Gumroad licence key (off when config.js has no product ID) */
+const CFG=window.APP_CONFIG||{};
+const LIC={product:CFG.product||"",buy:CFG.buy||"",max:5,grace:7,url:"https://api.gumroad.com/v2/licenses/verify"},LK="quad:lic";
+let LOCKMSG="",ALLOWED=null;
+const lsG=k=>{try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},lsS=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+function licFetch(k,inc){return fetch(LIC.url,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"product_id="+encodeURIComponent(LIC.product)+"&license_key="+encodeURIComponent(k)+"&increment_uses_count="+(inc?"true":"false")}).then(r=>r.json())}
+function licOk(j,inc){const p=(j&&j.purchase)||{};return !!(j&&j.success&&!p.refunded&&!p.chargebacked&&!p.subscription_ended_at&&!p.subscription_failed_at&&(!inc||(j.uses||1)<=LIC.max))}
+const badMsg=j=>(j&&j.success&&(j.uses||0)>LIC.max)?"This key has been used on too many devices.":"That key isn't valid, or the subscription has ended.";
+function licCheck(qk){if(!LIC.product)return Promise.resolve(true);const st=lsG(LK);if(qk&&st&&st.k===qk)qk="";
+  if(qk)return licFetch(qk,true).then(j=>{if(licOk(j,true)){lsS(LK,{k:qk,t:Date.now()});return true}LOCKMSG=badMsg(j);return false}).catch(()=>{LOCKMSG="Couldn't reach the licence server. Check your internet connection.";return false});
+  if(!st||!st.k)return Promise.resolve(false);
+  return licFetch(st.k,false).then(j=>{if(licOk(j,false)){lsS(LK,{k:st.k,t:Date.now()});return true}lsS(LK,null);LOCKMSG="Your subscription isn't active. Enter a valid key to continue.";return false})
+    .catch(()=>{if(Date.now()-st.t<LIC.grace*864e5)return true;LOCKMSG="Connect to the internet so Quad can check your subscription.";return false})}
+function enterQuad(){$("#lock").classList.add("hidden");$("#loader").classList.add("gone");go("home");setTimeout(checkShare,350)}
+function askKey(msg){const L=$("#lock");L.classList.remove("hidden");$("#loader").classList.add("gone");
+  L.innerHTML=`<div class="card">${$(".bigmark").outerHTML}<h2 class="wordmark">Unlock Quad</h2><p>Enter the licence key from your Gumroad receipt.</p>
+    <input class="field" id="lkIn" placeholder="Licence key" autocomplete="off" style="margin-top:18px;text-align:center">
+    <button class="btn primary" id="lkGo" style="width:100%;margin-top:12px;padding:13px">Unlock</button><div class="lmsg" id="lkMsg">${esc(msg||"")}</div>
+    ${LIC.buy?`<p style="margin-top:6px"><a href="${esc(LIC.buy)}" target="_blank" rel="noopener">Don't have a key? Get Quad</a></p>`:""}</div>`;
+  const goK=()=>{const k=$("#lkIn").value.trim(),m=$("#lkMsg");if(!k)return;m.style.color="var(--muted)";m.textContent="Checking…";
+    licFetch(k,true).then(j=>{if(licOk(j,true)){lsS(LK,{k,t:Date.now()});enterQuad()}else{m.style.color="var(--red)";m.textContent=badMsg(j)}})
+      .catch(()=>{m.style.color="var(--red)";m.textContent="Couldn't reach the licence server. Check your internet connection."})};
+  $("#lkGo").onclick=goK;$("#lkIn").onkeydown=e=>{if(e.key==="Enter")goK()};$("#lkIn").focus()}
+let qk="";try{qk=new URLSearchParams(location.search).get("key")||"";if(qk)history.replaceState(null,"",location.pathname+location.hash)}catch(e){}
+Promise.all([licCheck(qk).then(a=>ALLOWED=a),new Promise(r=>setTimeout(r,2100))]).then(()=>{const b=$("#enterBtn");if(!ALLOWED)b.textContent="Unlock Quad →";b.classList.add("ready")});
+$("#enterBtn").onclick=()=>{if(ALLOWED)enterQuad();else askKey(LOCKMSG)};
 let PAGE="home";
 function go(p){PAGE=p;["home","match","map","swipe","short"].forEach(x=>$("#p-"+x).classList.toggle("hidden",x!==p));
   $$("nav button").forEach(b=>b.classList.toggle("on",b.dataset.go===p));rerender();window.scrollTo({top:0,behavior:"smooth"})}

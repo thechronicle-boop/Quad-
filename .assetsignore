@@ -7,3 +7,4 @@ source
 README.txt
 wrangler.jsonc
 node_modules
+wrangler.live.jsonc
