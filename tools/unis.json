@@ -538,5 +538,377 @@
   "name": "University of Derby",
   "domain": "derby.ac.uk",
   "start": []
+ },
+ {
+  "id": "p10000163",
+  "name": "Health Sciences University",
+  "domain": "hsu.ac.uk ",
+  "start": []
+ },
+ {
+  "id": "p10000385",
+  "name": "Arts University Bournemouth",
+  "domain": "aub.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10000571",
+  "name": "Bath Spa University",
+  "domain": "bathspa.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10000712",
+  "name": "University College Birmingham",
+  "domain": "ucb.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10000961",
+  "name": "Brunel University of London",
+  "domain": "brunel.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10002718",
+  "name": "Goldsmiths, University of London",
+  "domain": "gold.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10003614",
+  "name": "University of Winchester",
+  "domain": "winchester.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10003854",
+  "name": "Leeds Arts University",
+  "domain": "leeds-art.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10003861",
+  "name": "Leeds Beckett University",
+  "domain": "leedsbeckett.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10003863",
+  "name": "Leeds Trinity University",
+  "domain": "leedstrinity.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10003956",
+  "name": "Liverpool Hope University",
+  "domain": "hope.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10004048",
+  "name": "London Metropolitan University",
+  "domain": "londonmet.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10004078",
+  "name": "London South Bank University",
+  "domain": "lsbu.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10004180",
+  "name": "Manchester Metropolitan University",
+  "domain": "mmu.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10004351",
+  "name": "Middlesex University",
+  "domain": "mdx.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10004775",
+  "name": "Norwich University of the Arts",
+  "domain": "nua.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10005127",
+  "name": "Arts University Plymouth",
+  "domain": "plymouthart.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10005389",
+  "name": "Ravensbourne University London",
+  "domain": "rave.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10005451",
+  "name": "Arden University",
+  "domain": "arden.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10005470",
+  "name": "Richmond, The American International University in London",
+  "domain": "richmond.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10005545",
+  "name": "Royal Agricultural University",
+  "domain": "rau.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10005553",
+  "name": "Royal Holloway, University of London",
+  "domain": "rhul.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10006022",
+  "name": "Southampton Solent University",
+  "domain": "solent.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10006427",
+  "name": "University for the Creative Arts",
+  "domain": "ucreative.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10006566",
+  "name": "University Of West London",
+  "domain": "uwl.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007114",
+  "name": "University of the Highlands and Islands",
+  "domain": "uhi.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007137",
+  "name": "University Of Chichester",
+  "domain": "chi.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007144",
+  "name": "University of East London",
+  "domain": "uel.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007150",
+  "name": "University of Kent",
+  "domain": "kent.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007156",
+  "name": "University Of Salford",
+  "domain": "salford.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007162",
+  "name": "University of the Arts, London",
+  "domain": "arts.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007165",
+  "name": "University Of Westminster",
+  "domain": "westminster.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007759",
+  "name": "Aston University",
+  "domain": "aston.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007760",
+  "name": "Birkbeck, University of London",
+  "domain": "bbk.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007764",
+  "name": "Heriot-Watt University",
+  "domain": "hw.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007772",
+  "name": "Edinburgh Napier University",
+  "domain": "napier.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007776",
+  "name": "Roehampton University",
+  "domain": "roehampton.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007780",
+  "name": "SOAS University of London",
+  "domain": "soas.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007787",
+  "name": "University Of Buckingham",
+  "domain": "buckingham.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007791",
+  "name": "University Of Essex",
+  "domain": "essex.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007793",
+  "name": "University of South Wales",
+  "domain": "southwales.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007800",
+  "name": "University of the West of Scotland",
+  "domain": "uws.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007802",
+  "name": "University Of Reading",
+  "domain": "reading.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007804",
+  "name": "University of Stirling",
+  "domain": "stir.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007805",
+  "name": "University of Strathclyde",
+  "domain": "strath.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007811",
+  "name": "Lincoln Bishop University",
+  "domain": "lincolnbishop.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007832",
+  "name": "Birmingham Newman University",
+  "domain": "newman.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007843",
+  "name": "St Mary's University, Twickenham",
+  "domain": "stmarys.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007848",
+  "name": "University of Chester",
+  "domain": "chester.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007849",
+  "name": "Abertay University",
+  "domain": "abertay.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007852",
+  "name": "University of Dundee",
+  "domain": "dundee.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007854",
+  "name": "Cardiff Metropolitan University",
+  "domain": "cardiffmet.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007856",
+  "name": "Aberystwyth University",
+  "domain": "aber.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007857",
+  "name": "Bangor University",
+  "domain": "bangor.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10007858",
+  "name": "University of Wales: Trinity Saint David",
+  "domain": "uwtsd.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10008640",
+  "name": "Falmouth University",
+  "domain": "falmouth.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10014001",
+  "name": "University of Suffolk",
+  "domain": "uos.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10037449",
+  "name": "Plymouth Marjon University",
+  "domain": "marjon.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10037544",
+  "name": "BIMM University",
+  "domain": "bimm.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10039956",
+  "name": "University of Law",
+  "domain": "law.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10040812",
+  "name": "Harper Adams University",
+  "domain": "harper-adams.ac.uk",
+  "start": []
+ },
+ {
+  "id": "p10067648",
+  "name": "Ua92",
+  "domain": "ua92.ac.uk",
+  "start": []
  }
 ]

@@ -1,7 +1,7 @@
 QUAD - WHERE THE DATA COMES FROM AND HOW IT STAYS UP TO DATE
 ============================================================
 
-OFFICIAL DATA (updated once a year)
+OFFICIAL DATA FOR EVERY UK UNIVERSITY (142 unis, updated once a year)
 Source: the Discover Uni dataset from HESA and the Office for Students,
 licensed under CC BY 4.0. It covers:
 - which unis run each course

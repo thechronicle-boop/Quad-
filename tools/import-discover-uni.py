@@ -50,7 +50,7 @@ COURSE_RX = {
  "GEO": r"\bgeography\b",
  "ZOO": r"\bzoology\b",
  "FOR": r"forensic science",
- "CS":  r"computer science",
+ "CS":  r"computer science|computing science|^computing$|^computing \(|^computing with",
  "SE":  r"software engineering|software development",
  "DS":  r"\bdata science\b",
  "AI":  r"artificial intelligence",
@@ -99,6 +99,21 @@ COURSE_RX = {
 }
 COURSE_RX = {k: re.compile(v, re.I) for k, v in COURSE_RX.items()}
 
+# Official subject codes (HECoS CAH) that also count as a match — catches courses with unusual titles.
+CAH_MAP = {
+ "MED": ["CAH01-01-02"], "DEN": ["CAH01-01-04"], "VET": ["CAH05-01-01"], "NUR": ["CAH02-04-02"], "NCH": ["CAH02-04-05"],
+ "NMH": ["CAH02-04-07"], "MID": ["CAH02-04-04"], "PHA": ["CAH02-02-03"], "PHY": ["CAH02-06-05"], "RAD": ["CAH02-05-01"],
+ "BMS": ["CAH02-05-03"], "PSY": ["CAH04-01"], "BIO": ["CAH03-01-01", "CAH03-01-02"], "BCH": ["CAH03-01-08"], "ZOO": ["CAH03-01-06"],
+ "CHE": ["CAH07-02-01"], "PHS": ["CAH07-01-01", "CAH07-01-02"], "MAT": ["CAH09-01-01"], "ENV": ["CAH26-01-04"],
+ "GEO": ["CAH26-01-01", "CAH26-01-02", "CAH26-01-03"], "CS": ["CAH11-01-01"], "AI": ["CAH11-01-05"], "GAM": ["CAH11-01-06"],
+ "ENG": ["CAH10-01"], "MEC": ["CAH10-01-02"], "AER": ["CAH10-01-04"], "BEN": ["CAH10-01-06"], "CIV": ["CAH10-01-07"],
+ "ELE": ["CAH10-01-08"], "CHM": ["CAH10-01-09"], "ARC": ["CAH13-01-01"], "ECO": ["CAH15-02-01"], "POL": ["CAH15-03-01"],
+ "BUS": ["CAH17-01-01", "CAH17-01-02", "CAH17-01-04"], "MKT": ["CAH17-01-03"], "TOU": ["CAH17-01-06"], "ACC": ["CAH17-01-07", "CAH17-01-08"],
+ "ANT": ["CAH15-01-04"], "SW": ["CAH15-04-01"], "EN": ["CAH19-01-01", "CAH19-01-03"], "LIN": ["CAH19-01-07"], "LNG": ["CAH19-04"],
+ "HIS": ["CAH20-01-01"], "ARCH": ["CAH20-01-03"], "CLA": ["CAH20-01-05"], "PHI": ["CAH20-02-01"], "THE": ["CAH20-02-02"],
+ "ART": ["CAH25-01-02"], "MDC": ["CAH24-01-05"], "JOU": ["CAH24-01-04"], "MUS": ["CAH25-02-02"], "DRA": ["CAH25-02-03"], "SPS": ["CAH03-02-01"],
+}
+
 # ---------------------------------------------------------------- helpers
 def open_source(path):
     """Return a function name -> csv rows, from a zip or folder."""
@@ -132,6 +147,25 @@ def tariff_median(r):
         if acc >= tot / 2: return mid
     return None
 
+COUNTIES = set(x.lower() for x in """Dorset Devon Somerset Cornwall Wiltshire Avon Hampshire Surrey Kent Essex Suffolk Norfolk Middlesex Berkshire
+Oxfordshire Buckinghamshire Bedfordshire Hertfordshire Cambridgeshire Northamptonshire Leicestershire Nottinghamshire Derbyshire Staffordshire
+Warwickshire Worcestershire Herefordshire Shropshire Gloucestershire Lincolnshire Cheshire Lancashire Cumbria Merseyside Northumberland
+Renfrewshire Fife Midlothian Lothian Gwynedd Ceredigion Powys Glamorgan Antrim Down Londonderry""".split()) | {
+"west midlands","east sussex","west sussex","west yorkshire","south yorkshire","north yorkshire","east yorkshire","greater manchester",
+"mid glamorgan","south glamorgan","west glamorgan","tyne and wear","tyne & wear","county durham","co durham","isle of wight","co antrim",
+"county antrim","co down","county down","greater london","east riding of yorkshire","north lanarkshire","south lanarkshire","west lothian","east lothian"}
+
+NAME_FIX = {"goldsmiths' college": "Goldsmiths, University of London", "goldsmiths college, university of london": "Goldsmiths, University of London",
+            "birkbeck college": "Birkbeck, University of London", "school of oriental and african studies": "SOAS University of London",
+            "university academy 92": "UA92", "ua92": "UA92", "bimm university": "BIMM University"}
+
+def town_from(addr):
+    parts = [p.strip() for p in (addr or "").split(",") if p.strip()]
+    if parts and re.match(r"^[A-Z]{1,2}\d", parts[-1].upper()): parts = parts[:-1]
+    while parts and parts[-1].lower() in COUNTIES: parts = parts[:-1]
+    t = parts[-1] if parts else ""
+    return t.title() if t.isupper() or t.islower() else t
+
 def wavg(items):
     """weighted average of (value, weight)"""
     items = [(v, w or 1) for v, w in items if v is not None]
@@ -146,17 +180,53 @@ def main():
         dirs = [d for d in glob.glob(os.path.join(ROOT, "source", "*")) if os.path.isdir(d)]
         src = (zips[-1] if zips else None) or (dirs[0] if dirs else os.path.join(ROOT, "source"))
     rows, label = open_source(src)
-    pub2id = {v: k for k, v in UNI_IDS.items()}
+    legacy = {v: k for k, v in UNI_IDS.items()}
+
+    # every UK university in the dataset (plus KCL, Imperial, LSE which don't have "University" in their name)
+    inst = {}
+    for r in rows("INSTITUTION"):
+        inst.setdefault(r["PUBUKPRN"], r)
+    ft = defaultdict(int)
+    for r in rows("KISCOURSE"):
+        if r["KISMODE"] == "01" and r["KISLEVEL"] == "03": ft[r["PUBUKPRN"]] += 1
+    pub2id = {}
+    for p, r in inst.items():
+        n = r["LEGAL_NAME"] + " | " + r["FIRST_TRADING_NAME"]
+        isuni = re.search(r"universit", n, re.I) and not re.search(r"university centre|university campus", n, re.I) and r["LEGAL_NAME"].strip() != "University of London"
+        special = re.search(r"king's college london|imperial college|london school of economics", n, re.I)
+        if p in legacy or ((isuni or special) and ft[p] >= 10):
+            pub2id[p] = legacy.get(p, "p" + p)
+    NATION = {"XF": "eng", "XG": "ni", "XH": "sco", "XI": "wal"}
+    meta = {}
+    for p, uid in pub2id.items():
+        r = inst[p]
+        legal, trade = r["LEGAL_NAME"].strip(), r["FIRST_TRADING_NAME"].strip()
+        name = trade if trade and (re.search(r"universit", trade, re.I) or not re.search(r"universit", legal, re.I)) else legal
+        name = re.sub(r"\s+(Limited|Ltd|plc|inc\.?)$", "", re.sub(r",?\s*inc\.?$", "", name, flags=re.I), flags=re.I)
+        name = name.split("/")[0].strip()
+        name = re.sub(r"\bOf\b", "of", re.sub(r"\bThe\b(?!$)", "the", name)) if name.istitle() else name
+        name = re.sub(r"\s+Higher Education Corporation$", "", name)
+        name = NAME_FIX.get(name.lower(), name)
+        if name[0].islower(): name = name[0].upper() + name[1:]
+        if name.isupper() or name.lower().startswith("the ") and name.isupper(): name = name.title()
+        name = re.sub(r"^The ", "", re.sub(r",? ?The$", "", name)).strip()
+        name = re.sub(r"\s*\(Part of .*?\)", "", name)
+        name = re.sub(r"\b(Of|And|For|The|At)\b", lambda m: m.group(1).lower(), name)
+        name = name[0].upper() + name[1:]
+        if name.lower() in ("ua92", "university academy 92"): name = "UA92"
+        meta[uid] = {"name": name, "town": town_from(r["PROVADDRESS"]), "nation": NATION.get(r["COUNTRY"], "eng"), "web": r["PROVURL"]}
 
     # dataset date from folder name e.g. on_2026_10_20_...
     m = re.search(r"on_(\d{4})_(\d\d)_(\d\d)", " ".join(zipfile.ZipFile(src).namelist()[:3]) if src.endswith(".zip") else src)
     published = f"{m.group(1)}-{m.group(2)}-{m.group(3)}" if m else None
 
-    # courses: full-time (KISMODE 01), first degree (KISLEVEL 03)
-    courses = {}
+    # courses: full-time (KISMODE 01), first degree (KISLEVEL 03); part-time first degrees kept separately
+    courses, parttime = {}, defaultdict(list)
     for r in rows("KISCOURSE"):
-        if r["PUBUKPRN"] in pub2id and r["KISMODE"] == "01" and r["KISLEVEL"] == "03":
-            courses[(r["PUBUKPRN"], r["KISCOURSEID"], r["KISMODE"])] = r
+        if r["PUBUKPRN"] in pub2id and r["KISLEVEL"] == "03":
+            if r["KISMODE"] == "01": courses[(r["PUBUKPRN"], r["KISCOURSEID"], r["KISMODE"])] = r
+            elif r["KISMODE"] == "02": parttime[r["PUBUKPRN"]].append(r["TITLE"] or "")
+    MASTERS = {c for c in ["040","041","046","047","048","049","051","053","054","056","057","058","059","060","061","062","063","064","065","066","067","068","070","071","073","074","075","077","078","079","088"]}
 
     def load(name):
         out = {}
@@ -196,16 +266,24 @@ def main():
                 campus[pub2id[pub]] = {"lat": round(num(L["LATITUDE"]), 4), "lon": round(num(L["LONGITUDE"]), 4), "name": L["LOCNAME"], "accomUrl": L.get("ACCOMURL") or None}
                 break
 
-    # group courses into Quad course codes
+    # official subject codes for each course
+    sbj = defaultdict(list)
+    for r in rows("SBJ"):
+        k = (r["PUBUKPRN"], r["KISCOURSEID"], r["KISMODE"])
+        if k in courses: sbj[k].append(r["SBJ"])
+
+    # group courses into Quad course codes: matched by title, or by official subject code
     agg = defaultdict(lambda: defaultdict(list))
     for k, r in courses.items():
         title = r["TITLE"] or r["TITLEW"] or ""
         for code, rx in COURSE_RX.items():
-            if rx.search(title):
+            if rx.search(title) or any(sc.startswith(pref) for sc in sbj[k] for pref in CAH_MAP.get(code, [])):
                 agg[pub2id[k[0]]][code].append(k)
 
     out = {}
+    id2pub = {v: k for k, v in pub2id.items()}
     for uid, cmap in agg.items():
+        k_pub = id2pub[uid]
         ucourses = {}
         for code, keys in cmap.items():
             def stat(table, field, popfield):
@@ -237,9 +315,12 @@ def main():
                 "placement": any(courses[k]["SANDWICH"] in ("1", "2") for k in keys),
                 "abroad": any(courses[k]["YEARABROAD"] in ("1", "2") for k in keys),
                 "accredited": any(k in accred for k in keys),
+                "foundation": any(courses[k]["FOUNDATION"] in ("1", "2") for k in keys),
+                "masters": any(courses[k]["KISAIMCODE"] in MASTERS for k in keys),
+                "parttime": any(COURSE_RX[code].search(t) for t in parttime[k_pub]),
             }
             ucourses[code] = c
-        out[uid] = {"courses": ucourses, "tef": tef.get(uid), "campus": campus.get(uid)}
+        out[uid] = {"courses": ucourses, "tef": tef.get(uid), "campus": campus.get(uid), **meta[uid]}
 
     os.makedirs(os.path.join(ROOT, "data"), exist_ok=True)
     result = {"published": published, "source": "Discover Uni dataset (HESA / Office for Students), CC BY 4.0", "unis": out}
