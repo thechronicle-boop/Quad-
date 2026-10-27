@@ -1216,14 +1216,15 @@
   "catered": false,
   "rooms": {
    "wet": {
-    "median": 242,
+    "median": 247,
     "min": 125,
     "max": 315,
-    "n": 6,
+    "n": 7,
     "v": [
      125,
      206,
      232,
+     247,
      252,
      257,
      315
@@ -1244,7 +1245,8 @@
   },
   "sources": [
    "https://www.bath.ac.uk/student-accommodation/green-park-house-student-accommodation/",
-   "https://www.bath.ac.uk/student-accommodation/woodland-court-student-accommodation/"
+   "https://www.bath.ac.uk/student-accommodation/woodland-court-student-accommodation/",
+   "https://www.bath.ac.uk/student-accommodation/the-quads-student-accommodation/"
   ],
   "pagesVisited": 18,
   "examples": [
@@ -1460,15 +1462,18 @@
   "checked": "2026-10-27",
   "confidence": "high",
   "year": "2026-27",
-  "catered": false,
+  "catered": true,
   "rooms": {
    "shared": {
-    "median": 208,
-    "min": 173,
+    "median": 197,
+    "min": 169,
     "max": 243,
-    "n": 11,
+    "n": 14,
     "v": [
+     169,
      173,
+     173,
+     192,
      192,
      192,
      193,
@@ -1482,12 +1487,18 @@
     ]
    },
    "wet": {
-    "median": 243,
-    "min": 211.5,
+    "median": 211.5,
+    "min": 180,
     "max": 270,
-    "n": 5,
+    "n": 11,
     "v": [
+     180,
+     185.15,
+     192,
+     200,
+     210,
      211.5,
+     218,
      235,
      243,
      265,
@@ -1498,16 +1509,23 @@
     "median": 282,
     "min": 136,
     "max": 484,
-    "n": 7,
+    "n": 8,
     "v": [
      136,
      180,
      230,
      282,
+     282,
      290,
      300,
      484
     ]
+   },
+   "catered": {
+    "median": 208,
+    "min": 202,
+    "max": 213,
+    "n": 2
    }
   },
   "sources": [
@@ -1515,7 +1533,8 @@
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/index.aspx",
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/circus-street-halls.aspx",
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/moulsecoomb-halls.aspx",
-   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/city-halls.aspx"
+   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/city-halls.aspx",
+   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/falmer-halls.aspx"
   ],
   "pagesVisited": 18,
   "examples": [
@@ -1835,7 +1854,7 @@
   "catered": false,
   "rooms": {},
   "sources": [],
-  "pagesVisited": 18,
+  "pagesVisited": 15,
   "examples": []
  },
  "tee": {
@@ -2434,11 +2453,15 @@
   "catered": false,
   "rooms": {
    "shared": {
-    "median": 158,
-    "min": 155.96,
+    "median": 132,
+    "min": 123.97,
     "max": 161,
-    "n": 2,
+    "n": 6,
     "v": [
+     123.97,
+     127.96,
+     129.99,
+     133.98,
      155.96,
      161
     ]
@@ -2466,7 +2489,8 @@
   },
   "sources": [
    "https://accommodation.canterbury.ac.uk/StarRezPortalX/5F7C85A0/1/290/Home-Petros_Court",
-   "https://accommodation.canterbury.ac.uk/StarRezPortalX/CD981BD7/1/293/Home-Dover_Street_Houses"
+   "https://accommodation.canterbury.ac.uk/StarRezPortalX/CD981BD7/1/293/Home-Dover_Street_Houses",
+   "https://accommodation.canterbury.ac.uk/StarRezPortalX/A6597A48/1/294/Home-Vernon_Place"
   ],
   "pagesVisited": 18,
   "examples": [
