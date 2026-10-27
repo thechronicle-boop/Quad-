@@ -27,10 +27,9 @@ Checked 2026-10-27. High-confidence results are used automatically; medium are u
 - **University of York** — none — add a start URL in tools/unis.json
 - **University of Liverpool** — none — add a start URL in tools/unis.json
 - **Cardiff University** — none — add a start URL in tools/unis.json
-- **Swansea University** — medium — https://www.swansea.ac.uk/accommodation/accommodation-fees/
+- **Swansea University** — low — https://www.swansea.ac.uk/accommodation/accommodation-fees/
 - **Queen's University Belfast** — none — add a start URL in tools/unis.json
 - **University of Bath** — medium — https://www.bath.ac.uk/student-accommodation/green-park-house-student-accommodation/
-- **Loughborough University** — none — add a start URL in tools/unis.json
 - **University of Leicester** — none — add a start URL in tools/unis.json
 - **University of East Anglia (UEA)** — none — add a start URL in tools/unis.json
 - **University of Hertfordshire** — none — add a start URL in tools/unis.json
@@ -79,11 +78,12 @@ Checked 2026-10-27. High-confidence results are used automatically; medium are u
 - **University of Kent** — medium — https://www.kent.ac.uk/accommodation/canterbury/prices
 - **University Of Salford** — none — add a start URL in tools/unis.json
 - **University of the Arts, London** — none — add a start URL in tools/unis.json
+- **Aston University** — low — https://www.aston.ac.uk/undergraduate/your-application/accommodation/accommodation-for-new-undergraduate-students
 - **Roehampton University** — medium — https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/bede-house/
 - **University Of Buckingham** — none — add a start URL in tools/unis.json
 - **University of South Wales** — none — add a start URL in tools/unis.json
 - **University of the West of Scotland** — medium — https://www.uws.ac.uk/university-life/accommodation/paisley-campus-accommodation/
-- **University of Stirling** — none — add a start URL in tools/unis.json
+- **University of Stirling** — medium — https://www.stir.ac.uk/student-life/accommodation/find-your-residence/alangrange/
 - **University of Strathclyde** — medium — https://www.strath.ac.uk/studywithus/accommodation/undergraduateaccommodation/
 - **Birmingham Newman University** — none — add a start URL in tools/unis.json
 - **St Mary's University, Twickenham** — none — add a start URL in tools/unis.json

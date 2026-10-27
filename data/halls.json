@@ -1160,39 +1160,26 @@
   "id": "swa",
   "name": "Swansea University",
   "checked": "2026-10-27",
-  "confidence": "medium",
+  "confidence": "low",
   "year": "2027/2028",
   "catered": false,
   "rooms": {
    "wet": {
-    "median": 159,
+    "median": 141,
     "min": 141,
-    "max": 176,
-    "n": 2,
-    "v": [
-     141,
-     176
-    ]
-   },
-   "full": {
-    "median": 183,
-    "min": 183,
-    "max": 183,
+    "max": 141,
     "n": 1,
     "v": [
-     183
+     141
     ]
    }
   },
   "sources": [
-   "https://www.swansea.ac.uk/accommodation/accommodation-fees/",
-   "https://hwb.swansea.ac.uk/living-in-swansea/student-accommodation/returning/"
+   "https://www.swansea.ac.uk/accommodation/accommodation-fees/"
   ],
   "pagesVisited": 18,
   "examples": [
-   "wet £141: £141.00 |",
-   "wet £176: From £176 per week",
-   "full £183: £183 per week"
+   "wet £141: £141.00 |"
   ]
  },
  "qub": {
@@ -1261,13 +1248,72 @@
   "id": "lbo",
   "name": "Loughborough University",
   "checked": "2026-10-27",
-  "confidence": "none",
-  "year": null,
+  "confidence": "high",
+  "year": "2026/27",
   "catered": false,
-  "rooms": {},
-  "sources": [],
+  "rooms": {
+   "shared": {
+    "median": 138,
+    "min": 135.63,
+    "max": 141.26,
+    "n": 2,
+    "v": [
+     135.63,
+     141.26
+    ]
+   },
+   "wet": {
+    "median": 186.52,
+    "min": 152.38,
+    "max": 210.53,
+    "n": 7,
+    "v": [
+     152.38,
+     170.13,
+     171.71,
+     186.52,
+     196.13,
+     210.53,
+     210.53
+    ]
+   },
+   "full": {
+    "median": 204.28,
+    "min": 204.28,
+    "max": 204.28,
+    "n": 1,
+    "v": [
+     204.28
+    ]
+   },
+   "studio": {
+    "median": 214,
+    "min": 157.77,
+    "max": 233.53,
+    "n": 4,
+    "v": [
+     157.77,
+     208.01,
+     219.59,
+     233.53
+    ]
+   }
+  },
+  "sources": [
+   "https://www.lboro.ac.uk/services/accommodation/our-halls/longcliffe-house/",
+   "https://www.lboro.ac.uk/services/accommodation/our-halls/william-morris/",
+   "https://www.lboro.ac.uk/services/accommodation/our-halls/the-holt/",
+   "https://www.lboro.ac.uk/services/accommodation/our-halls/telford/",
+   "https://www.lboro.ac.uk/services/accommodation/our-halls/robert-bakewell/"
+  ],
   "pagesVisited": 18,
-  "examples": []
+  "examples": [
+   "shared £141.26: From £141.26 per week",
+   "wet £152.38: From £152.38 per week",
+   "wet £196.13: £8,153.58 (£196.13 per week) - En-suite, 4ft bed (162 beds)",
+   "studio £219.59: £9.128.53 (£219.59 per week) - Studio Flat, double bed (12 beds)",
+   "studio £233.53: £9,708.24 (£233.53 per week) - One bedroom self-contained flat (1 bed)"
+  ]
  },
  "lan": {
   "id": "lan",
@@ -1414,16 +1460,17 @@
     ]
    },
    "wet": {
-    "median": 221,
+    "median": 221.27,
     "min": 189,
     "max": 235.69,
-    "n": 6,
+    "n": 7,
     "v": [
      189,
      205.8,
      221.27,
      221.27,
      221.27,
+     235.69,
      235.69
     ]
    },
@@ -1445,7 +1492,8 @@
    "https://www.sussex.ac.uk/study/accommodation/on-campus/swanborough",
    "https://www.sussex.ac.uk/study/accommodation/on-campus/stanmer-court",
    "https://www.sussex.ac.uk/study/accommodation/on-campus/northfield",
-   "https://www.sussex.ac.uk/study/accommodation/on-campus"
+   "https://www.sussex.ac.uk/study/accommodation/on-campus",
+   "https://www.sussex.ac.uk/study/accommodation/on-campus/west-slope"
   ],
   "pagesVisited": 18,
   "examples": [
@@ -1462,18 +1510,15 @@
   "checked": "2026-10-27",
   "confidence": "high",
   "year": "2026-27",
-  "catered": true,
+  "catered": false,
   "rooms": {
    "shared": {
-    "median": 197,
-    "min": 169,
+    "median": 208,
+    "min": 173,
     "max": 243,
-    "n": 14,
+    "n": 11,
     "v": [
-     169,
      173,
-     173,
-     192,
      192,
      192,
      193,
@@ -1487,18 +1532,12 @@
     ]
    },
    "wet": {
-    "median": 211.5,
-    "min": 180,
+    "median": 243,
+    "min": 211.5,
     "max": 270,
-    "n": 11,
+    "n": 5,
     "v": [
-     180,
-     185.15,
-     192,
-     200,
-     210,
      211.5,
-     218,
      235,
      243,
      265,
@@ -1509,23 +1548,16 @@
     "median": 282,
     "min": 136,
     "max": 484,
-    "n": 8,
+    "n": 7,
     "v": [
      136,
      180,
      230,
      282,
-     282,
      290,
      300,
      484
     ]
-   },
-   "catered": {
-    "median": 208,
-    "min": 202,
-    "max": 213,
-    "n": 2
    }
   },
   "sources": [
@@ -1533,8 +1565,7 @@
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/index.aspx",
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/circus-street-halls.aspx",
    "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/moulsecoomb-halls.aspx",
-   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/city-halls.aspx",
-   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/falmer-halls.aspx"
+   "https://www.brighton.ac.uk/accommodation-and-locations/university-accommodation/city-halls.aspx"
   ],
   "pagesVisited": 18,
   "examples": [
@@ -1691,41 +1722,52 @@
   "catered": false,
   "rooms": {
    "shared": {
-    "median": 180,
+    "median": 154.49,
     "min": 139.02,
-    "max": 222.53,
-    "n": 10,
+    "max": 164.85,
+    "n": 7,
     "v": [
      139.02,
+     139.02,
+     154.49,
+     154.49,
      164.85,
      164.85,
-     164.85,
-     164.85,
-     194.67,
-     194.67,
-     199.78,
-     199.78,
-     222.53
+     164.85
     ]
    },
    "wet": {
-    "median": 203,
+    "median": 197,
     "min": 175.07,
-    "max": 231.7,
-    "n": 12,
+    "max": 323.4,
+    "n": 26,
     "v": [
      175.07,
      175.07,
      184.85,
      184.85,
+     184.85,
+     184.85,
+     184.85,
+     185.36,
+     185.36,
+     185.36,
+     191.59,
+     191.59,
+     191.59,
      202.83,
      202.83,
      202.83,
+     202.83,
      204.96,
      204.96,
      204.96,
      204.96,
-     231.7
+     204.96,
+     206.01,
+     231.7,
+     231.7,
+     323.4
     ]
    },
    "full": {
@@ -1740,20 +1782,20 @@
    }
   },
   "sources": [
-   "https://www.brookes.ac.uk/student-life/accommodation/current-students/halls",
+   "https://www.brookes.ac.uk/student-life/accommodation/prospective-students/halls",
+   "https://www.brookes.ac.uk/student-life/accommodation/sinnet-court",
    "https://www.brookes.ac.uk/student-life/accommodation/warneford-hall",
-   "https://www.brookes.ac.uk/student-life/accommodation/rowan-house",
    "https://www.brookes.ac.uk/student-life/accommodation/paul-kent-hall",
-   "https://www.brookes.ac.uk/student-life/accommodation/new-clive-booth",
-   "https://www.brookes.ac.uk/student-life/accommodation/crescent-hall"
+   "https://www.brookes.ac.uk/student-life/accommodation/crescent-hall",
+   "https://www.brookes.ac.uk/student-life/accommodation/clive-booth-l-m-blocks"
   ],
   "pagesVisited": 18,
   "examples": [
-   "shared £194.67: £194.67–£199.78 per week (single rooms)",
-   "shared £199.78: £194.67–£199.78 per week (single rooms)",
-   "shared £164.85: --> Costs: £164.85 per week",
-   "wet £175.07: --> Accessible rooms available: yes - en suite – £175.07 per week – contact your disability advisor to apply",
-   "shared £164.85: Standard single study bedrooms (shared bathroom): £164.85 per week"
+   "wet £184.85: £184.85 per week",
+   "wet £202.83: £202.83 per week",
+   "wet £231.7: from £231.70 per week",
+   "wet £204.96: £204.96 per week",
+   "wet £191.59: £191.59 per week"
   ]
  },
  "ply": {
@@ -1854,7 +1896,7 @@
   "catered": false,
   "rooms": {},
   "sources": [],
-  "pagesVisited": 15,
+  "pagesVisited": 18,
   "examples": []
  },
  "tee": {
@@ -2055,7 +2097,7 @@
   "name": "University of Hull",
   "checked": "2026-10-27",
   "confidence": "high",
-  "year": "2027/28",
+  "year": "2026/27",
   "catered": false,
   "rooms": {
    "wet": {
@@ -3462,7 +3504,7 @@
    }
   },
   "sources": [
-   "https://www.uwl.ac.uk/student-life/accommodation?redirect=1&source=accommodation",
+   "https://www.uwl.ac.uk/student-life/accommodation",
    "https://www.uwl.ac.uk/student-life/accommodation/chapter-white-city",
    "https://www.uwl.ac.uk/student-life/accommodation/paragon"
   ],
@@ -3738,42 +3780,28 @@
   "id": "p10007759",
   "name": "Aston University",
   "checked": "2026-10-27",
-  "confidence": "high",
+  "confidence": "low",
   "year": "2026/27",
   "catered": false,
   "rooms": {
    "wet": {
-    "median": 155,
-    "min": 137,
-    "max": 178.35,
-    "n": 12,
+    "median": 150,
+    "min": 144,
+    "max": 155,
+    "n": 2,
     "v": [
-     137,
-     142,
      144,
-     144,
-     144,
-     155,
-     155,
-     155,
-     160,
-     172.2,
-     178.35,
-     178.35
+     155
     ]
    }
   },
   "sources": [
-   "https://www.aston.ac.uk/undergraduate/your-application/accommodation/returning-students",
    "https://www.aston.ac.uk/undergraduate/your-application/accommodation/accommodation-for-new-undergraduate-students"
   ],
-  "pagesVisited": 10,
+  "pagesVisited": 9,
   "examples": [
-   "wet £137: Available for £137 per week on a 51-week contract. 44-week contracts are available for £172.20 per week.",
-   "wet £172.2: Available for £137 per week on a 51-week contract. 44-week contracts are available for £172.20 per week.",
-   "wet £142: Available for £142 per week on 51-week contract. 44-week contracts are available for £178.35 per week.",
-   "wet £178.35: Available for £142 per week on 51-week contract. 44-week contracts are available for £178.35 per week.",
-   "wet £160: Available for £160 per week on a 44-week contract. In James Watt and Mary Sturge buildings only"
+   "wet £144: Available for £144.00 per week , with 44-week contracts available.",
+   "wet £155: Available for £155.00 per week , with 44-week contracts only available."
   ]
  },
  "p10007760": {
@@ -3820,7 +3848,7 @@
    "https://www.bbk.ac.uk/student-services/accommodation/handel-mansions",
    "https://www.bbk.ac.uk/student-services/accommodation/international-hall"
   ],
-  "pagesVisited": 16,
+  "pagesVisited": 15,
   "examples": [
    "wet £359.35: Single, en-suite HPT, catered : £359.35 per week Number of rooms: 1",
    "shared £329.88: Single, shared bathroom, catered : £329.88 per week Number of rooms: 10",
@@ -3838,18 +3866,21 @@
   "catered": false,
   "rooms": {
    "wet": {
-    "median": 189,
-    "min": 161,
-    "max": 196,
-    "n": 7,
+    "median": 214,
+    "min": 196,
+    "max": 231,
+    "n": 10,
     "v": [
-     161,
-     161,
-     161,
-     189,
-     189,
-     189,
-     196
+     196,
+     196,
+     196,
+     203,
+     203,
+     224,
+     231,
+     231,
+     231,
+     231
     ]
    },
    "studio": {
@@ -3865,19 +3896,20 @@
    }
   },
   "sources": [
-   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/future-years-accommodation/traditional-non-en-suite-room",
-   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/future-years-accommodation/traditional-en-suite-room-pg",
-   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/future-years-accommodation/traditional-en-suite-room",
    "https://www.hw.ac.uk/campuses/scottish-borders/accommodation",
-   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/undergraduate-accommodation/traditional-en-suite-room"
+   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/undergraduate-accommodation/traditional-en-suite-room",
+   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/undergraduate-accommodation/contemporary-en-suite-room-in-flat",
+   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/go-global/traditional-en-suite-room",
+   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/go-global/contemporary-ensuite-standard-room",
+   "https://www.hw.ac.uk/campuses/edinburgh/accommodation/go-global/contemporary-en-suite-room-in-a-flat"
   ],
   "pagesVisited": 18,
   "examples": [
-   "wet £161: Traditional non en suite room | £161.00 | £644.00 | 50 weeks | £8050.00 | £741.00* |",
-   "wet £161: Traditional non en suite room | £161.00 | £644.00 | 40 weeks | £6440.00 | £725.00* |",
-   "wet £161: Traditional non en suite room | £161.00 | £644.00 | 15 weeks (S1 only Sep - Dec) | £2415.00 | n/a |",
-   "wet £189: Traditional en suite room | £189.00 | £756.00 | 50 weeks | £9450.00 | £870.00* |",
-   "wet £189: Traditional en suite room | £189.00 | £756.00 | 40 weeks | £7560.00 | £851.00* |"
+   "studio £196: Studio | £196.00 | 40 weeks | £7,840.00 |",
+   "studio £196: Studio | £196.00 | 50 weeks | £9,800.00 |",
+   "studio £161: Standard bedroom | £161.00 | 15 weeks (semester 1) | £2,415.00 |",
+   "wet £196: Traditional en suite room | £196.00 | £784.00 | 40 weeks | £7840.00 | £882.00* |",
+   "wet £231: Contemporary en suite room in a flat | £231.00 | £924.00 | 40 weeks | £9240.00 | £1040.00 * |"
   ]
  },
  "p10007772": {
@@ -3948,13 +3980,23 @@
     "median": 170,
     "min": 146,
     "max": 170,
-    "n": 5,
+    "n": 6,
     "v": [
      146,
      170,
      170,
      170,
+     170,
      170
+    ]
+   },
+   "wet": {
+    "median": 202,
+    "min": 202,
+    "max": 202,
+    "n": 1,
+    "v": [
+     202
     ]
    }
   },
@@ -3963,7 +4005,8 @@
    "https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/aldersgate-court/",
    "https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/epworth-court/",
    "https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/garden-court/",
-   "https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/new-court/"
+   "https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/new-court/",
+   "https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/shaw-house/"
   ],
   "pagesVisited": 18,
   "examples": [
@@ -4363,13 +4406,33 @@
   "id": "p10007804",
   "name": "University of Stirling",
   "checked": "2026-10-27",
-  "confidence": "none",
-  "year": null,
+  "confidence": "medium",
+  "year": "2026/27",
   "catered": false,
-  "rooms": {},
-  "sources": [],
+  "rooms": {
+   "shared": {
+    "median": 132,
+    "min": 127.53,
+    "max": 141.55,
+    "n": 4,
+    "v": [
+     127.53,
+     129.95,
+     133.4,
+     141.55
+    ]
+   }
+  },
+  "sources": [
+   "https://www.stir.ac.uk/student-life/accommodation/find-your-residence/alangrange/"
+  ],
   "pagesVisited": 18,
-  "examples": []
+  "examples": [
+   "shared £127.53: £127.53 per week : Small standard room (49 week contract)",
+   "shared £129.95: £129.95 per week : Medium standard room (49 week contract)",
+   "shared £133.4: £133.40 per week : Large standard room (49 week contract)",
+   "shared £141.55: £141.55 per week : Extra large standard room (49 week contract)"
+  ]
  },
  "p10007805": {
   "id": "p10007805",
@@ -4421,9 +4484,8 @@
     "median": 123,
     "min": 123,
     "max": 123,
-    "n": 4,
+    "n": 3,
     "v": [
-     123,
      123,
      123,
      123
@@ -4433,10 +4495,8 @@
     "median": 152,
     "min": 152,
     "max": 152,
-    "n": 7,
+    "n": 5,
     "v": [
-     152,
-     152,
      152,
      152,
      152,
@@ -4448,12 +4508,10 @@
     "median": 170,
     "min": 164,
     "max": 175,
-    "n": 6,
+    "n": 4,
     "v": [
      164,
      164,
-     164,
-     175,
      175,
      175
     ]
@@ -4462,28 +4520,26 @@
     "median": 190,
     "min": 190,
     "max": 190,
-    "n": 3,
+    "n": 2,
     "v": [
-     190,
      190,
      190
     ]
    }
   },
   "sources": [
-   "https://www.lincolnbishop.ac.uk/continuing-accommodation-for-current-students",
    "https://www.lincolnbishop.ac.uk/accommodation-further-information",
    "https://www.lincolnbishop.ac.uk/student/accommodation/student-village",
    "https://www.lincolnbishop.ac.uk/student/accommodation/wickham-hall",
    "https://www.lincolnbishop.ac.uk/student/accommodation/constance-stewart-hall"
   ],
-  "pagesVisited": 11,
+  "pagesVisited": 10,
   "examples": [
-   "wet £152: Wickham Hall (En-Suite) | 46 weeks* | £152.00 | £6,992.00 |",
    "shared £123: Constance Stewart Hall (Shared Facilities) | 46 weeks* | £123.00 | £5,658.00 |",
-   "wet £152: Standard En Suite Bedrooms (Blocks) | £152.00 | £6,992.00 |",
-   "full £164: Premium Standard En-Suite (Townhouse) | £164.00 | £7,544.00 |",
-   "full £175: Deluxe En Suite Bedrooms | £175.00 | £8,050.00 |"
+   "wet £152: Wickham Hall (En-Suite) | 46 weeks* | £152.00 | £6,992.00 |",
+   "wet £152: Student Village – Standard En-suite | 46 weeks* | £152.00 | £6,992.00 |",
+   "full £164: Student Village –Premium Standard En-suite | 46 weeks* | £164.00 | £7,544.00 |",
+   "full £175: Student Village – Deluxe En-suite | 46 weeks* | £175.00 | £8,050.00 |"
   ]
  },
  "p10007832": {
