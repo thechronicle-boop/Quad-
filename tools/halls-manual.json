@@ -4,7 +4,7 @@
   "rooms": {},
   "year": "2027/28",
   "catered": true,
-  "note": "College rooms \u2014 Oxford estimates \u00a3880\u2013\u00a31,025 a month",
+  "note": "College rooms — Oxford estimates £880–£1,025 a month",
   "source": "https://ox.ac.uk/admissions/undergraduate/fees-and-funding/living-costs"
  },
  "cam": {
@@ -12,7 +12,7 @@
   "rooms": {},
   "year": "2027/28",
   "catered": true,
-  "note": "College rooms \u2014 Cambridge estimates \u00a3880 a month; varies by college",
+  "note": "College rooms — Cambridge estimates £880 a month; varies by college",
   "source": "https://www.undergraduate.study.cam.ac.uk/fees-funding/living-costs"
  },
  "imp": {
@@ -113,7 +113,7 @@
   "catPrice": 194,
   "year": "2026/27",
   "catered": true,
-  "note": "Edinburgh gives monthly ranges: self-catered \u00a3414\u2013\u00a31,348, catered \u00a3842\u2013\u00a31,518",
+  "note": "Edinburgh gives monthly ranges: self-catered £414–£1,348, catered £842–£1,518",
   "source": "https://study.ed.ac.uk/undergraduate/fees-funding/living-costs"
  },
  "qml": {
@@ -171,7 +171,7 @@
   "year": "2026/27",
   "weeks": 38,
   "catered": true,
-  "note": "Bath gives a range of \u00a398\u2013\u00a3315 a week (average \u00a3183)",
+  "note": "Bath gives a range of £98–£315 a week (average £183)",
   "source": "https://www.bath.ac.uk/publications/undergraduate-budget/attachments/undergraduate-overall-budget.pdf"
  },
  "bed": {
@@ -181,7 +181,7 @@
   },
   "year": "2026/27",
   "catered": false,
-  "note": "Average \u00a3145 a week",
+  "note": "Average £145 a week",
   "source": "https://www.beds.ac.uk/news/2026/april/university-of-bedfordshire-named-cheapest-student-accommodation-in-the-east-of-england/"
  },
  "cdf": {
@@ -245,7 +245,7 @@
   "rooms": {},
   "year": "2026/27",
   "catered": false,
-  "note": "Self-catered rooms from \u00a374 a week",
+  "note": "Self-catered rooms from £74 a week",
   "source": "https://www.thecompleteuniversityguide.co.uk/universities/university-of-leicester/facilities"
  },
  "sou": {
@@ -278,7 +278,7 @@
   "rooms": {},
   "year": "2026/27",
   "catered": false,
-  "note": "On-campus halls \u00a3130\u2013\u00a3255 a week",
+  "note": "On-campus halls £130–£255 a week",
   "source": "https://theboar.org/2026/03/students-face-fifth-consecutive-year-of-unjustified-price-hikes-for-on-campus-halls"
  },
  "ncl": {
@@ -364,7 +364,7 @@
   },
   "year": "2026/27",
   "catered": false,
-  "note": "2027/28 prices also out: from \u00a3140",
+  "note": "2027/28 prices also out: from £140",
   "source": "https://worcester.ac.uk/life/accommodation/living-in-halls/accommodation-rates.aspx"
  },
  "lin": {
@@ -418,7 +418,7 @@
   },
   "year": null,
   "catered": false,
-  "note": "Orlando Village bronze \u00a3103 / silver \u00a3135 a week (year not stated)",
+  "note": "Orlando Village bronze £103 / silver £135 a week (year not stated)",
   "source": "https://knowledge.bolton.ac.uk/how-much-is-the-accommodation"
  },
  "hul": {
@@ -437,7 +437,21 @@
   },
   "year": "2026/27",
   "catered": false,
-  "note": "Chancellors Court: most rooms \u00a3153\u2013\u00a3163 a week",
+  "note": "Chancellors Court: most rooms £153–£163 a week",
   "source": "https://www.edgehill.ac.uk/study/accommodation/chancellors-court-and-chancellors-south/"
+ },
+ "nth": {
+  "from": 117,
+  "rooms": {
+   "shared": 164,
+   "wet": 117,
+   "full": 188,
+   "studio": 154
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "note": "Single rooms. Twin rooms for two people are cheaper (from £97).",
+  "source": "https://www.northampton.ac.uk/student-life/accommodation/accommodation-fees/"
  }
 }

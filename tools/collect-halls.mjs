@@ -78,6 +78,7 @@ function extract(lines) {
     if (!weekly || YEARISH.test(line) && !WEEK.test(line)) continue;
     const type = classify(line) || classify(ctx);
     if (!type) continue;
+    if (/\btwin\b|\bshared room\b|per person sharing|double occupancy/i.test(line)) continue; // rooms for two people aren't a single-room price
     for (const m of line.matchAll(/£\s?(\d{2,3}(?:\.\d{1,2})?)(?!\d|,\d)/g)) {
       const v = Number(m[1]);
       if (v >= 60 && v <= 600) found.push({ type, v, catered: /\bcatered\b/i.test(ctx) && !/self[- ]catered/i.test(ctx), text: line.slice(0, 160) });
@@ -90,6 +91,8 @@ const median = a => { const s = [...a].sort((x, y) => x - y); const n = s.length
 // ---------- crawl one uni ----------
 const ACC = /accommodation|residences|halls|living|housing/i;
 const PRICE = /fee|price|cost|rent|rates|tariff|rooms|compare|our-halls|residences|halls/i;
+// pages that are about other students or other costs (postgrad halls, scholarships, study abroad…) — their prices are not undergraduate halls prices
+const WRONG_PAGE = /postgrad|\/pg\/|scholarship|bursar|study-abroad|exchange|cost-of-living|international\/|apprentice/i;
 async function crawl(uni) {
   const host = "www." + root(uni.domain);
   const originReal = "https://" + host;
@@ -99,13 +102,13 @@ async function crawl(uni) {
   const queue = [...(uni.start || []), origin + "/accommodation", origin + "/accommodation/", origin + "/"];
   const seen = new Set(), pages = [], hits = [];
   while (queue.length && pages.length < MAX_PAGES) {
-    const url = queue.shift(); if (seen.has(norm(url)) || !allowed(url)) continue; seen.add(norm(url));
+    const url = queue.shift(); if (seen.has(norm(url)) || !allowed(url) || WRONG_PAGE.test(url)) continue; seen.add(norm(url));
     const page = await get(url); await sleep(DELAY_MS);
     if (!page || pages.includes(norm(page.url))) continue;
     pages.push(norm(page.url)); seen.add(norm(page.url));
     const lines = toText(page.html);
     const f = extract(lines).filter((x, i, a) => a.findIndex(y => y.text === x.text && y.v === x.v) === i);
-    if (f.length) hits.push({ url: page.url, year: (page.html.match(/20(2[6-9])\s*[\/–-]\s*(2[7-9]|20(2[7-9]))/) || [])[0] || null, items: f });
+    if (f.length && !WRONG_PAGE.test(page.url)) hits.push({ url: page.url, year: (page.html.match(/20(2[6-9])\s*[\/–-]\s*(2[7-9]|20(2[7-9]))/) || [])[0] || null, items: f });
     const ls = links(page.html, page.url).filter(l => allowed(l.url));
     const acc = ls.filter(l => ACC.test(l.url + " " + l.text));
     const priced = acc.filter(l => PRICE.test(l.url + " " + l.text));

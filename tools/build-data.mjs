@@ -6,12 +6,16 @@ const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "s
 let data = {}; try { data = JSON.parse(await fs.readFile("quad-data.json", "utf8")); } catch {}
 let halls = {}; try { halls = JSON.parse(await fs.readFile("data/halls.json", "utf8")); } catch {}
 let manual = {}; try { manual = JSON.parse(await fs.readFile("tools/halls-manual.json", "utf8")); } catch {}
+let skip = {}; try { skip = JSON.parse(await fs.readFile("tools/halls-skip.json", "utf8")); } catch {}
 let du = null; try { du = JSON.parse(await fs.readFile("data/discover-uni.json", "utf8")); } catch {}
 
 data.version = today;
 data.halls = {};
 for (const [id, r] of Object.entries(halls)) {
   if (!["high", "medium"].includes(r.confidence)) continue;
+  if (skip[id]) continue; // automatic price we couldn't confirm (see tools/halls-skip.json)
+  // ignore prices taken from pages about postgrad halls, scholarships, study abroad etc.
+  if (/postgrad|\/pg\/|scholarship|bursar|study-abroad|exchange|cost-of-living|international\/|apprentice/i.test((r.sources || [])[0] || "")) continue;
   // cheapest believable price per room type (same meaning as hand-checked prices):
   // needs 2+ sightings, and drops outliers far below the typical price (deposits, shared twins, per-night rates)
   const pick = x => {
