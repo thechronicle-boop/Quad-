@@ -38,7 +38,10 @@ const yr = y => { const m = String(y || "").match(/20(\d\d)/); return m ? Number
 for (const [id, m] of Object.entries(manual)) {
   const auto = data.halls[id];
   // a newer automatic result (a later price year, high confidence) replaces the hand-checked one
-  if (auto && auto.confidence === "high" && yr(auto.year) > yr(m.year)) { auto.method = "automatic"; continue; }
+  // a newer automatic result replaces a hand-checked price only once that check is ~10 months old
+  // (the automatic year can be misread, so a recent hand check always wins)
+  const ageDays = (Date.now() - new Date(m.checked || "2026-10-25").getTime()) / 864e5;
+  if (auto && auto.confidence === "high" && yr(auto.year) > yr(m.year) && ageDays > 300) { auto.method = "automatic"; continue; }
   data.halls[id] = { rooms: m.rooms || {}, from: m.from ?? null, catered: !!m.catered, cateredPrice: m.catPrice ?? null, checked: m.checked || "2026-10-25",
     year: m.year || null, weeks: m.weeks || null, note: m.note || null, confidence: "high", method: "checked by hand", source: m.source };
 }

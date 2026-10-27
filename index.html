@@ -314,6 +314,7 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
 .src{font-size:11.5px;color:var(--muted)}
 .src a{color:var(--muted)}
 .nodata{color:var(--muted);font-style:italic}
+.gtag{display:inline-block;font:600 10.5px Inter,sans-serif;padding:1px 7px;border-radius:999px;background:var(--blue-2);color:var(--blue);vertical-align:2px;white-space:nowrap}.gtag.g1,.gtag.g2{background:var(--amber-2);color:#9a6512}:root[data-theme=dark] .gtag.g1,:root[data-theme=dark] .gtag.g2{color:var(--amber)}
 </style>
 <script src="config.js"></script>
 <script src="quad-data.js"></script>
@@ -513,13 +514,13 @@ UNIS.forEach(u=>u.rg=RG.includes(u.id));
 
 /* ---------- courses (names; which unis run them comes from the official data) ---------- */
 const COURSE_GROUPS={
- "Health & medicine":[["MED","Medicine"],["DEN","Dentistry"],["VET","Veterinary Science"],["NUR","Nursing (Adult)"],["NCH","Nursing (Children's)"],["NMH","Nursing (Mental Health)"],["MID","Midwifery"],["PAR","Paramedic Science"],["PHY","Physiotherapy"],["OT","Occupational Therapy"],["RAD","Diagnostic Radiography"],["ODP","Operating Department Practice"],["SLT","Speech & Language Therapy"],["NUT","Nutrition & Dietetics"],["PHA","Pharmacy"],["BMS","Biomedical Science"],["PSY","Psychology"],["NEU","Neuroscience"],["LDN","Nursing (Learning Disabilities)"],["DHT","Dental Hygiene & Therapy"],["OPT","Optometry"],["POD","Podiatry"],["PHL","Pharmacology & Pharmaceutical Science"],["MSC","Medical Sciences"],["PUB","Public Health"],["HSC","Health & Social Care"],["STH","Sports Therapy & Rehabilitation"],["VN","Veterinary Nursing"],["CNS","Counselling"]],
- "Sciences":[["BIO","Biology"],["BCH","Biochemistry"],["CHE","Chemistry"],["PHS","Physics"],["MAT","Mathematics"],["ENV","Environmental Science"],["GEO","Geography"],["ZOO","Zoology"],["FOR","Forensic Science"],["GEL","Geology & Earth Sciences"],["MAR","Marine Biology"],["MIC","Microbiology"],["GEN","Genetics"],["ECL","Ecology & Conservation"],["NSC","Natural Sciences"],["BIT","Biotechnology"],["ANS","Animal & Equine Science"],["AGR","Agriculture"],["FDS","Food Science"],["ACT","Actuarial Science"]],
+ "Health & medicine":[["MED","Medicine"],["DEN","Dentistry"],["VET","Veterinary Science"],["NUR","Nursing (Adult)"],["NCH","Nursing (Children's)"],["NMH","Nursing (Mental Health)"],["MID","Midwifery"],["PAR","Paramedic Science"],["PHY","Physiotherapy"],["OT","Occupational Therapy"],["RAD","Diagnostic Radiography"],["ODP","Operating Department Practice"],["SLT","Speech & Language Therapy"],["NUT","Nutrition & Dietetics"],["PHA","Pharmacy"],["BMS","Biomedical Science"],["PSY","Psychology"],["NEU","Neuroscience"],["LDN","Nursing (Learning Disabilities)"],["DHT","Dental Hygiene, Therapy & Oral Health"],["OPT","Optometry"],["POD","Podiatry"],["PHL","Pharmacology & Pharmaceutical Science"],["MSC","Medical Sciences"],["PUB","Public & Environmental Health"],["HSC","Health & Social Care"],["STH","Sports Therapy & Rehabilitation"],["VN","Veterinary Nursing"],["CNS","Counselling"],["HCS","Healthcare Science (Audiology, Cardiac & more)"],["OST","Osteopathy & Chiropractic"],["ORT","Orthoptics & Optical Dispensing"]],
+ "Sciences":[["BIO","Biology"],["BCH","Biochemistry"],["CHE","Chemistry"],["PHS","Physics"],["MAT","Mathematics"],["ENV","Environmental Science"],["GEO","Geography"],["ZOO","Zoology"],["FOR","Forensic Science"],["GEL","Geology & Earth Sciences"],["MAR","Marine Biology"],["MIC","Microbiology & Immunology"],["GEN","Genetics"],["ECL","Ecology & Conservation"],["NSC","Natural Sciences"],["BIT","Biotechnology"],["ANS","Animal & Equine Science"],["AGR","Agriculture & Horticulture"],["FDS","Food Science"],["ACT","Actuarial Science"],["FIV","Forensic & Criminal Investigation"],["STA","Statistics"]],
  "Computing & data":[["CS","Computer Science"],["SE","Software Engineering"],["DS","Data Science"],["AI","Artificial Intelligence"],["CYB","Cyber Security"],["IT","Information Technology"]],
- "Engineering & building":[["ENG","Engineering (any)"],["MEC","Mechanical Engineering"],["ELE","Electrical & Electronic Engineering"],["CIV","Civil Engineering"],["AEN","Architectural Engineering"],["AER","Aerospace Engineering"],["CHM","Chemical Engineering"],["BEN","Biomedical Engineering"],["ARC","Architecture"],["MCT","Mechatronics & Robotics"],["AUT","Automotive & Motorsport Engineering"],["PDE","Product Design"],["ATE","Architectural Technology"],["QS","Quantity Surveying"],["BSV","Building Surveying"],["CON","Construction Management"],["REA","Real Estate"],["PLN","Urban Planning"]],
+ "Engineering & building":[["ENG","Engineering (any)"],["MEC","Mechanical Engineering"],["ELE","Electrical & Electronic Engineering"],["CIV","Civil Engineering"],["AEN","Architectural Engineering"],["AER","Aerospace Engineering"],["CHM","Chemical Engineering"],["BEN","Biomedical Engineering"],["ARC","Architecture"],["MCT","Mechatronics & Robotics"],["AUT","Automotive & Motorsport Engineering"],["PDE","Product Design"],["ATE","Architectural Technology"],["QS","Quantity Surveying"],["BSV","Building Surveying"],["CON","Construction Management"],["REA","Real Estate"],["PLN","Urban Planning"],["MTS","Materials Science & Engineering"],["LAR","Landscape Architecture"]],
  "Business, law & economics":[["BUS","Business & Management"],["ACC","Accounting & Finance"],["ECO","Economics"],["MKT","Marketing"],["LAW","Law"],["CRI","Criminology"],["POL","Politics"],["IR","International Relations"],["TOU","Tourism, Events & Hospitality"],["HRM","Human Resource Management"],["POC","Professional Policing"]],
- "Humanities & social sciences":[["EN","English"],["HIS","History"],["PHI","Philosophy"],["CLA","Classics"],["LNG","Modern Languages"],["LIN","Linguistics"],["SOC","Sociology"],["ANT","Anthropology"],["ARCH","Archaeology"],["THE","Theology & Religion"],["SW","Social Work"],["EDU","Primary Education (QTS)"],["EDS","Education Studies"],["ECS","Early Childhood Studies"],["SPO","Social Policy"],["SSC","Social Sciences"],["DEV","International Development"],["HOA","History of Art"],["LIB","Liberal Arts"]],
- "Creative arts & media":[["ART","Fine Art"],["FAS","Fashion"],["GD","Graphic Design"],["FILM","Film & TV"],["MDC","Media & Communication"],["JOU","Journalism"],["MUS","Music"],["DRA","Drama, Theatre & Performing Arts"],["GAM","Games Design"],["PHO","Photography"],["CW","Creative Writing"],["ILL","Illustration"],["ANI","Animation"],["INT","Interior Design"],["TEX","Textile Design"],["DAN","Dance"],["MTH","Musical Theatre"],["MPR","Music Production & Sound"]],
+ "Humanities & social sciences":[["EN","English"],["HIS","History"],["PHI","Philosophy"],["CLA","Classics"],["LNG","Modern Languages"],["LIN","Linguistics"],["SOC","Sociology"],["ANT","Anthropology"],["ARCH","Archaeology"],["THE","Theology & Religion"],["SW","Social Work"],["EDU","Primary Education (QTS)"],["EDS","Education Studies"],["ECS","Early Childhood & Youth Studies"],["SPO","Social Policy"],["SSC","Social Sciences"],["DEV","International Development"],["HOA","History of Art"],["LIB","Liberal Arts"],["SEN","Special & Inclusive Education"],["CEL","Welsh, Gaelic & Celtic"]],
+ "Creative arts & media":[["ART","Fine Art"],["FAS","Fashion"],["GD","Graphic Design"],["FILM","Film & TV"],["MDC","Media & Communication"],["JOU","Journalism"],["MUS","Music"],["DRA","Drama, Theatre & Performing Arts"],["GAM","Games Design"],["PHO","Photography"],["CW","Creative Writing"],["ILL","Illustration"],["ANI","Animation & Visual Effects"],["INT","Interior Design"],["TEX","Textile Design"],["DAN","Dance"],["MTH","Musical Theatre"],["MPR","Music Production & Sound"],["CRA","Jewellery, Ceramics & Crafts"],["DD","Digital & UX Design"]],
  "Sport":[["SPS","Sport & Exercise Science"],["SPM","Sport Management"],["COA","Sport Coaching & PE"]]
 };
 const COURSES={};for(const l of Object.values(COURSE_GROUPS))for(const [c,n] of l)COURSES[c]=n;
@@ -562,6 +563,8 @@ function color(s){return s>=.7?"var(--green)":s>=.4?"var(--amber)":"var(--red)"}
 function pctCol(p){return p>=70?"var(--green)":p>=45?"var(--amber)":"var(--red)"}
 function uni(id){return ALL.find(u=>u.id===id)}
 function CN(){return COURSES[S.course]||"your course"}
+const GRPLAB={3:"similar courses",2:"wider subject",1:"broad subject"};
+function gtag(c,k){const l=c&&c.grp&&c.grp[k];return l?` <span class="gtag g${l}">${GRPLAB[l]}</span>`:""}
 const NODATA=`<span class="nodata">No official data</span>`;
 
 /* grades — UCAS tariff points for each qualification */
@@ -595,7 +598,7 @@ function CD(u,c=S.course){
   const base=u.du&&u.du.courses?u.du.courses[c]||null:null;if(!base)return null;
   const vi=(S.variants||{})[u.id+"|"+c],V=vi!=null&&window.QUAD_VARIANTS&&QUAD_VARIANTS[c]&&QUAD_VARIANTS[c][u.id]?QUAD_VARIANTS[c][u.id][vi]:null;
   if(!V)return base;
-  return {...base,title:V[0]+(V[13]?" ("+V[13]+")":""),url:V[1]||base.url,sat:V[2],tariff:V[3],cont:V[4],salary:V[5],work:V[6],placement:!!V[7],abroad:!!V[8],foundation:!!V[9],masters:!!V[10],jointOnly:!!V[11],accredited:!!V[12],n:1,exact:true};
+  return {...base,title:V[0]+(V[13]?" ("+V[13]+")":""),url:V[1]||base.url,sat:V[2],tariff:V[3],cont:V[4],salary:V[5],work:V[6],grp:V[14]||{},placement:!!V[7],abroad:!!V[8],foundation:!!V[9],masters:!!V[10],jointOnly:!!V[11],accredited:!!V[12],n:1,exact:true};
 }
 const VLOAD={};
 function loadVariants(c,cb){if(!c||VLOAD[c]==="done"){cb&&cb();return}if(VLOAD[c])return;VLOAD[c]="loading";
@@ -610,7 +613,7 @@ const RSHORT={shared:"shared bath",wet:"en-suite",full:"premium en-suite",studio
 function hallsFrom(u){const h=u.halls;if(!h)return null;const v=Object.values(h.rooms||{}).filter(Boolean);return h.from??(v.length?Math.min(...v):null)}
 function roomPrice(u){const h=u.halls;return h&&h.rooms&&h.rooms[S.room]?h.rooms[S.room]:null}
 function hallsYear(u){const y=u.halls&&u.halls.year;return y?String(y).replace(/^(20\d\d)[\/–-](20)?(\d\d)$/,"$1/$3"):null}
-function priceShown(u){const y=hallsYear(u),yy=y?` · ${y}`:"";const p=roomPrice(u);if(p)return {p,lab:`£${p}/wk ${RSHORT[S.room]}${yy}`};const f=hallsFrom(u);return f?{p:f,lab:`from £${f}/wk${yy}`}:null}
+function priceShown(u){const y=hallsYear(u),yy=(y?` · ${y}`:"")+(u.halls&&u.halls.method&&u.halls.method!=="checked by hand"?" · unchecked":"");const p=roomPrice(u);if(p)return {p,lab:`£${p}/wk ${RSHORT[S.room]}${yy}`};const f=hallsFrom(u);return f?{p:f,lab:`from £${f}/wk${yy}`}:null}
 
 /* TEF + tuition */
 const TEF={Gold:1,Silver:.6,Bronze:.25,"Requires improvement":0};
@@ -649,7 +652,7 @@ const CRIT={
  ims:{only:"uni",g:"📊 Your course",ic:"🎓",label:"Integrated master's option",score:u=>{const c=CD(u);return c?(c.masters?1:0):null},val:u=>{const c=CD(u);return c&&c.masters?"Yes":"No"}},
  pt:{only:"uni",g:"📊 Your course",ic:"⏳",label:"Part-time option",score:u=>{const c=CD(u);return c?(c.parttime?1:0):null},val:u=>{const c=CD(u);return c&&c.parttime?"Yes":"No"}},
  acc:{only:"uni",g:"📊 Your course",ic:"📜",label:"Professionally accredited",score:u=>{const c=CD(u);return c?(c.accredited?1:0):null},val:u=>{const c=CD(u);return c&&c.accredited?"Yes":"No"}},
- tef:{only:"uni",g:"🏛️ The uni",ic:"🏅",label:"Teaching rating (TEF)",score:u=>u.tef in TEF?TEF[u.tef]:null,val:u=>u.tef||"Not rated"},
+ tef:{only:"uni",g:"🏛️ The uni",ic:"🏅",label:"Teaching rating (TEF)",score:u=>u.tef in TEF?TEF[u.tef]:null,val:u=>u.tef||(u.nation&&u.nation!=="eng"?"England only":"Not rated")},
  rg:{only:"uni",g:"🏛️ The uni",ic:"🎓",label:"Russell Group",score:u=>u.rg?1:0,val:u=>u.rg?"Yes":"No"},
  visit:{only:"uni",g:"🎟️ My open days",ic:"⭐",label:"My open day rating",score:u=>{const v=S.visit[u.id];return v&&v.overall?(v.overall-1)/4:null},val:u=>{const v=S.visit[u.id];return v&&v.overall?v.overall+" / 5":"Not rated yet"}},
  vroom:{only:"uni",g:"🎟️ My open days",ic:"🛏️",label:"Liked the room I saw",score:u=>{const v=S.visit[u.id];return v&&v.room in VLIKE?VLIKE[v.room]:null},val:u=>{const v=S.visit[u.id];return v&&v.room?{yes:"Loved it",ok:"It was OK",no:"Didn't like it"}[v.room]:"Not rated yet"}},
@@ -938,14 +941,14 @@ function openProfile(id){
     ${x.d!=null?`<p class="src" style="margin-top:6px">${Math.round(x.d)} miles from home as the crow flies — tap "Plan the journey" for real travel times by train, bus or car.</p>`:""}
     <div class="msec"><h4>📊 ${esc(CN())} · official data</h4>
       ${c?`${variantPicker(u)}<p class="hint" style="margin:0 0 8px">${c.exact?"Figures for this exact course":esc(c.title)+(c.n>1?` and ${c.n-1} related course${c.n>2?"s":""} combined`:"")}${c.jointOnly?` · <span class="tag amber">Joint honours only</span>`:""}</p><div class="statgrid">
-        ${stat("Student satisfaction",c.sat!=null?c.sat+"%":NODATA)}${stat("Entrants' grades (typical)",c.tariff?`≈ ${grades(c.tariff)} · ${c.tariff} pts`:NODATA)}${stat("Your grades",x.gf?x.gf.label:userPoints()?NODATA:"Add in Match")}
-        ${stat("Carry on after year 1",c.cont!=null?c.cont+"%":NODATA)}${stat("Graduate salary (median)",c.salary?fmt(c.salary):NODATA)}${stat("In work or study",c.work!=null?c.work+"%":NODATA)}
+        ${stat("Student satisfaction",c.sat!=null?c.sat+"%"+gtag(c,"sat"):NODATA)}${stat("Entrants' grades (typical)",c.tariff?`≈ ${grades(c.tariff)} · ${c.tariff} pts`+gtag(c,"tariff"):NODATA)}${stat("Your grades",x.gf?x.gf.label:userPoints()?NODATA:"Add in Match")}
+        ${stat("Carry on after year 1",c.cont!=null?c.cont+"%"+gtag(c,"cont"):NODATA)}${stat("Graduate salary (median)",c.salary?fmt(c.salary)+gtag(c,"salary"):NODATA)}${stat("In work or study",c.work!=null?c.work+"%"+gtag(c,"work"):NODATA)}
         ${stat("Placement year option",c.placement?"Yes":"No")}${stat("Year abroad option",c.abroad?"Yes":"No")}${stat("Accredited",c.accredited?"Yes":"No")}
         ${stat("Foundation year option",c.foundation?"Yes":"No")}${stat("Integrated master's option",c.masters?"Yes":"No")}${stat("Part-time option",c.parttime?"Yes":"No")}</div>
-        <p class="src">Entrants' grades are shown as the A-level equivalent of their UCAS points, so they work for any qualification. Satisfaction = National Student Survey (final-year students, last two years). Salary and jobs = graduates 15 months after finishing. Grades = UCAS points of recent entrants, so real offers can differ.</p>`
+        ${c.grp&&Object.keys(c.grp).length?`<p class="src" style="margin-bottom:4px">🔎 A tag means the official figure isn't for this course alone: when a course has too few students to report, it's combined with <b>similar courses</b> at this uni, or a <b>wider</b> or <b>broad subject</b> area (e.g. all engineering). Untagged figures are for this course.</p>`:""}<p class="src">Entrants' grades are shown as the A-level equivalent of their UCAS points, so they work for any qualification. Satisfaction = National Student Survey (final-year students, last two years). Salary and jobs = graduates 15 months after finishing. Grades = UCAS points of recent entrants, so real offers can differ.</p>`
        :`<p class="hint">This uni doesn't appear to run ${esc(CN())} as a full-time degree in the official data.</p>`}</div>
     ${r&&r.parts.length?`<div class="msec"><h4>How it scores for you</h4>${bars(r.parts)}${r.gaps.length?`<p class="src">No published data for: ${esc(r.gaps.join(", "))}. These count as average so the score stays fair.</p>`:""}</div>`:""}
-    <div class="msec"><h4>🛏️ First-year halls</h4>${h?`<div class="statgrid">${hallsRows}</div><p class="src">Cheapest price per room type from the uni's published fees${h.year?" for "+esc(hallsYear(u)):""}${h.note?" · "+esc(h.note):""}. ${String(h.year||"").includes("2027")?"":"Unis usually publish next year's (2027/28) prices between January and March, and they're normally a little higher — Quad updates automatically when they're out."}</p>`:`<p class="hint" style="margin:0">This uni doesn't publish its prices in a way we could check. ${u.accomUrl?`See <a href="${esc(u.accomUrl)}" target="_blank" rel="noopener">its accommodation page ↗</a>.`:""}</p>`}</div>
+    <div class="msec"><h4>🛏️ First-year halls</h4>${h?`<div class="statgrid">${hallsRows}</div>${h.method&&h.method!=="checked by hand"?`<p class="src" style="color:var(--amber)">⚠️ Found automatically on the uni's website and not yet checked by hand. Double-check on the uni's page.</p>`:""}<p class="src">Cheapest single-room price per room type from the uni's published fees${h.year?" for "+esc(hallsYear(u)):""}${h.note?" · "+esc(h.note):""}. ${String(h.year||"").includes("2027")?"":"Unis usually publish next year's (2027/28) prices between January and March, and they're normally a little higher — Quad updates automatically when they're out."}</p>`:`<p class="hint" style="margin:0">This uni doesn't publish its prices in a way we could check. ${u.accomUrl?`See <a href="${esc(u.accomUrl)}" target="_blank" rel="noopener">its accommodation page ↗</a>.`:""}</p>`}</div>
     <div class="msec"><h4>💷 Money per year</h4><div class="statgrid">
       ${stat(`Halls (${S.weeks} wks)`,m.halls!=null?fmt(m.halls):NODATA)}${stat("Tuition fee (student loan)",`<span style="font-size:12.5px">${feeLine(u)}</span>`)}${stat("Your own spending",S.spend?fmt(m.spend):`<span class="nodata">Add on Shortlist</span>`)}</div></div>
     <div class="msec"><h4>✍️ Personal statement tips for ${esc(CN())}</h4><ul class="bul">${psFor(u,S.course).map(l=>`<li>${esc(l)}</li>`).join("")}</ul></div>
@@ -1143,25 +1146,25 @@ function renderCmp(){
     ["Match",u=>sm[u.id]?sm[u.id].pct:null,v=>v+"%","hi"],
     ["Type",u=>u.type==="app"?"Apprenticeship":"University",v=>v,null],
     ["Course",u=>(CD(u)||{}).title,v=>esc(v),null],
-    ["Student satisfaction",u=>(CD(u)||{}).sat,v=>v+"%","hi"],
-    ["Entrants' grades",u=>(CD(u)||{}).tariff,v=>"≈ "+grades(v),null],
+    ["Student satisfaction",u=>(CD(u)||{}).sat,(v,u)=>v+"%"+gtag(CD(u),"sat"),"hi"],
+    ["Entrants' grades",u=>(CD(u)||{}).tariff,(v,u)=>"≈ "+grades(v)+gtag(CD(u),"tariff"),null],
     ["Your grades",u=>{const g=gradeFit(u,pts);return g?g.label:null},v=>v,null],
-    ["Carry on after year 1",u=>(CD(u)||{}).cont,v=>v+"%","hi"],
-    ["Graduate salary",u=>(CD(u)||{}).salary,v=>fmt(v),"hi"],
-    ["In work or study",u=>(CD(u)||{}).work,v=>v+"%","hi"],
+    ["Carry on after year 1",u=>(CD(u)||{}).cont,(v,u)=>v+"%"+gtag(CD(u),"cont"),"hi"],
+    ["Graduate salary",u=>(CD(u)||{}).salary,(v,u)=>fmt(v)+gtag(CD(u),"salary"),"hi"],
+    ["In work or study",u=>(CD(u)||{}).work,(v,u)=>v+"%"+gtag(CD(u),"work"),"hi"],
     ["Placement year",u=>CD(u)?(CD(u).placement?1:0):null,v=>v?"Yes":"No","hi"],
     ["Year abroad",u=>CD(u)?(CD(u).abroad?1:0):null,v=>v?"Yes":"No","hi"],
     ["Accredited",u=>CD(u)?(CD(u).accredited?1:0):null,v=>v?"Yes":"No","hi"],
     ["Foundation year",u=>CD(u)?(CD(u).foundation?1:0):null,v=>v?"Yes":"No",null],
     ["Integrated master's",u=>CD(u)?(CD(u).masters?1:0):null,v=>v?"Yes":"No",null],
     ["Part-time",u=>CD(u)?(CD(u).parttime?1:0):null,v=>v?"Yes":"No",null],
-    ["TEF",u=>u.tef,v=>v,null],
+    ["TEF",u=>u.tef||(u.type==="uni"&&u.nation!=="eng"?"England only":null),v=>v,null],
     ["Russell Group",u=>u.type==="uni"?(u.rg?1:0):null,v=>v?"Yes":"No",null],
     ...Object.entries(ROOMS).map(([k,l])=>[l,u=>u.halls&&u.halls.rooms?u.halls.rooms[k]||null:null,v=>"£"+v+"/wk","lo"]),
     ["Catered halls",u=>u.halls?(u.halls.catered?1:0):null,v=>v?"Yes":"Not listed",null],
     ["Halls per year",u=>moneyLine(u).halls,v=>fmt(v),"lo"],
     ["Tuition fee",u=>u.type==="app"?0:fee(u),v=>v?fmt(v):"Paid by employer","lo"],
-    ["From home",u=>dist(u),v=>Math.round(v)+" mi","lo"]
+    ["From home (straight line)",u=>dist(u),v=>Math.round(v)+" mi","lo"]
   ];
   const COLS=["var(--green)","var(--blue)","var(--amber)"];
   const metrics=[["😊 Student satisfaction",u=>(CD(u)||{}).sat,v=>v+"%",false],["🔁 Carry on after year 1",u=>(CD(u)||{}).cont,v=>v+"%",false],["💰 Graduate salary",u=>(CD(u)||{}).salary,v=>fmt(v),false],["💼 In work or study",u=>(CD(u)||{}).work,v=>v+"%",false],["🛏️ Halls per week",u=>(priceShown(u)||{}).p,v=>"£"+v,true],["🏠 Distance from home",u=>dist(u),v=>Math.round(v)+" mi",true]];
@@ -1170,7 +1173,7 @@ function renderCmp(){
   $("#cmpBox").innerHTML=`<div class="card" style="padding:16px;margin-bottom:12px"><div class="grp-l" style="margin-bottom:10px">📊 Side by side</div>${charts}</div><div class="card" style="padding:6px 6px 2px;margin-bottom:16px"><div class="cmpwrap"><table class="cmp"><tr><td></td>${us.map(u=>`<th>${esc(u.name)}</th>`).join("")}</tr>${
     rows.map(([l,f,fm,dir])=>{const vals=us.map(u=>{try{const v=f(u);return v===undefined?null:v}catch(e){return null}});const nums=vals.filter(v=>typeof v==="number");
       const best=dir&&nums.length>1&&new Set(nums).size>1?(dir==="hi"?Math.max(...nums):Math.min(...nums)):null;
-      return `<tr><td>${l}</td>${vals.map(v=>`<td class="${best!=null&&v===best?"best":""}">${v==null?"—":fm(v)}</td>`).join("")}</tr>`}).join("")}</table></div></div>`;
+      return `<tr><td>${l}</td>${vals.map((v,i)=>`<td class="${best!=null&&v===best?"best":""}">${v==null?"—":fm(v,us[i])}</td>`).join("")}</tr>`}).join("")}</table></div></div>`;
 }
 function renderPlanner(items){
   const ods=items.filter(u=>S.openDay[u.id]).map(u=>({u,date:S.openDay[u.id],d:daysTo(S.openDay[u.id])})).sort((a,b)=>a.date.localeCompare(b.date));

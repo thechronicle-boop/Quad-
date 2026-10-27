@@ -23,7 +23,7 @@ UNI_IDS = json.load(open(os.path.join(HERE, "uni-ids.json")))
 # ---------------------------------------------------------------- course matching
 # Each Quad course is matched by the official course TITLE (any full-time first degree whose title matches).
 COURSE_RX = {
- "MED": r"\bmedicine\b(?!.*(veterinar|sport|complementary|herbal))|\bmbchb\b|\bmbbs\b|\bbm\s?bs\b",
+ "MED": r"^(?!.*(veterinar|sport|complementary|herbal|bioengineering|molecular|cellular|translational|experimental))(.*\bmedicine\b|.*\bmbchb\b|.*\bmbbs\b|.*\bbm\s?bs\b)",
  "DEN": r"\bdental surgery\b|\bdentistry\b|\bbds\b",
  "VET": r"\bveterinary (medicine|science|surgery)\b|\bbvsc\b|\bbvms\b|\bbvetmed\b",
  "NUR": r"nursing.*adult|adult nursing|registered nurse.*adult",
@@ -31,7 +31,7 @@ COURSE_RX = {
  "NMH": r"nursing.*mental health|mental health nursing|registered nurse.*mental",
  "MID": r"\bmidwifery\b",
  "PAR": r"\bparamedic",
- "PHY": r"\bphysiotherapy\b",
+ "PHY": r"^(?!.*(veterinar|equine|canine|animal))(.*\bphysiotherapy\b)",
  "OT":  r"\boccupational therapy\b",
  "RAD": r"diagnostic radiography|\bradiography\b",
  "ODP": r"operating department practice",
@@ -63,18 +63,18 @@ COURSE_RX = {
  "AER": r"aerospace|aeronautical",
  "CHM": r"chemical engineering",
  "BEN": r"biomedical engineering",
- "ARC": r"^architecture|\barchitecture\b(?!.*landscape)|\barchitectural studies\b",
+ "ARC": r"^(?!.*(landscape|naval|interior))(architecture|.*\barchitecture\b|.*\barchitectural studies\b)",
  "BUS": r"\bbusiness\b|\bmanagement\b",
  "ACC": r"\baccounting\b|\baccountancy\b|\bfinance\b|\bbanking\b",
  "ECO": r"\beconomics\b",
  "MKT": r"\bmarketing\b",
  "LAW": r"^law\b|\blaw\b|\bllb\b",
- "CRI": r"\bcriminology\b",
+ "CRI": r"\bcriminology\b|criminal justice|^crime\b|\bcrime and\b",
  "POL": r"\bpolitics\b",
  "IR":  r"international relations",
  "TOU": r"\btourism\b|\bevents?( management)?\b|\bhospitality\b",
  "EN":  r"english literature|^english\b|\benglish\b(?!.*(language teaching|as a foreign))",
- "HIS": r"\bhistory\b(?!.*\bart\b)",
+ "HIS": r"^(?!.*\bart\b)(.*\bhistory\b)",
  "PHI": r"\bphilosophy\b",
  "CLA": r"\bclassics\b|classical (studies|civilisation)|\bancient history\b|\blatin\b|\bgreek\b",
  "LNG": r"\bfrench\b|\bspanish\b|\bgerman\b|\bitalian\b|modern languages|\bjapanese\b|\bchinese\b|\bmandarin\b|\barabic\b|\brussian\b|\bportuguese\b",
@@ -88,7 +88,7 @@ COURSE_RX = {
  "ART": r"\bfine art\b",
  "FAS": r"\bfashion\b",
  "GD":  r"graphic design|graphic communication",
- "FILM": r"\bfilm\b|\btelevision\b|\btv production\b",
+ "FILM": r"\bfilm\b|\btelevision\b|\btv production\b|filmmaking|film-making|post[- ]production",
  "MDC": r"\bmedia\b|\bcommunications?\b",
  "JOU": r"\bjournalism\b",
  "MUS": r"\bmusic\b",
@@ -98,25 +98,25 @@ COURSE_RX = {
  "SPS": r"sport.*(exercise|science)|exercise science",
  "SPM": r"sport.*(management|business)",
  "LDN": r"learning disabilit(y|ies) nursing|nursing.*learning disabilit",
- "DHT": r"dental (hygiene|therapy)",
+ "DHT": r"dental (hygiene|therapy)|oral health",
  "OPT": r"\boptometry\b",
  "POD": r"\bpodiatr",
  "PHL": r"pharmacolog|pharmaceutical science",
  "MSC": r"\bmedical sciences?\b",
- "PUB": r"public health",
+ "PUB": r"public health|environmental health",
  "HSC": r"health (and|&) social care",
  "STH": r"sports? therapy|sports? rehabilitation",
  "VN": r"veterinary nursing",
  "CNS": r"\bcounselling\b",
  "GEL": r"\bgeology\b|earth sciences?|geoscience",
  "MAR": r"marine biology",
- "MIC": r"microbiology",
+ "MIC": r"microbiology|immunology|virology",
  "GEN": r"\bgenetics\b",
  "ECL": r"\becology\b|wildlife conservation",
  "NSC": r"natural sciences?",
  "BIT": r"biotechnology",
  "ANS": r"animal (science|behaviour|biology|welfare)|\bequine\b|bioveterinary",
- "AGR": r"agricultur",
+ "AGR": r"agricultur|horticultur",
  "FDS": r"food (science|technology|innovation)",
  "ACT": r"actuarial",
  "IT": r"information technology",
@@ -128,11 +128,11 @@ COURSE_RX = {
  "BSV": r"building surveying",
  "CON": r"construction (project )?management",
  "REA": r"real estate",
- "PLN": r"(urban|town|city|regional|spatial) planning",
+ "PLN": r"(urban|town|city|regional|spatial|environmental) (and \w+ )?planning|\bplanning\b.*\b(urban|town|regional)\b|^master of planning|(geography|environment) and planning",
  "HRM": r"human resource",
  "POC": r"\bpolicing\b",
  "EDS": r"education studies|^education$|^education[ ,(]|^education (and|with)",
- "ECS": r"early (childhood|years)|childhood studies",
+ "ECS": r"early (childhood|years)|childhood studies|child(hood)? and youth|youth studies",
  "SPO": r"social policy|public policy",
  "SSC": r"^social sciences?\b",
  "DEV": r"(international|global) (sustainable )?development",
@@ -140,30 +140,42 @@ COURSE_RX = {
  "LIB": r"liberal arts(?! and media foundation)",
  "CW": r"creative writing",
  "ILL": r"illustration",
- "ANI": r"\banimation\b",
+ "ANI": r"\banimation\b|visual effects|\bvfx\b",
  "INT": r"interior (design|architecture)",
  "TEX": r"\btextile",
  "DAN": r"\bdance\b",
  "MTH": r"musical theatre",
  "MPR": r"music (production|technology)|audio (production|engineering|technology)|sound (engineering|design|production)",
  "COA": r"physical education|\bcoaching\b",
+ "HCS": r"healthcare science|\baudiology\b|cardiac physiology|clinical physiology|medical physiology|respiratory physiology",
+ "OST": r"osteopath|chiropract",
+ "ORT": r"orthoptic|ophthalmic dispensing|dispensing optic",
+ "FIV": r"forensic investigation|criminal investigation|crime scene|investigative studies",
+ "MTS": r"materials science|materials engineering",
+ "STA": r"^statistics\b|\bstatistics$|statistical science",
+ "LAR": r"landscape architecture",
+ "SEN": r"special educational needs|special and inclusive education|inclusive (education|practice)",
+ "CEL": r"\bwelsh\b|\bcymraeg\b|\bgaelic\b|\bceltic\b|\birish (studies|language)|^irish\b",
+ "CRA": r"jewellery|silversmith|\bceramics?\b|\bglass\b(?!.*(engineering|science))|\bcrafts?\b",
+ "DD": r"digital design|user experience|\bux\b|interaction design|^design$|^design \(|design for publishing",
 }
 COURSE_RX = {k: re.compile(v, re.I) for k, v in COURSE_RX.items()}
 
 # Official subject codes (HECoS CAH) that also count as a match — catches courses with unusual titles.
 CAH_MAP = {
- "MED": ["CAH01-01-02"], "DEN": ["CAH01-01-04"], "VET": ["CAH05-01-01"], "NUR": ["CAH02-04-02"], "NCH": ["CAH02-04-05"],
- "NMH": ["CAH02-04-07"], "MID": ["CAH02-04-04"], "PHA": ["CAH02-02-03"], "PHY": ["CAH02-06-05"], "RAD": ["CAH02-05-01"],
+ "VET": ["CAH05-01-01"], "NUR": ["CAH02-04-02"], "NCH": ["CAH02-04-05"],
+ "NMH": ["CAH02-04-07"], "MID": ["CAH02-04-04"], "PHA": ["CAH02-02-03"], "RAD": ["CAH02-05-01"],
  "BMS": ["CAH02-05-03"], "PSY": ["CAH04-01"], "BIO": ["CAH03-01-01", "CAH03-01-02"], "BCH": ["CAH03-01-08"], "ZOO": ["CAH03-01-06"],
  "CHE": ["CAH07-02-01"], "PHS": ["CAH07-01-01", "CAH07-01-02"], "MAT": ["CAH09-01-01"], "ENV": ["CAH26-01-04"],
  "GEO": ["CAH26-01-01", "CAH26-01-02", "CAH26-01-03"], "CS": ["CAH11-01-01"], "AI": ["CAH11-01-05"], "GAM": ["CAH11-01-06"],
- "ENG": ["CAH10-01"], "MEC": ["CAH10-01-02"], "AER": ["CAH10-01-04"], "BEN": ["CAH10-01-06"], "CIV": ["CAH10-01-07"],
- "ELE": ["CAH10-01-08"], "CHM": ["CAH10-01-09"], "ARC": ["CAH13-01-01"], "ECO": ["CAH15-02-01"], "POL": ["CAH15-03-01"],
+ "ENG": ["CAH10-01"], "MEC": ["CAH10-01-02"], "AER": ["CAH10-01-04"], "CIV": ["CAH10-01-07"],
+ "ELE": ["CAH10-01-08"], "ARC": ["CAH13-01-01"], "ECO": ["CAH15-02-01"], "POL": ["CAH15-03-01"],
  "BUS": ["CAH17-01-01", "CAH17-01-02", "CAH17-01-04"], "MKT": ["CAH17-01-03"], "TOU": ["CAH17-01-06"], "ACC": ["CAH17-01-07", "CAH17-01-08"],
- "ANT": ["CAH15-01-04"], "SW": ["CAH15-04-01"], "EN": ["CAH19-01-01", "CAH19-01-03"], "LIN": ["CAH19-01-07"], "LNG": ["CAH19-04"],
+ "SW": ["CAH15-04-01"], "EN": ["CAH19-01-01", "CAH19-01-03"], "LIN": ["CAH19-01-07"], "LNG": ["CAH19-04"],
  "HIS": ["CAH20-01-01"], "ARCH": ["CAH20-01-03"], "CLA": ["CAH20-01-05"], "PHI": ["CAH20-02-01"], "THE": ["CAH20-02-02"],
  "ART": ["CAH25-01-02"], "MDC": ["CAH24-01-05"], "JOU": ["CAH24-01-04"], "MUS": ["CAH25-02-02"], "DRA": ["CAH25-02-03"], "SPS": ["CAH03-02-01"],
- "LDN": ["CAH02-04-08"], "DHT": ["CAH02-04-06"], "PHL": ["CAH02-02-01"], "GEN": ["CAH03-01-07"], "NSC": ["CAH07-04-04"], "BIT": ["CAH10-03-05"], "ANS": ["CAH06-01-01"], "FDS": ["CAH06-01-07"], "PLN": ["CAH13-01-04"], "CW": ["CAH19-01-05"], "DAN": ["CAH25-02-04"],
+ "LDN": ["CAH02-04-08"], "DHT": ["CAH02-04-06"], "PHL": ["CAH02-02-01"], "GEN": ["CAH03-01-07"], "ANS": ["CAH06-01-01"], "FDS": ["CAH06-01-07"], "CW": ["CAH19-01-05"],
+ "LAR": ["CAH13-01-03"],
 }
 
 # ---------------------------------------------------------------- helpers
@@ -362,6 +374,13 @@ def main():
                 if k in emp:
                     e = emp[k]; ws = num(e.get("WORKSTUDY"))  # % in work and/or further study 15 months after graduating
                     if ws is not None: work.append((ws, num(e.get("EMPPOP"))))
+            # how specific each figure is: the official data gives level 4 = this exact course;
+            # 3/2/1 = combined with similar courses at this uni (3 = narrow subject group, 1 = very broad)
+            def level(table, field, ks):
+                lv = [int(table[k][field][1]) for k in ks if k in table and len(table[k].get(field) or "") == 2]
+                return min(lv) if lv else None
+            grp = {n: l for n, l in (("sat", level(nss, "NSSAGG", keys)), ("tariff", level(tar, "TARAGG", keys)), ("cont", level(cont, "CONTAGG", keys)),
+                                     ("salary", level(sal, "GOSALAGG", keys)), ("work", level(emp, "EMPAGG", keys))) if l is not None and l < 4}
             best = max(keys, key=lambda k: (bool(courses[k]["CRSEURL"]), -len(courses[k]["TITLE"] or "")))
             single = [k for k in keys if COURSE_RX[code].search(courses[k]["TITLE"] or "") and " and " not in (courses[k]["TITLE"] or "").lower() and " with " not in (courses[k]["TITLE"] or "").lower()]
             if single: best = min(single, key=lambda k: len(courses[k]["TITLE"]))
@@ -382,6 +401,7 @@ def main():
                 "masters": any(courses[k]["KISAIMCODE"] in MASTERS for k in keys),
                 "parttime": any(COURSE_RX[code].search(t) for t in parttime[k_pub]),
             }
+            if grp: c["grp"] = grp
             # every campus this course is taught at (multi-campus unis); the app uses the one nearest the student
             lc = defaultdict(int)
             for k in keys:
@@ -412,7 +432,9 @@ def main():
                     round(num(emp[k].get("WORKSTUDY"))) if k in emp and num(emp[k].get("WORKSTUDY")) is not None else None,
                     1 if r_["SANDWICH"] in ("1", "2") else 0, 1 if r_["YEARABROAD"] in ("1", "2") else 0,
                     1 if r_["FOUNDATION"] in ("1", "2") else 0, 1 if r_["KISAIMCODE"] in MASTERS else 0,
-                    1 if len(set(sbj[k])) > 1 else 0, 1 if k in accred else 0, aims.get(r_["KISAIMCODE"], "")])
+                    1 if len(set(sbj[k])) > 1 else 0, 1 if k in accred else 0, aims.get(r_["KISAIMCODE"], ""),
+                    {n: l for n, l in (("sat", level(nss, "NSSAGG", [k])), ("tariff", level(tar, "TARAGG", [k])), ("cont", level(cont, "CONTAGG", [k])),
+                                       ("salary", level(sal, "GOSALAGG", [k])), ("work", level(emp, "EMPAGG", [k]))) if l is not None and l < 4}])
             variants[code][uid] = vlist[:40]
         out[uid] = {"courses": ucourses, "tef": tef.get(uid), "campus": campus.get(uid), **meta[uid]}
 

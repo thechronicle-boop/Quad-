@@ -309,10 +309,11 @@
    "wet": 148,
    "studio": 188
   },
-  "catPrice": 175,
   "year": "2026/27",
   "catered": true,
-  "source": "https://port.ac.uk/our-halls-residence"
+  "checked": "2026-10-27",
+  "source": "https://port.ac.uk/student-life/accommodation/our-halls-of-residence",
+  "catPrice": 175
  },
  "uwe": {
   "from": 118,
@@ -453,5 +454,377 @@
   "checked": "2026-10-27",
   "note": "Single rooms. Twin rooms for two people are cheaper (from £97).",
   "source": "https://www.northampton.ac.uk/student-life/accommodation/accommodation-fees/"
+ },
+ "bcu": {
+  "from": 157,
+  "rooms": {
+   "wet": 157,
+   "full": 178
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.bcu.ac.uk/student-info/accommodation-launch/halls",
+  "note": "Some halls list a range from £120 without saying the room type"
+ },
+ "bir": {
+  "from": 107,
+  "rooms": {
+   "shared": 107,
+   "wet": 189,
+   "full": 196,
+   "studio": 272
+  },
+  "year": "2026/27",
+  "catered": true,
+  "checked": "2026-10-27",
+  "source": "https://www.birmingham.ac.uk/accommodation/accommodation-fees",
+  "catPrice": 162
+ },
+ "der": {
+  "from": 119,
+  "rooms": {
+   "shared": 119,
+   "wet": 151,
+   "full": 181,
+   "studio": 192
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.derby.ac.uk/life/accommodation/applying/2026-27-prices/"
+ },
+ "dmu": {
+  "from": 137,
+  "rooms": {
+   "wet": 137,
+   "full": 147,
+   "studio": 180
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.dmu.ac.uk/study/accommodation/prices-contract-lengths.aspx",
+  "note": "DMU's halls are run by partner providers"
+ },
+ "gre": {
+  "from": 146,
+  "rooms": {
+   "shared": 146,
+   "wet": 217,
+   "full": 225,
+   "studio": 302
+  },
+  "year": null,
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.gre.ac.uk/accommodation/accommodation-at-greenwich/compare",
+  "note": "Year not stated on the uni's page"
+ },
+ "kee": {
+  "from": 128,
+  "rooms": {
+   "shared": 128,
+   "wet": 195,
+   "full": 232
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.keele.ac.uk/accommodation/accommodationfees/"
+ },
+ "lan": {
+  "from": 149,
+  "rooms": {
+   "shared": 149,
+   "wet": 203,
+   "studio": 241
+  },
+  "year": "2026/27",
+  "catered": true,
+  "checked": "2026-10-27",
+  "source": "https://features.lancaster-university.uk/accommodation/",
+  "note": "Catered price not yet published for 2026/27"
+ },
+ "cum": {
+  "from": 108,
+  "rooms": {
+   "shared": 108,
+   "wet": 141
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.cumbria.ac.uk/student-life/accommodation/lancaster/",
+  "note": "Lancaster (from £108) and Carlisle (en-suite from £141) campuses"
+ },
+ "obu": {
+  "from": 139,
+  "rooms": {
+   "shared": 139,
+   "wet": 185,
+   "full": 203
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.brookes.ac.uk/getmedia/e68a10a5-32a9-42aa-a6c4-f4b21fc85428/where-will-i-live-2027-8.pdf",
+  "note": "2027/28 prices due January 2027"
+ },
+ "p10003863": {
+  "from": 119,
+  "rooms": {
+   "wet": 119,
+   "full": 141
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://leedstrinity.ac.uk/accommodation"
+ },
+ "p10004048": {
+  "from": 202,
+  "rooms": {},
+  "year": null,
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://student.londonmet.ac.uk/media/london-metropolitan-university/london-met-documents/professional-service-departments/student-services/aifs/Student-halls-of-residence-26-27.docx",
+  "note": "Private partner halls only; room types not broken down"
+ },
+ "p10004351": {
+  "from": 240,
+  "rooms": {
+   "wet": 240
+  },
+  "year": null,
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://mdx.foleon.com/international-students/accommodation-factsheet/",
+  "note": "Year not stated on the uni's page"
+ },
+ "p10006022": {
+  "from": 130,
+  "rooms": {
+   "shared": 130,
+   "wet": 159,
+   "full": 170
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://students.solent.ac.uk/university-life/accommodation/accommodation-fees"
+ },
+ "p10006566": {
+  "from": 263,
+  "rooms": {
+   "wet": 263,
+   "full": 295,
+   "studio": 370
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.uwl.ac.uk/student-life/accommodation/paragon",
+  "note": "The Paragon"
+ },
+ "p10007137": {
+  "from": 198,
+  "rooms": {
+   "wet": 198
+  },
+  "year": "2026/27",
+  "catered": true,
+  "checked": "2026-10-27",
+  "source": "https://www.chi.ac.uk/student-life/accommodation/type/self-catered-with-ensuite/",
+  "catPrice": 228
+ },
+ "p10007144": {
+  "from": 189,
+  "rooms": {
+   "wet": 189,
+   "full": 224,
+   "studio": 238
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.uel.ac.uk/study/accommodation/room-types-prices-payment-plans"
+ },
+ "p10000571": {
+  "from": 154,
+  "rooms": {
+   "shared": 154,
+   "wet": 186,
+   "studio": 249
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.bathspa.ac.uk/student-life/accommodation/rents/"
+ },
+ "p10007165": {
+  "from": 216,
+  "rooms": {
+   "wet": 216,
+   "full": 223,
+   "studio": 240
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.westminster.ac.uk/study/accommodation/paying-your-hall-rent"
+ },
+ "p10007772": {
+  "from": 200,
+  "rooms": {},
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://napier.ac.uk/-/media/property-and-facilities/accommodation-documents/2026/comparative-rent-2026-27.pdf",
+  "note": "Napier's own halls; room type not stated"
+ },
+ "p10007805": {
+  "from": 129,
+  "rooms": {
+   "shared": 129,
+   "wet": 175
+  },
+  "year": "2025/26",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.strath.ac.uk/studywithus/accommodation/undergraduateaccommodation"
+ },
+ "p10007811": {
+  "from": 123,
+  "rooms": {
+   "shared": 123,
+   "wet": 152,
+   "full": 164,
+   "studio": 190
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.lincolnbishop.ac.uk/accommodation-further-information"
+ },
+ "p10007854": {
+  "from": 156,
+  "rooms": {
+   "wet": 156,
+   "full": 175
+  },
+  "year": null,
+  "catered": true,
+  "checked": "2026-10-27",
+  "source": "https://www.cardiffmet.ac.uk/study/accommodation/halls-of-residence/cyncoed-campus/",
+  "catPrice": 196,
+  "note": "Cyncoed campus; year not stated"
+ },
+ "ply": {
+  "from": 141,
+  "rooms": {
+   "shared": 141,
+   "wet": 210
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.plymouth.ac.uk/student-life/services/accommodation/halls"
+ },
+ "p10005545": {
+  "from": 210,
+  "rooms": {
+   "wet": 210,
+   "full": 230
+  },
+  "year": "2026/27",
+  "catered": true,
+  "checked": "2026-10-27",
+  "source": "https://www.rau.ac.uk/student-life/accommodation-and-campus/on-campus-accommodation-fees-2026-27",
+  "catPrice": 213
+ },
+ "rgu": {
+  "from": 102,
+  "rooms": {
+   "shared": 102,
+   "wet": 145
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://rgu.ac.uk/life-at-rgu/accommodation/costs-of-accommodation"
+ },
+ "sus": {
+  "from": 124,
+  "rooms": {
+   "shared": 124,
+   "wet": 206
+  },
+  "year": "2027/28 (provisional)",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.sussex.ac.uk/broadcast/read/71167"
+ },
+ "p10007760": {
+  "from": 319,
+  "rooms": {},
+  "year": "2026/27",
+  "catered": true,
+  "checked": "2026-10-27",
+  "source": "https://www.bbk.ac.uk/student-services/accommodation/the-garden-halls",
+  "catPrice": 359,
+  "note": "Intercollegiate partner halls"
+ },
+ "she": {
+  "from": 151,
+  "rooms": {
+   "shared": 151,
+   "wet": 196,
+   "full": 212,
+   "studio": 228
+  },
+  "year": "2026/27",
+  "catered": true,
+  "checked": "2026-10-27",
+  "source": "https://www.sheffield.ac.uk/accommodation/ranmoor-endcliffe-0",
+  "catPrice": 194
+ },
+ "p10007802": {
+  "from": 217,
+  "rooms": {
+   "wet": 217,
+   "full": 248,
+   "studio": 285
+  },
+  "year": "2026/27",
+  "catered": true,
+  "checked": "2026-10-27",
+  "source": "https://static.reading.ac.uk/content/PDFs/files/accommodation/Accommodation-charges-2026-2027.pdf",
+  "catPrice": 188
+ },
+ "sfs": {
+  "from": 175,
+  "rooms": {
+   "wet": 175,
+   "full": 188,
+   "studio": 212
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://staffs.ac.uk/student-life/accommodation/our-accommodation",
+  "note": "Listed for September 2026"
+ },
+ "sun": {
+  "from": 90,
+  "rooms": {
+   "wet": 150,
+   "full": 155
+  },
+  "year": null,
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.sunderland.ac.uk/student-life/accommodation/panns-bank",
+  "note": "Panns Bank; non-en-suite rooms from £90; year not stated"
  }
 }
