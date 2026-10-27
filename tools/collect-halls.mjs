@@ -92,7 +92,7 @@ const median = a => { const s = [...a].sort((x, y) => x - y); const n = s.length
 const ACC = /accommodation|residences|halls|living|housing/i;
 const PRICE = /fee|price|cost|rent|rates|tariff|rooms|compare|our-halls|residences|halls/i;
 // pages that are about other students or other costs (postgrad halls, scholarships, study abroad…) — their prices are not undergraduate halls prices
-const WRONG_PAGE = /postgrad|\/pg\/|scholarship|bursar|study-abroad|exchange|cost-of-living|international\/|apprentice/i;
+const WRONG_PAGE = /postgrad|\/pg\/|scholarship|bursar|study-abroad|exchange|cost-of-living|international\/|apprentice|future-years|returner|returning|continuing|current-students/i;
 async function crawl(uni) {
   const host = "www." + root(uni.domain);
   const originReal = "https://" + host;

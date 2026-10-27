@@ -15,7 +15,7 @@ for (const [id, r] of Object.entries(halls)) {
   if (!["high", "medium"].includes(r.confidence)) continue;
   if (skip[id]) continue; // automatic price we couldn't confirm (see tools/halls-skip.json)
   // ignore prices taken from pages about postgrad halls, scholarships, study abroad etc.
-  if (/postgrad|\/pg\/|scholarship|bursar|study-abroad|exchange|cost-of-living|international\/|apprentice/i.test((r.sources || [])[0] || "")) continue;
+  if (/postgrad|\/pg\/|scholarship|bursar|study-abroad|exchange|cost-of-living|international\/|apprentice|future-years|returner|returning|continuing|current-students/i.test((r.sources || [])[0] || "")) continue;
   // cheapest believable price per room type (same meaning as hand-checked prices):
   // needs 2+ sightings, and drops outliers far below the typical price (deposits, shared twins, per-night rates)
   const pick = x => {
