@@ -1277,5 +1277,49 @@
   "checked": "2026-10-27",
   "source": "https://www.surrey.ac.uk/accommodation/our-accommodation/standard-en-suite-rooms",
   "note": "Standard en-suite £208.50–£217"
+ },
+ "p10034449": {
+  "from": 182,
+  "rooms": {
+   "wet": 182,
+   "full": 204,
+   "studio": 231
+  },
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.leedsconservatoire.ac.uk/student-life/accommodation/joseph-stones-house/",
+  "note": "Joseph Stones House"
+ },
+ "p10008010": {
+  "from": 140,
+  "rooms": {
+   "shared": 140,
+   "wet": 170
+  },
+  "year": null,
+  "catered": true,
+  "catPrice": 140,
+  "checked": "2026-10-27",
+  "source": "https://www.stran.ac.uk/accommodation",
+  "note": "Catered halls; year not stated"
+ },
+ "p10007825": {
+  "from": 252,
+  "rooms": {},
+  "year": "2026/27",
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://gsmd.ac.uk/node/18729",
+  "note": "Sundial Court single rooms"
+ },
+ "p10048199": {
+  "from": 200,
+  "rooms": {},
+  "year": null,
+  "catered": false,
+  "checked": "2026-10-27",
+  "source": "https://www.nulondon.ac.uk/wp-content/uploads/2026/03/NU_StudentAccom_PDF_V2.pdf",
+  "note": "Partner halls only; rooms from £200"
  }
 }

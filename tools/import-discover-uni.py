@@ -178,6 +178,33 @@ CAH_MAP = {
  "LAR": ["CAH13-01-03"],
 }
 
+# Specialist higher-education institutions students apply to through UCAS (conservatoires, art, drama and music schools,
+# veterinary and rural colleges, small universities). Further-education colleges are deliberately not included.
+SPECIALIST = {
+ "10007779": "Royal Veterinary College", "10034449": "Leeds Conservatoire", "10003945": "LIPA (Liverpool Institute for Performing Arts)",
+ "10002681": "Glasgow School of Art", "10001503": "The Northern School of Art", "10005561": "Royal Conservatoire of Scotland",
+ "10003022": "Hereford College of Arts", "10005700": "SRUC (Scotland's Rural College)", "10067406": "NMITE",
+ "10048199": "Northeastern University London", "10005523": "Rose Bruford College", "10007816": "Royal Central School of Speech and Drama",
+ "10008010": "Stranmillis University College", "10007838": "Royal Welsh College of Music and Drama", "10039082": "City and Guilds of London Art School",
+ "10008017": "Trinity Laban Conservatoire", "10031982": "BPP University", "10007825": "Guildhall School of Music and Drama",
+ "10007835": "Royal Academy of Music", "10008026": "St Mary's University College, Belfast", "10004450": "Mountview Academy of Theatre Arts",
+ "10042570": "Escape Studios", "10035638": "ICMP (Institute of Contemporary Music Performance)", "10019178": "Point Blank Music School",
+ "10088321": "DBS Institute (Deep Blue Sound)", "10085293": "WaterBear College of Music", "10007839": "SAE Institute",
+ "10052868": "London College of Contemporary Arts", "10010308": "Cambridge School of Visual and Performing Arts", "10010457": "Spirit Studios",
+ "10066551": "LCCM (London College of Contemporary Music)", "10067853": "ACM (Academy of Contemporary Music)", "10009527": "Istituto Marangoni London",
+ "10022087": "Futureworks", "10031239": "Liverpool Media Academy", "10008173": "University College of Estate Management",
+}
+
+# Titles that must NOT count for a subject even if their official subject code matches (e.g. Sound Engineering is not Engineering)
+NOT_RX = {k: re.compile(v, re.I) for k, v in {
+ "ENG": r"sound|audio|music|^architecture", "ELE": r"sound|audio|music", "MEC": r"sound|audio|music",
+ "CS": r"graphic|illustration|animation", "SW": r"\barts with community\b", "CIV": r"^architecture",
+}.items()}
+# Titles that MUST contain one of these words to count for the subject
+NEED_RX = {k: re.compile(v, re.I) for k, v in {
+ "TOU": r"touris|event|hospitality|travel|leisure",
+}.items()}
+
 # ---------------------------------------------------------------- helpers
 def open_source(path):
     """Return a function name -> csv rows, from a zip or folder."""
@@ -228,6 +255,7 @@ def town_from(addr):
     if parts and re.match(r"^[A-Z]{1,2}\d", parts[-1].upper()): parts = parts[:-1]
     while parts and parts[-1].lower() in COUNTIES: parts = parts[:-1]
     t = parts[-1] if parts else ""
+    t = t.rstrip(". ")
     return t.title() if t.isupper() or t.islower() else t
 
 def wavg(items):
@@ -258,7 +286,7 @@ def main():
         n = r["LEGAL_NAME"] + " | " + r["FIRST_TRADING_NAME"]
         isuni = re.search(r"universit", n, re.I) and not re.search(r"university centre|university campus", n, re.I) and r["LEGAL_NAME"].strip() != "University of London"
         special = re.search(r"king's college london|imperial college|london school of economics", n, re.I)
-        if p in legacy or ((isuni or special) and ft[p] >= 10):
+        if p in legacy or p in SPECIALIST or ((isuni or special) and ft[p] >= 10):
             pub2id[p] = legacy.get(p, "p" + p)
     NATION = {"XF": "eng", "XG": "ni", "XH": "sco", "XI": "wal"}
     meta = {}
@@ -278,6 +306,7 @@ def main():
         name = re.sub(r"\b(Of|And|For|The|At)\b", lambda m: m.group(1).lower(), name)
         name = name[0].upper() + name[1:]
         if name.lower() in ("ua92", "university academy 92"): name = "UA92"
+        if p in SPECIALIST: name = SPECIALIST[p]
         meta[uid] = {"name": name, "town": town_from(r["PROVADDRESS"]), "nation": NATION.get(r["COUNTRY"], "eng"), "web": r["PROVURL"]}
 
     # dataset date from folder name e.g. on_2026_10_20_...
@@ -344,6 +373,8 @@ def main():
     for k, r in courses.items():
         title = r["TITLE"] or r["TITLEW"] or ""
         for code, rx in COURSE_RX.items():
+            if code in NOT_RX and NOT_RX[code].search(title): continue
+            if code in NEED_RX and not NEED_RX[code].search(title): continue
             if rx.search(title) or any(sc.startswith(pref) for sc in sbj[k] for pref in CAH_MAP.get(code, [])):
                 agg[pub2id[k[0]]][code].append(k)
 
