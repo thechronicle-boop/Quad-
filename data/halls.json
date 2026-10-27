@@ -423,49 +423,13 @@
   "id": "man",
   "name": "University of Manchester",
   "checked": "2026-10-27",
-  "confidence": "high",
-  "year": "2026/27",
+  "confidence": "none",
+  "year": null,
   "catered": false,
-  "rooms": {
-   "shared": {
-    "median": 180,
-    "min": 142,
-    "max": 198,
-    "n": 6,
-    "v": [
-     142,
-     161,
-     178,
-     181,
-     189,
-     198
-    ]
-   },
-   "wet": {
-    "median": 222,
-    "min": 180,
-    "max": 263,
-    "n": 2,
-    "v": [
-     180,
-     263
-    ]
-   }
-  },
-  "sources": [
-   "https://www.manchester.ac.uk/study/accommodation/student-accommodation/search/artisan-heights/",
-   "https://www.manchester.ac.uk/study/accommodation/student-accommodation/search/ashburne-hall/",
-   "https://www.manchester.ac.uk/study/accommodation/student-accommodation/search/burkhardt-house/",
-   "https://www.manchester.ac.uk/study/accommodation/student-accommodation/search/campus-living-village/"
-  ],
+  "rooms": {},
+  "sources": [],
   "pagesVisited": 18,
-  "examples": [
-   "wet £263: £263 per week/£11,046 for total 42 week contract.",
-   "shared £189: £189 per week/£7,754 for total 41 week contract.",
-   "shared £178: £178 per week/£7,309 for total 41 week contract.",
-   "shared £198: £198 per week/£8,127 for total 41 week contract.",
-   "shared £161: £161 per week/£8,271 for total 51 week contract."
-  ]
+  "examples": []
  },
  "bri": {
   "id": "bri",
@@ -1252,15 +1216,14 @@
   "catered": false,
   "rooms": {
    "wet": {
-    "median": 247,
+    "median": 242,
     "min": 125,
     "max": 315,
-    "n": 7,
+    "n": 6,
     "v": [
      125,
      206,
      232,
-     247,
      252,
      257,
      315
@@ -1281,8 +1244,7 @@
   },
   "sources": [
    "https://www.bath.ac.uk/student-accommodation/green-park-house-student-accommodation/",
-   "https://www.bath.ac.uk/student-accommodation/woodland-court-student-accommodation/",
-   "https://www.bath.ac.uk/student-accommodation/the-quads-student-accommodation/"
+   "https://www.bath.ac.uk/student-accommodation/woodland-court-student-accommodation/"
   ],
   "pagesVisited": 18,
   "examples": [
@@ -1861,7 +1823,7 @@
   "catered": false,
   "rooms": {},
   "sources": [],
-  "pagesVisited": 6,
+  "pagesVisited": 18,
   "examples": []
  },
  "lin": {
@@ -2331,7 +2293,7 @@
   "catered": false,
   "rooms": {},
   "sources": [],
-  "pagesVisited": 8,
+  "pagesVisited": 10,
   "examples": []
  },
  "glos": {
@@ -3677,7 +3639,7 @@
   "catered": false,
   "rooms": {},
   "sources": [],
-  "pagesVisited": 9,
+  "pagesVisited": 10,
   "examples": []
  },
  "p10007162": {
@@ -3752,13 +3714,43 @@
   "id": "p10007759",
   "name": "Aston University",
   "checked": "2026-10-27",
-  "confidence": "none",
-  "year": null,
+  "confidence": "high",
+  "year": "2026/27",
   "catered": false,
-  "rooms": {},
-  "sources": [],
-  "pagesVisited": 0,
-  "examples": []
+  "rooms": {
+   "wet": {
+    "median": 155,
+    "min": 137,
+    "max": 178.35,
+    "n": 12,
+    "v": [
+     137,
+     142,
+     144,
+     144,
+     144,
+     155,
+     155,
+     155,
+     160,
+     172.2,
+     178.35,
+     178.35
+    ]
+   }
+  },
+  "sources": [
+   "https://www.aston.ac.uk/undergraduate/your-application/accommodation/returning-students",
+   "https://www.aston.ac.uk/undergraduate/your-application/accommodation/accommodation-for-new-undergraduate-students"
+  ],
+  "pagesVisited": 10,
+  "examples": [
+   "wet £137: Available for £137 per week on a 51-week contract. 44-week contracts are available for £172.20 per week.",
+   "wet £172.2: Available for £137 per week on a 51-week contract. 44-week contracts are available for £172.20 per week.",
+   "wet £142: Available for £142 per week on 51-week contract. 44-week contracts are available for £178.35 per week.",
+   "wet £178.35: Available for £142 per week on 51-week contract. 44-week contracts are available for £178.35 per week.",
+   "wet £160: Available for £160 per week on a 44-week contract. In James Watt and Mary Sturge buildings only"
+  ]
  },
  "p10007760": {
   "id": "p10007760",

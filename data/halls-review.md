@@ -15,6 +15,7 @@ Checked 2026-10-27. High-confidence results are used automatically; medium are u
 - **Glasgow Caledonian University** — none — add a start URL in tools/unis.json
 - **University of St Andrews** — none — add a start URL in tools/unis.json
 - **University of Aberdeen** — none — add a start URL in tools/unis.json
+- **University of Manchester** — none — add a start URL in tools/unis.json
 - **University of Bristol** — none — add a start URL in tools/unis.json
 - **UWE Bristol** — medium — https://www.uwe.ac.uk/life/accommodation/find-accommodation
 - **University of Warwick** — none — add a start URL in tools/unis.json
@@ -78,7 +79,6 @@ Checked 2026-10-27. High-confidence results are used automatically; medium are u
 - **University of Kent** — medium — https://www.kent.ac.uk/accommodation/canterbury/prices
 - **University Of Salford** — none — add a start URL in tools/unis.json
 - **University of the Arts, London** — none — add a start URL in tools/unis.json
-- **Aston University** — none — add a start URL in tools/unis.json
 - **Roehampton University** — medium — https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/bede-house/
 - **University Of Buckingham** — none — add a start URL in tools/unis.json
 - **University of South Wales** — none — add a start URL in tools/unis.json
