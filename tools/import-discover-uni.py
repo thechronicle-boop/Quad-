@@ -205,6 +205,10 @@ NEED_RX = {k: re.compile(v, re.I) for k, v in {
  "TOU": r"touris|event|hospitality|travel|leisure",
 }.items()}
 
+# registered address isn't where students study
+CITY_FIX = {"10067648": "Manchester", "10019178": "Several cities", "10007839": "Several cities", "10035638": "Several cities",
+            "10088321": "Several cities", "10085293": "Several cities", "10031982": "Several cities"}
+
 # ---------------------------------------------------------------- helpers
 def open_source(path):
     """Return a function name -> csv rows, from a zip or folder."""
@@ -307,7 +311,8 @@ def main():
         name = name[0].upper() + name[1:]
         if name.lower() in ("ua92", "university academy 92"): name = "UA92"
         if p in SPECIALIST: name = SPECIALIST[p]
-        meta[uid] = {"name": name, "town": town_from(r["PROVADDRESS"]), "nation": NATION.get(r["COUNTRY"], "eng"), "web": r["PROVURL"]}
+        town = CITY_FIX.get(p) or town_from(r["PROVADDRESS"])
+        meta[uid] = {"name": name, "town": town, "nation": NATION.get(r["COUNTRY"], "eng"), "web": r["PROVURL"]}
 
     # dataset date from folder name e.g. on_2026_10_20_...
     m = re.search(r"on_(\d{4})_(\d\d)_(\d\d)", " ".join(zipfile.ZipFile(src).namelist()[:3]) if src.endswith(".zip") else src)

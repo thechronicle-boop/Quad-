@@ -63,6 +63,7 @@ a{color:var(--green)}
 #lock .lmsg{min-height:22px;margin-top:12px;font-size:13px;color:var(--red)}
 
 /* Shell */
+.qfoot{margin:40px 0 10px;text-align:center;font-size:12.5px;color:var(--muted)}.qfoot button{color:var(--green);font-weight:600;text-decoration:underline}
 .slS{display:none}
 header{position:sticky;top:0;z-index:20;background:var(--hdr);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .bar{max-width:1180px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
@@ -419,7 +420,7 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
           <p class="hint">Leave any of these blank. Limits hide unis outside them.</p>
           <div class="lim">
             <div class="lim-top"><span>Home <span class="opt-l">· for distance &amp; journeys</span></span> <button class="linkbtn" id="geoBtn">📍 Use my location</button></div>
-            <select id="home" class="field"></select>
+            <input id="home" class="field" list="homeList" placeholder="Type your home town…" autocomplete="off"><datalist id="homeList"></datalist><p class="hint" style="margin:4px 0 0">Any UK town or village works. Press Enter to search.</p>
             <div class="row" style="margin-top:6px"><input id="postcode" class="field" placeholder="…or type your postcode" maxlength="9" autocomplete="postal-code" style="padding:9px 12px"><button class="btn ghost sm" id="pcBtn">Set</button></div>
           </div>
           <div class="lim">
@@ -488,6 +489,7 @@ table.cmp{width:100%;border-collapse:collapse;min-width:520px}
     <div id="cmpBox"></div>
     <div id="slList"></div>
   </section>
+<footer class="qfoot"><button id="privBtn">Privacy</button> · <span>Course data: Discover Uni (HESA/OfS, CC BY 4.0) · Not affiliated with UCAS or any university</span></footer>
 </main>
 
 <div id="modalRoot"></div>
@@ -549,6 +551,13 @@ const TOWNS=[
  ["Swansea",51.62,-3.94],["Hull",53.74,-0.33],["York",53.96,-1.08],["Stoke-on-Trent",53.00,-2.18],["Preston",53.76,-2.70],
  ["Blackburn",53.75,-2.48],["Bolton",53.58,-2.43],["Wolverhampton",52.59,-2.13],["Peterborough",52.57,-0.24],["Chelmsford",51.74,0.47],
  ["Slough",51.51,-0.59],["Watford",51.66,-0.40],["Derby",52.92,-1.48],["Middlesbrough",54.57,-1.23],["Sunderland",54.91,-1.38],
+ ["Aylesbury",51.82,-0.81],["Basingstoke",51.27,-1.09],["Bath",51.38,-2.36],["Bedford",52.14,-0.47],["Blackpool",53.82,-3.05],["Bournemouth",50.72,-1.88],["Burnley",53.79,-2.25],["Bury",53.59,-2.30],["Canterbury",51.28,1.08],["Carlisle",54.89,-2.93],["Cheltenham",51.90,-2.08],["Chester",53.19,-2.89],["Chesterfield",53.24,-1.42],["Colchester",51.89,0.90],["Crawley",51.11,-0.19],["Darlington",54.52,-1.55],["Doncaster",53.52,-1.13],["Dudley",52.51,-2.09],["Durham",54.78,-1.57],["Eastbourne",50.77,0.28],["Gloucester",51.86,-2.24],["Guildford",51.24,-0.57],["Harrogate",53.99,-1.54],["Hastings",50.86,0.57],["Hereford",52.06,-2.72],["High Wycombe",51.63,-0.75],["Huddersfield",53.65,-1.78],["Lancaster",54.05,-2.80],["Lincoln",53.23,-0.54],["Maidstone",51.27,0.52],["Northampton",52.24,-0.90],["Oldham",53.54,-2.12],["Poole",50.72,-1.98],["Rochdale",53.62,-2.16],["Salford",53.49,-2.29],["Salisbury",51.07,-1.79],["Scunthorpe",53.59,-0.65],["Shrewsbury",52.71,-2.75],["Southend-on-Sea",51.54,0.71],["St Albans",51.75,-0.34],["Stockport",53.41,-2.15],["Swindon",51.56,-1.78],["Telford",52.68,-2.45],["Wakefield",53.68,-1.50],["Walsall",52.59,-1.98],["Warrington",53.39,-2.59],["Wigan",53.55,-2.63],["Winchester",51.06,-1.31],["Woking",51.32,-0.56],["Worcester",52.19,-2.22],["Worthing",50.81,-0.37],
+ ["Hemel Hempstead",51.75,-0.47],["Stevenage",51.90,-0.20],["Harlow",51.77,0.09],["Basildon",51.58,0.49],["Southport",53.65,-3.01],["Birkenhead",53.39,-3.01],["Halifax",53.72,-1.86],["Barnsley",53.55,-1.48],["Rotherham",53.43,-1.36],["Grimsby",53.57,-0.08],["Mansfield",53.14,-1.20],["Kettering",52.40,-0.73],["Corby",52.49,-0.70],["Wellingborough",52.30,-0.69],["Rugby",52.37,-1.26],["Nuneaton",52.52,-1.47],["Solihull",52.41,-1.78],["Sutton Coldfield",52.57,-1.82],["West Bromwich",52.52,-1.99],["Kidderminster",52.39,-2.25],["Redditch",52.31,-1.94],["Tamworth",52.63,-1.69],["Burton upon Trent",52.80,-1.64],["Stafford",52.81,-2.12],["Crewe",53.10,-2.44],["Macclesfield",53.26,-2.13],["Gateshead",54.95,-1.60],["South Shields",55.00,-1.43],["Hartlepool",54.69,-1.21],["Stockton-on-Tees",54.57,-1.32],["Scarborough",54.28,-0.40],["Kendal",54.33,-2.75],["Barrow-in-Furness",54.11,-3.23],["Workington",54.64,-3.55],["Whitehaven",54.55,-3.59],["Penrith",54.66,-2.75],["Taunton",51.02,-3.10],["Yeovil",50.94,-2.63],["Torquay",50.46,-3.53],["Paignton",50.44,-3.56],["Barnstaple",51.08,-4.06],["Truro",50.26,-5.05],["Falmouth",50.15,-5.07],["Newquay",50.41,-5.08],["Penzance",50.12,-5.54],["St Austell",50.34,-4.79],["Weston-super-Mare",51.35,-2.98],["Bridgwater",51.13,-3.00],["Trowbridge",51.32,-2.21],["Chippenham",51.46,-2.12],["Newbury",51.40,-1.32],["Bracknell",51.41,-0.75],["Maidenhead",51.52,-0.72],["Windsor",51.48,-0.61],["Staines-upon-Thames",51.43,-0.51],["Kingston upon Thames",51.41,-0.30],["Croydon",51.37,-0.10],["Bromley",51.41,0.02],["Romford",51.58,0.18],["Ilford",51.56,0.07],["Enfield",51.65,-0.08],["Harrow",51.58,-0.34],["Uxbridge",51.55,-0.48],["Wimbledon",51.42,-0.21],
+ ["Ashford",51.15,0.87],["Dover",51.13,1.31],["Folkestone",51.08,1.17],["Margate",51.39,1.38],["Tunbridge Wells",51.13,0.26],["Sevenoaks",51.27,0.19],["Dartford",51.45,0.21],["Gillingham",51.39,0.55],["Chatham",51.38,0.53],["Chichester",50.84,-0.78],["Horsham",51.06,-0.33],["Bognor Regis",50.78,-0.68],["Lewes",50.87,0.01],["Epsom",51.33,-0.27],["Farnham",51.21,-0.80],["Camberley",51.34,-0.74],["Andover",51.21,-1.48],["Fareham",50.85,-1.18],["Eastleigh",50.97,-1.35],["Aldershot",51.25,-0.76],["Farnborough",51.29,-0.75],["Brentwood",51.62,0.30],["Clacton-on-Sea",51.79,1.15],["Hertford",51.80,-0.08],["Hitchin",51.95,-0.28],["Welwyn Garden City",51.80,-0.21],["Hatfield",51.76,-0.23],["Dunstable",51.89,-0.52],["Amersham",51.67,-0.61],["Beaconsfield",51.61,-0.64],["Marlow",51.57,-0.78],["Chesham",51.71,-0.61],["Banbury",52.06,-1.34],["Bicester",51.90,-1.15],["Abingdon",51.67,-1.28],["Didcot",51.61,-1.24],["Witney",51.79,-1.48],["Huntingdon",52.33,-0.18],["Ely",52.40,0.26],["St Neots",52.23,-0.27],["King's Lynn",52.75,0.40],["Great Yarmouth",52.61,1.73],["Thetford",52.41,0.75],["Bury St Edmunds",52.25,0.71],["Lowestoft",52.48,1.75],["Boston",52.98,-0.03],["Grantham",52.91,-0.64],["Skegness",53.14,0.34],["Newark-on-Trent",53.08,-0.81],["Worksop",53.30,-1.12],["Buxton",53.26,-1.91],["Loughborough",52.77,-1.21],["Hinckley",52.54,-1.37],["Melton Mowbray",52.77,-0.89],["Lichfield",52.68,-1.83],["Cannock",52.69,-2.03],["Newcastle-under-Lyme",53.01,-2.23],["Oswestry",52.86,-3.05],["Bromsgrove",52.34,-2.06],["Malvern",52.11,-2.33],["Evesham",52.09,-1.95],["Warwick",52.28,-1.58],["Leamington Spa",52.29,-1.53],["Stratford-upon-Avon",52.19,-1.71],["Stroud",51.75,-2.22],["Weymouth",50.61,-2.46],["Dorchester",50.71,-2.44],["Exmouth",50.62,-3.41],["Newton Abbot",50.53,-3.61],["Bodmin",50.47,-4.72],
+ ["Keighley",53.87,-1.91],["Dewsbury",53.69,-1.63],["Selby",53.78,-1.07],["Beverley",53.84,-0.43],["Bridlington",54.08,-0.19],["Whitby",54.49,-0.61],["Ripon",54.14,-1.52],["Skipton",53.96,-2.02],["Northallerton",54.34,-1.43],["Accrington",53.75,-2.36],["Chorley",53.65,-2.63],["Lytham St Annes",53.75,-2.99],["Ormskirk",53.57,-2.88],["Morecambe",54.07,-2.86],["St Helens",53.45,-2.74],["Bootle",53.45,-2.99],["Altrincham",53.39,-2.35],["Ashton-under-Lyne",53.49,-2.10],["Northwich",53.26,-2.52],["Runcorn",53.34,-2.73],["Widnes",53.36,-2.73],["Ellesmere Port",53.28,-2.90],["Morpeth",55.17,-1.69],["Blyth",55.13,-1.51],["Hexham",54.97,-2.10],["Washington",54.90,-1.52],["Newport (Isle of Wight)",50.70,-1.29],
+ ["Newport (Wales)",51.59,-3.00],["Wrexham",53.05,-2.99],["Bangor (Wales)",53.23,-4.13],["Aberystwyth",52.41,-4.08],["Carmarthen",51.86,-4.31],["Llanelli",51.68,-4.16],["Bridgend",51.50,-3.58],["Merthyr Tydfil",51.75,-3.38],["Pontypridd",51.60,-3.34],["Barry",51.40,-3.27],["Rhyl",53.32,-3.49],["Llandudno",53.32,-3.83],["Caerphilly",51.58,-3.22],["Neath",51.66,-3.80],["Haverfordwest",51.80,-4.97],
+ ["Inverness",57.48,-4.22],["Stirling",56.12,-3.94],["Perth",56.40,-3.43],["St Andrews",56.34,-2.80],["Paisley",55.85,-4.42],["Ayr",55.46,-4.63],["Kilmarnock",55.61,-4.50],["Livingston",55.90,-3.52],["Dunfermline",56.07,-3.46],["Kirkcaldy",56.11,-3.16],["Falkirk",56.00,-3.78],["East Kilbride",55.76,-4.18],["Hamilton",55.78,-4.04],["Motherwell",55.79,-3.99],["Cumbernauld",55.95,-3.99],["Greenock",55.95,-4.76],["Dumfries",55.07,-3.61],["Elgin",57.65,-3.32],["Fort William",56.82,-5.11],["Oban",56.41,-5.47],["Stornoway",58.21,-6.39],["Kirkwall",58.98,-2.96],["Lerwick",60.15,-1.15],
+ ["Derry~Londonderry",55.00,-7.31],["Lisburn",54.52,-6.04],["Newry",54.18,-6.34],["Armagh",54.35,-6.65],["Coleraine",55.13,-6.67],["Ballymena",54.86,-6.28],["Bangor (Northern Ireland)",54.66,-5.67],["Newtownabbey",54.66,-5.90],["Omagh",54.60,-7.30],["Enniskillen",54.34,-7.64],["Craigavon",54.45,-6.39],
  ["Glasgow",55.86,-4.25],["Edinburgh",55.95,-3.19],["Aberdeen",57.15,-2.09],["Dundee",56.46,-2.97],["Belfast",54.60,-5.93]
 ].sort((a,b)=>a[0].localeCompare(b[0]));
 
@@ -771,7 +780,7 @@ function renderHome(){
 const courseSel=$("#course"),homeSel=$("#home");
 $("#courseCount").textContent=Object.keys(COURSES).length;
 courseSel.innerHTML=`<option value="">Choose your course…</option>`+Object.entries(COURSE_GROUPS).map(([g,l])=>`<optgroup label="${g}">${[...l].sort((a,b)=>a[1].localeCompare(b[1])).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</optgroup>`).join("");
-function fillHome(){homeSel.innerHTML=`<option value="">Choose your home town…</option>`+(S.home==="My location"||/^Postcode /.test(S.home)?`<option>${esc(S.home)}</option>`:"")+TOWNS.map(t=>`<option>${t[0]}</option>`).join("");homeSel.value=S.home||""}
+function fillHome(){$("#homeList").innerHTML=TOWNS.map(t=>`<option value="${esc(t[0])}">`).join("");homeSel.value=S.home||""}
 courseSel.onchange=()=>{S.course=courseSel.value;save();renderCrit();renderResults();loadVariants(S.course,()=>renderResults())};
 $("#qual").innerHTML=Object.entries(QUALS).map(([k,q])=>`<option value="${k}">${q.label}</option>`).join("");
 $("#tsel").innerHTML=`<option value="">Choose grade…</option>`+TLEVEL.map(([v,l])=>`<option value="${v}">${l}</option>`).join("");
@@ -782,13 +791,25 @@ function renderQual(){const q=QUALS[S.qual||"alevel"];$("#qual").value=S.qual||"
   $("#grades").classList.toggle("hidden",t);$("#tsel").classList.toggle("hidden",!t);$("#grades").placeholder=q.ph;
   if(t)$("#tsel").value=S.grades;else $("#grades").value=S.grades;$("#qualHint").textContent=q.hint;gradeLabel()}
 function gradeLabel(){const p=userPoints();$("#gradePts").textContent=p?p+" UCAS pts":""}
-homeSel.onchange=()=>{if(homeSel.value==="My location"||/^Postcode /.test(homeSel.value))return;const t=TOWNS.find(x=>x[0]===homeSel.value);S.home=homeSel.value;S.homeLat=t?t[1]:null;S.homeLon=t?t[2]:null;save();renderCrit();renderResults()};
+function setHome(name,lat,lon){S.home=name;S.homeLat=lat;S.homeLon=lon;save();fillHome();renderCrit();renderResults()}
+async function findHome(){const v=homeSel.value.trim();if(!v||v===S.home)return;
+  if(!v){setHome("",null,null);return}
+  const t=TOWNS.find(x=>x[0].toLowerCase()===v.toLowerCase());if(t){setHome(t[0],t[1],t[2]);return}
+  if(/^[A-Z]{1,2}\d[A-Z\d]?(\s*\d[A-Z]{2})?$/i.test(v)){lookupPostcode(v);return}
+  try{const r=await fetch("https://api.postcodes.io/places?limit=10&q="+encodeURIComponent(v));const j=await r.json();
+    const list=(j.result||[]).filter(x=>x.latitude!=null);
+    const best=list.find(x=>(x.name_1||"").toLowerCase()===v.toLowerCase()&&/City|Town|Village|Hamlet|Suburban/i.test(x.local_type||""))||list.find(x=>/City|Town|Village/i.test(x.local_type||""))||list[0];
+    if(best){const nm=best.name_1+(best.county_unitary?", "+best.county_unitary:"");setHome(nm,best.latitude,best.longitude);toast("Home set to "+nm);return}}catch(e){}
+  toast("Couldn't find that place — try your postcode")}
+homeSel.onchange=findHome;homeSel.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();findHome()}};
+if(!homeSel.value&&!S.home)homeSel.value="";
 async function lookupPostcode(pc){
   pc=pc.trim().toUpperCase();if(!pc)return;
   const tries=[`https://api.postcodes.io/postcodes/${encodeURIComponent(pc)}`,`https://api.postcodes.io/outcodes/${encodeURIComponent(pc.split(" ")[0])}`];
   for(const url of tries){try{const r=await fetch(url);if(!r.ok)continue;const j=await r.json();const x=j.result;if(x&&x.latitude!=null){S.homeLat=x.latitude;S.homeLon=x.longitude;S.home="Postcode "+pc;save();fillHome();renderCrit();renderResults();toast("Home set to "+pc);return}}catch(e){}}
   toast("Couldn't find that postcode");
 }
+$("#privBtn").onclick=privacy;
 $("#pcBtn").onclick=()=>lookupPostcode($("#postcode").value);
 $("#postcode").onkeydown=e=>{if(e.key==="Enter")lookupPostcode(e.target.value)};
 $("#geoBtn").onclick=()=>{if(!navigator.geolocation)return toast("Location not available");
@@ -908,6 +929,15 @@ function moneyLine(u){
 /* =========================================================
    MODALS: profile, sources, report, data page
    ========================================================= */
+function privacy(){modal(`<div class="mhead"><h2>Privacy</h2><button class="iconbtn" onclick="closeModal()" aria-label="Close">✕</button></div>
+  <p class="hint" style="font-size:14px">Quad has no accounts and no tracking. Everything you enter (course, grades, shortlist, notes, open-day ratings, home town) is saved only in this browser on your device. We can't see it, and it's never sold or shared.</p>
+  <ul class="bul" style="font-size:14px">
+   <li><b>Licence key:</b> when you unlock Quad, your key is sent to Gumroad to check your purchase (Gumroad's privacy policy applies).</li>
+   <li><b>Postcode or town search:</b> what you type is sent to postcodes.io to find its location. "Use my location" uses your browser's location only on your device.</li>
+   <li><b>Links:</b> journey and calendar links open Google Maps or Google Calendar, which have their own privacy policies.</li>
+   <li><b>Share links:</b> your shortlist is stored inside the link itself; anyone you give it to can see what's in it.</li>
+   <li><b>Delete:</b> clear this site's data in your browser settings to remove everything.</li>
+  </ul><p class="hint">Questions? Contact the seller through the Gumroad page you bought Quad from.</p>`)}
 function modal(html){$("#modalRoot").innerHTML=`<div class="ov" id="ov"><div class="card modal" role="dialog">${html}</div></div>`;$("#ov").onclick=e=>{if(e.target.id==="ov")closeModal()};document.body.style.overflow="hidden"}
 function closeModal(){$("#modalRoot").innerHTML="";document.body.style.overflow=""}
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
