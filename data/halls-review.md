@@ -1,6 +1,6 @@
 # Halls prices to check by hand
 
-Checked 2026-10-27. High-confidence results are used automatically; medium are used but flagged; low/none are not used.
+Checked 2026-10-28. High-confidence results are used automatically; medium are used but flagged; low/none are not used.
 
 - **University of Oxford** — none — add a start URL in tools/unis.json
 - **University of Cambridge** — none — add a start URL in tools/unis.json
@@ -81,6 +81,7 @@ Checked 2026-10-27. High-confidence results are used automatically; medium are u
 - **Aston University** — low — https://www.aston.ac.uk/undergraduate/your-application/accommodation/accommodation-for-new-undergraduate-students
 - **Roehampton University** — medium — https://www.roehampton.ac.uk/student-life/accommodation/find-a-room/bede-house/
 - **University Of Buckingham** — none — add a start URL in tools/unis.json
+- **University Of Essex** — none — add a start URL in tools/unis.json
 - **University of South Wales** — none — add a start URL in tools/unis.json
 - **University of the West of Scotland** — medium — https://www.uws.ac.uk/university-life/accommodation/paisley-campus-accommodation/
 - **University of Stirling** — medium — https://www.stir.ac.uk/student-life/accommodation/find-your-residence/alangrange/
